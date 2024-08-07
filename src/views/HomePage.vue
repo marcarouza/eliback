@@ -1,0 +1,57 @@
+<template>
+	<div>
+		<NavOk />
+		<Hero />
+		<Apropos />
+		<Footer />
+		<TabWhats />
+
+		<Chat_Box />
+	</div>
+</template>
+
+<script>
+import NavOk from '../components/NavOk';
+import Hero from '../components/Hero.vue';
+import Apropos from '../components/Apropos.vue';
+import Footer from '../components/Footer.vue';
+import Chat_Box from '../components/Chat_Box.vue';
+import TabWhats from '../components/TabWhats.vue';
+// import globalMixin from '@/mixIns/globalMix.js';
+import checkIFlogged from '../mixIns/checkIFlogged.js';
+
+export default {
+	name: 'HomePage',
+	emits: ['updatePageTitle'], // Déclarez l'événement ici
+	// mixins: [checkIFlogged],
+	// Autres options du composant
+	mounted() {
+		this.$emit('updatePageTitle', `Eli Azoura | Développeur Full Stack`);
+	},
+
+	data() {
+		return {
+			// Vos données ici
+		};
+	},
+	methods: {
+		// Vos méthodes ici
+	},
+	computed: {
+		// Vos propriétés calculées ici
+	},
+	watch: {
+		// Vos observateurs ici
+	},
+	components: {
+		NavOk,
+		Hero,
+		Apropos,
+		TabWhats,
+		Chat_Box,
+		Footer,
+	},
+};
+</script>
+
+<style></style>

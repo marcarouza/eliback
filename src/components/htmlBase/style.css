@@ -1,0 +1,198 @@
+body {
+	background-color: #1a1a1a;
+}
+
+.btn-close {
+	width: 5px;
+	height: 5px;
+	border: 2px solid #004fa4;
+	border-radius: 50%;
+
+	transition: all 0.3s ease-in-out;
+	/* filter: invert(1);  */
+}
+.btn-close:hover {
+	/* filter: invert(1) brightness(0.8);  */
+	border: 2px solid rgb(0, 251, 255);
+	border-radius: 50%;
+	/* padding: 5px; */
+}
+
+.btn-close {
+	background-color: #004fa4;
+	border-color: #004fa4;
+	color: #fff;
+}
+
+.whatsapp-icon {
+	color: #25d366; /* WhatsApp green color */
+	color: #fff;
+}
+
+.hide-inactive {
+	opacity: 0;
+	pointer-events: none;
+
+	/* transform: translateY(120%); */
+	transform: translateX(120%);
+	transition: transform 0.1s ease-out;
+}
+.show-active {
+	opacity: 1;
+	pointer-events: auto;
+	transition: transform 0.3s ease-out;
+
+	transform: translateX(0);
+}
+
+.chat-popin {
+	position: fixed;
+	bottom: 10px;
+	right: 40px;
+	width: 300px;
+	max-width: 100%;
+	background-color: #000549;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	z-index: 100;
+	/* transform: translateY(100%); */
+	transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.chat-popin.show {
+	opacity: 1;
+	visibility: visible;
+}
+
+.chat-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 0.85rem;
+	height: 2rem;
+	background-color: #004fa4;
+	color: #fff;
+	padding: 0 10px;
+	border-top-left-radius: 0.5rem;
+	border-top-right-radius: 0.5rem;
+}
+.chat-body {
+	height: 200px;
+	overflow-y: auto;
+	padding: 10px;
+}
+.chat-footer {
+	padding: 10px;
+	display: flex;
+	align-items: center;
+}
+.send-button {
+	display: flex;
+	justify-content: center;
+	width: 15%;
+	min-width: 20px; /* Ensures the button is not too small */
+	max-width: 35px; /* Ensures the button is not too large */
+	margin-left: 5px;
+}
+
+.smooth.display.none {
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.smooth.display.show {
+	opacity: 1;
+	visibility: visible;
+}
+
+.hidden-button {
+	opacity: 0;
+	pointer-events: none; /* Prevents the button from receiving mouse events */
+}
+
+.chat-body {
+	height: 200px;
+	overflow-y: auto;
+	padding: 10px;
+}
+
+.chat-footer {
+	padding: 10px;
+}
+
+.chat-button {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	z-index: 1000;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	background-color: #007bff;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	background: #1091da
+		linear-gradient(130deg, #1091da 0%, #0e81c2 26%, #0e679b 100%);
+
+	i {
+		font-size: 1.2rem;
+	}
+}
+
+.stickedtab:hover {
+	width: 50px;
+}
+
+.stickedTab {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: -5px 0px 5px 0px rgb(0, 11, 17);
+
+	background: linear-gradient(to top, #1091da 0%, #0e81c2 26%, #0e679b 100%);
+	position: absolute;
+	right: 0;
+	bottom: 100px;
+	z-index: 110;
+	border-radius: 10px 0 0 10px;
+	padding: 6px 15px;
+	text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
+	width: 20px;
+	transition: width 0.3s ease; /* Adding transition for smooth animation */
+}
+
+.stickedTab2 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: -5px 0px 5px 0px rgb(0, 11, 17);
+	background: linear-gradient(to top, #1091da 0%, #0e81c2 26%, #0e679b 100%);
+	position: absolute;
+	right: 0;
+	bottom: 50px;
+	z-index: 100;
+	border-radius: 10px 0 0 10px;
+	/* padding: 6px 15px; */
+	text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
+	width: 45px;
+	height: 40px;
+	transition: width 0.3s ease; /* Adding transition for smooth animation */
+
+	i {
+		font-size: 1.2rem;
+
+		color: #fff;
+		margin: 0 0 3px 0;
+	}
+}
+
+.stickedTab:hover,
+.stickedTab2:hover {
+	width: 70px;
+}

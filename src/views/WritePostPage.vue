@@ -1,0 +1,62 @@
+<template>
+	<div>
+		<NavOk />
+
+		<NavBlog />
+
+		<WriteOnePost />
+
+		<TabWhats />
+
+		<Chat_Box />
+
+		<Footer />
+	</div>
+</template>
+
+<script>
+import NavOk from '../components/NavOk.vue';
+import NavBlog from '../components/blogCompo/NavBlog.vue';
+import WriteOnePost from '../components/blogCompo/WriteOnePost.vue';
+
+import Chat_Box from '../components/Chat_Box.vue';
+import TabWhats from '../components/TabWhats.vue';
+import Footer from '../components/Footer.vue';
+
+export default {
+	name: 'WritePostPage',
+	emits: ['updatePageTitle'], // Déclarez l'événement ici
+
+	mounted() {
+		this.$emit(
+			'updatePageTitle',
+			`Publier un post | Eli | Développeur Full Stack`
+		);
+	},
+
+	data() {
+		return {
+			// Vos données ici
+		};
+	},
+	methods: {
+		// Vos méthodes ici
+	},
+	computed: {
+		// Vos propriétés calculées ici
+	},
+	watch: {
+		// Vos observateurs ici
+	},
+	components: {
+		NavOk,
+		NavBlog,
+		WriteOnePost,
+		Footer,
+		TabWhats,
+		Chat_Box,
+	},
+};
+</script>
+
+<style></style>
