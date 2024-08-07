@@ -71,6 +71,8 @@ export default {
 		};
 	},
 	methods: {
+		// Lorsque vous utilisez des noms de route, il est plus facile de passer des paramètres dynamiques aux routes. Par exemple :
+		// this.$router.push({ name: 'user', params: { userId: 123 } });
 		// Vos méthodes ici
 	},
 	computed: {

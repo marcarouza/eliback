@@ -25,7 +25,7 @@ const routes = [
 	},
 	{
 		path: '/',
-		name: 'homepage',
+		name: 'homepage_alt',
 		component: homepage,
 	},
 	{
@@ -52,11 +52,6 @@ const routes = [
 		path: '/cvPage',
 		name: 'cvpage',
 		component: cvpage,
-	},
-	{
-		path: '/confirm_signup_page',
-		name: 'confirmsignuppage',
-		component: confirmsignuppage,
 	},
 
 	{

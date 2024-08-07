@@ -143,7 +143,7 @@ export default {
 
 						this.sendMail(); // Utilisation de `this` pour appeler `sendMail`
 
-						this.$router.push('/confirmSignUpPage'); // à rempalcer par une NOTIF <= Rediriger vers la page de confirmation
+						this.$router.push({name: 'confirmsignuppage'}); // à rempalcer par une NOTIF <= Rediriger vers la page de confirmation
 					} else {
 						console.error(
 							'🍌 🍌 🍌 🍌 🍌  ~ FROM SignUserForm => ERR lors de la création du MEMBRE'

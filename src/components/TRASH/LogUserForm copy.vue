@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import checkIFlogged from '../mixIns/checkIFlogged.js';
+import checkIFlogged from '../../mixIns/checkIFlogged.js';
 export default {
 	name: 'LogUserForm',
 	mixins: [checkIFlogged],
@@ -155,7 +155,7 @@ export default {
 
 					this.checkUserFromCookie(); // Vérifier l'utilisateur après une connexion réussie
 
-					this.$router.push('/homePage'); // Rediriger vers la page d'accueil après connexion réussie
+					this.$router.push({name: 'homepage'}); // Rediriger vers la page d'accueil après connexion réussie
 				} else {
 					const errorData = await response.json();
 					console.error(
