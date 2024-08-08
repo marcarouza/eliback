@@ -165,13 +165,6 @@ export default {
 	color: #ffffff;
 	text-shadow: -3px 2px 5px rgba(0, 13, 51, 0.6);
 }
-.chat_bubbleNO {
-	font-size: 2rem;
-	color: #004fa4;
-	font-size: 1rem;
-	color: #ffffff;
-	text-shadow: -3px 2px 5px rgba(0, 13, 51, 0.6);
-}
 
 .whatsapp-icon {
 	font-size: 1.5rem;
