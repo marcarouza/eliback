@@ -130,12 +130,14 @@ export default {
 					`FROM CLIENT => ${shortClientID} es CONNECTÉ !`
 				);
 				this.serverMsg(
-					`Bonjour ${shortClientID}, vous êtes connecté !!!`
+					`Bonjour ${shortClientID}, vous êtes connecté(e) !!!`
 				);
 			}
 		});
 
 		socket.on('disconnect', () => {
+			const shortClientID = completeID.substring(0, 5);
+
 			console.log(`FROM CLIENT => ${shortClientID} est déconnecté`);
 		});
 

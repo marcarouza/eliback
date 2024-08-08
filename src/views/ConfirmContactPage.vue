@@ -14,7 +14,7 @@
 
 <script>
 import NavOk from '../components/NavOk.vue';
-import ConfirmContact from '../components/ConfirmContact.vue';
+import ConfirmContact from '../components/ConfirmContactNO.vue';
 import Footer from '../components/Footer.vue';
 import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
