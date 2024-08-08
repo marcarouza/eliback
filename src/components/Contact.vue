@@ -188,7 +188,7 @@ export default {
 				firstname: '',
 				lastname: '',
 				email: '',
-				code: '+33', // Default country code
+				code: '+33', // Default
 				mobile: '',
 				subject: '',
 				message: '',
@@ -219,7 +219,7 @@ export default {
 
 					if (!response.ok) {
 						throw new Error(
-							'🍌 🍌 🍌 🍌 🍌 FROM CONTACT PAGE FETCH =>  Failed to send message'
+							'😱 😱 😱 FROM CONTACT PAGE FETCH =>  Failed to send (222)'
 						);
 					}
 
@@ -228,15 +228,15 @@ export default {
 						'🤾 ✅ 🤾 FROM ContactForm => EMAIL sent successfully: ' +
 							result.response
 					);
-					this.$router.name('confirmcontactpage');
+					this.$router.push({name: 'confirmcontactpage'});
 				} catch (error) {
 					console.error(
-						'🍌 🍌 🍌 🍌 🍌 FROM CONTACT PAGE FETCH => ERR sending email: ' +
+						'🍌 🍌 🍌 🍌 🍌 FROM CONTACT PAGE FETCH => ERR sending email (234) : ' +
 							error.message
 					);
 				}
 			} else {
-				alert('Veuillez remplir tous les champs');
+				alert('🍌 🍌 🍌 🍌 🍌 Veuillez remplir tous les champs');
 			}
 		},
 	},
