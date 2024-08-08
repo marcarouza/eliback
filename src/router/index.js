@@ -4,7 +4,7 @@ import {createRouter, createWebHistory} from 'vue-router';
 import homepage from '../views/HomePage.vue';
 import cvpage from '../views/CvPage.vue';
 //dashboard.render.com/
-https: import projetspage from '../views/ProjetsPage.vue';
+import projetspage from '../views/ProjetsPage.vue';
 import contactpage from '../views/ContactPage.vue';
 import signuserpage from '../views/SignUserPage.vue';
 import loguserpage from '../views/LogUserPage.vue';
