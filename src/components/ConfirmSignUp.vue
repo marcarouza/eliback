@@ -22,10 +22,10 @@
 							Merci de vous être inscrit sur mon site.
 						</p>
 						<router-link
-							to="/"
+							to="/LogUserPage"
 							class="btn btn-primary btn-lg"
 						>
-							Retourner à l'accueil
+							Connectez-vous
 							<i class="bi bi-house-door-fill ms-2"></i>
 						</router-link>
 					</div>

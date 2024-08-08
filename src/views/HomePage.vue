@@ -17,8 +17,6 @@ import Apropos from '../components/Apropos.vue';
 import Footer from '../components/Footer.vue';
 import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
-// import globalMixin from '@/mixIns/globalMix.js';
-import checkIFlogged from '../mixIns/checkIFlogged.js';
 
 export default {
 	name: 'HomePage',

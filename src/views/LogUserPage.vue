@@ -2,7 +2,7 @@
 	<div>
 		<NavOk />
 		<LogUserForm />
-		<Chat_Box />
+		<!-- <Chat_Box /> -->
 		<TabWhats />
 		<Footer />
 	</div>
@@ -11,7 +11,7 @@
 <script>
 import NavOk from '../components/NavOk.vue';
 import LogUserForm from '../components/LogUserForm.vue';
-import Chat_Box from '../components/Chat_Box.vue';
+// import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
 import Footer from '../components/Footer.vue';
 
@@ -21,7 +21,7 @@ export default {
 	components: {
 		NavOk,
 		LogUserForm,
-		Chat_Box,
+		// Chat_Box,
 		TabWhats,
 		Footer,
 	},

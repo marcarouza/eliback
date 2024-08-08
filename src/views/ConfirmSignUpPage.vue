@@ -2,10 +2,10 @@
 <template>
 	<div>
 		<NavOk />
-		<ConfirmSignUp>
-			<TabWhats />
-			<Chat_Box />
-		</ConfirmSignUp>
+		<ConfirmSignUp />
+		<TabWhats />
+		<!-- <Chat_Box /> -->
+
 		<Footer />
 	</div>
 </template>
@@ -14,7 +14,7 @@
 import ConfirmSignUp from '../components/ConfirmSignUp.vue';
 import NavOk from '../components/NavOk.vue';
 import Footer from '../components/Footer.vue';
-import Chat_Box from '../components/Chat_Box.vue';
+// import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
 
 export default {
@@ -23,7 +23,7 @@ export default {
 	components: {
 		NavOk,
 		ConfirmSignUp,
-		Chat_Box,
+		// Chat_Box,
 		TabWhats,
 		Footer,
 	},

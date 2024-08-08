@@ -63,7 +63,11 @@
 				</form>
 				<p class="text-center mt-5 note">
 					Pas encore de compte ?
-					<span> <a href="signPage">Cliquez-ici</a></span>
+					<span>
+						<router-link to="/signUserPage"
+							>Cliquez ici</router-link
+						></span
+					>
 				</p>
 			</div>
 		</div>

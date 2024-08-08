@@ -90,8 +90,13 @@
 				</form>
 				<p class="text-center mt-5 note">
 					Vous avez déjà un compte ?<br />
-					<a id="profil" href="logUserPage">Connectez-vous ici</a
-					>.
+
+					<router-link
+						active-class="active"
+						class="nav-link"
+						to="/LogUserPage"
+						>Connectez-vous ici</router-link
+					>
 				</p>
 			</div>
 		</div>
