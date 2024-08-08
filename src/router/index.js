@@ -7,91 +7,96 @@ import projetspage from '../views/ProjetsPage.vue';
 import contactpage from '../views/ContactPage.vue';
 import signuserpage from '../views/SignUserPage.vue';
 import loguserpage from '../views/LogUserPage.vue';
-import confirmuserpage from '../views/ConfirmUserPage.vue';
-import homeblog from '../views/HomeBlog.vue';
+import homeblogpage from '../views/HomeBlog.vue';
 import searchpostpage from '../views/SearchPostPage.vue';
 import writepostpage from '../views/WritePostPage.vue';
 import cookiespage from '../views/CookiesPage.vue';
 import apipage from '../views/ApiPage.vue';
 import userstatuspage from '../views/UserStatusPage.vue';
 import notfoundpage from '../views/NotFoundPage.vue';
-import ConfirmUserPage from '../views/ConfirmUserPage.vue';
+import confirmsignuppage from '../views/ConfirmSignUpPage.vue';
 import confirmcontactpage from '../views/ConfirmContactPage.vue';
 
 const routes = [
 	{
-		path: '/',
-		name: 'HomePage',
+		path: '/homePage',
+		name: 'homepage',
 		component: homepage,
 	},
 	{
-		path: '/sign_user',
-		name: 'SignUserPage',
+		path: '/',
+		name: 'homepage_alt',
+		component: homepage,
+	},
+	{
+		path: '/signuserPage',
+		name: 'signuserpage',
 		component: signuserpage,
 	},
 	{
-		path: '/log_user',
-		name: 'LogUserPage',
+		path: '/loguserPage',
+		name: 'loguserpage',
 		component: loguserpage,
 	},
 	{
-		path: '/projets',
-		name: 'ProjetsPage',
+		path: '/projetsPage',
+		name: 'projetspage',
 		component: projetspage,
 	},
 	{
-		path: '/contact',
-		name: 'ContactPage',
+		path: '/contactPage',
+		name: 'contactpage',
 		component: contactpage,
 	},
 	{
-		path: '/cv',
-		name: 'CvPage',
+		path: '/cvPage',
+		name: 'cvpage',
 		component: cvpage,
 	},
+
 	{
-		path: '/confirm_user',
-		name: 'ConfirmUserPage',
-		component: confirmuserpage,
+		path: '/homeblogPage',
+		name: 'homeblogpage',
+		component: homeblogpage,
 	},
 
 	{
-		path: '/homeblog',
-		name: 'homeblog',
-		component: homeblog,
-	},
-
-	{
-		path: '/searchpostpage',
-		name: 'searchpostpage',
+		path: '/searchpostPage',
+		name: 'searchpostPage',
 		component: searchpostpage,
 	},
 	{
-		path: '/writepostpage',
-		name: 'writepostpage',
+		path: '/writepostPage',
+		name: 'writepostPage',
 		component: writepostpage,
 	},
 	{
-		path: '/cookies',
+		path: '/cookiesPage',
 		name: 'cookiespage',
 		component: cookiespage,
 	},
 	{
-		path: '/api',
+		path: '/apiPage',
 		name: 'apipage',
 		component: apipage,
 	},
 
 	{
-		path: '/userstatus',
-		name: 'userstatuspage',
+		path: '/userstatusPage',
+		name: 'userstatusPage',
 		component: userstatuspage,
 	},
 
 	{
-		path: '/confirm_contact',
-		name: 'ConfirmContactPage',
+		path: '/confirmContactPage',
+		name: 'confirmcontactpage',
 		component: confirmcontactpage,
+	},
+
+	{
+		path: '/confirmSignUpPage',
+		name: 'confirmsignuppage',
+		component: confirmsignuppage,
 	},
 
 	{

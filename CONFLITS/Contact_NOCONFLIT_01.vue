@@ -219,24 +219,25 @@ export default {
 
 					if (!response.ok) {
 						throw new Error(
-							'🍌 🍌 🍌 🍌 🍌 FROM CONTACT PAGE FETCH =>  Failed to send message'
+							'🍌 🍌 🍌 🍌 🍌 FROM CONTACTPAGE in FETCH =>  Failed to send message'
 						);
 					}
 
 					const result = await response.json();
 					console.log(
-						'🤾 ✅ 🤾 FROM ContactForm => EMAIL sent successfully: ' +
+						'✅ FROM ContactForm => EMAIL sent successfully : ' +
 							result.response
 					);
-					this.$router.name('confirmcontactpage');
+
+					this.$router.push({name: 'confirmcontactpage'});
 				} catch (error) {
 					console.error(
-						'🍌 🍌 🍌 🍌 🍌 FROM CONTACT PAGE FETCH => ERR sending email: ' +
+						'🍌 🍌 🍌 🍌 🍌 FROM CONTACTPAGE in FETCH => ERR sending email : ' +
 							error.message
 					);
 				}
 			} else {
-				alert('Veuillez remplir tous les champs');
+				alert('🍌 🍌 🍌 🍌 🍌 Veuillez remplir tous les champs');
 			}
 		},
 	},

@@ -71,13 +71,10 @@
 </template>
 
 <script>
-import Cookies from 'js-cookie';
-
-import {jwtDecode} from 'jwt-decode'; // Utilisez jwt-decode pour décoder le JWT
-
+import checkIFlogged from '../../mixIns/checkIFlogged.js';
 export default {
 	name: 'LogUserForm',
-	// mixins: [checkIFlogged],
+	mixins: [checkIFlogged],
 	data() {
 		return {
 			formData: {
@@ -86,6 +83,7 @@ export default {
 			},
 			passwordVisible: false,
 			error: null,
+
 			oneUser: {
 				email: '',
 				pwd: '',
@@ -99,20 +97,8 @@ export default {
 			},
 		};
 	},
-	mounted() {
-		this.$nextTick(() => {
-			this.checkUserLogged();
-		});
-
-		const jwtCookie = document.cookie
-			.split('; ')
-			.find((row) => row.startsWith('jwt='))
-			?.split('=')[1];
-
-		console.log('🚀 ~ mounted ~ jwtCookie:', jwtCookie);
-	},
 	created() {
-		this.checkUserLogged();
+		this.checkUserFromCookie();
 	},
 	methods: {
 		async submitForm() {
@@ -167,18 +153,9 @@ export default {
 						this.oneUser
 					);
 
-					this.checkUserLogged(); // Vérifier l'utilisateur après une connexion réussie
+					this.checkUserFromCookie(); // Vérifier l'utilisateur après une connexion réussie
 
-					// Lire le cookie JWT
-					const jwtCookie = document.cookie
-						.split('; ')
-						.find((row) => row.startsWith('jwt='))
-						?.split('=')[1];
-
-					console.log('JWT Cookie:', jwtCookie);
-					this.$router.push({name: 'homepage'});
-
-					// Rediriger vers la page d'accueil après connexion réussie
+					this.$router.push('/'); // Rediriger vers la page d'accueil après connexion réussie
 				} else {
 					const errorData = await response.json();
 					console.error(
@@ -194,16 +171,14 @@ export default {
 			}
 		},
 
-		checkUserLogged() {
-			console.log('Tous les cookies:', document.cookie);
-			const token = Cookies.get('jwt');
-			console.log('Token JWT:', token);
-			console.log('🚀 ~ checkUserLogged ~ TOKEN :', token);
+		checkUserFromCookie() {
+			const token = Cookies.get('jwt'); // Lire le cookie JWT
+			console.log('🚀 ~ checkUserFromCookie ~ TOKEN :', token);
 			if (token) {
 				try {
-					const decoded = jwtDecode(token); // Décoder le JWT
+					const decoded = jwt_decode(token); // Décoder le JWT
 					console.log(
-						'🚀 ~ checkUserLogged ~ DECODED :',
+						'🚀 ~ checkUserFromCookie ~ DECODED :',
 						decoded
 					);
 					// Vérifiez si les champs existent dans le JWT décodé
@@ -217,7 +192,7 @@ export default {
 					console.error('Error decoding JWT:', error);
 				}
 			} else {
-				console.log('FROM LogUserFrom => No JWT token found');
+				console.log('No JWT token found');
 			}
 		},
 	},

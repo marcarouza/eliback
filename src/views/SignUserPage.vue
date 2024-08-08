@@ -2,29 +2,24 @@
 	<div>
 		<NavOk />
 		<SignUserForm />
-
 		<TabWhats />
-
 		<Chat_Box />
-
 		<Footer />
 	</div>
 </template>
 
 <script>
 import NavOk from '../components/NavOk.vue';
-
-import Footer from '../components/Footer';
 import CommonHead from '../components/CommonHead.vue';
 import SignUserForm from '../components/SignUserForm.vue';
 import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
+import Footer from '../components/Footer.vue'; // Ajoutez .vue si nécessaire
 
 export default {
 	name: 'SignUserPage',
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
 
-	data() {},
 	mounted() {
 		this.$emit(
 			'updatePageTitle',
@@ -40,7 +35,6 @@ export default {
 		TabWhats,
 		Footer,
 	},
-	props: {},
 
 	methods: {
 		// Vos méthodes ici
@@ -54,7 +48,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .formulaire {
 	background-color: #f8f9fa;
 	padding: 2rem;

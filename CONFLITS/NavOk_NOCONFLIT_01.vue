@@ -1,7 +1,7 @@
 <template>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container">
-			<router-link class="navbar-brand" to="/">
+			<router-link class="navbar-brand" to="/homePage">
 				<img
 					class="d-inline-block align-text-top elilogo"
 					src="/pix/logos/eliLogo192x192.png"
@@ -26,12 +26,12 @@
 						<router-link
 							active-class="active"
 							class="nav-link"
-							to="/userstatus"
+							to="/userstatusPage"
 							>userstatus</router-link
 						>
 					</li>
 					<li class="nav-item">
-						<router-link class="nav-link" to="/cookies"
+						<router-link class="nav-link" to="/cookiesPage"
 							>cookies</router-link
 						>
 					</li>
@@ -39,7 +39,7 @@
 						<router-link
 							active-class="active"
 							class="nav-link"
-							to="/api"
+							to="/apiPage"
 							>api</router-link
 						>
 					</li>
@@ -47,7 +47,7 @@
 						<router-link
 							active-class="active"
 							class="nav-link"
-							to="/cv"
+							to="/cvPage"
 							>cv</router-link
 						>
 					</li>
@@ -55,7 +55,7 @@
 						<router-link
 							active-class="active"
 							class="nav-link"
-							to="/projets"
+							to="/projetsPage"
 							>projets</router-link
 						>
 					</li>
@@ -63,7 +63,7 @@
 						<router-link
 							active-class="active"
 							class="nav-link"
-							to="/contact"
+							to="/contactPage"
 							>contact</router-link
 						>
 					</li>
@@ -71,7 +71,7 @@
 						<router-link
 							active-class="active"
 							class="nav-link"
-							to="/homeblog"
+							to="/homeblogPage"
 							>blog</router-link
 						>
 					</li>
@@ -98,7 +98,7 @@
 							<li>
 								<router-link
 									class="dropdown-item user_menu_item"
-									to="/userstatus"
+									to="/userstatusPage"
 									>mon compte</router-link
 								>
 							</li>
@@ -121,14 +121,14 @@
 							<li>
 								<router-link
 									class="dropdown-item user_menu_item"
-									to="/log_user"
+									to="/loguserPage"
 									>connexion</router-link
 								>
 							</li>
 							<li>
 								<router-link
 									class="dropdown-item user_menu_item"
-									to="/sign_user"
+									to="/signuserPage"
 									>créer un compte</router-link
 								>
 							</li>

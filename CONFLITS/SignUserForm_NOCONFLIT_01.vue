@@ -130,22 +130,20 @@ export default {
 							body: JSON.stringify(this.formData),
 						}
 					);
-					console.log(
-						' ✅  FROM SignUserForm => RESPONSE, REPONSE.OK : ',
-						response,
-						response.ok
-					);
 
 					if (response.ok) {
 						const result = await response.json();
 						console.log('Utilisateur créé:', result);
 
-						await this.sendMail(); // Utilisation de `this` pour appeler `sendMail`
+						console.log(
+							'✅ FROM SignUserForm CREATE_USER => RESPONSE, REPONSE.OK : ',
+							response,
+							response.ok
+						);
 
-						// this.$router.push('/ConfirmUserPage');
+						this.sendMail(); // Utilisation de `this` pour appeler `sendMail`
 
-						this.$router.push({name: 'confirmsignuppage'});
-						// à rempalcer par une NOTIF <= Rediriger vers la page de confirmation
+						this.$router.push({name: 'confirmsignuppage'}); // à rempalcer par une NOTIF <= Rediriger vers la page de confirmation
 					} else {
 						console.error(
 							'🍌 🍌 🍌 🍌 🍌  ~ FROM SignUserForm => ERR lors de la création du MEMBRE'
@@ -159,49 +157,90 @@ export default {
 				}
 			} else {
 				console.error(
-					'🍌 🍌 🍌 🍌 🍌  ~ FROM SIGNUSERFORM => tous les champs ne sont pas remplis'
+					'🍌 🍌 🍌 🍌 🍌  ~ FROM SignUserForm => tous les champs ne sont pas remplis'
 				);
 			}
 		},
-
 		async sendMail() {
 			try {
 				const response = await fetch(
-					'https://eli-back.onrender.com/signUserConfirm',
+					'https://eli-back.onrender.com/signUserMailConfirm',
+
 					{
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
 						},
-						body: JSON.stringify({
-							email: this.formData.email,
-							pseudo: this.formData.user,
-						}),
+						body: JSON.stringify(this.formData),
 					}
 				);
 
-				if (!response.ok) {
-					throw new Error(
-						'🍌 🍌 🍌 🍌 🍌 FROM SENDMAIL => SignUserForm FETCH =>  Failed to send message'
+				if (response.ok) {
+					const result = await response.json();
+					console.log(
+						'✅ FROM signUserMailConfirm SEND_MAIL => MAIL SENT :  result , result.ok',
+						result,
+						result.ok
+					);
+				} else {
+					console.error(
+						'🍌 🍌 🍌 🍌 🍌  FROM signUserMailConfirm SEND_MAIL => MAIL non envoyé'
 					);
 				}
-
-				const result = await response.json();
-				console.log(
-					'FROM ContactForm => EMAIL sent successfully: ' +
-						result.response
-				);
 			} catch (error) {
 				console.error(
-					'🍌 🍌 🍌 🍌 🍌 FROM SENDMAIL => SignUserForm FETCH =>  ERR sending email: ' +
-						error.message
+					'🍌 🍌 🍌 🍌 🍌  ~ FROM SENDMAIL => SignUserForm  =>  ERR sending email : ',
+					error
 				);
 			}
 		},
+	},
 
-		togglePasswordVisibility() {
-			this.passwordVisible = !this.passwordVisible;
-		},
+	// async sendMail() {
+	// 	try {
+	// 		const responseMail = await fetch(
+	// 			'https://eli-back.onrender.com/signUserConfirm',
+	// 			{
+	// 				method: 'POST',
+	// 				headers: {
+	// 					'Content-Type': 'application/json',
+	// 				},
+	// 				body: JSON.stringify({
+	// 					email: this.formData.email,
+	// 					pseudo: this.formData.user,
+	// 					pwd: this.formData.pwd,
+	// 				}),
+	// 			}
+	// 		);
+
+	// 		if (responseMail) {
+	// 			console.log(
+	// 				'✅  FROM SignUserForm CREATE_USER => RESPONSE, REPONSE.OK : ',
+	// 				response,
+	// 				response.ok
+	// 			);
+	// 		}
+
+	// 		if (!response.ok) {
+	// 			throw new Error(
+	// 				'🍌 🍌 🍌 🍌 🍌 FROM SENDMAIL => SignUserForm FETCH =>  Failed to send message'
+	// 			);
+	// 		}
+
+	// 		const result = await response.json();
+	// 		console.log(
+	// 			` ✅ FROM SENDMAIL SignUserForm => EMAIL sent successfully: ${result.response}`
+	// 		);
+	// 	} catch (error) {
+	// 		console.error(
+	// 			'🍌 🍌 🍌 🍌 🍌 FROM SENDMAIL => SignUserForm  =>  ERR sending email : ' +
+	// 				error.message
+	// 		);
+	// 	}
+	// },
+
+	togglePasswordVisibility() {
+		this.passwordVisible = !this.passwordVisible;
 	},
 };
 </script>
