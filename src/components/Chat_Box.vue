@@ -8,7 +8,14 @@
 			></button>
 		</div>
 
-		<div id="allMess" class="chat-body">
+		<div v-if="!user" class="chat-body">
+			<span class="bubServer">
+				Pour utiliser la messagerie instantanée, vous devez être
+				connecté(e).</span
+			>
+		</div>
+
+		<div v-if="user" id="allMess" class="chat-body">
 			<!-- Messages vont ici -->
 		</div>
 
@@ -44,6 +51,34 @@ export default {
 		};
 	},
 	methods: {
+		async fetchUserData() {
+			try {
+				const response = await fetch(
+					'https://eli-back.onrender.com/checkUserStatus',
+					{
+						method: 'GET',
+						credentials: 'include', // Pour envoyer les cookies avec la requête
+					}
+				);
+				if (!response.ok) {
+					throw new Error(
+						'🍌 🍌 🍌 🍌 🍌 FROM NAVOK ==> ERR Network response was not ok'
+					);
+				}
+				const data = await response.json();
+				this.user = data.user;
+				this.isLoggedIn = true;
+				console.log(
+					'🚀 ~ FROM NAVOK ==> checkUserStatus ~ this.user:',
+					this.user
+				);
+			} catch (error) {
+				console.error(
+					'FROM NAVOK ==> problème avec requête fetch :',
+					error
+				);
+			}
+		},
 		addDiv(data) {
 			console.log('🚀 ~ addDiv ~ data:', data);
 			const allMess = document.getElementById('allMess');
@@ -99,8 +134,13 @@ export default {
 				document.getElementById('messInput').focus();
 			}
 		},
+		displayChat() {
+			const chatPopin = document.getElementById('chatPopin');
+			chatPopin.classList.toggle('hide-inactive');
+		},
 	},
 	mounted() {
+		this.fetchUserData();
 		document
 			.getElementById('chatToggleBtn')
 			.addEventListener('click', () => {
