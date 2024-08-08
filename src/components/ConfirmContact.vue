@@ -1,44 +1,60 @@
 <template>
-	<div class="d-flex align-items-center justify-content-center vh-100">
-		<div class="ok text-center">
-			<h1 class="display-1 fw-bold text-success mb-4">C'est fait !</h1>
-			<p class="fs-3 mb-4">
-				<span>
-					<i class="bi bi-check-circle-fill me-2"></i>
-					Votre inscription est confirmée
-				</span>
-			</p>
-			<router-link to="/" class="btn btn-success btn-lg">
-				Retour à la page d'accueil
-			</router-link>
+	<div class="container">
+		<div class="row justify-content-center mt-5">
+			<div class="col-md-8">
+				<div class="card border-0 shadow-lg">
+					<div class="card-body text-center p-5">
+						<div class="mb-4">
+							<i
+								class="bi bi-check-circle-fill text-success"
+								style="font-size: 5rem"
+							></i>
+						</div>
+						<h2 class="card-title mb-3">
+							Inscription confirmée !
+						</h2>
+						<p class="card-text lead mb-4">
+							Merci pour votre message !
+							<br />
+							Vous recevrez une copie de votre demande sur
+							l'adresse e-mail fournie.
+							<br />
+							À bientôt, Eli.
+						</p>
+						<router-link
+							to="/"
+							class="btn btn-primary btn-lg"
+						>
+							Retourner à l'accueil
+							<i class="bi bi-house-door-fill ms-2"></i>
+						</router-link>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
 export default {
-	name: 'ConfirmationInscription',
+	name: 'ConfirmSignUp',
 };
 </script>
 
 <style scoped>
-.vh-100 {
-	height: 100vh;
+.card {
+	transition: all 0.3s ease-in-out;
 }
 
-.ok {
-	color: #28a745; /* Vert Bootstrap */
+.card:hover {
+	transform: translateY(-5px);
 }
 
-.btn-success {
+.btn-primary {
 	transition: all 0.2s ease-in-out;
 }
 
-.btn-success:hover {
+.btn-primary:hover {
 	transform: scale(1.05);
-}
-
-.bi-check-circle-fill {
-	font-size: 1.2em;
 }
 </style>
