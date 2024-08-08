@@ -157,7 +157,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .chat_bubble {
 	font-size: 2rem;
 	color: #004fa4;
