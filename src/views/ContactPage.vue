@@ -17,6 +17,7 @@ import NavOk from '../components/NavOk';
 import Contact from '../components/Contact';
 
 import Footer from '../components/Footer';
+import CommonHead from '../components/CommonHead.vue';
 
 import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';

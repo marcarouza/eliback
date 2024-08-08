@@ -1,15 +1,13 @@
 <template>
-	<div>
-		<NavOk />
+	<NavOk />
 
-		<div
-			class="d-flex flex-column align-items-center justify-content-center vh-100"
-		>
-			<NotFound />
-			<TabWhats />
-			<Chat_Box />
-			<Footer />
-		</div>
+	<div
+		class="d-flex flex-column align-items-center justify-content-center vh-100"
+	>
+		<NotFound />
+		<TabWhats />
+		<Chat_Box />
+		<Footer />
 	</div>
 </template>
 

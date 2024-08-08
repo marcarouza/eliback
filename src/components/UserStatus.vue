@@ -8,11 +8,11 @@
 				<tbody>
 					<tr>
 						<th>Nom</th>
-						<td>{{ user.name || 'Non défini' }}</td>
+						<td>{{ user.nom || 'Non défini' }}</td>
 					</tr>
 					<tr>
 						<th>Prénom</th>
-						<td>{{ user.firstname || 'Non défini' }}</td>
+						<td>{{ user.prenom || 'Non défini' }}</td>
 					</tr>
 					<tr>
 						<th>Date de naissance</th>

@@ -14,10 +14,8 @@
 							Inscription confirmée !
 						</h2>
 						<p class="card-text lead mb-4">
-							Merci de vous être inscrit sur mon site.
-							Votre compte a été créé avec succès, vous
-							recevrez prochainement un e-mail de
-							confirmation.
+							Merci de vous être inscrit sur notre site.
+							Votre compte a été créé avec succès.
 						</p>
 						<router-link
 							to="/"

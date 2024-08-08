@@ -100,17 +100,19 @@ export default {
 		};
 	},
 	mounted() {
-		// this.$nextTick(() => {
-		// 	this.checkUserLogged();
-		// });
-		// const jwtCookie = document.cookie
-		// 	.split('; ')
-		// 	.find((row) => row.startsWith('jwt='))
-		// 	?.split('=')[1];
-		// console.log('🚀 ~ mounted ~ jwtCookie:', jwtCookie);
+		this.$nextTick(() => {
+			this.checkUserLogged();
+		});
+
+		const jwtCookie = document.cookie
+			.split('; ')
+			.find((row) => row.startsWith('jwt='))
+			?.split('=')[1];
+
+		console.log('🚀 ~ mounted ~ jwtCookie:', jwtCookie);
 	},
 	created() {
-		// this.checkUserLogged();
+		this.checkUserLogged();
 	},
 	methods: {
 		async submitForm() {
@@ -165,6 +167,8 @@ export default {
 						this.oneUser
 					);
 
+					this.checkUserLogged(); // Vérifier l'utilisateur après une connexion réussie
+
 					// Lire le cookie JWT
 					const jwtCookie = document.cookie
 						.split('; ')
@@ -173,7 +177,7 @@ export default {
 
 					console.log('JWT Cookie:', jwtCookie);
 
-					this.$router.push({name: 'homepage'}); // Rediriger vers la page d'accueil après connexion réussie
+					this.$router.push('/'); // Rediriger vers la page d'accueil après connexion réussie
 				} else {
 					const errorData = await response.json();
 					console.error(
@@ -189,35 +193,31 @@ export default {
 			}
 		},
 
-		// checkUserLogged() {
-		// 	console.log('Tous les cookies:', document.cookie);
-		// 	const token = Cookies.get('jwt');
-		// 	console.log('Token JWT:', token);
-		// 	console.log('🚀 ~ checkUserLogged ~ TOKEN :', token);
-		// 	if (token) {
-		// 		try {
-		// 			const decoded = jwtDecode(token); // Décoder le JWT
-		// 			console.log(
-		// 				'🚀 ~ checkUserLogged ~ DECODED :',
-		// 				decoded
-		// 			);
-		// 			// Vérifiez si les champs existent dans le JWT décodé
-		// 			this.id = decoded.id || null;
-		// 			this.email = decoded.email || null;
-		// 			this.pseudo = decoded.user || null;
-		// 			console.log('User ID from JWT:', this.id);
-		// 			console.log('User email from JWT:', this.email);
-		// 			console.log('User pseudo from JWT:', this.pseudo);
-		// 		} catch (error) {
-		// 			console.error('Error decoding JWT:', error);
-		// 		}
-		// 	} else {
-		// 		console.log('FROM LogUserFrom => No JWT token found');
-		// 	}
-		// },
-
-		togglePasswordVisibility() {
-			this.passwordVisible = !this.passwordVisible;
+		checkUserLogged() {
+			console.log('Tous les cookies:', document.cookie);
+			const token = Cookies.get('jwt');
+			console.log('Token JWT:', token);
+			console.log('🚀 ~ checkUserLogged ~ TOKEN :', token);
+			if (token) {
+				try {
+					const decoded = jwtDecode(token); // Décoder le JWT
+					console.log(
+						'🚀 ~ checkUserLogged ~ DECODED :',
+						decoded
+					);
+					// Vérifiez si les champs existent dans le JWT décodé
+					this.id = decoded.id || null;
+					this.email = decoded.email || null;
+					this.pseudo = decoded.user || null;
+					console.log('User ID from JWT:', this.id);
+					console.log('User email from JWT:', this.email);
+					console.log('User pseudo from JWT:', this.pseudo);
+				} catch (error) {
+					console.error('Error decoding JWT:', error);
+				}
+			} else {
+				console.log('FROM LogUserFrom => No JWT token found');
+			}
 		},
 	},
 };

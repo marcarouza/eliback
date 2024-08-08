@@ -1,7 +1,7 @@
 <template>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container">
-			<router-link class="navbar-brand" to="/homePage">
+			<router-link class="navbar-brand" to="/">
 				<img
 					class="d-inline-block align-text-top elilogo"
 					src="/pix/logos/eliLogo192x192.png"
@@ -26,12 +26,12 @@
 						<router-link
 							active-class="active"
 							class="nav-link"
-							to="/userstatusPage"
+							to="/userstatus"
 							>userstatus</router-link
 						>
 					</li>
 					<li class="nav-item">
-						<router-link class="nav-link" to="/cookiesPage"
+						<router-link class="nav-link" to="/cookies"
 							>cookies</router-link
 						>
 					</li>
@@ -39,7 +39,7 @@
 						<router-link
 							active-class="active"
 							class="nav-link"
-							to="/apiPage"
+							to="/api"
 							>api</router-link
 						>
 					</li>
@@ -47,7 +47,7 @@
 						<router-link
 							active-class="active"
 							class="nav-link"
-							to="/cvPage"
+							to="/cv"
 							>cv</router-link
 						>
 					</li>
@@ -55,7 +55,7 @@
 						<router-link
 							active-class="active"
 							class="nav-link"
-							to="/projetsPage"
+							to="/projets"
 							>projets</router-link
 						>
 					</li>
@@ -63,7 +63,7 @@
 						<router-link
 							active-class="active"
 							class="nav-link"
-							to="/contactPage"
+							to="/contact"
 							>contact</router-link
 						>
 					</li>
@@ -71,7 +71,7 @@
 						<router-link
 							active-class="active"
 							class="nav-link"
-							to="/homeblogPage"
+							to="/homeblog"
 							>blog</router-link
 						>
 					</li>
@@ -98,7 +98,7 @@
 							<li>
 								<router-link
 									class="dropdown-item user_menu_item"
-									to="/userstatusPage"
+									to="/userstatus"
 									>mon compte</router-link
 								>
 							</li>
@@ -121,14 +121,14 @@
 							<li>
 								<router-link
 									class="dropdown-item user_menu_item"
-									to="/loguserPage"
+									to="/log_user"
 									>connexion</router-link
 								>
 							</li>
 							<li>
 								<router-link
 									class="dropdown-item user_menu_item"
-									to="/signuserPage"
+									to="/sign_user"
 									>créer un compte</router-link
 								>
 							</li>
@@ -215,7 +215,7 @@ export default {
 					this.isLoggedIn = false;
 					console.log('🚀 ~ DECONNEXION REUSSIE !!! ');
 					this.user = null; // Mettre à jour l'utilisateur à null
-					this.$router.push({name: 'homepage'});
+					this.$router.push('/'); // Utiliser push pour rediriger
 				} else {
 					console.error('Erreur lors de la déconnexion');
 					throw new Error(

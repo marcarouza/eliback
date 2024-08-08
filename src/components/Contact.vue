@@ -228,8 +228,7 @@ export default {
 						'FROM ContactForm => EMAIL sent successfully: ' +
 							result.response
 					);
-
-					this.$router.push({name: 'confirmcontactpage'});
+					this.$router.push('/confirm_contact');
 				} catch (error) {
 					console.error(
 						'🍌 🍌 🍌 🍌 🍌 FROM CONTACT PAGE FETCH => ERR sending email: ' +
