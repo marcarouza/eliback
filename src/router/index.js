@@ -3,7 +3,6 @@ import {createRouter, createWebHistory} from 'vue-router';
 //
 import homepage from '../views/HomePage.vue';
 import cvpage from '../views/CvPage.vue';
-//dashboard.render.com/
 import projetspage from '../views/ProjetsPage.vue';
 import contactpage from '../views/ContactPage.vue';
 import signuserpage from '../views/SignUserPage.vue';
@@ -17,8 +16,14 @@ import userstatuspage from '../views/UserStatusPage.vue';
 import notfoundpage from '../views/NotFoundPage.vue';
 import confirmsignuppage from '../views/ConfirmSignUpPage.vue';
 import confirmcontactpage from '../views/ConfirmContactPage.vue';
+import allmemberspage from '../views/AllMembersPage';
 
 const routes = [
+	{
+		path: '/allMembersPage',
+		name: 'allmemberspage',
+		component: allmemberspage,
+	},
 	{
 		path: '/homePage',
 		name: 'homepage',

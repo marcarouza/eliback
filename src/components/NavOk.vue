@@ -103,6 +103,13 @@
 								>
 							</li>
 							<li>
+								<router-link
+									class="dropdown-item user_menu_item"
+									to="/allMembersPage"
+									>tous les membres</router-link
+								>
+							</li>
+							<li>
 								<a
 									href="#"
 									class="dropdown-item user_menu_item"
