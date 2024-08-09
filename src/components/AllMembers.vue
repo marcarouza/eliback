@@ -60,13 +60,16 @@ export default {
 		},
 		async sendFriendReq(userId) {
 			try {
-				const response = await fetch('/friendReq', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({receiverId: userId}),
-				});
+				const response = await fetch(
+					'https://eli-back.onrender.com/friendReq',
+					{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({receiverId: userId}),
+					}
+				);
 				if (response.ok) {
 					alert("Demande d'ami envoyée !");
 				} else {
