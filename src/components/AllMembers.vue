@@ -40,7 +40,9 @@ export default {
 	methods: {
 		async fetchAllMembers() {
 			try {
-				const response = await fetch('/allMembers');
+				const response = await fetch(
+					'https://eli-back.onrender.com/allMembers'
+				);
 
 				if (!response.ok) {
 					throw new Error(`Erreur HTTP: ${response.status}`);
