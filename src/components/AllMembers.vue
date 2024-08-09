@@ -41,12 +41,19 @@ export default {
 		async fetchAllMembers() {
 			try {
 				const response = await fetch('/allMembers');
-				this.users = await response.json();
-			} catch (error) {
+
+				if (!response.ok) {
+					throw new Error(`Erreur HTTP: ${response.status}`);
+				}
+
+				const data = await response.json();
+				this.users = data; // Stocke les utilisateurs si la réponse est bien en JSON
+			} catch (err) {
 				console.error(
 					'🍌 🍌 🍌  ERR de récupération des membres:',
-					error
+					err
 				);
+				// Vous pouvez également afficher un message d'erreur à l'utilisateur ici
 			}
 		},
 		async sendFriendReq(userId) {
