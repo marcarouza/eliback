@@ -27,7 +27,7 @@ export default {
 	mounted() {
 		this.$emit(
 			'updatePageTitle',
-			`Liste des memebres | Eli | Développeur Full Stack`
+			`Liste des membres | Eli | Développeur Full Stack`
 		);
 	},
 	components: {

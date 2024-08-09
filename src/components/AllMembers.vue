@@ -35,21 +35,30 @@ export default {
 	data() {
 		return {
 			users: [],
+			errorMessage: '',
 		};
 	},
 	methods: {
 		async fetchAllMembers() {
 			try {
 				const response = await fetch(
-					'https://eli-back.onrender.com/allMembers'
+					'https://eli-back.onrender.com/allMembers',
+					{
+						method: 'POST',
+						credentials: 'include', // Pour envoyer les cookies avec la requête
+					}
 				);
 
-				if (!response.ok) {
+				if (response.ok) {
+					const data = await response.json();
+					this.users = data; // Stocke les utilisateurs si la réponse est bien en JSON
+					console.log(
+						'🚀 ~ fetchAllMembers ~ this.users:',
+						this.users
+					);
+				} else {
 					throw new Error(`Erreur HTTP: ${response.status}`);
 				}
-
-				const data = await response.json();
-				this.users = data; // Stocke les utilisateurs si la réponse est bien en JSON
 			} catch (err) {
 				console.error(
 					'🍌 🍌 🍌  ERR de récupération des membres:',
@@ -83,6 +92,8 @@ export default {
 					error
 				);
 			}
+			this.errorMessage =
+				'Impossible de récupérer les membres. Veuillez réessayer plus tard.';
 		},
 	},
 	mounted() {
