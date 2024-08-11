@@ -63,16 +63,18 @@ export default {
 						credentials: 'include', // Pour envoyer les cookies avec la requête
 					}
 				);
+				console.log('🚀 ~ fetchUserData ~ response:', response);
+
 				if (!response.ok) {
 					throw new Error(
-						'🍌 🍌 🍌 🍌 🍌 FROM NAVOK ==> ERR Network response was not ok'
+						'🍌 🍌 🍌 🍌 🍌 FROM ChatBox fetchUserData ==> ERR Network response was not ok'
 					);
 				}
 				const data = await response.json();
 				this.user = data.user;
 				this.isLoggedIn = true;
 				console.log(
-					'✅ ~ FROM Chat_Box  ==> checkUserStatus/ this.user :',
+					'✅ ~ FROM ChatBox fetchUserData  ==> checkUserStatus/ this.user :',
 					this.user
 				);
 				this.serverMsg(
@@ -81,7 +83,7 @@ export default {
 				this.setupSocketListeners();
 			} catch (error) {
 				console.error(
-					'FROM NAVOK ==> problème avec requête fetch :',
+					'FROM fetchUserData ==> problème avec requête fetch :',
 					error
 				);
 			}
