@@ -11,17 +11,15 @@
 <script>
 import NavOk from '../components/NavOk.vue';
 import LogUserForm from '../components/LogUserForm.vue';
-// import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
 import Footer from '../components/Footer.vue';
 
 export default {
-	name: 'ContactPage',
+	name: 'LogUserPage',
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
 	components: {
 		NavOk,
 		LogUserForm,
-		// Chat_Box,
 		TabWhats,
 		Footer,
 	},

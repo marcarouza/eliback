@@ -82,7 +82,6 @@ import {jwtDecode} from 'jwt-decode'; // Utilisez jwt-decode pour décoder le JW
 
 export default {
 	name: 'LogUserForm',
-	// mixins: [checkIFlogged],
 	data() {
 		return {
 			formData: {
