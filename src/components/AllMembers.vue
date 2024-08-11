@@ -9,8 +9,7 @@
 					class="list-group-item d-flex justify-content-between align-items-center"
 				>
 					<div>
-						<h5>{{ user._id }}</h5>
-
+						<h5>ID: {{ user._id }}</h5>
 						<h5>{{ user.user }}</h5>
 						<p class="mb-0 text-muted">{{ user.email }}</p>
 					</div>
@@ -50,14 +49,21 @@ export default {
 				);
 
 				if (response.ok) {
+					console.log(
+						'🚀 ~ fetchAllMembers ~ response:',
+						response
+					);
+
 					const data = await response.json();
 					this.users = data; // Stocke les utilisateurs si la réponse est bien en JSON
 					console.log(
-						'🚀 ~ fetchAllMembers ~ this.users:',
+						'✅ fetchAllMembers ~ this.users:',
 						this.users
 					);
 				} else {
-					throw new Error(`Erreur HTTP: ${response.status}`);
+					throw new Error(
+						`🍌 🍌 🍌 🍌 FROM fetchAllMembers ERR HTTP: ${response.status}`
+					);
 				}
 			} catch (err) {
 				console.error(

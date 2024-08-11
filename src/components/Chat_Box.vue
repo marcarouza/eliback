@@ -70,6 +70,7 @@ export default {
 						'🍌 🍌 🍌 🍌 🍌 FROM ChatBox fetchUserData ==> ERR Network response was not ok'
 					);
 				}
+
 				const data = await response.json();
 				this.user = data.user;
 				this.isLoggedIn = true;
@@ -83,7 +84,7 @@ export default {
 				this.setupSocketListeners();
 			} catch (error) {
 				console.error(
-					'FROM fetchUserData ==> problème avec requête fetch :',
+					'🍌 🍌 🍌 🍌 FROM fetchUserData ==> problème avec requête fetch :',
 					error
 				);
 			}
@@ -93,7 +94,9 @@ export default {
 			const allMess = document.getElementById('allMess');
 
 			if (!allMess) {
-				console.error('Element with ID "allMess" not found.');
+				console.error(
+					'🍌 🍌 🍌 🍌  FROM Element with ID "allMess" not found.'
+				);
 				return;
 			}
 
