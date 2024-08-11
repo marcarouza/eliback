@@ -193,7 +193,7 @@ export default {
 
 				const result = await response.json();
 				console.log(
-					'FROM ContactForm => EMAIL sent successfully: ' +
+					'✅ FROM signUserConfirm => EMAIL sent successfully: ' +
 						result.response
 				);
 			} catch (error) {

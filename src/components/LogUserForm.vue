@@ -104,21 +104,16 @@ export default {
 		};
 	},
 	mounted() {
-		this.$nextTick(() => {
-			this.checkUserLogged();
-		});
-
-		const jwtCookie = document.cookie
-			.split('; ')
-			.find((row) => row.startsWith('jwt='))
-			?.split('=')[1];
-
-		console.log('🚀 ~ mounted ~ jwtCookie:', jwtCookie);
+		this.getAllDocCookiess();
 	},
 	created() {
-		this.checkUserLogged();
+		this.getAllDocCookiess();
 	},
 	methods: {
+		getAllDocCookiess() {
+			const jwtCookie = document.cookie;
+			console.log('🚀 ~ mounted ~ jwtCookie:', jwtCookie);
+		},
 		async submitForm() {
 			try {
 				const response = await fetch(
