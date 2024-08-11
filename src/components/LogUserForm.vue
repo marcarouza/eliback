@@ -35,6 +35,7 @@
 								minlength="8"
 								maxlength="24"
 							/>
+
 							<button
 								class="btn btn-outline-secondary"
 								type="button"
@@ -223,6 +224,9 @@ export default {
 			} else {
 				console.log('FROM LogUserFrom => No JWT token found');
 			}
+		},
+		togglePasswordVisibility() {
+			this.passwordVisible = !this.passwordVisible;
 		},
 	},
 };
