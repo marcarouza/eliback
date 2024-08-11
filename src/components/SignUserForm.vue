@@ -180,6 +180,7 @@ export default {
 						},
 						body: JSON.stringify({
 							email: this.formData.email,
+							pwd: this.formData.pwd,
 							pseudo: this.formData.user,
 						}),
 					}
@@ -187,18 +188,18 @@ export default {
 
 				if (!response.ok) {
 					throw new Error(
-						'🍌 🍌 🍌 🍌 🍌 FROM SENDMAIL => SignUserForm FETCH =>  Failed to send message'
+						'🍌 🍌 🍌 🍌 🍌 FROM FETCH signUserConfirm  =>  Failed to send message'
 					);
 				}
 
 				const result = await response.json();
 				console.log(
-					'✅ FROM signUserConfirm => EMAIL sent successfully: ' +
+					'✅ FROM signUserConfirm => EMAIL sent successfully : ' +
 						result.response
 				);
 			} catch (error) {
 				console.error(
-					'🍌 🍌 🍌 🍌 🍌 FROM SENDMAIL => SignUserForm FETCH =>  ERR sending email: ' +
+					'🍌 🍌 🍌 🍌 🍌  FROM FETCH signUserConfirm  =>  ERR sending email: ' +
 						error.message
 				);
 			}
