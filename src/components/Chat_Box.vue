@@ -76,7 +76,7 @@ export default {
 					this.user
 				);
 				this.serverMsg(
-					`Bonjour ${this.user.nom}, vous êtes connecté(e) !!!`
+					`Bonjour ${this.user.user}, vous êtes connecté(e) !!!`
 				); // Afficher le message de bienvenue ici
 				this.setupSocketListeners();
 			} catch (error) {
