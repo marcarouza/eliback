@@ -172,7 +172,7 @@ export default {
 		async sendMail() {
 			try {
 				const response = await fetch(
-					'https://eli-back.onrender.com/signUserConfirm',
+					'https://eli-back.onrender.com/signUserMailConfirm',
 					{
 						method: 'POST',
 						headers: {
