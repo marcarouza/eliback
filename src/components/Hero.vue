@@ -23,16 +23,19 @@
 						<div
 							class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start"
 						>
-							<a
+							<router-link
 								class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder"
-								href="cv"
-								>CV</a
+								to="/cvPage"
 							>
-							<a
+								CV
+							</router-link>
+
+							<router-link
 								class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder"
-								href="projets"
-								>Projets</a
+								to="/projetsPage"
 							>
+								Projets
+							</router-link>
 						</div>
 					</div>
 				</div>
@@ -92,6 +95,7 @@ export default {
 
 .foreground-text {
 	font-family: 'Roboto', sans-serif;
+	filter: blur(2px); /* Applique un flou */
 	/* font-family: 'Nunito', sans-serif; */
 	font-style: italic;
 	letter-spacing: 0.05em;

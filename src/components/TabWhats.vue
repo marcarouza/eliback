@@ -51,6 +51,7 @@ export default {
 	border: 1px solid #007928;
 	right: -1px;
 	bottom: 120px;
+	bottom: calc(100vh / 5 + 50px);
 	z-index: 100;
 	border-radius: 10px 0 0 10px;
 	text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);

@@ -428,6 +428,7 @@ export default {
 	position: absolute;
 	right: 0;
 	bottom: 70px;
+	bottom: calc((100vh / 5));
 	z-index: 100;
 	border-radius: 10px 0 0 10px;
 	text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
