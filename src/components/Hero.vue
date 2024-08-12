@@ -95,7 +95,7 @@ export default {
 
 .foreground-text {
 	font-family: 'Roboto', sans-serif;
-	filter: blur(2px); /* Applique un flou */
+	filter: blur(0.4px); /* Applique un flou */
 	/* font-family: 'Nunito', sans-serif; */
 	font-style: italic;
 	letter-spacing: 0.05em;
@@ -114,7 +114,7 @@ export default {
 	text-align: center;
 	text-shadow: 0px 0px 10px rgb(5, 0, 27);
 	z-index: 10; /* Assure que le texte est devant tout autre élément */
-
+	padding: 30px;
 	p {
 		margin: 0;
 		padding: 0;
@@ -123,7 +123,7 @@ export default {
 
 @media (max-width: 1200px) {
 	.foreground-text {
-		font-size: 1.6rem; /* Réduit la taille de la police pour les écrans de taille moyenne */
+		font-size: 1.4rem; /* Réduit la taille de la police pour les écrans de taille moyenne */
 		/* top: 75%; Ajuste la position verticale si nécessaire */
 	}
 }

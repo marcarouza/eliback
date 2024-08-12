@@ -7,10 +7,10 @@
 					<hr />
 					<p>© 2024 eliazoura.fr Tous droits réservés.</p>
 					<p class="small">
-						Ce site utilise des cookies pour vous offrir la
-						meilleure expérience possible. En utilisant ce
-						site, vous acceptez notre utilisation des cookies
-						conformément à notre
+						Les cookies utilisés permettent la meilleure
+						expérience possible. En utilisant ce site, vous
+						acceptez notre utilisation des cookies
+						conformément à la
 						<a href="/rgpd" class="text-white"
 							><u>Politique de confidentialité</u></a
 						>.
@@ -32,11 +32,6 @@
 						<li>
 							<a href="/contact" class="text-white"
 								>Contact</a
-							>
-						</li>
-						<li>
-							<a href="/rgpd" class="text-white"
-								>Politique de confidentialité (RGPD)</a
 							>
 						</li>
 					</ul>
