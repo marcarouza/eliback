@@ -1,10 +1,17 @@
 <template>
 	<nav class="navbar navbar-expand-lg bg-info">
 		<div class="container">
-			<a class="navbar-brand" href="/homeblog" title="accueil du Blog"
+			<!-- <a class="navbar-brand" href="/homeblog" title="accueil du Blog"
 				><i class="bi bi-journal iconi"></i
-			></a>
+			></a> -->
 
+			<router-link
+				class="navbar-brand"
+				:to="{name: 'homeblogpage'}"
+				title="accueil du Blog"
+			>
+				<i class="bi bi-journal iconi"></i>
+			</router-link>
 			<button
 				class="navbar-toggler"
 				type="button"
@@ -22,19 +29,43 @@
 					<a title="voir tous les articles" class="nav-link btn btn-primary" href="/allPosts">tout voir</a>
 				</li> -->
 					<li class="nav-item">
-						<a
+						<!-- <a
 							title="nouvel article"
-							class="nav-link btn btn-primary"
+							class="nav-link btn btn-primary active"
 							href="/writepostpage"
 							>publier</a
+						> -->
+
+						<a
+							title="nouvel article"
+							id="blogLink1"
+							@click.prevent="navigateToWrite"
+							class="nav-link"
+							:class="{
+								active:
+									$route.path === '/writepostPage',
+							}"
+							>rédiger</a
 						>
 					</li>
 					<li class="nav-item">
-						<a
+						<!-- <a
 							title="rechercher un article"
-							class="nav-link btn btn-primary"
+							class="nav-link btn btn-primary active"
 							href="/searchpostpage"
 							>recherche</a
+						> -->
+
+						<a
+							title="nouvel article"
+							id="blogLink2"
+							@click.prevent="navigateToSearch"
+							class="nav-link"
+							:class="{
+								active:
+									$route.path === '/searchpostPage',
+							}"
+							>rédiger</a
 						>
 					</li>
 				</ul>
@@ -48,11 +79,66 @@ export default {
 	name: 'NavBlog',
 	data() {
 		return {
+			user: '',
 			// Vos données ici
 		};
 	},
+	mounted() {
+		this.fetchUserData();
+	},
 	methods: {
-		// Vos méthodes ici
+		async fetchUserData() {
+			try {
+				const response = await fetch(
+					'https://eli-back.onrender.com/checkUserStatus',
+					{
+						method: 'GET',
+						credentials: 'include', // Pour envoyer les cookies avec la requête
+					}
+				);
+				if (!response.ok) {
+					throw new Error(
+						'🍌 🍌 🍌 🍌 🍌 FROM NAVOK ==> ERR Network response was not ok'
+					);
+				}
+				const data = await response.json();
+				this.user = data.user;
+				this.isLoggedIn = true;
+				console.log(
+					'🚀 ~ FROM NAVOK ==> checkUserStatus ~ this.user:',
+					this.user
+				);
+			} catch (error) {
+				console.error(
+					'FROM NAVOK ==> problème avec requête fetch :',
+					error
+				);
+			}
+		},
+		navigateToWrite() {
+			if (this.user) {
+				// Si l'utilisateur est connecté, on le redirige vers la page du blog
+				this.$router.push({name: 'writepostPage'});
+			} else {
+				// Si l'utilisateur n'est pas connecté, on le redirige vers la page d'accès restreint
+				this.$router.push({
+					name: 'noaccesspage',
+					// params: {isRestricted: true},
+				});
+			}
+		},
+		navigateToSearch() {
+			if (this.user) {
+				// Si l'utilisateur est connecté, on le redirige vers la page du blog
+				this.$router.push({name: 'searchpostPage'});
+			} else {
+				// Si l'utilisateur n'est pas connecté, on le redirige vers la page d'accès restreint
+				this.$router.push({
+					name: 'noaccesspage',
+					// params: {isRestricted: true},
+				});
+			}
+		},
 	},
 	computed: {
 		// Vos propriétés calculées ici
@@ -66,9 +152,14 @@ export default {
 <style scoped>
 /*  */
 
-        .iconi {
-            /* Définissez ici le style que vous souhaitez appliquer à l'icône */
-            font-size: 1.5rem;
-            color: #ffffff;
-        }
+.iconi {
+	/* Définissez ici le style que vous souhaitez appliquer à l'icône */
+	font-size: 1.5rem;
+	color: #ffffff;
+}
+
+#blogLink1,
+#blogLink2 {
+	cursor: pointer;
+}
 </style>
