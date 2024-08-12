@@ -65,7 +65,7 @@
 								active:
 									$route.path === '/searchpostPage',
 							}"
-							>rédiger</a
+							>rechercher</a
 						>
 					</li>
 				</ul>

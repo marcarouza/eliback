@@ -36,6 +36,7 @@
 						</div>
 					</div>
 				</div>
+
 				<div class="col-xxl-7">
 					<!-- Header profile picture-->
 					<div
@@ -49,6 +50,14 @@
 								src="/pix/eli/eli-head-boot-trame.png"
 								alt="..."
 							/>
+
+							<div class="foreground-text">
+								<p>
+									" Être développeur,
+									<br />
+									c'est savoir se développer "
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -77,4 +86,60 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400&display=swap');
+
+.foreground-text {
+	font-family: 'Roboto', sans-serif;
+	/* font-family: 'Nunito', sans-serif; */
+	font-style: italic;
+	letter-spacing: 0.05em;
+	line-height: 1.1;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	top: 89%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: rgb(255, 255, 255);
+	font-size: 1.8rem;
+	font-weight: 300;
+	text-align: center;
+	text-shadow: 0px 0px 10px rgb(5, 0, 27);
+	z-index: 10; /* Assure que le texte est devant tout autre élément */
+	/* padding: 15px; */
+	/* background-color: rgba(255, 255, 255, 0.164); */
+	/* backdrop-filter: blur(10px); Applique un flou à l'arrière-plan */
+	/* border-radius: 10px; */
+	p {
+		margin: 0;
+		padding: 0;
+	}
+}
+
+@media (max-width: 1200px) {
+	.foreground-text {
+		font-size: 1.6rem; /* Réduit la taille de la police pour les écrans de taille moyenne */
+		/* top: 75%; Ajuste la position verticale si nécessaire */
+	}
+}
+
+@media (max-width: 768px) {
+	.foreground-text {
+		font-size: 1.4rem; /* Réduit davantage la taille de la police pour les petits écrans */
+		letter-spacing: 0.03em; /* Ajuste l'espacement des lettres */
+		/* top: 70%; Ajuste la position verticale pour les petits écrans */
+		padding: 5px; /* Ajoute du padding si nécessaire pour plus de lisibilité */
+	}
+}
+
+@media (max-width: 576px) {
+	.foreground-text {
+		font-size: 1.2rem; /* Encore plus petit pour les très petits écrans */
+		/* top: 65%; Ajuste la position verticale */
+	}
+}
+</style>

@@ -6,6 +6,15 @@
 				<div class="col-md-4 mb-1">
 					<hr />
 					<p>© 2024 eliazoura.fr Tous droits réservés.</p>
+					<p class="small">
+						Ce site utilise des cookies pour vous offrir la
+						meilleure expérience possible. En utilisant ce
+						site, vous acceptez notre utilisation des cookies
+						conformément à notre
+						<a href="/rgpd" class="text-white"
+							><u>Politique de confidentialité</u></a
+						>.
+					</p>
 				</div>
 
 				<!-- Liens utiles -->
@@ -71,21 +80,6 @@
 							</a>
 						</li>
 					</ul>
-				</div>
-				<hr />
-			</div>
-
-			<div class="row mt-3">
-				<div class="col text-center">
-					<p class="small">
-						Ce site utilise des cookies pour vous offrir la
-						meilleure expérience possible. En utilisant ce
-						site, vous acceptez notre utilisation des cookies
-						conformément à notre
-						<a href="/rgpd" class="text-white"
-							><u>Politique de confidentialité</u></a
-						>.
-					</p>
 				</div>
 			</div>
 		</div>

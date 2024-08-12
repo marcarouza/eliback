@@ -1,22 +1,23 @@
 <template>
-	<CommonHead :pageTitle="pageTitle" />
-	<!-- <NavOk /> -->
-	<router-view @updatePageTitle="updatePageTitle" />
-	<Footer />
+	<div id="app-container">
+		<CommonHead :pageTitle="pageTitle" />
+		<div id="content-container">
+			<router-view @updatePageTitle="updatePageTitle" />
+		</div>
+		<Footer />
+	</div>
 </template>
 
 <script>
 // import NavOk from './components/NavOk.vue';
 
 import CommonHead from './components/CommonHead.vue';
-import NavOk from './components/NavOk.vue';
 import Footer from './components/Footer.vue';
 
 export default {
 	name: 'App',
 	components: {
 		CommonHead,
-		// NavOk,
 		Footer,
 	},
 	data() {
@@ -40,4 +41,20 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+#app-container {
+	display: flex;
+	flex-direction: column;
+	height: 100vh; /* 100% of the viewport height */
+}
+
+#content-container {
+	flex-grow: 1; /* Take up remaining space */
+	display: flex;
+	flex-direction: column;
+}
+
+footer {
+	flex-shrink: 0; /* Ensure footer does not shrink */
+}
+</style>

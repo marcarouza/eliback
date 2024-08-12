@@ -2,7 +2,7 @@
 	<div>
 		<NavOk />
 		<Hero />
-		<Apropos />
+		<!-- <Apropos /> -->
 		<TabWhats />
 
 		<Chat_Box />
@@ -12,7 +12,7 @@
 <script>
 import NavOk from '../components/NavOk';
 import Hero from '../components/Hero.vue';
-import Apropos from '../components/Apropos.vue';
+// import Apropos from '../components/Apropos.vue';
 import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
 
@@ -22,7 +22,7 @@ export default {
 	components: {
 		NavOk,
 		Hero,
-		Apropos,
+		// Apropos,
 		TabWhats,
 		Chat_Box,
 	},
