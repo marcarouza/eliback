@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<NavOk />
+		<!-- <NavOk /> -->
 		<div class="container m-5">
 			<h1>API POUR LECTURE DU TOKEN</h1>
 			<p v-if="token">JWT Token: {{ token }}</p>
@@ -15,12 +15,12 @@ import VueCookies from 'vue-cookies';
 
 import {jwtDecode} from 'jwt-decode';
 
-import NavOk from '../components/NavOk';
+// import NavOk from '../components/NavOk';
 
 export default {
 	name: 'ApiPage',
 	components: {
-		NavOk,
+		// NavOk,
 	},
 	data() {
 		return {

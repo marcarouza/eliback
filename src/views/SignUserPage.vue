@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<NavOk />
+		<!-- <NavOk /> -->
 		<SignUserForm />
 		<TabWhats />
 		<!-- <Chat_Box /> -->
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import NavOk from '../components/NavOk.vue';
+// import NavOk from '../components/NavOk.vue';
 import CommonHead from '../components/CommonHead.vue';
 import SignUserForm from '../components/SignUserForm.vue';
 import TabWhats from '../components/TabWhats.vue';
@@ -26,7 +26,7 @@ export default {
 
 	components: {
 		CommonHead,
-		NavOk,
+		// NavOk,
 		SignUserForm,
 		// Chat_Box,
 		TabWhats,

@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<NavOk />
+		<!-- <NavOk /> -->
 
 		<NavBlog />
 
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import NavOk from '../components/NavOk.vue';
+// import NavOk from '../components/NavOk.vue';
 import NavBlog from '../components/blogCompo/NavBlog.vue';
 import WriteOnePost from '../components/blogCompo/WriteOnePost.vue';
 
@@ -24,7 +24,7 @@ export default {
 	name: 'WritePostPage',
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
 	components: {
-		NavOk,
+		// NavOk,
 		NavBlog,
 		WriteOnePost,
 		TabWhats,

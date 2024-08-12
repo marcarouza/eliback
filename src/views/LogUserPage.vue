@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<NavOk />
+		<!-- <NavOk /> -->
 		<LogUserForm />
 		<TabWhats />
 	</div>
@@ -15,7 +15,7 @@ export default {
 	name: 'LogUserPage',
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
 	components: {
-		NavOk,
+		// NavOk,
 		LogUserForm,
 		TabWhats,
 	},

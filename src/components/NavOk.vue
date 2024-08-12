@@ -61,14 +61,6 @@
 						<a href="#">blog</a>
 					</li>
 
-					<li class="nav-item">
-						<router-link
-							active-class="active"
-							class="nav-link"
-							to="/homeblogPage"
-							>blog</router-link
-						>
-					</li>
 					<li class="nav-item dropdown">
 						<a
 							class="nav-link dropdown-toggle btn text-white border border-white border-opacity-25"
