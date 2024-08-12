@@ -110,10 +110,7 @@ export default {
 	text-align: center;
 	text-shadow: 0px 0px 10px rgb(5, 0, 27);
 	z-index: 10; /* Assure que le texte est devant tout autre élément */
-	/* padding: 15px; */
-	/* background-color: rgba(255, 255, 255, 0.164); */
-	/* backdrop-filter: blur(10px); Applique un flou à l'arrière-plan */
-	/* border-radius: 10px; */
+
 	p {
 		margin: 0;
 		padding: 0;
