@@ -1,5 +1,5 @@
 <template>
-	<!-- <NavOk /> -->
+	<NavOk />
 
 	<div>
 		<div
@@ -21,7 +21,7 @@ export default {
 	name: 'NoAccessPage',
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
 	components: {
-		// NavOk,
+		NavOk,
 		NoAccess,
 		TabWhats,
 	},

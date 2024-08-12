@@ -1,6 +1,6 @@
 <template>
 	<CommonHead :pageTitle="pageTitle" />
-	<NavOk />
+	<!-- <NavOk /> -->
 	<router-view @updatePageTitle="updatePageTitle" />
 	<Footer />
 </template>
@@ -16,7 +16,7 @@ export default {
 	name: 'App',
 	components: {
 		CommonHead,
-		NavOk,
+		// NavOk,
 		Footer,
 	},
 	data() {

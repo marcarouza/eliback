@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<!-- <NavOk /> -->
+		<NavOk />
 		<Hero />
 		<Apropos />
 		<TabWhats />
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-// import NavOk from '../components/NavOk';
+import NavOk from '../components/NavOk';
 import Hero from '../components/Hero.vue';
 import Apropos from '../components/Apropos.vue';
 import Chat_Box from '../components/Chat_Box.vue';
@@ -20,7 +20,7 @@ export default {
 	name: 'HomePage',
 	emits: ['updatePageTitle'],
 	components: {
-		// NavOk,
+		NavOk,
 		Hero,
 		Apropos,
 		TabWhats,

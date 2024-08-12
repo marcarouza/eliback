@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<!-- <NavOk /> -->
+		<NavOk />
 
 		<div class="container m-5">
 			<h1>Bienvenue</h1>
@@ -17,7 +17,7 @@ import NavOk from '../components/NavOk.vue';
 export default {
 	name: 'CookiesPage',
 	components: {
-		// NavOk,
+		NavOk,
 	},
 	data() {
 		return {

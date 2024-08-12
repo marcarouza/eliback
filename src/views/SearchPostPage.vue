@@ -1,10 +1,9 @@
 <template>
 	<div>
-		<!-- <NavOk /> -->
+		<NavOk />
 
 		<NavBlog />
 		<SearchPost />
-		<!-- <Footer /> -->
 		<TabWhats />
 
 		<Chat_Box />
@@ -12,19 +11,18 @@
 </template>
 
 <script>
-// import NavOk from '../components/NavOk.vue';
+import NavOk from '../components/NavOk.vue';
 import NavBlog from '../components/blogCompo/NavBlog.vue';
 import SearchPost from '../components/blogCompo/SearchPost.vue';
 
 import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
-// import Footer from '../components/Footer.vue';
 
 export default {
 	name: 'SearchPostPage',
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
 	components: {
-		// NavOk,
+		NavOk,
 		NavBlog,
 		SearchPost,
 		TabWhats,

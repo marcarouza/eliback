@@ -1,7 +1,7 @@
 <!-- src/components/ConfirmationPage.vue -->
 <template>
 	<div>
-		<!-- <NavOk /> -->
+		<NavOk />
 		<ConfirmSignUp />
 		<TabWhats />
 	</div>
@@ -9,14 +9,14 @@
 
 <script>
 import ConfirmSignUp from '../components/ConfirmSignUp.vue';
-// import NavOk from '../components/NavOk.vue';
+import NavOk from '../components/NavOk.vue';
 import TabWhats from '../components/TabWhats.vue';
 
 export default {
 	name: 'ConfirmSignUpPage',
 	emits: ['updatePageTitle'],
 	components: {
-		// NavOk,
+		NavOk,
 		ConfirmSignUp,
 		TabWhats,
 	},

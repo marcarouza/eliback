@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<!-- <NavOk /> -->
+		<NavOk />
 		<div
 			class="d-flex flex-column align-items-center justify-content-center vh-100"
 		>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-// import NavOk from '../components/NavOk.vue';
+import NavOk from '../components/NavOk.vue';
 import ConfirmContact from '../components/ConfirmContact.vue';
 import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
@@ -21,7 +21,7 @@ export default {
 	name: 'ConfirmContactPage',
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
 	components: {
-		// NavOk,
+		NavOk,
 		ConfirmContact,
 		Chat_Box,
 		TabWhats,

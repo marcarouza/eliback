@@ -159,7 +159,7 @@ export default {
 	data() {
 		return {
 			isLoggedIn: false,
-			user: null,
+			user: '',
 		};
 	},
 

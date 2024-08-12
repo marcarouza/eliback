@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<!-- <NavOk /> -->
+		<NavOk />
 		<div
 			class="d-flex flex-column align-items-center justify-content-center vh-100"
 		>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-// import NavOk from '../components/NavOk.vue';
+import NavOk from '../components/NavOk.vue';
 
 import AllMembers from '../components/AllMembers.vue';
 import Chat_Box from '../components/Chat_Box.vue';
@@ -29,7 +29,7 @@ export default {
 		);
 	},
 	components: {
-		// NavOk,
+		NavOk,
 		AllMembers,
 		Chat_Box,
 		TabWhats,

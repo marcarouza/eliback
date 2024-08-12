@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<!-- <NavOk /> -->
+		<NavOk />
 		<Cv />
 		<TabWhats />
 		<Chat_Box />
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-// import NavOk from '../components/NavOk';
+import NavOk from '../components/NavOk';
 import Cv from '../components/Cv.vue';
 import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
@@ -22,7 +22,7 @@ export default {
 	},
 	// Autres options du composant
 	components: {
-		// NavOk,
+		NavOk,
 		Cv,
 		Chat_Box,
 		TabWhats,
