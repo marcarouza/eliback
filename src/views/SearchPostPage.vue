@@ -1,16 +1,14 @@
 <template>
 	<div>
+		<NavOk />
 
-	<NavOk />
+		<NavBlog />
+		<SearchPost />
+		<!-- <Footer /> -->
+		<TabWhats />
 
-	<NavBlog />
-	<SearchPost />
-	<Footer />
-	<TabWhats />
-
-	<Chat_Box />
+		<Chat_Box />
 	</div>
-
 </template>
 
 <script>
@@ -20,7 +18,7 @@ import SearchPost from '../components/blogCompo/SearchPost.vue';
 
 import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
-import Footer from '../components/Footer.vue';
+// import Footer from '../components/Footer.vue';
 
 export default {
 	name: 'SearchPostPage',

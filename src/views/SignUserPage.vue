@@ -4,7 +4,6 @@
 		<SignUserForm />
 		<TabWhats />
 		<!-- <Chat_Box /> -->
-		<Footer />
 	</div>
 </template>
 
@@ -12,9 +11,7 @@
 import NavOk from '../components/NavOk.vue';
 import CommonHead from '../components/CommonHead.vue';
 import SignUserForm from '../components/SignUserForm.vue';
-// import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
-import Footer from '../components/Footer.vue'; // Ajoutez .vue si nécessaire
 
 export default {
 	name: 'SignUserPage',

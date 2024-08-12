@@ -1,18 +1,21 @@
 <template>
 	<CommonHead :pageTitle="pageTitle" />
 	<router-view @updatePageTitle="updatePageTitle" />
+	<Footer />
 </template>
 
 <script>
 import NavOk from './components/NavOk.vue';
 
 import CommonHead from './components/CommonHead.vue';
+import Footer from './components/Footer.vue';
 
 export default {
 	name: 'App',
 	components: {
 		CommonHead,
 		NavOk,
+		Footer,
 	},
 	data() {
 		return {

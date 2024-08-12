@@ -3,7 +3,6 @@
 		<NavOk />
 		<Hero />
 		<Apropos />
-		<Footer />
 		<TabWhats />
 
 		<Chat_Box />
@@ -14,15 +13,12 @@
 import NavOk from '../components/NavOk';
 import Hero from '../components/Hero.vue';
 import Apropos from '../components/Apropos.vue';
-import Footer from '../components/Footer.vue';
 import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
 
 export default {
 	name: 'HomePage',
-	emits: ['updatePageTitle'], // Déclarez l'événement ici
-	// mixins: [checkIFlogged],
-	// Autres options du composant
+	emits: ['updatePageTitle'],
 	mounted() {
 		this.$emit('updatePageTitle', `Eli Azoura | Développeur Full Stack`);
 	},

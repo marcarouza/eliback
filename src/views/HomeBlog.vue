@@ -3,7 +3,6 @@
 		<NavOk />
 		<NavBlog />
 		<BlogCore />
-		<Footer />
 		<TabWhats />
 
 		<Chat_Box />
@@ -17,7 +16,6 @@ import BlogCore from '../components/blogCompo/BlogCore.vue';
 
 import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
-import Footer from '../components/Footer.vue';
 
 export default {
 	name: 'HomeBlog',

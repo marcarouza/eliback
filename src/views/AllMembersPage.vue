@@ -7,7 +7,6 @@
 			<AllMembers />
 			<TabWhats />
 			<Chat_Box />
-			<Footer />
 		</div>
 	</div>
 </template>
@@ -16,7 +15,6 @@
 import NavOk from '../components/NavOk.vue';
 
 import AllMembers from '../components/AllMembers.vue';
-import Footer from '../components/Footer.vue';
 import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
 
@@ -33,7 +31,6 @@ export default {
 	components: {
 		NavOk,
 		AllMembers,
-		Footer,
 		Chat_Box,
 		TabWhats,
 	},

@@ -6,7 +6,6 @@
 		<TabWhats />
 
 		<Chat_Box />
-		<Footer />
 	</div>
 </template>
 
@@ -14,7 +13,6 @@
 import NavOk from '../components/NavOk.vue';
 import ContactForm from '../components/ContactForm.vue';
 
-import Footer from '../components/Footer.vue';
 
 import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
@@ -28,7 +26,6 @@ export default {
 		ContactForm,
 		Chat_Box,
 		TabWhats,
-		Footer,
 	},
 
 	data() {

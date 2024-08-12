@@ -2,9 +2,7 @@
 	<div>
 		<NavOk />
 		<LogUserForm />
-		<!-- <Chat_Box /> -->
 		<TabWhats />
-		<Footer />
 	</div>
 </template>
 
@@ -12,7 +10,6 @@
 import NavOk from '../components/NavOk.vue';
 import LogUserForm from '../components/LogUserForm.vue';
 import TabWhats from '../components/TabWhats.vue';
-import Footer from '../components/Footer.vue';
 
 export default {
 	name: 'LogUserPage',

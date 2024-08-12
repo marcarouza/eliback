@@ -4,14 +4,12 @@
 		<UserStatus />
 		<TabWhats />
 		<Chat_Box />
-		<Footer />
 	</div>
 </template>
 
 <script>
 import NavOk from '../components/NavOk.vue';
 import UserStatus from '../components/UserStatus.vue';
-import Footer from '../components/Footer.vue';
 import CommonHead from '../components/CommonHead.vue';
 import SignUserForm from '../components/SignUserForm.vue';
 import Chat_Box from '../components/Chat_Box.vue';

@@ -3,7 +3,6 @@ import {createRouter, createWebHistory} from 'vue-router';
 //
 import homepage from '../views/HomePage.vue';
 import cvpage from '../views/CvPage.vue';
-import projetspage from '../views/ProjetsPage.vue';
 //
 import contactformpage from '../views/ContactFormPage.vue';
 import confirmcontactpage from '../views/ConfirmContactPage.vue';
@@ -24,7 +23,29 @@ import notfoundpage from '../views/NotFoundPage.vue';
 
 import allmemberspage from '../views/AllMembersPage';
 
+import noaccesspage from '../views/NoAccessPage.vue';
+
+import projetspage from '../views/ProjetsPage.vue';
+
+import confirmloggedinpage from '../views/ConfirmLoggedInPage.vue';
+
 const routes = [
+	{
+		path: '/confirmloggedinPage',
+		name: 'confirmloggedinpage',
+		component: confirmloggedinpage,
+	},
+	{
+		path: '/projetPage',
+		name: 'projetspage',
+		component: projetspage,
+	},
+
+	{
+		path: '/noAccessPage',
+		name: 'noaccesspage',
+		component: noaccesspage,
+	},
 	{
 		path: '/allMembersPage',
 		name: 'allmemberspage',
@@ -50,11 +71,7 @@ const routes = [
 		name: 'loguserpage',
 		component: loguserpage,
 	},
-	{
-		path: '/projetsPage',
-		name: 'projetspage',
-		component: projetspage,
-	},
+
 	{
 		path: '/contactFormPage',
 		name: 'contactformpage',

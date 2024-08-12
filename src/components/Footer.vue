@@ -1,21 +1,17 @@
 <template>
-	<footer class="bg-white py-4 mb-5">
-		<div class="container px-5">
-			<div
-				class="row align-items-center justify-content-between flex-column flex-sm-row"
-			>
-				<div class="col-auto">
-					<div class="small m-0">copyright © eliazoura.fr</div>
+	<footer class="footer bg-dark text-white py-4">
+		<div class="container">
+			<div class="row">
+				<!-- Logo et informations -->
+				<div class="col-md-4 mb-1">
+					<hr />
+					<p>© 2024 eliazoura.fr Tous droits réservés.</p>
 				</div>
-				<div class="col-auto">
-					<ul class="small">
-						<li class="navbar-nav ms-auto">
-							<a
-								class="nav-link"
-								href="https://www.linkedin.com/in/eliazoura/"
-								>LinkedIn</a
-							>
-						</li>
+
+				<!-- Liens utiles -->
+				<div class="col-md-4 mb-1">
+					<hr />
+					<ul class="list-unstyled">
 						<li class="nav-item">
 							<router-link
 								active-class="active"
@@ -24,12 +20,72 @@
 								>api</router-link
 							>
 						</li>
+						<li>
+							<a href="/contact" class="text-white"
+								>Contact</a
+							>
+						</li>
+						<li>
+							<a href="/rgpd" class="text-white"
+								>Politique de confidentialité (RGPD)</a
+							>
+						</li>
 					</ul>
-					<a class="small" href="#!">RGPD</a>
-					<span class="mx-1">·</span>
-					<a class="small" href=""> IP publique</a>
-					<span class="mx-1">·</span>
-					<a class="small" href="contact.html">Contact</a>
+				</div>
+
+				<!-- Réseaux sociaux -->
+				<div class="col-md-4 mb-1 d-flex justify-content-end">
+					<hr />
+					<ul class="list-unstyled">
+						<li
+							class="mb-2 d-flex justify-content-end align-items-center"
+						>
+							<a
+								href="https://gitlab.com/eliazoura"
+								class="text-white d-flex align-items-center"
+							>
+								<span class="me-2">GitLab</span>
+								<i class="fab fa-gitlab"></i>
+							</a>
+						</li>
+						<li
+							class="mb-2 d-flex justify-content-end align-items-center"
+						>
+							<a
+								href="https://www.linkedin.com/in/eliazoura"
+								class="text-white d-flex align-items-center"
+							>
+								<span class="me-2">LinkedIn</span>
+								<i class="fab fa-linkedin"></i>
+							</a>
+						</li>
+						<li
+							class="mb-2 d-flex justify-content-end align-items-center"
+						>
+							<a
+								href="https://www.youtube.com/c/eliazoura"
+								class="text-white d-flex align-items-center"
+							>
+								<span class="me-2">YouTube</span>
+								<i class="fab fa-youtube"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<hr />
+			</div>
+
+			<div class="row mt-3">
+				<div class="col text-center">
+					<p class="small">
+						Ce site utilise des cookies pour vous offrir la
+						meilleure expérience possible. En utilisant ce
+						site, vous acceptez notre utilisation des cookies
+						conformément à notre
+						<a href="/rgpd" class="text-white"
+							><u>Politique de confidentialité</u></a
+						>.
+					</p>
 				</div>
 			</div>
 		</div>
@@ -39,23 +95,31 @@
 <script>
 export default {
 	name: 'Footer',
-	data() {
-		return {
-			// Vos données ici
-		};
-	},
-	methods: {
-		// Vos méthodes ici
-	},
-	computed: {
-		// Vos propriétés calculées ici
-	},
-	watch: {
-		// Vos observateurs ici
-	},
 };
 </script>
 
 <style scoped>
-/* Votre style ici */
+.footer {
+	position: relative;
+	bottom: 0;
+	width: 100%;
+	background-color: rgb(33, 37, 41);
+	font-size: 0.8rem;
+}
+
+.footer a {
+	font-size: 0.8rem;
+
+	text-decoration: none;
+	color: #ffffff;
+}
+
+.footer a:hover {
+	color: #adb5bd;
+	text-decoration: underline;
+}
+
+.footer .fab {
+	font-size: 1.3rem;
+}
 </style>

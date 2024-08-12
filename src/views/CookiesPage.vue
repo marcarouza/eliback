@@ -1,16 +1,17 @@
 <template>
-	<NavOk />
+	<div>
+		<NavOk />
 
-	<div class="container m-5">
-		<h1>Bienvenue</h1>
-		<p v-if="jwt">Votre JWT : {{ jwt }}</p>
-		<p v-else>Cookie 'jwt' non trouvé</p>
+		<div class="container m-5">
+			<h1>Bienvenue</h1>
+			<p v-if="jwt">Votre JWT : {{ jwt }}</p>
+			<p v-else>Cookie 'jwt' non trouvé</p>
+		</div>
 	</div>
 </template>
 
 <script>
 import VueCookies from 'vue-cookies';
-// import {getCookie} from '../utils//cookieUtils.js';
 import NavOk from '../components/NavOk.vue';
 
 export default {

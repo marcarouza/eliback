@@ -9,8 +9,6 @@
 		<TabWhats />
 
 		<Chat_Box />
-
-		<Footer />
 	</div>
 </template>
 
@@ -21,7 +19,6 @@ import WriteOnePost from '../components/blogCompo/WriteOnePost.vue';
 
 import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
-import Footer from '../components/Footer.vue';
 
 export default {
 	name: 'WritePostPage',

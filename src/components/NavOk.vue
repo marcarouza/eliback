@@ -52,6 +52,15 @@
 							>contact</router-link
 						>
 					</li>
+
+					<li
+						@click.prevent="navigateToBlog"
+						class="nav-link"
+						:class="{active: $route.path === '/homeblogPage'}"
+					>
+						<a href="#">blog</a>
+					</li>
+
 					<li class="nav-item">
 						<router-link
 							active-class="active"
@@ -223,6 +232,18 @@ export default {
 					'🍌 🍌 🍌 🍌 🍌 FROM NAVOK ==> problème avec requête fetch :',
 					error
 				);
+			}
+		},
+		navigateToBlog() {
+			if (this.user) {
+				// Si l'utilisateur est connecté, on le redirige vers la page du blog
+				this.$router.push({name: 'homeblogPage'});
+			} else {
+				// Si l'utilisateur n'est pas connecté, on le redirige vers la page d'accès restreint
+				this.$router.push({
+					name: 'noaccesspage',
+					params: {isRestricted: true},
+				});
 			}
 		},
 

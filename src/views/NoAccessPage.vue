@@ -4,33 +4,32 @@
 		<div
 			class="d-flex flex-column align-items-center justify-content-center vh-100"
 		>
-			<ConfirmContact />
+			<NoAccess />
 			<TabWhats />
-			<Chat_Box />
 		</div>
 	</div>
 </template>
 
 <script>
 import NavOk from '../components/NavOk.vue';
-import ConfirmContact from '../components/ConfirmContact.vue';
-import Chat_Box from '../components/Chat_Box.vue';
+
+import NoAccess from '../components/NoAccess.vue';
 import TabWhats from '../components/TabWhats.vue';
 
 export default {
-	name: 'ConfirmContactPage',
+	name: 'NoAccessPage',
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
 
 	mounted() {
 		this.$emit(
 			'updatePageTitle',
-			`Message envoyé | Eli | Développeur Full Stack`
+			`😤 Accès restreint | Eli | Développeur Full Stack`
 		);
 	},
 	components: {
 		NavOk,
-		ConfirmContact,
-		Chat_Box,
+		NoAccess,
+		Footer,
 		TabWhats,
 	},
 };

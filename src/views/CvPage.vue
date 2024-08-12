@@ -4,8 +4,6 @@
 		<Cv />
 		<TabWhats />
 		<Chat_Box />
-
-		<Footer />
 	</div>
 </template>
 
@@ -14,7 +12,6 @@ import NavOk from '../components/NavOk';
 import Cv from '../components/Cv.vue';
 import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
-import Footer from '../components/Footer.vue';
 
 export default {
 	name: 'CvPage',

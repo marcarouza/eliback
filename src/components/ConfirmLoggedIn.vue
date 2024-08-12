@@ -1,4 +1,3 @@
-<!-- src/components/ConfirmationPage.vue -->
 <template>
 	<div class="container mt-5">
 		<div class="row justify-content-center">
@@ -15,14 +14,24 @@
 
 <script>
 export default {
-	name: 'ConfirmUserPage',
-	emits: ['updatePageTitle'], // Déclarez l'événement ici
-	// Autres options du composant
+	name: 'ConfirmLoggedIn',
 };
 </script>
 
 <style scoped>
-.container {
-	margin-top: 50px;
+.card {
+	transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+	transform: translateY(-5px);
+}
+
+.btn-primary {
+	transition: all 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+	transform: scale(1.05);
 }
 </style>
