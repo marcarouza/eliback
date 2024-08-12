@@ -50,6 +50,8 @@ export default {
 		return {
 			user: null,
 			isLoggedIn: false,
+			alllMessages: '',
+
 			// Vos données ici
 		};
 	},

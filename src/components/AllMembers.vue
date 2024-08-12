@@ -43,7 +43,7 @@ export default {
 				const response = await fetch(
 					'https://eli-back.onrender.com/allMembers',
 					{
-						method: 'POST',
+						method: 'GET',
 						credentials: 'include', // Pour envoyer les cookies avec la requête
 					}
 				);
