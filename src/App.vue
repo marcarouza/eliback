@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import NavOk from './components/NavOk.vue';
+// import NavOk from './components/NavOk.vue';
 
 import CommonHead from './components/CommonHead.vue';
 import Footer from './components/Footer.vue';
@@ -14,7 +14,7 @@ export default {
 	name: 'App',
 	components: {
 		CommonHead,
-		NavOk,
+		// NavOk,
 		Footer,
 	},
 	data() {

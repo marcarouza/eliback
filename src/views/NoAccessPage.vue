@@ -1,6 +1,7 @@
 <template>
+	<NavOk />
+
 	<div>
-		<NavOk />
 		<div
 			class="d-flex flex-column align-items-center justify-content-center vh-100"
 		>
@@ -19,18 +20,16 @@ import TabWhats from '../components/TabWhats.vue';
 export default {
 	name: 'NoAccessPage',
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
-
+	components: {
+		NavOk,
+		NoAccess,
+		TabWhats,
+	},
 	mounted() {
 		this.$emit(
 			'updatePageTitle',
 			`😤 Accès restreint | Eli | Développeur Full Stack`
 		);
-	},
-	components: {
-		NavOk,
-		NoAccess,
-		Footer,
-		TabWhats,
 	},
 };
 </script>

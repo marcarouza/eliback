@@ -3,6 +3,7 @@
 		<div class="chat-header">
 			<span class="">Chat avec vos amis…</span>
 			<button
+				@click="displayChat"
 				id="closeChatBtn"
 				class="btn btn-close btn-primary float-end"
 			></button>
@@ -15,7 +16,7 @@
 			>
 		</div>
 
-		<div v-if="user" id="allMess" class="chat-body">
+		<div v-else id="allMess" class="chat-body">
 			<!-- Messages vont ici -->
 		</div>
 
@@ -34,19 +35,20 @@
 		</div>
 	</div>
 
-	<div id="chatToggleBtn" class="stickedTab">
+	<div @click="displayChat" id="chatToggleBtn" class="stickedTab">
 		<i class="bi bi-chat-dots-fill chat_bubble"></i>
 	</div>
 </template>
 
 <script>
-import socket from '../socket/socketClient.js';
+import socket from '../../socket/socketClient.js';
 console.log('🚀 ~ LE SOCKET CLIENT EST  :    ', socket);
 
 export default {
 	name: 'Chat_Box',
 	data() {
 		return {
+			user: null,
 			// Vos données ici
 		};
 	},
@@ -69,7 +71,7 @@ export default {
 				this.user = data.user;
 				this.isLoggedIn = true;
 				console.log(
-					'🚀 ~ FROM NAVOK ==> checkUserStatus ~ this.user:',
+					'✅ ~ FROM Chat_Box  ==> checkUserStatus/ this.user :',
 					this.user
 				);
 			} catch (error) {
@@ -105,6 +107,13 @@ export default {
 		serverMsg(welcome) {
 			const allMess = document.getElementById('allMess');
 
+			if (!allMess) {
+				console.error(
+					'🍌 🍌 🍌 FROM serverMsg Chat_Box : Element with ID "allMess" not found.'
+				);
+				return;
+			}
+
 			if (allMess) {
 				const myDiv = document.createElement('div');
 				console.log('🚀 ~ addDiv ~ myDiv:', myDiv);
@@ -117,25 +126,37 @@ export default {
 
 				allMess.appendChild(myDiv);
 			} else {
-				console.error('Element with ID "allMess" not found.');
+				console.error(
+					'🍌 🍌 🍌 FROM serverMsg Chat_Box : element with ID "allMess" not found.'
+				);
 			}
 		},
 		sendMess(e) {
 			e.preventDefault();
+			const messInput = document.getElementById('messInput');
 
-			const messTxt = document
-				.getElementById('messInput')
-				.value.trim();
+			if (!messInput) {
+				console.error('Element with ID "messInput" not found.');
+				return;
+			}
+
+			const messTxt = messInput.value.trim();
 			console.log('🚀 ~ messTxt:', messTxt);
 
 			if (messTxt) {
 				socket.emit('message', messTxt);
-				document.getElementById('messInput').value = '';
-				document.getElementById('messInput').focus();
+				messInput.value = '';
+				messInput.focus();
 			}
 		},
 		displayChat() {
 			const chatPopin = document.getElementById('chatPopin');
+
+			if (!chatPopin) {
+				console.error('Element with ID "chatPopin" not found.');
+				return;
+			}
+
 			chatPopin.classList.toggle('hide-inactive');
 		},
 		displayChatOriginal() {
@@ -147,12 +168,8 @@ export default {
 				});
 		},
 		hideChat() {
-			document
-				.getElementById('closeChatBtn')
-				.addEventListener('click', () => {
-					const chatPopin = document.getElementById('chatPopin');
-					chatPopin.classList.add('hide-inactive');
-				});
+			const chatPopin = document.getElementById('chatPopin');
+			chatPopin.classList.add('hide-inactive');
 		},
 		sendMsg() {
 			document
@@ -162,55 +179,54 @@ export default {
 	},
 	mounted() {
 		this.fetchUserData();
-		this.displayChat();
-		// document
-		// 	.getElementById('chatToggleBtn')
-		// 	.addEventListener('click', () => {
-		// 		const chatPopin = document.getElementById('chatPopin');
-		// 		chatPopin.classList.toggle('hide-inactive');
-		// 	});
-		// document
-		// 	.getElementById('closeChatBtn')
-		// 	.addEventListener('click', () => {
-		// 		const chatPopin = document.getElementById('chatPopin');
-		// 		chatPopin.classList.add('hide-inactive');
-		// 	});
+		if (this.user) {
+			this.displayChat();
+		}
 
-		socket.on('connect', () => {
-			const completeID = socket.id;
-			if (completeID) {
-				console.log('🚀 ~ completeID:', completeID);
-				const shortClientID = completeID.substring(0, 5);
-				console.log('🚀 ~ ~ shortClientID:', shortClientID);
-				socket.shortClientID = shortClientID;
+		if (this.user) {
+			socket.on('connect', () => {
+				const completeID = socket.id;
+				if (completeID) {
+					console.log('🚀 ~ completeID:', completeID);
+					const shortClientID = completeID.substring(0, 5);
+					console.log('🚀 ~ ~ shortClientID:', shortClientID);
+					socket.shortClientID = shortClientID;
 
+					console.log(
+						`FROM CLIENT => ${shortClientID} es CONNECTÉ !`
+					);
+					this.serverMsg(
+						`Bonjour ${shortClientID}, vous êtes connecté(e) !!!`
+					);
+				}
+			});
+
+			socket.on('disconnect', () => {
+				if (completeID) {
+					const shortClientID = completeID.substring(0, 5);
+
+					console.log(
+						`FROM CLIENT => ${shortClientID} est déconnecté`
+					);
+				}
+			});
+
+			socket.on('message', (data) => {
 				console.log(
-					`FROM CLIENT => ${shortClientID} es CONNECTÉ !`
+					'STRUCTURE de MSG envoyé à tout le monde : ',
+					data
 				);
-				this.serverMsg(
-					`Bonjour ${shortClientID}, vous êtes connecté(e) !!!`
-				);
-			}
-		});
+				this.addDiv(data);
+			});
 
-		socket.on('disconnect', () => {
-			const shortClientID = completeID.substring(0, 5);
+			socket.on('userLeft', (data) => {
+				this.serverMsg(data);
+			});
 
-			console.log(`FROM CLIENT => ${shortClientID} est déconnecté`);
-		});
-
-		socket.on('message', (data) => {
-			console.log('STRUCTURE de MSG envoyé à tout le monde : ', data);
-			this.addDiv(data);
-		});
-
-		socket.on('userLeft', (data) => {
-			this.serverMsg(data);
-		});
-
-		socket.on('userConnected', (data) => {
-			this.serverMsg(data);
-		});
+			socket.on('userConnected', (data) => {
+				this.serverMsg(data);
+			});
+		}
 	},
 };
 </script>

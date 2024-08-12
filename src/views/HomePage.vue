@@ -43,7 +43,6 @@ export default {
 		Apropos,
 		TabWhats,
 		Chat_Box,
-		Footer,
 	},
 };
 </script>

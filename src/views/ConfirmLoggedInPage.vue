@@ -4,6 +4,7 @@
 </template>
 
 <script>
+import ConfirmLoggedIn from '../components/ConfirmLoggedIn.vue';
 export default {
 	name: 'ConfirmLoggedInPage',
 

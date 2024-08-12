@@ -18,6 +18,13 @@ import TabWhats from '../components/TabWhats.vue';
 export default {
 	name: 'ProjetsPage',
 	emits: ['updatePageTitle'],
+
+	components: {
+		NavOk,
+		Projets,
+		Chat_Box,
+		TabWhats,
+	},
 	data() {
 		return {};
 	},
@@ -26,15 +33,6 @@ export default {
 			'updatePageTitle',
 			`Mes projets | Eli | Développeur Full Stack | `
 		);
-	},
-
-	components: {
-		NavOk,
-		Projets,
-		Chat_Box,
-		TabWhats,
-
-		Footer,
 	},
 };
 </script>

@@ -1,33 +1,25 @@
 //
 import {createRouter, createWebHistory} from 'vue-router';
 //
-import homepage from '../views/HomePage.vue';
-import cvpage from '../views/CvPage.vue';
-//
-import contactformpage from '../views/ContactFormPage.vue';
-import confirmcontactpage from '../views/ConfirmContactPage.vue';
-//
-import signuserpage from '../views/SignUserPage.vue';
-import confirmsignuppage from '../views/ConfirmSignUpPage.vue';
-
-import loguserpage from '../views/LogUserPage.vue';
-import homeblogpage from '../views/HomeBlog.vue';
-//
-import searchpostpage from '../views/SearchPostPage.vue';
-import writepostpage from '../views/WritePostPage.vue';
-import cookiespage from '../views/CookiesPage.vue';
-import apipage from '../views/ApiPage.vue';
-import userstatuspage from '../views/UserStatusPage.vue';
-//
-import notfoundpage from '../views/NotFoundPage.vue';
 
 import allmemberspage from '../views/AllMembersPage';
-
-import noaccesspage from '../views/NoAccessPage.vue';
-
-import projetspage from '../views/ProjetsPage.vue';
-
+import apipage from '../views/ApiPage.vue';
+import confirmcontactpage from '../views/ConfirmContactPage.vue';
 import confirmloggedinpage from '../views/ConfirmLoggedInPage.vue';
+import confirmsignuppage from '../views/ConfirmSignUpPage.vue';
+import contactformpage from '../views/ContactFormPage.vue';
+import cookiespage from '../views/CookiesPage.vue';
+import cvpage from '../views/CvPage.vue';
+import homeblogpage from '../views/HomeBlogPage.vue';
+import homepage from '../views/HomePage.vue';
+import loguserpage from '../views/LogUserPage.vue';
+import noaccesspage from '../views/NoAccessPage.vue';
+import notfoundpage from '../views/NotFoundPage.vue';
+import projetspage from '../views/ProjetsPage.vue';
+import searchpostpage from '../views/SearchPostPage.vue';
+import signuserpage from '../views/SignUserPage.vue';
+import userstatuspage from '../views/UserStatusPage.vue';
+import writepostpage from '../views/WritePostPage.vue';
 
 const routes = [
 	{

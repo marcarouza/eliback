@@ -18,7 +18,6 @@ export default {
 		NavOk,
 		LogUserForm,
 		TabWhats,
-		Footer,
 	},
 	mounted() {
 		this.$emit(

@@ -26,7 +26,6 @@ export default {
 		Cv,
 		Chat_Box,
 		TabWhats,
-		Footer,
 	},
 
 	mounted() {

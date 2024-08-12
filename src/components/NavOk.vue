@@ -237,12 +237,12 @@ export default {
 		navigateToBlog() {
 			if (this.user) {
 				// Si l'utilisateur est connecté, on le redirige vers la page du blog
-				this.$router.push({name: 'homeblogPage'});
+				this.$router.push({name: 'homeblogpage'});
 			} else {
 				// Si l'utilisateur n'est pas connecté, on le redirige vers la page d'accès restreint
 				this.$router.push({
 					name: 'noaccesspage',
-					params: {isRestricted: true},
+					// params: {isRestricted: true},
 				});
 			}
 		},

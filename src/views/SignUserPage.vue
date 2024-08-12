@@ -30,7 +30,6 @@ export default {
 		SignUserForm,
 		// Chat_Box,
 		TabWhats,
-		Footer,
 	},
 
 	methods: {

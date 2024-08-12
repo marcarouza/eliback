@@ -23,7 +23,13 @@ import TabWhats from '../components/TabWhats.vue';
 export default {
 	name: 'SearchPostPage',
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
-
+	components: {
+		NavOk,
+		NavBlog,
+		SearchPost,
+		TabWhats,
+		Chat_Box,
+	},
 	mounted() {
 		this.$emit(
 			'updatePageTitle',
@@ -44,14 +50,6 @@ export default {
 	},
 	watch: {
 		// Vos observateurs ici
-	},
-	components: {
-		NavOk,
-		NavBlog,
-		SearchPost,
-		Footer,
-		TabWhats,
-		Chat_Box,
 	},
 };
 </script>

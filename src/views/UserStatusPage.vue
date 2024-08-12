@@ -18,7 +18,14 @@ import TabWhats from '../components/TabWhats.vue';
 export default {
 	name: 'SignUserPage',
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
-
+	components: {
+		CommonHead,
+		UserStatus,
+		NavOk,
+		SignUserForm,
+		Chat_Box,
+		TabWhats,
+	},
 	data() {
 		return {
 			pageTitle: 'USER STATUS  | Développeur Full Stack',
@@ -27,15 +34,7 @@ export default {
 	mounted() {
 		this.$emit('updatePageTitle', this.pageTitle);
 	},
-	components: {
-		CommonHead,
-		UserStatus,
-		NavOk,
-		SignUserForm,
-		Chat_Box,
-		TabWhats,
-		Footer,
-	},
+
 	props: {},
 	methods: {
 		// Vos méthodes ici

@@ -18,9 +18,15 @@ import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
 
 export default {
-	name: 'HomeBlog',
+	name: 'HomeBlogPage',
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
-	// Autres options du composant
+	components: {
+		NavOk,
+		NavBlog,
+		BlogCore,
+		TabWhats,
+		Chat_Box,
+	},
 	mounted() {
 		this.$emit(
 			'updatePageTitle',
@@ -41,14 +47,6 @@ export default {
 	},
 	watch: {
 		// Vos observateurs ici
-	},
-	components: {
-		NavOk,
-		NavBlog,
-		BlogCore,
-		TabWhats,
-		Chat_Box,
-		Footer,
 	},
 };
 </script>
