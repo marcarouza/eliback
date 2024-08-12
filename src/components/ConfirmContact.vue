@@ -37,7 +37,7 @@
 
 <script>
 export default {
-	name: 'ConfirmSignUp',
+	name: 'ConfirmContact',
 };
 </script>
 

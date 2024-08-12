@@ -181,7 +181,7 @@
 
 <script>
 export default {
-	name: 'Contact',
+	name: 'ContactForm',
 	data() {
 		return {
 			form: {

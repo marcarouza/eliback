@@ -1,5 +1,5 @@
 <template>
-	<div class="container mt-4">
+	<div class="container">
 		<h2 class="mb-4">Liste des Utilisateurs</h2>
 		<div v-if="users.length > 0">
 			<div class="list-group">

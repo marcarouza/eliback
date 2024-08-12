@@ -2,7 +2,7 @@
 	<div>
 		<NavOk />
 
-		<Contact />
+		<ContactForm />
 		<TabWhats />
 
 		<Chat_Box />
@@ -11,24 +11,21 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue';
-// import MyNav from './components/Mynav.vue';
-import NavOk from '../components/NavOk';
-import Contact from '../components/Contact';
+import NavOk from '../components/NavOk.vue';
+import ContactForm from '../components/ContactForm.vue';
 
-import Footer from '../components/Footer';
-import CommonHead from '../components/CommonHead.vue';
+import Footer from '../components/Footer.vue';
 
 import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
 
 export default {
-	name: 'ContactPage',
+	name: 'ContactFormPage',
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
 	// Autres options du composant
 	components: {
 		NavOk,
-		Contact,
+		ContactForm,
 		Chat_Box,
 		TabWhats,
 		Footer,

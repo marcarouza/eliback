@@ -63,7 +63,7 @@
 						<router-link
 							active-class="active"
 							class="nav-link"
-							to="/contactPage"
+							to="/contactFormPage"
 							>contact</router-link
 						>
 					</li>
@@ -105,7 +105,7 @@
 							<li>
 								<router-link
 									class="dropdown-item user_menu_item"
-									to="/allMembersPage"
+									to="/userstatusPage"
 									>tous les membres</router-link
 								>
 							</li>
@@ -144,11 +144,15 @@
 				</ul>
 				<ul class="list-unstyled mb-0 ms-3">
 					<li v-if="user" class="userlogged">
-						<span>
-							<i class="bi bi-check-circle"></i>&nbsp;{{
-								user.email
-							}}
-						</span>
+						<router-link
+							class="dropdown-item"
+							to="/userstatusPage"
+						>
+							<span claass="account">
+								<i class="bi bi-check-circle"></i
+								>&nbsp;{{ user.user }}
+							</span></router-link
+						>
 					</li>
 					<li v-else>
 						<span class="px-4" style="color: orange">
@@ -245,6 +249,9 @@ export default {
 </script>
 
 <style scoped>
+.account {
+	color: #ff2200 !important;
+}
 /* Style pour le logo */
 
 .userlogged {
