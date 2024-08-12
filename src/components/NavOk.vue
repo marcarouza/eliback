@@ -53,12 +53,16 @@
 						>
 					</li>
 
-					<li
-						@click.prevent="navigateToBlog"
-						class="nav-link"
-						:class="{active: $route.path === '/homeblogPage'}"
-					>
-						<a href="#">blog</a>
+					<li>
+						<a
+							id="blogLink"
+							@click.prevent="navigateToBlog"
+							class="nav-link"
+							:class="{
+								active: $route.path === '/homeblogPage',
+							}"
+							>blog</a
+						>
 					</li>
 
 					<li class="nav-item dropdown">
@@ -248,6 +252,10 @@ export default {
 </script>
 
 <style scoped>
+#blogLink {
+	cursor: pointer;
+}
+
 .icon-disconnected {
 	color: orange;
 	font-size: 0.8rem;
