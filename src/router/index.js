@@ -28,7 +28,7 @@ const routes = [
 		component: confirmloggedinpage,
 	},
 	{
-		path: '/projetPage',
+		path: '/projetsPage',
 		name: 'projetspage',
 		component: projetspage,
 	},

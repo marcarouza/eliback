@@ -1,5 +1,5 @@
 <template>
-	<div class="container mt-5">
+	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="card shadow">
@@ -10,8 +10,10 @@
 						<h2 class="card-title mb-4">Accès restreint</h2>
 						<p class="card-text mb-4">
 							Cette partie du site n'est accessible qu'aux
-							utilisateurs connectés. Vous devez posséder
-							un compte pour accéder à ce contenu.
+							utilisateurs connectés.
+							<br />
+							Vous devez posséder un compte pour accéder à
+							ce contenu.
 						</p>
 						<div
 							class="d-grid gap-2 d-md-flex justify-content-md-center"
@@ -23,7 +25,7 @@
 								<i
 									class="bi bi-person-plus-fill me-2"
 								></i
-								>Cliquez ici
+								>Créer un compte
 							</router-link>
 
 							<router-link
@@ -62,6 +64,8 @@ export default {
 .card {
 	border: none;
 	border-radius: 15px;
+	margin: 0;
+	padding: 20px;
 }
 
 .btn-primary {

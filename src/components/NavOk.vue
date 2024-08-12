@@ -141,8 +141,9 @@
 						>
 					</li>
 					<li v-else>
-						<span class="px-4" style="color: orange">
-							non connecté&nbsp;
+						<span class="icon-disconnected px-4">
+							<i class="fas fa-user-slash"></i>
+							&nbsp;déconnecté
 						</span>
 					</li>
 				</ul>
@@ -247,6 +248,11 @@ export default {
 </script>
 
 <style scoped>
+.icon-disconnected {
+	color: orange;
+	font-size: 0.8rem;
+}
+
 .account {
 	color: #ff2200 !important;
 }
