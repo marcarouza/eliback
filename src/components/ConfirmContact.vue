@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<div class="row justify-content-center mt-5">
+		<div class="row justify-content-center mt-1">
 			<div class="col-md-8">
 				<div class="card border-0 shadow-lg">
 					<div class="card-body text-center p-5">

@@ -8,6 +8,23 @@
 					<div class="small m-0">copyright © eliazoura.fr</div>
 				</div>
 				<div class="col-auto">
+					<ul class="small">
+						<li class="navbar-nav ms-auto">
+							<a
+								class="nav-link"
+								href="https://www.linkedin.com/in/eliazoura/"
+								>LinkedIn</a
+							>
+						</li>
+						<li class="nav-item">
+							<router-link
+								active-class="active"
+								class="nav-link"
+								to="/apiPage"
+								>api</router-link
+							>
+						</li>
+					</ul>
 					<a class="small" href="#!">RGPD</a>
 					<span class="mx-1">·</span>
 					<a class="small" href=""> IP publique</a>

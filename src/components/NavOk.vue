@@ -22,27 +22,12 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ms-auto">
-					<li class="nav-item">
-						<router-link
-							active-class="active"
-							class="nav-link"
-							to="/userstatusPage"
-							>userstatus</router-link
-						>
-					</li>
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<router-link class="nav-link" to="/cookiesPage"
 							>cookies</router-link
 						>
-					</li>
-					<li class="nav-item">
-						<router-link
-							active-class="active"
-							class="nav-link"
-							to="/apiPage"
-							>api</router-link
-						>
-					</li>
+					</li> -->
+
 					<li class="nav-item">
 						<router-link
 							active-class="active"
@@ -105,7 +90,7 @@
 							<li>
 								<router-link
 									class="dropdown-item user_menu_item"
-									to="/userstatusPage"
+									to="/allMembersPage"
 									>tous les membres</router-link
 								>
 							</li>

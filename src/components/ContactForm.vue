@@ -15,7 +15,6 @@
 			</div>
 			<div class="row gx-5 justify-content-center">
 				<div class="col-lg-8 col-xl-6">
-					<!-- to get an API token!-->
 					<form id="contactForm" @submit.prevent="submitForm">
 						<div class="form-floating mb-3">
 							<input
