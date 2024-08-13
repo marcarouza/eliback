@@ -38,11 +38,41 @@ export default {
 	data() {
 		return {
 			users: [],
-			fromID: null,
+			user: '',
+			fromID: '',
 			errorMessage: '',
 		};
 	},
 	methods: {
+		async fetchUserData() {
+			try {
+				const response = await fetch(
+					'https://eli-back.onrender.com/checkUserStatus',
+					{
+						method: 'GET',
+						credentials: 'include', // Pour envoyer les cookies avec la requête
+					}
+				);
+				if (!response.ok) {
+					throw new Error(
+						'🍌 🍌 🍌 🍌 🍌 FROM NAVOK ==> ERR Network response was not ok'
+					);
+				}
+				const data = await response.json();
+				this.user = data.user;
+				this.isLoggedIn = true;
+				console.log(
+					'✅  FROM NAVOK ==> checkUserStatus ~ this.user:',
+					this.user
+				);
+				this.fromID = data.user._id;
+			} catch (error) {
+				console.error(
+					'FROM NAVOK ==> problème avec requête fetch :',
+					error
+				);
+			}
+		},
 		async fetchAllMembers() {
 			try {
 				const response = await fetch(
@@ -131,6 +161,7 @@ export default {
 		},
 	},
 	mounted() {
+		this.fetchUserData();
 		this.fetchAllMembers();
 	},
 };
