@@ -41,7 +41,13 @@ export default {
 			user: '',
 			fromID: '',
 			errorMessage: '',
+			isLoggedIn: false,
 		};
+	},
+
+	mounted() {
+		this.fetchUserData();
+		this.fetchAllMembers();
 	},
 	methods: {
 		async fetchUserData() {
@@ -55,20 +61,24 @@ export default {
 				);
 				if (!response.ok) {
 					throw new Error(
-						'🍌 🍌 🍌 🍌 🍌 FROM NAVOK ==> ERR Network response was not ok'
+						'🍌 🍌 🍌 🍌 🍌 FROM AllMembers ==> ERR Network response was not ok'
 					);
 				}
 				const data = await response.json();
 				this.user = data.user;
 				this.isLoggedIn = true;
 				console.log(
-					'✅  FROM NAVOK ==> checkUserStatus ~ this.user:',
+					'✅  FROM AllMembers ==> checkUserStatus ~ this.user:',
 					this.user
 				);
 				this.fromID = data.user._id;
+				console.log(
+					'✅ ✅ ✅ FROM AllMembers ~ this.fromID:',
+					this.fromID
+				);
 			} catch (error) {
 				console.error(
-					'FROM NAVOK ==> problème avec requête fetch :',
+					'🍌 🍌 🍌 🍌 🍌 FROM AllMembers ==> problème avec requête fetch :',
 					error
 				);
 			}
@@ -117,7 +127,10 @@ export default {
 						headers: {
 							'Content-Type': 'application/json',
 						},
-						body: JSON.stringify({toID: toID}),
+						body: JSON.stringify({
+							toID: toID,
+							fromID: this.fromID,
+						}),
 						credentials: 'include',
 					}
 				);
@@ -127,7 +140,9 @@ export default {
 						response,
 						response.ok
 					);
-					alert("Demande d'ami envoyée !");
+					alert(
+						"✅ 🎉 FROM /askForFriend  Demande d'ami envoyée !"
+					);
 				} else {
 					console.log('🚀 ~ sendFriendReq ~ toID:', toID);
 
@@ -147,22 +162,14 @@ export default {
 
 		isFriend(userId) {
 			// Retourne vrai si l'utilisateur est déjà ami
-			const user = this.users.find(
-				(u) => u._id === this.currentUserId
-			);
+			const user = this.users.find((u) => u._id === this.fromID);
 			return user && user.friends.includes(userId);
 		},
 		hasSentRequest(userId) {
 			// Retourne vrai si une demande a déjà été envoyée à cet utilisateur
-			const user = this.users.find(
-				(u) => u._id === this.currentUserId
-			);
+			const user = this.users.find((u) => u._id === this.fromID);
 			return user && user.friendRequestsSent.includes(userId);
 		},
-	},
-	mounted() {
-		this.fetchUserData();
-		this.fetchAllMembers();
 	},
 };
 </script>
