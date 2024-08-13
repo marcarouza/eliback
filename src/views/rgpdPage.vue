@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<NavOk />
 		<div class="dark-mode">
 			<NavOk />
 			<div class="container mt-5 mb-5">
@@ -525,13 +524,9 @@
 </template>
 
 <script>
-import NavOk from '../components/NavOk.vue';
-
 export default {
 	name: 'RgpdPage',
-	components: {
-		NavOk,
-	},
+	components: {},
 	data() {
 		return {
 			showTerms: true,
