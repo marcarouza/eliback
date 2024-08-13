@@ -87,8 +87,8 @@ export default {
 						headers: {
 							'Content-Type': 'application/json',
 						},
-						credentials: 'include',
 						body: JSON.stringify({toID: toID}),
+						credentials: 'include',
 					}
 				);
 				if (response.ok) {
@@ -99,6 +99,8 @@ export default {
 					);
 					alert("Demande d'ami envoyée !");
 				} else {
+					console.log('🚀 ~ sendFriendReq ~ toID:', toID);
+
 					console.error(
 						"🍌 🍌 🍌 FROM /askForFriend API => La réponse n'est pas Ok !"
 					);
