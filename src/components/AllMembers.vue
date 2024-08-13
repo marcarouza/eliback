@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<h2 class="mb-5">Liste des membres ( par pseudonymes)</h2>
+		<h2 class="mb-5">Liste des membres 01 ( par pseudonymes)</h2>
 		<div v-if="users.length > 0">
 			<div class="list-group">
 				<div
@@ -85,8 +85,8 @@ export default {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
-							credentials: 'include', // Pour envoyer les cookies avec la requête
 						},
+						credentials: 'include',
 						body: JSON.stringify({fromID: fromID}),
 					}
 				);
