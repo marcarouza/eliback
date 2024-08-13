@@ -38,6 +38,7 @@ export default {
 	data() {
 		return {
 			users: [],
+			fromID: null,
 			errorMessage: '',
 		};
 	},
@@ -77,7 +78,7 @@ export default {
 				// Vous pouvez également afficher un message d'erreur à l'utilisateur ici
 			}
 		},
-		async sendFriendReq(fromID) {
+		async sendFriendReq(toID) {
 			try {
 				const response = await fetch(
 					'https://eli-back.onrender.com/askForFriend',
@@ -87,7 +88,7 @@ export default {
 							'Content-Type': 'application/json',
 						},
 						credentials: 'include',
-						body: JSON.stringify({fromID: fromID}),
+						body: JSON.stringify({toID: toID}),
 					}
 				);
 				if (response.ok) {
