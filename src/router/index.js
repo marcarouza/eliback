@@ -20,8 +20,14 @@ import searchpostpage from '../views/SearchPostPage.vue';
 import signuserpage from '../views/SignUserPage.vue';
 import userstatuspage from '../views/UserStatusPage.vue';
 import writepostpage from '../views/WritePostPage.vue';
+import rgpdpage from '../views/rgpdPage.vue';
 
 const routes = [
+	{
+		path: '/rgpdPage',
+		name: 'rgpdpage',
+		component: rgpdpage,
+	},
 	{
 		path: '/confirmloggedinPage',
 		name: 'confirmloggedinpage',

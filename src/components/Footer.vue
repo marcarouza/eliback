@@ -11,9 +11,12 @@
 						expérience possible. En utilisant ce site, vous
 						acceptez notre utilisation des cookies
 						conformément à la
-						<a href="/rgpd" class="text-white"
-							><u>Politique de confidentialité</u></a
-						>.
+						<router-link
+							:to="{name: 'rgpdpage'}"
+							class="text-white"
+						>
+							<u>Politique de confidentialité</u>
+						</router-link>
 					</p>
 				</div>
 
@@ -27,11 +30,6 @@
 								class="nav-link"
 								to="/apiPage"
 								>api</router-link
-							>
-						</li>
-						<li>
-							<a href="/contact" class="text-white"
-								>Contact</a
 							>
 						</li>
 					</ul>

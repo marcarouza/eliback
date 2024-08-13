@@ -6,8 +6,8 @@
 				<!-- En-tête couvrant les deux colonnes -->
 				<div class="col-md-12">
 					<div class="card shadow-sm">
-						<div class="card-header bg-info text-white">
-							<h3 class="mb-0">
+						<div class="card-header bg-gradient text-white">
+							<h3 class="mb-0 p-3">
 								Conditions Générales d'Utilisation et
 								RGPD
 							</h3>
@@ -36,8 +36,8 @@
 								pleinement à protéger et à utiliser vos
 								informations conformément à la loi
 								applicable.
-							</p>
-							<p>
+								<br />
+								<br />
 								Cette Politique de confidentialité
 								décrit nos pratiques en matière de
 								recueil, d’utilisation et de divulgation
@@ -45,26 +45,30 @@
 								propriétés numériques (les « Services
 								»), lorsque vous accédez aux Services
 								depuis votre appareil.
-							</p>
-							<p>
+								<br />
+								<br />
+
 								Avant d’accéder ou d’utiliser l’un de
 								nos Services, veuillez lire
 								attentivement cette Politique de
 								confidentialité et vous assurer que vous
 								comprenez parfaitement nos pratiques
-								concernant vos informations. Si vous
-								lisez et comprenez pleinement cette
-								Politique de confidentialité, et que
-								vous restez opposé(e) à nos pratiques,
-								vous devez immédiatement cesser toute
-								utilisation de nos Propriétés numériques
-								et de nos Services. En utilisant nos
-								Services, vous acceptez les conditions
-								de cette Politique de confidentialité et
-								le fait de continuer à utiliser les
-								Services constitue votre acceptation de
-								cette Politique de confidentialité et de
-								tout amendement à celle-ci.
+								concernant vos informations.
+								<br />
+								<br />
+								Si vous lisez et comprenez pleinement
+								cette Politique de confidentialité, et
+								que vous restez opposé(e) à nos
+								pratiques, vous devez immédiatement
+								cesser toute utilisation de nos
+								Propriétés numériques et de nos
+								Services. En utilisant nos Services,
+								vous acceptez les conditions de cette
+								Politique de confidentialité et le fait
+								de continuer à utiliser les Services
+								constitue votre acceptation de cette
+								Politique de confidentialité et de tout
+								amendement à celle-ci.
 							</p>
 						</section>
 
@@ -129,11 +133,11 @@
 									que vous nous fournissez
 									volontairement.
 								</li>
-								<li>
+								<!-- <li>
 									Nous pouvons recueillir des
 									informations auprès de sources
 									tierces.
-								</li>
+								</li> -->
 								<li>
 									Nous recueillons les informations
 									que vous nous fournissez si vous
@@ -171,10 +175,10 @@
 									Pour analyser les schémas de
 									demande et d’utilisation.
 								</li>
-								<li>
+								<!-- <li>
 									À d'autres fins internes, de
 									recherche ou de statistiques.
-								</li>
+								</li> -->
 								<li>
 									Pour renforcer nos capacités en
 									matière de sécurité des données et
@@ -200,25 +204,36 @@
 
 						<section>
 							<h4 class="text-primary">
-								4. Avec qui nous partageons les
-								informations ?
+								4. Vos informations sont-elles partagées
+								ou vendues ?
 							</h4>
-							<p>
+							<!-- <p>
 								Nous pouvons partager vos informations
 								avec nos fournisseurs de services, afin
 								d’exploiter nos Services.
-							</p>
+							</p> -->
 							<p>
-								Nous pouvons également divulguer vos
-								informations dans les circonstances
-								suivantes :
+								Non, aucune information concenrant nos
+								utilisateurs de façon globale
+								(statistiques) ou indivuelle n'est
+								vendues ou partgées. Vos informations
+								restent confidentielles et son stockées
+								sur des serveurs MongoDB avec un accès
+								unique par l'administrateur de ce site.
+								<br />
+								<br />
+								Des exceptions seront applqiuées dans
+								les cas suivants :
+								<br />
 							</p>
 							<ul>
 								<li>
-									Pour enquêter, détecter, prévenir
-									ou prendre des mesures concernant
-									des activités illégales ou d’autres
-									actes répréhensibles.
+									À la demande des autorités
+									compétentes afin d' enquêter,
+									détecter, prévenir ou prendre des
+									mesures concernant des activités
+									illégales ou d’autres actes
+									répréhensibles.
 								</li>
 								<li>
 									Pour établir ou exercer nos droits
@@ -233,12 +248,9 @@
 								</li>
 								<li>
 									En cas de changement de contrôle de
-									notre entreprise.
-								</li>
-								<li>
-									Pour coopérer avec des tiers dans
-									le but d’améliorer votre
-									expérience.
+									notre entreprise (tous les
+									utilisateurs seront prévenus par
+									e-mail au préalable)
 								</li>
 							</ul>
 						</section>
@@ -308,10 +320,10 @@
 								ou générales de notre fournisseur
 								d’hébergement.
 							</p>
-							<h5 class="text-secondary">
+							<!-- <h5 class="text-secondary">
 								A propos des paiements en ligne
-							</h5>
-							<p>
+							</h5> -->
+							<!-- <p>
 								Toutes les passerelles de paiement
 								direct proposées par l’hébergeur de nos
 								Propriétés numériques respectent les
@@ -325,7 +337,7 @@
 								garantissons pas la protection et la
 								sécurité absolues des informations que
 								vous téléchargez, publiez ou partagez.
-							</p>
+							</p> -->
 						</section>
 
 						<section>
@@ -445,67 +457,133 @@
 								général sur les Services ou les
 								informations que nous recueillons à
 								votre sujet, contactez-nous sur le mail
-								suivant : eliazoura@gmail.com
+								suivant : contact@eliazoura.fr
 							</p>
 						</section>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<!-- Boutons -->
-		<div style="background-color: black" class="col-md-12 m-3">
-			<div class="card-footer d-flex justify-content-center gap-3">
-				<button class="btn btn-primary" @click="acceptTerms">
-					J'accepte
-				</button>
-				<button class="btn btn-secondary" @click="declineTerms">
-					Je refuse
-				</button>
-			</div>
+	</div>
+	<!-- Boutons -->
+	<div style="background-color: black" class="col-md-12 p-5">
+		<div class="card-footer d-flex justify-content-center gap-3">
+			<button class="btn btn-primary" @click="acceptTerms">
+				J'accepte
+			</button>
+			<button class="btn btn-secondary" @click="declineTerms">
+				Je refuse
+			</button>
 		</div>
 	</div>
 </template>
 
 <script>
+import NavOk from '../components/NavOk.vue';
+
 export default {
+	name: 'rgpd',
+	components: {
+		NavOk,
+	},
+	data() {
+		return {
+			showTerms: true,
+		};
+	},
+	mounted() {
+		// Vérifiez si les conditions ont déjà été acceptées
+		const acceptedTerms = localStorage.getItem('acceptedTerms');
+		if (acceptedTerms) {
+			this.showTerms = false;
+		}
+	},
 	methods: {
 		acceptTerms() {
-			// Logique pour accepter les conditions
+			alert(
+				"Vous avez accepté les conditions générales d'utilisation."
+			);
+			// Ajoutez ici la logique pour ce qui se passe lorsqu'un utilisateur accepte les conditions.
 		},
 		declineTerms() {
-			// Logique pour refuser les conditions
+			alert(
+				"Vous avez refusé les conditions générales d'utilisation."
+			);
+			// Ajoutez ici la logique pour ce qui se passe lorsqu'un utilisateur refuse les conditions.
 		},
 	},
 };
 </script>
 
 <style scoped>
+h4 + p {
+	padding-left: 1rem;
+}
+
 .dark-mode {
 	background-color: #121212;
 	color: #ffffff;
 }
-.text-primary {
-	color: #bb86fc !important;
+
+.dark-mode .card {
+	background-color: #1e1e1e;
 }
-.text-secondary {
-	color: #03dac6 !important;
-}
-.card {
-	background-color: #1f1f1f;
-}
-.card-header {
+
+.dark-mode .card-header {
 	background-color: #333333;
 }
-.card-footer {
-	background-color: #1f1f1f;
+
+.dark-mode h4.text-primary {
+	color: #bb86fc;
 }
-.btn-primary {
+
+.dark-mode h5.text-secondary {
+	color: #03dac6;
+}
+
+.dark-mode .btn-primary {
 	background-color: #bb86fc;
 	border-color: #bb86fc;
 }
-.btn-secondary {
+
+.dark-mode .btn-secondary {
 	background-color: #03dac6;
 	border-color: #03dac6;
 }
+
+/* Utilisation du mode sombre si le navigateur est en mode sombre */
+@media (prefers-color-scheme: dark) {
+	.dark-mode {
+		background-color: #121212;
+		color: #ffffff;
+	}
+
+	.dark-mode .card {
+		background-color: #1e1e1e;
+	}
+
+	.dark-mode .card-header {
+		background-color: #333333;
+	}
+
+	.dark-mode h4.text-primary {
+		color: #bb86fc;
+	}
+
+	.dark-mode h5.text-secondary {
+		color: #03dac6;
+	}
+
+	.dark-mode .btn-primary {
+		background-color: #bb86fc;
+		border-color: #bb86fc;
+	}
+
+	.dark-mode .btn-secondary {
+		background-color: #03dac6;
+		border-color: #03dac6;
+	}
+}
+
+/* Styles supplémentaires si nécessaire */
 </style>
