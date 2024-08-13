@@ -524,9 +524,12 @@
 </template>
 
 <script>
+import NavOk from '../components/NavOk.vue';
 export default {
 	name: 'RgpdPage',
-	components: {},
+	components: {
+		NavOk,
+	},
 	data() {
 		return {
 			showTerms: true,

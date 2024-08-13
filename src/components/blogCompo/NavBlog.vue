@@ -29,13 +29,6 @@
 					<a title="voir tous les articles" class="nav-link btn btn-primary" href="/allPosts">tout voir</a>
 				</li> -->
 					<li class="nav-item">
-						<!-- <a
-							title="nouvel article"
-							class="nav-link btn btn-primary active"
-							href="/writepostpage"
-							>publier</a
-						> -->
-
 						<a
 							title="nouvel article"
 							id="blogLink1"
@@ -49,13 +42,6 @@
 						>
 					</li>
 					<li class="nav-item">
-						<!-- <a
-							title="rechercher un article"
-							class="nav-link btn btn-primary active"
-							href="/searchpostpage"
-							>recherche</a
-						> -->
-
 						<a
 							title="nouvel article"
 							id="blogLink2"
