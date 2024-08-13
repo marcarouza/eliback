@@ -7,10 +7,8 @@
 					<hr />
 					<p>© 2024 eliazoura.fr Tous droits réservés.</p>
 					<p class="small">
-						Les cookies utilisés permettent la meilleure
-						expérience possible. En utilisant ce site, vous
-						acceptez notre utilisation des cookies
-						conformément à la
+						En utilisant ce site, vous acceptez notre
+						utilisation des cookies conformément à notre
 						<router-link
 							:to="{name: 'rgpdpage'}"
 							class="text-white"

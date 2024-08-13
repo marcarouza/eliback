@@ -2,7 +2,7 @@
 	<div>
 		<NavOk />
 		<div
-			class="d-flex flex-column align-items-center justify-content-center vh-100"
+			class="d-flex flex-column align-items-center justify-content-center mt-5"
 		>
 			<AllMembers />
 			<TabWhats />

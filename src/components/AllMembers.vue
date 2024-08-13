@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<h2 class="mb-4">Liste des Utilisateurs</h2>
+		<h2 class="mb-5">Liste des membres ( par pseudonymes)</h2>
 		<div v-if="users.length > 0">
 			<div class="list-group">
 				<div
@@ -11,7 +11,7 @@
 					<div>
 						<h5>ID: {{ user._id }}</h5>
 						<h5>{{ user.user }}</h5>
-						<p class="mb-0 text-muted">{{ user.email }}</p>
+						<!-- <p class="mb-0 text-muted">{{ user.email }}</p> -->
 					</div>
 					<button
 						class="btn btn-primary"
@@ -23,7 +23,11 @@
 			</div>
 		</div>
 		<div v-else>
-			<p>Aucun utilisateur trouvé.</p>
+			<p>
+				Impossible d'afficher le memebres du site. Soit nous
+				rencontrons un problème technique, soit vous n'êtes pas
+				connecté(e) !
+			</p>
 		</div>
 	</div>
 </template>
@@ -73,7 +77,40 @@ export default {
 				// Vous pouvez également afficher un message d'erreur à l'utilisateur ici
 			}
 		},
-		async sendFriendReq(userId) {
+		async sendFriendReq(fromID) {
+			try {
+				const response = await fetch(
+					'https://eli-back.onrender.com/askForFriend',
+					{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({fromID: fromID}),
+					}
+				);
+				if (response.ok) {
+					console.log(
+						'🚀 ~ sendFriendReq ~ response:',
+						response,
+						response.ok
+					);
+					alert("Demande d'ami envoyée !");
+				} else {
+					console.error(
+						"🍌 🍌 🍌 Erreur lors de l'envoi de la demande d'ami."
+					);
+				}
+			} catch (error) {
+				console.error(
+					"🍌 🍌 🍌 Erreur lors de l'envoi de la demande d'ami:",
+					error
+				);
+			}
+			this.errorMessage =
+				'🍌 🍌 🍌 Impossible de récupérer les membres. Veuillez réessayer plus tard.';
+		},
+		async sendFriendReq2(userId) {
 			try {
 				const response = await fetch(
 					'https://eli-back.onrender.com/friendReq',
@@ -87,6 +124,7 @@ export default {
 				);
 				if (response.ok) {
 					alert("Demande d'ami envoyée !");
+					this.fetchAllMembers(); // Met à jour la liste pour refléter l'état actuel
 				} else {
 					console.error(
 						"Erreur lors de l'envoi de la demande d'ami."
@@ -98,8 +136,20 @@ export default {
 					error
 				);
 			}
-			this.errorMessage =
-				'Impossible de récupérer les membres. Veuillez réessayer plus tard.';
+		},
+		isFriend(userId) {
+			// Retourne vrai si l'utilisateur est déjà ami
+			const user = this.users.find(
+				(u) => u._id === this.currentUserId
+			);
+			return user && user.friends.includes(userId);
+		},
+		hasSentRequest(userId) {
+			// Retourne vrai si une demande a déjà été envoyée à cet utilisateur
+			const user = this.users.find(
+				(u) => u._id === this.currentUserId
+			);
+			return user && user.friendRequestsSent.includes(userId);
 		},
 	},
 	mounted() {
