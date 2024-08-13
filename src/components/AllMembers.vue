@@ -121,7 +121,7 @@ export default {
 		async sendFriendReq(toID) {
 			try {
 				const response = await fetch(
-					'https://eli-back.onrender.com/askForFriend',
+					'https://eli-back.onrender.com/askFor1Friend',
 					{
 						method: 'POST',
 						headers: {
