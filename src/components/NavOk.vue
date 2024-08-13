@@ -7,7 +7,9 @@
 					src="/pix/logos/eliLogo192x192.png"
 					alt="Eli Azoura"
 				/>
+				<span class="hello">Bienvenue dans mon réseau</span>
 			</router-link>
+
 			<!-- Bouton de basculement pour petits écrans -->
 			<button
 				class="navbar-toggler"
@@ -252,6 +254,12 @@ export default {
 </script>
 
 <style scoped>
+.hello {
+	font-size: 1rem;
+	color: rgb(255, 255, 255);
+	padding-left: 1rem;
+}
+
 #blogLink {
 	cursor: pointer;
 }

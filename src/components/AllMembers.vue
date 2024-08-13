@@ -85,6 +85,7 @@ export default {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
+							credentials: 'include', // Pour envoyer les cookies avec la requête
 						},
 						body: JSON.stringify({fromID: fromID}),
 					}
@@ -98,12 +99,12 @@ export default {
 					alert("Demande d'ami envoyée !");
 				} else {
 					console.error(
-						"🍌 🍌 🍌 Erreur lors de l'envoi de la demande d'ami."
+						"🍌 🍌 🍌 FROM /askForFriend API => La réponse n'est pas Ok !"
 					);
 				}
 			} catch (error) {
 				console.error(
-					"🍌 🍌 🍌 Erreur lors de l'envoi de la demande d'ami:",
+					"🍌 🍌 🍌 FROM /askForFriend API => Err FETCH demande d'ami:",
 					error
 				);
 			}

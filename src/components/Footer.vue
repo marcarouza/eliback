@@ -30,6 +30,7 @@
 								>api</router-link
 							>
 						</li>
+						<li class="nav-item">version 1.0 du 13.08.24</li>
 					</ul>
 				</div>
 
