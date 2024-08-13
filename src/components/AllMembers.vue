@@ -126,6 +126,7 @@ export default {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
+							// 'Authorization': `Bearer ${this.token}`,
 						},
 						body: JSON.stringify({
 							toID: toID,
@@ -145,6 +146,7 @@ export default {
 					);
 				} else {
 					console.log('🚀 ~ sendFriendReq ~ toID:', toID);
+					console.log('🚀 ~ sendFriendReq ~ fromID:', fromID);
 
 					console.error(
 						"🍌 🍌 🍌 FROM /askForFriend API => La réponse n'est pas Ok !"
