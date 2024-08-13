@@ -110,33 +110,7 @@ export default {
 			this.errorMessage =
 				'🍌 🍌 🍌 Impossible de récupérer les membres. Veuillez réessayer plus tard.';
 		},
-		async sendFriendReq2(userId) {
-			try {
-				const response = await fetch(
-					'https://eli-back.onrender.com/friendReq',
-					{
-						method: 'POST',
-						headers: {
-							'Content-Type': 'application/json',
-						},
-						body: JSON.stringify({receiverId: userId}),
-					}
-				);
-				if (response.ok) {
-					alert("Demande d'ami envoyée !");
-					this.fetchAllMembers(); // Met à jour la liste pour refléter l'état actuel
-				} else {
-					console.error(
-						"Erreur lors de l'envoi de la demande d'ami."
-					);
-				}
-			} catch (error) {
-				console.error(
-					"Erreur lors de l'envoi de la demande d'ami:",
-					error
-				);
-			}
-		},
+
 		isFriend(userId) {
 			// Retourne vrai si l'utilisateur est déjà ami
 			const user = this.users.find(
