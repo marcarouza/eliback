@@ -9,15 +9,20 @@
 			></button>
 		</div>
 
-		<div v-if="!user" class="chat-body">
+		<div v-if="!isLoggedIn" class="chat-body">
 			<span class="bubServer">
 				Pour utiliser la messagerie instantanée, vous devez être
 				connecté(e).
 			</span>
 		</div>
 
-		<div v-else id="allMess" class="chat-body">
+		<div id="allMess" class="chat-body">
 			<!-- Messages vont ici -->
+
+			<span v-if="!isLoggedIn" class="bubServer">
+				Pour utiliser la messagerie instantanée, vous devez être
+				connecté(e).
+			</span>
 		</div>
 
 		<div class="chat-footer">
@@ -51,15 +56,25 @@ export default {
 			user: null,
 			isLoggedIn: false,
 			localUser: null,
-			alllMessages: '',
-
-			// Vos données ici
+			alllMess: '',
+			pseudo: '',
 		};
 	},
 
+	// Utilisation correcte de mounted
 	mounted() {
+		// this.myFunction();
 		// this.fetchUserData();
 		this.checkLocalUser();
+
+		if (this.isLoggedIn) {
+			this.pseudo = this.localUser.user;
+			this.serverMsg(`Bonjour ${this.pseudo}, vous êtes en ligne !`);
+			console.log(
+				'✅ 🐱  FROM ChathBox mounted-> this.pseudo :',
+				this.pseudo
+			);
+		}
 	},
 	methods: {
 		async fetchUserData() {
@@ -100,7 +115,7 @@ export default {
 
 		checkLocalUser() {
 			this.localUser =
-				JSON.parse(localStorage.getItem('user')) || null;
+				JSON.parse(localStorage.getItem('localUser')) || null;
 			console.log(
 				'✅ 🐱  FROM ChathBox  checkLocalUser ==> this.localUser :',
 				this.localUser
@@ -212,7 +227,7 @@ export default {
 						socket.shortClientID = shortClientID;
 
 						console.log(
-							`FROM CLIENT => ${shortClientID} es CONNECTÉ !`
+							`📬 FROM setupSocketListeners => ${shortClientID} est CONNECTÉ !`
 						);
 						this.serverMsg(
 							`Bonjour ${shortClientID}, vous êtes connecté(e) !!!`
@@ -584,7 +599,7 @@ export default {
 	margin-left: 0rem;
 	margin-right: 1rem;
 	max-width: 60%;
-	font-size: 0.9rem;
+	font-size: 0.8rem;
 	color: #101010;
 	box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
 	border: 1px solid #0018314f;
@@ -603,7 +618,7 @@ export default {
 	margin-left: 0rem;
 	margin-right: 1rem;
 	max-width: 60%;
-	font-size: 0.9rem;
+	font-size: 0.8rem;
 	color: #101010;
 }
 
@@ -620,11 +635,11 @@ export default {
 	margin-bottom: 1rem;
 	margin-left: 0rem;
 	margin-right: 1rem;
-	max-width: 60%;
-	font-size: 0.9rem;
-	color: #101010;
+	max-width: 80%;
+	font-size: 0.7rem;
+	color: #004fa4;
 	box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.1);
-	border: 1px solid #0018314f;
+	border: 1px solid #006cdf86;
 }
 
 /* Style pour la modale de connexion */

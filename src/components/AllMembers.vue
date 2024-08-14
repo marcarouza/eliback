@@ -15,7 +15,13 @@
 					</div>
 					<button
 						class="btn btn-primary"
-						@click="sendFriendReq_NEW(user._id, user.user)"
+						@click="
+							sendFriendReq_NEW(
+								user._id,
+								user.user,
+								user.email
+							)
+						"
 					>
 						Demander en ami
 					</button>
@@ -45,12 +51,15 @@ export default {
 			errorMessage: '',
 			Friend: '',
 			isLoggedIn: false,
+			localUser: null,
+			BoX: null,
 		};
 	},
 
 	mounted() {
 		this.fetchUserData();
 		this.fetchAllMembers();
+		this.checkLocaluser();
 	},
 	methods: {
 		display(message) {
@@ -127,7 +136,7 @@ export default {
 				// Vous pouvez également afficher un message d'erreur à l'utilisateur ici
 			}
 		},
-		async sendFriendReq_NEW(toID, toUser) {
+		async sendFriendReq_NEW(toID, toPseudo, toEmail) {
 			try {
 				const response = await fetch(
 					'https://eli-back.onrender.com/askFor1Friend',
@@ -151,7 +160,13 @@ export default {
 						'ℹ️ ✅ ✅  sendFriendReq_NEW ~ data:',
 						data
 					);
-					this.msgRes = `✅ Demande d'ami envoyée à ${toUser}`;
+					this.msgRes = `✅ Demande d'ami envoyée à ${toPseudo}`;
+
+					this.sendFrienMailReq(
+						this.localUser,
+						toEmail,
+						toPseudo
+					);
 				} else if (response.status === 409) {
 					// Si le statut est 409, c'est un conflit : demande déjà envoyée
 					this.msgRes = `⚠️ Une demande d'ami a déjà été envoyée à cette personne.`;
@@ -168,6 +183,54 @@ export default {
 				console.error("Erreur lors de la demande d'ami:", err);
 			}
 		},
+
+		async sendFrienMailReq(fromONE, toONE, toPseudo) {
+			BoX = {
+				from: fromONE.email,
+				to: toONE,
+
+				fromPseudo: toONE.user,
+				toPseudo: toPseudo,
+				subject: "Demande d'ami",
+				text: `Vous avez reçu une demande d\'ami`,
+			};
+
+			try {
+				const response = await fetch(
+					'https://eli-back.onrender.com/mailFriendReq',
+					{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({
+							fromEmail: this.localUser.email,
+							toEmail: toEmail,
+							pwd: this.formData.pwd,
+							pseudo: this.formData.user,
+						}),
+					}
+				);
+
+				if (!response.ok) {
+					throw new Error(
+						'🍌 🍌 🍌 🍌 🍌 FROM FETCH signUserConfirm  =>  Failed to send message'
+					);
+				}
+
+				const result = await response.json();
+				console.log(
+					'✅ FROM signUserConfirm => EMAIL sent successfully : ' +
+						result.response
+				);
+			} catch (error) {
+				console.error(
+					'🍌 🍌 🍌 🍌 🍌  FROM FETCH signUserConfirm  =>  ERR sending email: ' +
+						error.message
+				);
+			}
+		},
+
 		async sendFriendReq(toID) {
 			try {
 				const response = await fetch(
@@ -221,6 +284,14 @@ export default {
 			}
 			this.errorMessage =
 				'🍌 👁️ 👁️ Impossible de récupérer les membres. Veuillez réessayer plus tard.';
+		},
+		checkLocaluser() {
+			this.localUser =
+				JSON.parse(localStorage.getItem('localUser')) || null;
+			console.log(
+				' ℹ️   ✅   ℹ️ FROM UserStatus ==> this.localUser :',
+				this.localUser
+			);
 		},
 
 		isFriend(userId) {
