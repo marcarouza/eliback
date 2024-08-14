@@ -145,9 +145,13 @@ export default {
 				);
 
 				if (response.ok) {
-					// Si la requête a réussi, vous pouvez gérer la réponse ici
+					//  requête réussie
 					const data = await response.json();
-					this.msgRes = `✅ Demande d'ami envoyée à ${data.Friend}`;
+					console.log(
+						'ℹ️ ✅ ✅  sendFriendReq_NEW ~ data:',
+						data
+					);
+					this.msgRes = `✅ Demande d'ami envoyée à ${user.user}`;
 				} else if (response.status === 409) {
 					// Si le statut est 409, c'est un conflit : demande déjà envoyée
 					this.msgRes = `⚠️ Une demande d'ami a déjà été envoyée à cette personne.`;
