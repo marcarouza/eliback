@@ -19,9 +19,9 @@
 		<div id="allMess" class="chat-body">
 			<!-- Messages vont ici -->
 
-			<span v-if="!isLoggedIn" class="bubServer">
-				Pour utiliser la messagerie instantanée, vous devez être
-				connecté(e).
+			<span v-if="!isLoggedIn">
+				<!-- Pour utiliser la messagerie instantanée, vous devez être
+				connecté(e). -->
 			</span>
 		</div>
 
@@ -67,20 +67,31 @@ export default {
 
 	methods: {
 		checkLocalUser() {
-			this.localUser =
-				JSON.parse(localStorage.getItem('localUser')) || null;
-			console.log(
-				'✅ 🐱  FROM ChatBox  checkLocalUser ==> this.localUser :',
-				this.localUser
-			);
+			// this.localUser =
+			// 	JSON.parse(localStorage.getItem('localUser')) || null;
+			// console.log(
+			// 	'✅ 🐱  FROM ChatBox  checkLocalUser ==> this.localUser :',
+			// 	this.localUser
+			// );
 
-			if (this.localUser) {
+			if (sessionStorage.getItem('localUser')) {
+				this.localUser = JSON.parse(
+					sessionStorage.getItem('localUser')
+				);
+				console.log('Utilisateur récupéré:', this.localUser);
 				this.isLoggedIn = true;
+			} else {
+				console.log(
+					'ℹ️  🚫  ℹ️ FROM NavOk ==> Aucun utilisateur  dans sessionStorage.'
+				);
+			}
+
+			if (this.isLoggedIn) {
 				this.pseudo = this.localUser.user;
 				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
 				this.displayChat();
 			} else {
-				this.isLoggedIn = false;
+				// this.isLoggedIn = false;
 				this.welcomeMsg =
 					'Pour utiliser la messagerie, vous devez être connecté(e) !';
 				this.pseudo = '';
