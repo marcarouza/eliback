@@ -234,6 +234,7 @@ export default {
 					console.log('🚀 ~ DECONNEXION REUSSIE !!! ');
 					this.user = null; // Mettre à jour l'utilisateur à null
 					localStorage.removeItem('localUser'); // Supprimer l'utilisateur de localStorage
+					sessionStorage.removeItem('localUser');
 					this.$router.push({name: 'homepage'});
 				} else {
 					console.error('Erreur lors de la déconnexion');
@@ -261,15 +262,29 @@ export default {
 			}
 		},
 		checkLocaluser() {
-			this.localUser =
-				JSON.parse(localStorage.getItem('localUser')) || null;
-			console.log(
-				'✅ FROM NAVOK ==> this.localUser :',
-				this.localUser
-			);
+			// this.localUser =
+			// 	JSON.parse(localStorage.getItem('localUser')) || null;
+			// console.log(
+			// 	'✅ FROM NAVOK ==> this.localUser :',
+			// 	this.localUser
+			// );
+
+			// sessionStorage.setItem('username', 'JaneDoe');
+
+			if (sessionStorage.getItem('localUser')) {
+				this.localUser = JSON.parse(
+					sessionStorage.getItem('localUser')
+				);
+				console.log('Utilisateur récupéré:', this.localUser);
+				this.isLoggedIn = true;
+			} else {
+				console.log(
+					'ℹ️  🚫  ℹ️ FROM NavOk ==> Aucun utilisateur  dans sessionStorage.'
+				);
+			}
 		},
 		navigateToPrivateNEW() {
-			if (this.localUser) {
+			if (this.isLoggedIn) {
 				// Si l'utilisateur est connecté, on le redirige vers la page du blog
 				this.$router.push({name: 'userstatusPage'});
 			} else {

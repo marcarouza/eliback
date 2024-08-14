@@ -104,7 +104,6 @@ export default {
 			oneUser: null,
 			localUser: null,
 			one2User: null,
-			isLoggedIn: false,
 		};
 	},
 	mounted() {
@@ -148,8 +147,23 @@ export default {
 						result
 					);
 
+					console.log(
+						'🚀 ~ data ~ oneUser AVANT :',
+						this.oneUser
+					);
 
 					this.oneUser = result.user;
+
+					// Peupler les données de oneUser avec les propriétés de result
+					// this.oneUser.email = one2User.email || '';
+					// this.oneUser.pwd = one2User.pwd || '';
+					// this.oneUser.pseudo = one2User.user || '';
+					// this.oneUser.id = one2User._id || '';
+					// this.oneUser.role = one2User.role || '';
+					// this.oneUser.createdAt = one2User.createdAt || '';
+					// this.oneUser.updatedAt = one2User.updatedAt || '';
+					// this.oneUser.isActive = one2User.isActive || '';
+					// this.oneUser.friends = one2User.friends || [];
 
 					// Afficher l'objet oneUser après l'avoir peuplé
 					console.log(
@@ -162,11 +176,21 @@ export default {
 					// 	'localUser',
 					// 	JSON.stringify(this.oneUser)
 					// );
-					sessionStorage.setItem(
-						'localUser',
-						JSON.stringify(this.oneUser)
-					);
-					this.isLoggedIn = true;
+
+					sessionStorage.setItem('localUser', this.oneUser);
+
+					// this.checkUserLogged(); // nécessaire avec localuser ??? Vérifier l'utilisateur après une connexion réussie
+
+					// Lire le cookie JWT
+					// const jwtCookie = document.cookie
+					// 	.split('; ')
+					// 	.find((row) => row.startsWith('jwt='))
+					// 	?.split('=')[1];
+
+					// console.log(
+					// 	'✅--- ℹ️---✅FROM LogUserForm ==> JWT Cookie:',
+					// 	jwtCookie
+					// );
 					this.$router.push({name: 'homepage'});
 				} else {
 					const errorData = await response.json();
@@ -182,7 +206,14 @@ export default {
 				);
 			}
 		},
-
+		// createLocalUser() {
+		// 	this.localUser =
+		// 		JSON.parse(localStorage.setItem('localUser, ')) || null;
+		// 	console.log(
+		// 		'✅ ℹ️ FROM LogUserForm ==> this.localUser :',
+		// 		this.localUser
+		// 	);
+		// },
 		checkLocaluser() {
 			this.localUser =
 				JSON.parse(localStorage.getItem('localUser')) || null;
