@@ -47,120 +47,52 @@
 
 <script>
 import socket from '../socket/socketClient.js';
-console.log('✅ 🐱  FROM ChathBox ===> SOCKET CLIENT : ', socket);
+console.log('✅ 🐱  FROM ChatBox ===> SOCKET CLIENT : ', socket);
 
 export default {
 	name: 'Chat_Box',
 	data() {
 		return {
-			user: null,
 			isLoggedIn: false,
 			localUser: null,
-			alllMess: '',
 			pseudo: '',
+			welcomeMsg:
+				'Pour utiliser la messagerie, vous devez être connecté(e) !',
 		};
 	},
 
-	// Utilisation correcte de mounted
 	mounted() {
-		// this.myFunction();
-		// this.fetchUserData();
 		this.checkLocalUser();
-
-		if (this.isLoggedIn) {
-			this.pseudo = this.localUser.user;
-			this.serverMsg(`Bonjour ${this.pseudo}, vous êtes en ligne !`);
-			console.log(
-				'✅ 🐱  FROM ChathBox mounted-> this.pseudo :',
-				this.pseudo
-			);
-		}
 	},
+
 	methods: {
-		async fetchUserData() {
-			try {
-				const response = await fetch(
-					'https://eli-back.onrender.com/checkUserStatus',
-					{
-						method: 'GET',
-						credentials: 'include', // Pour envoyer les cookies avec la requête
-					}
-				);
-				console.log('🚀 ~ fetchUserData ~ response:', response);
-
-				if (!response.ok) {
-					throw new Error(
-						'🍌 🍌 🍌 🍌 🍌 FROM ChatBox fetchUserData ==> ERR Network response was not ok'
-					);
-				}
-
-				const data = await response.json();
-				this.user = data.user;
-				this.isLoggedIn = true;
-				console.log(
-					'✅ ~ FROM ChatBox fetchUserData  ==> checkUserStatus/ this.user :',
-					this.user
-				);
-				this.serverMsg(
-					`Bonjour ${this.user.user}, vous êtes connecté(e) !!!`
-				); // Afficher le message de bienvenue ici
-				this.setupSocketListeners();
-			} catch (error) {
-				console.error(
-					'🍌 🍌 🍌 🍌 FROM fetchUserData ==> problème avec requête fetch :',
-					error
-				);
-			}
-		},
-
 		checkLocalUser() {
 			this.localUser =
 				JSON.parse(localStorage.getItem('localUser')) || null;
 			console.log(
-				'✅ 🐱  FROM ChathBox  checkLocalUser ==> this.localUser :',
+				'✅ 🐱  FROM ChatBox  checkLocalUser ==> this.localUser :',
 				this.localUser
 			);
 
 			if (this.localUser) {
 				this.isLoggedIn = true;
-				console.log(
-					'✅ 🐱  FROM ChathBox checkLocalUser() ==>',
-					this.isLoggedIn
-				);
-				// Si l'utilisateur est connecté, on le redirige vers la page du blog
+				this.pseudo = this.localUser.user;
+				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
+			} else {
+				this.isLoggedIn = false;
+				this.welcomeMsg =
+					'Pour utiliser la messagerie, vous devez être connecté(e) !';
 			}
+
+			this.serverMsg(this.welcomeMsg);
 		},
 
-		addDiv(data) {
-			console.log('🚀 ~ addDiv ~ data:', data);
+		serverMsg(message) {
 			const allMess = document.getElementById('allMess');
 
 			if (!allMess) {
 				console.error(
-					'🐱  🐱  🐱  FROM ChathBox ===> Element with ID "allMess" not found.'
-				);
-				return;
-			}
-
-			const myDiv = document.createElement('div');
-			console.log('🚀 ~ addDiv ~ myDiv:', myDiv);
-
-			myDiv.classList.add('bub1');
-
-			const span = document.createElement('span');
-			span.textContent = data.pseudo
-				? `${data.pseudo}: ${data.text}`
-				: `${data.user}: ${data.text}`;
-			myDiv.appendChild(span);
-
-			allMess.appendChild(myDiv);
-		},
-		serverMsg(welcome) {
-			const allMess = document.getElementById('allMess');
-
-			if (!allMess) {
-				console.error(
-					'🐱  🐱  🐱  FROM ChathBox ===> Element with ID "allMess"  non trouvé '
+					'🐱  🐱  🐱  FROM ChatBox ===> Element with ID "allMess" not found.'
 				);
 				return;
 			}
@@ -171,11 +103,12 @@ export default {
 			myDiv.classList.add('bubServer');
 
 			const span = document.createElement('span');
-			span.textContent = welcome;
+			span.textContent = message;
 			myDiv.appendChild(span);
 
 			allMess.appendChild(myDiv);
 		},
+
 		sendMess(e) {
 			const messInput = document.getElementById('messInput');
 
@@ -193,6 +126,7 @@ export default {
 				messInput.focus();
 			}
 		},
+
 		displayChat() {
 			const chatPopin = document.getElementById('chatPopin');
 
@@ -208,22 +142,13 @@ export default {
 			const chatPopin = document.getElementById('chatPopin');
 			chatPopin.classList.add('hide-inactive');
 		},
-		sendMsg() {
-			document
-				.getElementById('msg_form')
-				.addEventListener('submit', this.sendMess);
-		},
+
 		setupSocketListeners() {
 			if (this.user) {
 				socket.on('connect', () => {
 					const completeID = socket.id;
 					if (completeID) {
-						console.log('🚀 ~ completeID:', completeID);
 						const shortClientID = completeID.substring(0, 5);
-						console.log(
-							'🚀 ~ ~ shortClientID:',
-							shortClientID
-						);
 						socket.shortClientID = shortClientID;
 
 						console.log(

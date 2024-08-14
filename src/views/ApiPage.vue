@@ -69,8 +69,12 @@ export default {
 				// Décoder le token pour obtenir les données
 				this.tokenData = jwtDecode(data.token);
 				console.log('Données du token:', this.tokenData);
-			} catch (error) {
-				console.error('Error fetching cookie info:', error);
+			} catch (err) {
+				console.error(
+					'🚫 FROM ApiPage / getCookieInfo  NO jwt FOUND ! :',
+					err
+				);
+				localStorage.removeItem('localUser');
 			}
 		},
 
