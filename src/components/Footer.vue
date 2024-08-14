@@ -31,7 +31,7 @@
 							>
 						</li>
 						<li class="nav-item">
-							version 1.1 du 14.08-18h05
+							version 1.2 du 14.08-21h21
 						</li>
 					</ul>
 				</div>
