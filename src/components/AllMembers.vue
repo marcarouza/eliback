@@ -15,7 +15,7 @@
 					</div>
 					<button
 						class="btn btn-primary"
-						@click="sendFriendReq(user._id)"
+						@click="sendFriendReqNEW(user._id)"
 					>
 						Demander en ami
 					</button>
@@ -40,6 +40,8 @@ export default {
 			users: [],
 			user: '',
 			fromID: '',
+			msgRes: '',
+			toFriend: '',
 			errorMessage: '',
 			isLoggedIn: false,
 		};
@@ -50,6 +52,9 @@ export default {
 		this.fetchAllMembers();
 	},
 	methods: {
+		display() {
+			alert(this.msgRes);
+		},
 		async fetchUserData() {
 			try {
 				const response = await fetch(
@@ -118,6 +123,45 @@ export default {
 				// Vous pouvez également afficher un message d'erreur à l'utilisateur ici
 			}
 		},
+		async sendFriendReqNEW(toID) {
+			try {
+				const response = await fetch(
+					'https://eli-back.onrender.com/askFor1Friend',
+					{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+							// 'Authorization': `Bearer ${this.token}`,
+						},
+						body: JSON.stringify({
+							toID: toID,
+							fromID: this.fromID,
+						}),
+						credentials: 'include',
+					}
+				);
+
+				const data = await response.json();
+				Friend = data.message.Friend || '';
+
+				if (response.status === 409) {
+					msgRes = `⚠️ Demande déjà envoyée à ${Friend}`;
+				} else if (response.status === 503) {
+					msgRes = `⚠️ Problème de mise à jour d'une ressource`;
+				} else if (response.ok) {
+					msgRes = `✅ Demande d'ami envoyée à ${Friend}`;
+				} else {
+					msgRes = `❌ Erreur inattendue, veuillez réessayer. Voici le détail de l'erreur : ${data.message}`;
+				}
+				display(msgRes);
+			} catch (err) {
+				msgRes = `✅ Problème d'interface, veuillez tenter à nouveau dans quelques secondes.
+				Si le problème persiste, recharger la page`;
+				display(msgRes);
+
+				console.error('Erreur GLOBALE de TRY FETCH:', err);
+			}
+		},
 		async sendFriendReq(toID) {
 			try {
 				const response = await fetch(
@@ -141,25 +185,36 @@ export default {
 						response,
 						response.ok
 					);
+					console.log(
+						'✅ FROM /askForFriend API => toID:',
+						toID
+					);
+					console.log(
+						'✅  FROM /askForFriend API => fromID:',
+						fromID
+					);
 					alert(
-						"✅ 🎉 FROM /askForFriend  Demande d'ami envoyée !"
+						`✅  FROM /askForFriend  Demande d'ami envoyée à ${fromID.user}!`
 					);
 				} else {
-					console.log('🚀 ~ sendFriendReq ~ toID:', toID);
-					console.log('🚀 ~ sendFriendReq ~ fromID:', fromID);
+					console.log('FROM /askForFriend API =>  toID:', toID);
+					console.log(
+						'FROM /askForFriend API => ~ fromID:',
+						fromID
+					);
 
 					console.error(
-						"🍌 🍌 🍌 FROM /askForFriend API => La réponse n'est pas Ok !"
+						"👁️ 🍌 👁️  FROM /askForFriend API => La réponse n'est pas Ok !"
 					);
 				}
 			} catch (error) {
 				console.error(
-					"🍌 🍌 🍌 FROM /askForFriend API => Err FETCH demande d'ami:",
+					"🍌 👁️ 🍌  FROM /askForFriend API => Err FETCH demande d'ami:",
 					error
 				);
 			}
 			this.errorMessage =
-				'🍌 🍌 🍌 Impossible de récupérer les membres. Veuillez réessayer plus tard.';
+				'🍌 👁️ 👁️ Impossible de récupérer les membres. Veuillez réessayer plus tard.';
 		},
 
 		isFriend(userId) {

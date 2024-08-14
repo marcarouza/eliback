@@ -91,8 +91,18 @@
 								<router-link
 									class="dropdown-item user_menu_item"
 									to="/userstatusPage"
-									>mon compte</router-link
+									@click.prevent="navigateToPrivate"
 								>
+									mon compte
+								</router-link>
+
+								// à réactiver si ci-dessus ne
+								fonctionne pas
+								<!-- <router-link
+									class="dropdown-item user_menu_item"
+									to="/userstatusPage"
+									>mon compte</router-link
+								> -->
 							</li>
 							<li>
 								<router-link
@@ -237,6 +247,18 @@ export default {
 			if (this.user) {
 				// Si l'utilisateur est connecté, on le redirige vers la page du blog
 				this.$router.push({name: 'homeblogpage'});
+			} else {
+				// Si l'utilisateur n'est pas connecté, on le redirige vers la page d'accès restreint
+				this.$router.push({
+					name: 'noaccesspage',
+					// params: {isRestricted: true},
+				});
+			}
+		},
+		navigateToPrivate() {
+			if (this.user) {
+				// Si l'utilisateur est connecté, on le redirige vers la page du blog
+				this.$router.push({name: 'userstatusPage'});
 			} else {
 				// Si l'utilisateur n'est pas connecté, on le redirige vers la page d'accès restreint
 				this.$router.push({
