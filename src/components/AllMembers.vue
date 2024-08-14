@@ -15,7 +15,7 @@
 					</div>
 					<button
 						class="btn btn-primary"
-						@click="sendFriendReq_NEW(user._id)"
+						@click="sendFriendReq_NEW(user._id, user.user)"
 					>
 						Demander en ami
 					</button>
@@ -127,7 +127,7 @@ export default {
 				// Vous pouvez également afficher un message d'erreur à l'utilisateur ici
 			}
 		},
-		async sendFriendReq_NEW(toID) {
+		async sendFriendReq_NEW(toID, toUser) {
 			try {
 				const response = await fetch(
 					'https://eli-back.onrender.com/askFor1Friend',
@@ -151,7 +151,7 @@ export default {
 						'ℹ️ ✅ ✅  sendFriendReq_NEW ~ data:',
 						data
 					);
-					this.msgRes = `✅ Demande d'ami envoyée à ${user.user}`;
+					this.msgRes = `✅ Demande d'ami envoyée à ${toUser}`;
 				} else if (response.status === 409) {
 					// Si le statut est 409, c'est un conflit : demande déjà envoyée
 					this.msgRes = `⚠️ Une demande d'ami a déjà été envoyée à cette personne.`;
