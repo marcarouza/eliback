@@ -166,6 +166,12 @@ export default {
 						this.oneUser
 					);
 
+					// Stocker l'utilisateur dans localStorage
+					localStorage.setItem(
+						'user',
+						JSON.stringify(this.oneUser)
+					);
+
 					this.checkUserLogged(); // Vérifier l'utilisateur après une connexion réussie
 
 					// Lire le cookie JWT
@@ -197,26 +203,43 @@ export default {
 			console.log('Tous les cookies:', document.cookie);
 			const token = Cookies.get('jwt');
 			console.log('Token JWT:', token);
-			console.log('🚀 ~ checkUserLogged ~ TOKEN :', token);
+			console.log(
+				'ℹ️ 👁️ FROM LogUser checkUserLogged => TOKEN :',
+				token
+			);
 			if (token) {
 				try {
 					const decoded = jwtDecode(token); // Décoder le JWT
 					console.log(
-						'🚀 ~ checkUserLogged ~ DECODED :',
+						'ℹ️ 👁️ FROM LogUser checkUserLogged => DECODED TOKEN :',
 						decoded
 					);
 					// Vérifiez si les champs existent dans le JWT décodé
 					this.id = decoded.id || null;
 					this.email = decoded.email || null;
 					this.pseudo = decoded.user || null;
-					console.log('User ID from JWT:', this.id);
-					console.log('User email from JWT:', this.email);
-					console.log('User pseudo from JWT:', this.pseudo);
+					console.log(
+						'ℹ️ 👁️ FROM LogUser => User ID from JWT:',
+						this.id
+					);
+					console.log(
+						'ℹ️ 👁️ FROM LogUser => User email from JWT:',
+						this.email
+					);
+					console.log(
+						'ℹ️ 👁️ FROM LogUser => User pseudo from JWT:',
+						this.pseudo
+					);
 				} catch (error) {
-					console.error('Error decoding JWT:', error);
+					console.error(
+						'🍌 🍌 🍌 FROM LogUser checkUserLogged => Error decoding JWT:',
+						error
+					);
 				}
 			} else {
-				console.log('FROM LogUserFrom => No JWT token found');
+				console.log(
+					'🍌 🍌 🍌 FROM LogUser checkUserLogged => => No JWT token found'
+				);
 			}
 		},
 		togglePasswordVisibility() {

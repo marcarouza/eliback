@@ -53,7 +53,7 @@ export default {
 	},
 	methods: {
 		display() {
-			alert(this.msgRes);
+			alert(msgRes);
 		},
 		async fetchUserData() {
 			try {
@@ -143,21 +143,22 @@ export default {
 
 				const data = await response.json();
 				Friend = data.message.Friend || '';
+				console.log('🚀 ~ sendFriendReqNEW ~ Friend:', Friend);
 
 				if (response.status === 409) {
-					msgRes = `⚠️ Demande déjà envoyée à ${Friend}`;
+					this.msgRes = `⚠️ Demande déjà envoyée à ${Friend}`;
 				} else if (response.status === 503) {
-					msgRes = `⚠️ Problème de mise à jour d'une ressource`;
+					this.msgRes = `⚠️ Problème de mise à jour d'une ressource`;
 				} else if (response.ok) {
-					msgRes = `✅ Demande d'ami envoyée à ${Friend}`;
+					this.msgRes = `✅ Demande d'ami envoyée à ${Friend}`;
 				} else {
-					msgRes = `❌ Erreur inattendue, veuillez réessayer. Voici le détail de l'erreur : ${data.message}`;
+					this.msgRes = `❌ Erreur inattendue, veuillez réessayer. Voici le détail de l'erreur : ${data.message}`;
 				}
-				display(msgRes);
+				this.display(this.msgRes);
 			} catch (err) {
-				msgRes = `✅ Problème d'interface, veuillez tenter à nouveau dans quelques secondes.
+				this.msgRes = `✅ Problème d'interface, veuillez tenter à nouveau dans quelques secondes.
 				Si le problème persiste, recharger la page`;
-				display(msgRes);
+				this.display(this.msgRes);
 
 				console.error('Erreur GLOBALE de TRY FETCH:', err);
 			}
