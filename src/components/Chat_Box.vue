@@ -9,12 +9,12 @@
 			></button>
 		</div>
 
-		<div v-if="!isLoggedIn" class="chat-body">
+		<!-- <div v-if="!isLoggedIn" class="chat-body">
 			<span class="bubServer">
 				Pour utiliser la messagerie instantanée, vous devez être
 				connecté(e).
 			</span>
-		</div>
+		</div> -->
 
 		<div id="allMess" class="chat-body">
 			<!-- Messages vont ici -->
@@ -78,16 +78,20 @@ export default {
 				this.isLoggedIn = true;
 				this.pseudo = this.localUser.user;
 				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
+				this.displayChat();
 			} else {
 				this.isLoggedIn = false;
 				this.welcomeMsg =
 					'Pour utiliser la messagerie, vous devez être connecté(e) !';
+				this.pseudo = '';
 			}
 
 			this.serverMsg(this.welcomeMsg);
 		},
 
 		serverMsg(message) {
+			console.log('🚀 ~ serverMsg ~ message:', message);
+
 			const allMess = document.getElementById('allMess');
 
 			if (!allMess) {
@@ -97,16 +101,16 @@ export default {
 				return;
 			}
 
-			const myDiv = document.createElement('div');
-			console.log('🚀 ~ addDiv ~ myDiv:', myDiv);
+			const myServerDiv = document.createElement('div');
+			console.log('🚀 ~ addDiv ~ myDiv:', myServerDiv);
 
-			myDiv.classList.add('bubServer');
+			myServerDiv.classList.add('bubServer');
 
 			const span = document.createElement('span');
 			span.textContent = message;
-			myDiv.appendChild(span);
+			myServerDiv.appendChild(span);
 
-			allMess.appendChild(myDiv);
+			allMess.appendChild(myServerDiv);
 		},
 
 		sendMess(e) {

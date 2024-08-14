@@ -233,7 +233,7 @@ export default {
 					this.isLoggedIn = false;
 					console.log('🚀 ~ DECONNEXION REUSSIE !!! ');
 					this.user = null; // Mettre à jour l'utilisateur à null
-					localStorage.removeItem('user'); // Supprimer l'utilisateur de localStorage
+					localStorage.removeItem('localUser'); // Supprimer l'utilisateur de localStorage
 					this.$router.push({name: 'homepage'});
 				} else {
 					console.error('Erreur lors de la déconnexion');
@@ -269,7 +269,6 @@ export default {
 			);
 		},
 		navigateToPrivateNEW() {
-
 			if (this.localUser) {
 				// Si l'utilisateur est connecté, on le redirige vers la page du blog
 				this.$router.push({name: 'userstatusPage'});

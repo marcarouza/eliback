@@ -189,7 +189,7 @@ export default {
 					// 	'✅--- ℹ️---✅FROM LogUserForm ==> JWT Cookie:',
 					// 	jwtCookie
 					// );
-					// this.$router.push({name: 'homepage'});
+					this.$router.push({name: 'homepage'});
 				} else {
 					const errorData = await response.json();
 					console.error(
