@@ -130,10 +130,12 @@ export default {
 				pseudo: '',
 				email: '',
 			},
+			localUser: null,
 		};
 	},
 	mounted() {
 		this.fetchUserData();
+		this.checkLocaluser();
 	},
 	methods: {
 		async fetchUserData() {
@@ -145,6 +147,11 @@ export default {
 						credentials: 'include',
 					}
 				);
+				console.log(
+					' ℹ️    ℹ️    ℹ️ FROM UserStatus~ fetchUserData ~ response:',
+					response
+				);
+
 				if (!response.ok) {
 					throw new Error(
 						'FROM USER STATUS ERR Network response was not ok'
@@ -152,13 +159,21 @@ export default {
 				}
 				const data = await response.json();
 				this.user = data.user;
-				this.initProfileForm();
-			} catch (error) {
+				// this.initProfileForm(); A REACTIVER POUR MODIFIER LE PROFIL DU MEMEBRE CONNECTE
+			} catch (err) {
 				console.error(
 					'FROM USER STATUS problème avec requête fetch :',
-					error
+					err
 				);
 			}
+		},
+		checkLocaluser() {
+			this.localUser =
+				JSON.parse(localStorage.getItem('localUser')) || null;
+			console.log(
+				' ℹ️   ✅   ℹ️ FROM UserStatus ==> this.localUser :',
+				this.localUser
+			);
 		},
 		initProfileForm() {
 			this.profileForm.nom = this.user.nom || '';
@@ -174,38 +189,43 @@ export default {
 		formatDate(date) {
 			return new Date(date).toLocaleDateString('fr-FR');
 		},
-		async updateProfile() {
-			try {
-				// Ici, vous devez implémenter la logique pour envoyer les nouvelles données au serveur
-				// Par exemple :
-				// const response = await fetch('https://eli-back.onrender.com/updateProfile', {
-				//   method: 'POST',
-				//   credentials: 'include',
-				//   headers: {
-				//     'Content-Type': 'application/json',
-				//   },
-				//   body: JSON.stringify(this.profileForm),
-				// });
-				// if (response.ok) {
-				//   // Mettre à jour les données locales
-				//   Object.assign(this.user, this.profileForm);
-				//   alert('Profil mis à jour avec succès');
-				// } else {
-				//   throw new Error('Erreur lors de la mise à jour du profil');
-				// }
-				console.log(
-					'Mise à jour du profil avec :',
-					this.profileForm
-				);
-				alert('Fonctionnalité de mise à jour non implémentée');
-			} catch (error) {
-				console.error(
-					'Erreur lors de la mise à jour du profil :',
-					error
-				);
-				alert('Erreur lors de la mise à jour du profil');
-			}
-		},
+		// async updateProfile() {
+		// 	try {
+		// 		// logique pour envoyer les nouvelles données au serveur
+		// 		// Par exemple :
+		// 		const response = await fetch(
+		// 			'https://eli-back.onrender.com/updateProfile',
+		// 			{
+		// 				method: 'POST',
+		// 				credentials: 'include',
+		// 				headers: {
+		// 					'Content-Type': 'application/json',
+		// 				},
+		// 				body: JSON.stringify(this.profileForm),
+		// 			}
+		// 		);
+		// 		if (response.ok) {
+		// 			// Mettre à jour les données locales
+		// 			Object.assign(this.user, this.profileForm);
+		// 			alert('Profil mis à jour avec succès');
+		// 		} else {
+		// 			throw new Error(
+		// 				'Erreur lors de la mise à jour du profil'
+		// 			);
+		// 		}
+		// 		console.log(
+		// 			'Mise à jour du profil avec :',
+		// 			this.profileForm
+		// 		);
+		// 		alert('Fonctionnalité de mise à jour non implémentée');
+		// 	} catch (error) {
+		// 		console.error(
+		// 			'Erreur lors de la mise à jour du profil :',
+		// 			error
+		// 		);
+		// 		alert('Erreur lors de la mise à jour du profil');
+		// 	}
+		// },
 	},
 };
 </script>

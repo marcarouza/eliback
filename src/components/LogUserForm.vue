@@ -101,9 +101,12 @@ export default {
 				isActive: '',
 				friends: [],
 			},
+			localUser: null,
 		};
 	},
 	mounted() {
+		// this.createLocalUser();
+		this.checkLocaluser();
 		this.getAllDocCookiess();
 	},
 	created() {
@@ -138,7 +141,7 @@ export default {
 				if (response.ok) {
 					const result = await response.json();
 					console.log(
-						'FROM  LogUserForm => Utilisateur connecté dans RESULT:',
+						'✅ ✅ ✅ 🎉 FROM  LogUserForm => Utilisateur connecté dans RESULT : ',
 						result
 					);
 
@@ -168,11 +171,11 @@ export default {
 
 					// Stocker l'utilisateur dans localStorage
 					localStorage.setItem(
-						'user',
+						'localUser',
 						JSON.stringify(this.oneUser)
 					);
 
-					this.checkUserLogged(); // Vérifier l'utilisateur après une connexion réussie
+					this.checkUserLogged(); // nécessaire avec localuser ??? Vérifier l'utilisateur après une connexion réussie
 
 					// Lire le cookie JWT
 					const jwtCookie = document.cookie
@@ -180,23 +183,42 @@ export default {
 						.find((row) => row.startsWith('jwt='))
 						?.split('=')[1];
 
-					console.log('JWT Cookie:', jwtCookie);
+					console.log(
+						'✅--- ℹ️---✅FROM LogUserForm ==> JWT Cookie:',
+						jwtCookie
+					);
 					this.$router.push({name: 'homepage'});
 
 					// Rediriger vers la page d'accueil après connexion réussie
 				} else {
 					const errorData = await response.json();
 					console.error(
-						'FROM LogUserForm <= ERR de CONNEXION du MEMBRE: ',
+						'🍌 🍌 🍌 FROM LogUserForm <= ERR de CONNEXION du MEMBRE: ',
 						errorData
 					);
 				}
-			} catch (error) {
+			} catch (err) {
 				console.error(
-					'FROM LogUserForm => ERR de SUBMIT du formulaire',
-					error
+					'🍌 🍌 🍌 FROM LogUserForm => ERR de TRY GLOBAL du SUBMIT du formulaire',
+					err
 				);
 			}
+		},
+		// createLocalUser() {
+		// 	this.localUser =
+		// 		JSON.parse(localStorage.setItem('localUser, ')) || null;
+		// 	console.log(
+		// 		'✅ ℹ️ FROM LogUserForm ==> this.localUser :',
+		// 		this.localUser
+		// 	);
+		// },
+		checkLocaluser() {
+			this.localUser =
+				JSON.parse(localStorage.getItem('localUser')) || null;
+			console.log(
+				' ℹ️   ✅   ℹ️ FROM UserStatus ==> this.localUser :',
+				this.localUser
+			);
 		},
 
 		checkUserLogged() {

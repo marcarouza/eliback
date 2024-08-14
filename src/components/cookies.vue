@@ -48,29 +48,44 @@ export default {
 	data() {
 		return {
 			cookies: [],
+			localUser: null,
 		};
 	},
 	mounted() {
+		this.checkLocaluser();
 		this.readCookies();
 		this.getCookieAttribute();
 		this.getCookieByName();
 		this.isCookieSecure();
 	},
 	methods: {
+		checkLocaluser() {
+			this.localUser =
+				JSON.parse(localStorage.getItem('localUser')) || null;
+			console.log(
+				'✅ FROM NAVOK ==> this.localUser :',
+				this.localUser
+			);
+		},
 		readCookies() {
-			const cookieList = document.cookie.split(';');
-			this.cookies = cookieList.map((cookie) => {
-				const [name, value] = cookie.trim().split('=');
-				return {
-					name: name,
-					value: value,
-					domain: this.getCookieAttribute(name, 'domain'),
-					path: this.getCookieAttribute(name, 'path'),
-					expires: this.getCookieAttribute(name, 'expires'),
-					secure: this.isCookieSecure(name),
-					sameSite: this.getCookieAttribute(name, 'samesite'),
-				};
-			});
+			if (localUser) {
+				const cookieList = document.cookie.split(';');
+				this.cookies = cookieList.map((cookie) => {
+					const [name, value] = cookie.trim().split('=');
+					return {
+						name: name,
+						value: value,
+						domain: this.getCookieAttribute(name, 'domain'),
+						path: this.getCookieAttribute(name, 'path'),
+						expires: this.getCookieAttribute(name, 'expires'),
+						secure: this.isCookieSecure(name),
+						sameSite: this.getCookieAttribute(
+							name,
+							'samesite'
+						),
+					};
+				});
+			}
 		},
 		getCookieAttribute(name, attribute) {
 			const cookie = this.getCookieByName(name);

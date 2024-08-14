@@ -91,7 +91,9 @@
 								<router-link
 									class="dropdown-item user_menu_item"
 									to="/userstatusPage"
-									@click.prevent="navigateToPrivate"
+									@click.prevent="
+										navigateToPrivateNEW
+									"
 								>
 									mon compte
 								</router-link>
@@ -176,11 +178,13 @@ export default {
 		return {
 			isLoggedIn: false,
 			user: '',
+			localUser: null,
 		};
 	},
 
 	mounted() {
 		this.fetchUserData();
+		this.checkLocaluser();
 	},
 
 	methods: {
@@ -229,6 +233,7 @@ export default {
 					this.isLoggedIn = false;
 					console.log('🚀 ~ DECONNEXION REUSSIE !!! ');
 					this.user = null; // Mettre à jour l'utilisateur à null
+					localStorage.removeItem('user'); // Supprimer l'utilisateur de localStorage
 					this.$router.push({name: 'homepage'});
 				} else {
 					console.error('Erreur lors de la déconnexion');
@@ -247,6 +252,27 @@ export default {
 			if (this.user) {
 				// Si l'utilisateur est connecté, on le redirige vers la page du blog
 				this.$router.push({name: 'homeblogpage'});
+			} else {
+				// Si l'utilisateur n'est pas connecté, on le redirige vers la page d'accès restreint
+				this.$router.push({
+					name: 'noaccesspage',
+					// params: {isRestricted: true},
+				});
+			}
+		},
+		checkLocaluser() {
+			this.localUser =
+				JSON.parse(localStorage.getItem('localUser')) || null;
+			console.log(
+				'✅ FROM NAVOK ==> this.localUser :',
+				this.localUser
+			);
+		},
+		navigateToPrivateNEW() {
+
+			if (this.localUser) {
+				// Si l'utilisateur est connecté, on le redirige vers la page du blog
+				this.$router.push({name: 'userstatusPage'});
 			} else {
 				// Si l'utilisateur n'est pas connecté, on le redirige vers la page d'accès restreint
 				this.$router.push({

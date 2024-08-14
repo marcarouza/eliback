@@ -50,7 +50,7 @@ export default {
 		return {
 			user: null,
 			isLoggedIn: false,
-			localUser: null,
+			userLocal: null,
 			alllMessages: '',
 
 			// Vos données ici
@@ -58,7 +58,7 @@ export default {
 	},
 
 	mounted() {
-		// this.fetchUserData();
+		this.fetchUserData();
 		this.checkLocalUser();
 	},
 	methods: {

@@ -114,7 +114,12 @@ export default {
 				user: '',
 			},
 			passwordVisible: false,
+			localUser: null,
 		};
+	},
+
+	mounted() {
+		this.checkLocaluser();
 	},
 	methods: {
 		// CREATION DU USER VIA API
@@ -167,6 +172,15 @@ export default {
 					'🍌 🍌 🍌 🍌 🍌  ~ FROM SIGNUSERFORM => tous les champs ne sont pas remplis'
 				);
 			}
+		},
+
+		checkLocaluser() {
+			this.localUser =
+				JSON.parse(localStorage.getItem('localuser')) || null;
+			console.log(
+				'✅ ℹ️  FROM SignUserForm ==> this.localUser :',
+				this.localUser
+			);
 		},
 
 		async sendMail() {

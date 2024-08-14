@@ -15,7 +15,7 @@
 					</div>
 					<button
 						class="btn btn-primary"
-						@click="sendFriendReqNEW(user._id)"
+						@click="sendFriendReq_NEW(user._id)"
 					>
 						Demander en ami
 					</button>
@@ -24,7 +24,7 @@
 		</div>
 		<div v-else>
 			<p>
-				Impossible d'afficher le memebres du site. Soit nous
+				Impossible d'afficher le membres du site. Soit nous
 				rencontrons un problème technique, soit vous n'êtes pas
 				connecté(e) !
 			</p>
@@ -43,6 +43,7 @@ export default {
 			msgRes: '',
 			toFriend: '',
 			errorMessage: '',
+			Friend: '',
 			isLoggedIn: false,
 		};
 	},
@@ -52,8 +53,8 @@ export default {
 		this.fetchAllMembers();
 	},
 	methods: {
-		display() {
-			alert(msgRes);
+		display(message) {
+			alert(message);
 		},
 		async fetchUserData() {
 			try {
@@ -76,11 +77,14 @@ export default {
 					'✅  FROM AllMembers ==> checkUserStatus ~ this.user:',
 					this.user
 				);
-				this.fromID = data.user._id;
-				console.log(
-					'✅ ✅ ✅ FROM AllMembers ~ this.fromID:',
-					this.fromID
-				);
+
+				if (this.user) {
+					this.fromID = this.user._id;
+					console.log(
+						'✅ ✅ ✅ FROM AllMembers ~ this.fromID:',
+						this.fromID
+					);
+				}
 			} catch (error) {
 				console.error(
 					'🍌 🍌 🍌 🍌 🍌 FROM AllMembers ==> problème avec requête fetch :',
@@ -123,7 +127,7 @@ export default {
 				// Vous pouvez également afficher un message d'erreur à l'utilisateur ici
 			}
 		},
-		async sendFriendReqNEW(toID) {
+		async sendFriendReq_NEW(toID) {
 			try {
 				const response = await fetch(
 					'https://eli-back.onrender.com/askFor1Friend',
@@ -131,7 +135,6 @@ export default {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
-							// 'Authorization': `Bearer ${this.token}`,
 						},
 						body: JSON.stringify({
 							toID: toID,
@@ -141,26 +144,24 @@ export default {
 					}
 				);
 
-				const data = await response.json();
-				Friend = data.message.Friend || '';
-				console.log('🚀 ~ sendFriendReqNEW ~ Friend:', Friend);
-
-				if (response.status === 409) {
-					this.msgRes = `⚠️ Demande déjà envoyée à ${Friend}`;
-				} else if (response.status === 503) {
-					this.msgRes = `⚠️ Problème de mise à jour d'une ressource`;
-				} else if (response.ok) {
-					this.msgRes = `✅ Demande d'ami envoyée à ${Friend}`;
+				if (response.ok) {
+					// Si la requête a réussi, vous pouvez gérer la réponse ici
+					const data = await response.json();
+					this.msgRes = `✅ Demande d'ami envoyée à ${data.Friend}`;
+				} else if (response.status === 409) {
+					// Si le statut est 409, c'est un conflit : demande déjà envoyée
+					this.msgRes = `⚠️ Une demande d'ami a déjà été envoyée à cette personne.`;
 				} else {
-					this.msgRes = `❌ Erreur inattendue, veuillez réessayer. Voici le détail de l'erreur : ${data.message}`;
+					// Pour toutes les autres réponses non-OK
+					const data = await response.json(); // Récupérer les détails de l'erreur
+					this.msgRes = `❌ Erreur inattendue: ${data.message}`;
 				}
 				this.display(this.msgRes);
 			} catch (err) {
-				this.msgRes = `✅ Problème d'interface, veuillez tenter à nouveau dans quelques secondes.
-				Si le problème persiste, recharger la page`;
+				// Gestion des erreurs réseau ou autres erreurs inattendues
+				this.msgRes = `❌ Problème de connexion, veuillez réessayer plus tard.`;
 				this.display(this.msgRes);
-
-				console.error('Erreur GLOBALE de TRY FETCH:', err);
+				console.error("Erreur lors de la demande d'ami:", err);
 			}
 		},
 		async sendFriendReq(toID) {

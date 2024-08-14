@@ -1,5 +1,6 @@
+//
 import {createRouter, createWebHistory} from 'vue-router';
-// Importation des composants
+//
 import allmemberspage from '../views/AllMembersPage';
 import apipage from '../views/ApiPage.vue';
 import confirmcontactpage from '../views/ConfirmContactPage.vue';
@@ -18,6 +19,7 @@ import searchpostpage from '../views/SearchPostPage.vue';
 import signuserpage from '../views/SignUserPage.vue';
 import userstatuspage from '../views/UserStatusPage.vue';
 import writepostpage from '../views/WritePostPage.vue';
+
 import rgpdpage from '../views/CguRgpdPage.vue';
 
 const routes = [
@@ -30,13 +32,13 @@ const routes = [
 		path: '/confirmloggedinPage',
 		name: 'confirmloggedinpage',
 		component: confirmloggedinpage,
-		meta: {requiresAuth: true},
 	},
 	{
 		path: '/projetsPage',
 		name: 'projetspage',
 		component: projetspage,
 	},
+
 	{
 		path: '/noAccessPage',
 		name: 'noaccesspage',
@@ -46,7 +48,6 @@ const routes = [
 		path: '/allMembersPage',
 		name: 'allmemberspage',
 		component: allmemberspage,
-		meta: {requiresAuth: true},
 	},
 	{
 		path: '/homePage',
@@ -68,6 +69,7 @@ const routes = [
 		name: 'loguserpage',
 		component: loguserpage,
 	},
+
 	{
 		path: '/contactFormPage',
 		name: 'contactformpage',
@@ -78,23 +80,22 @@ const routes = [
 		name: 'cvpage',
 		component: cvpage,
 	},
+
 	{
 		path: '/homeblogPage',
 		name: 'homeblogpage',
 		component: homeblogpage,
-		meta: {requiresAuth: true},
 	},
+
 	{
 		path: '/searchpostPage',
 		name: 'searchpostPage',
 		component: searchpostpage,
-		meta: {requiresAuth: true},
 	},
 	{
 		path: '/writepostPage',
 		name: 'writepostPage',
 		component: writepostpage,
-		meta: {requiresAuth: true},
 	},
 	{
 		path: '/cookiesPage',
@@ -106,22 +107,25 @@ const routes = [
 		name: 'apipage',
 		component: apipage,
 	},
+
 	{
 		path: '/userstatusPage',
 		name: 'userstatusPage',
 		component: userstatuspage,
-		meta: {requiresAuth: true},
 	},
+
 	{
 		path: '/confirmContactPage',
 		name: 'confirmcontactpage',
 		component: confirmcontactpage,
 	},
+
 	{
 		path: '/confirmSignUpPage',
 		name: 'confirmsignuppage',
 		component: confirmsignuppage,
 	},
+
 	{
 		path: '/:pathMatch(.*)*',
 		name: 'notfoundpage',
@@ -133,34 +137,5 @@ const router = createRouter({
 	history: createWebHistory('/'),
 	routes,
 });
-
-// Guard global pour gérer les accès en fonction de l'authentification
-// router.beforeEach((to, from, next) => {
-// 	const localUser = JSON.parse(localStorage.getItem('localUser')); // Vérifier si localUser existe dans localStorage
-// 	const requiresAuth = to.matched.some((record) => record.meta.requiresAuth); // Vérifier si la route nécessite une authentification
-
-// 	// Condition 1 : Si l'utilisateur est connecté et essaie d'accéder à la page de connexion
-
-// 	if (
-// 		localUser &&
-// 		(to.name === 'loguserpage' || to.path === '/loguserPage')
-// 	) {
-// 		console.log(
-// 			'🔄 Redirection vers userstatusPage car utilisateur déjà connecté'
-// 		);
-// 		return next({name: 'userstatusPage'}); // Redirige vers une page appropriée
-// 	}
-
-// 	// Condition 2 : Si la route nécessite une authentification et que l'utilisateur n'est pas connecté
-// 	if (requiresAuth && !localUser) {
-// 		console.log(
-// 			'🔄 Redirection vers noaccessPage car utilisateur non connecté'
-// 		);
-// 		return next({name: 'noaccesspage'}); // Redirige vers la page d'accès refusé
-// 	}
-
-// 	// Permettre la navigation pour toutes les autres situations
-// 	next();
-// });
 
 export default router;
