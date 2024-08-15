@@ -220,6 +220,7 @@ export default {
 					this.user = null; // Mettre à jour l'utilisateur à null
 					localStorage.removeItem('localUser'); // Supprimer l'utilisateur de localStorage
 					sessionStorage.removeItem('localUser');
+					window.location.reload();
 					this.$router.replace({name: 'homepage'});
 					// 					this.$router.push({
 					//   name: 'homepage',
