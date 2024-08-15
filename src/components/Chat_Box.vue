@@ -58,11 +58,14 @@ export default {
 			pseudo: '',
 			welcomeMsg:
 				'Pour utiliser la messagerie, vous devez être connecté(e) !',
+			completeID: null,
+			shortClientID: null,
 		};
 	},
 
 	mounted() {
 		this.checkLocalUser();
+		this.setupSocketListeners(this.pseudo);
 	},
 
 	methods: {
@@ -124,7 +127,9 @@ export default {
 			allMess.appendChild(myServerDiv);
 		},
 
-		sendMess(e) {
+		sendMess(message) {
+			const allMess = document.getElementById('allMess');
+
 			const messInput = document.getElementById('messInput');
 
 			if (!messInput) {
@@ -137,6 +142,17 @@ export default {
 
 			if (messTxt) {
 				socket.emit('message', messTxt);
+				const myMessDiv = document.createElement('div');
+				console.log('🚀 ~ addDiv ~ myDiv:', myMessDiv);
+
+				myMessDiv.classList.add('bub1');
+
+				const span = document.createElement('span');
+				span.textContent = this.pseudo + messTxt;
+				myMessDiv.appendChild(span);
+
+				allMess.appendChild(myMessDiv);
+
 				messInput.value = '';
 				messInput.focus();
 			}
@@ -158,24 +174,70 @@ export default {
 			chatPopin.classList.add('hide-inactive');
 		},
 
-		setupSocketListeners() {
-			if (this.user) {
+		addDiv() {
+			const addDiv = (data) => {
+				console.log('🚀 ~ addDiv ~ data:', data);
+				console.log('🚀 ~   data.pseudo — — — —', data.pseudo);
+
+				const allMess = document.getElementById('allMess');
+
+				if (!allMess) {
+					console.error('Element with ID "allMess" not found.');
+					return;
+				}
+
+				const myDiv = document.createElement('div');
+				console.log('🚀 ~ addDiv ~ myDiv:', myDiv);
+
+				myDiv.classList.add('bub1');
+
+				// Create span element
+				const span = document.createElement('span');
+
+				if (data.pseudo) {
+					span.textContent = `${data.pseudo}: ${data.text}`;
+				} else {
+					span.textContent = `${data.user}: ${data.text}`;
+				}
+
+				// Append span to div
+				myDiv.appendChild(span);
+
+				// Append div to allMess
+				allMess.appendChild(myDiv);
+			};
+		},
+
+		setupSocketListeners(pseudo) {
+			if (this.isLoggedIn) {
 				socket.on('connect', () => {
-					const completeID = socket.id;
-					if (completeID) {
-						const shortClientID = completeID.substring(0, 5);
-						socket.shortClientID = shortClientID;
+					this.completeID = socket.id;
+
+					if (this.completeID) {
+						console.log(
+							'📱 ~ socket.on ~ this.completeID :',
+							this.completeID
+						);
+						this.shortClientID = this.completeID.substring(
+							0,
+							5
+						);
+						console.log(
+							'🚀 ~ socket.on ~ this.shortClientID:',
+							this.shortClientID
+						);
+						socket.shortClientID = this.shortClientID;
 
 						console.log(
-							`📬 FROM setupSocketListeners => ${shortClientID} est CONNECTÉ !`
+							`📬 📬 📬FROM setupSocketListeners => ${this.shortClientID} = ${pseudo} est CONNECTÉ !`
 						);
-						this.serverMsg(
-							`Bonjour ${shortClientID}, vous êtes connecté(e) !!!`
-						);
+						// this.serverMsg(
+						// 	`Bonjour ${shortClientID}, vous êtes connecté(e) !!!`
+						// );
 					}
 				});
 
-				socket.on('disconnect', () => {
+				socket.on('disconnect', (pseudo, shortClientID) => {
 					const completeID = socket.id;
 					if (completeID) {
 						const shortClientID = completeID.substring(0, 5);
@@ -190,7 +252,7 @@ export default {
 						'STRUCTURE de MSG envoyé à tout le monde : ',
 						data
 					);
-					this.addDiv(data);
+					this.sendMess(data);
 				});
 
 				socket.on('userLeft', (data) => {
