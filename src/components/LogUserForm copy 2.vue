@@ -90,6 +90,17 @@ export default {
 			},
 			passwordVisible: false,
 			error: null,
+			// oneUser: {
+			// 	email: '',
+			// 	pwd: '',
+			// 	pseudo: '',
+			// 	id: '',
+			// 	role: '',
+			// 	createdAt: '',
+			// 	updatedAt: '',
+			// 	isActive: '',
+			// 	friends: [],
+			// },
 			oneUser: null,
 			localUser: null,
 			one2User: null,
@@ -136,6 +147,7 @@ export default {
 						'✅ ✅ ✅ 🎉 FROM  LogUserForm => Utilisateur connecté dans RESULT : ',
 						result
 					);
+
 
 					this.oneUser = result.user;
 
