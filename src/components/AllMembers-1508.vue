@@ -162,11 +162,11 @@ export default {
 					);
 					this.msgRes = `✅ Demande d'ami envoyée à ${toPseudo}`;
 
-					// this.sendMAILreq2Friend(
-					// 	this.localUser,
-					// 	toPseudo,
-					// 	toEmail
-					// );
+					this.sendMAILreq2Friend(
+						this.localUser,
+						toPseudo,
+						toEmail
+					);
 				} else if (response.status === 409) {
 					// Si le statut est 409, c'est un conflit : demande déjà envoyée
 					this.msgRes = `⚠️ Une demande d'ami a déjà été envoyée à cette personne.`;
@@ -185,9 +185,6 @@ export default {
 		},
 
 		async sendMAILreq2Friend(fromONE, toONE, toPseudo) {
-			console.log('🚀 ~ sendMAILreq2Friend ~ toPseudo:', toPseudo);
-			console.log('🚀 ~ sendMAILreq2Friend ~ toONE:', toONE);
-			console.log('🚀 ~ sendMAILreq2Friend ~ fromONE:', fromONE);
 			BoX = {
 				from: fromONE.email,
 				to: toONE,
@@ -196,8 +193,6 @@ export default {
 				subject: "Demande d'ami",
 				text: `Vous avez reçu une demande d\'ami`,
 			};
-
-			console.log('🚀 ~ sendMAILreq2Friend ~ BoX:', BoX);
 
 			try {
 				const response = await fetch(
@@ -210,9 +205,8 @@ export default {
 						body: JSON.stringify({
 							fromEmail: this.localUser.email,
 							toEmail: toEmail,
+							pwd: this.formData.pwd,
 							pseudo: this.formData.user,
-							subject: "Demande d'ami depuis eliazoura.fr",
-							text: `Vous avez reçu une demande d\'ami de la part de ${fromONE}`,
 						}),
 					}
 				);
