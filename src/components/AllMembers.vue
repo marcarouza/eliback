@@ -136,7 +136,7 @@ export default {
 				// Vous pouvez également afficher un message d'erreur à l'utilisateur ici
 			}
 		},
-		async sendFriendReq_NEW(toID, toPseudo, toEmail) {
+		async sendFriendReq_NEW(toID, toPseudo) {
 			try {
 				const response = await fetch(
 					'https://eli-back.onrender.com/askFor1Friend',
