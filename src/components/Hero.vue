@@ -50,7 +50,7 @@
 						>
 							<img
 								class="profile-img"
-								src="/pix/eli/eli-head-boot-trame.png"
+								src="/pix/eli/eli.webp"
 								alt="..."
 							/>
 
