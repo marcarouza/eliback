@@ -1,6 +1,8 @@
 <template>
 	<div class="container mt-5">
-		<h1 class="text-center mb-4">Rédiger un nouvel article</h1>
+		<h1 class="text-center mb-4">
+			Rédiger un nouvel article {{ author }}
+		</h1>
 		<form @submit.prevent="submitPost">
 			<div class="form-floating mb-4">
 				<input
@@ -87,9 +89,9 @@ export default {
 		this.getLocalUser();
 	},
 
-	// mounted() {
-	// 	this.getLocalUser();
-	// },
+	mounted() {
+		this.getLocalUser();
+	},
 
 	methods: {
 		getLocalUser() {
