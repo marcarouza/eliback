@@ -89,7 +89,7 @@ export default {
 				pwd: '',
 			},
 			passwordVisible: false,
-			error: null,
+			specError: null,
 			oneUser: null,
 			localUser: null,
 			one2User: null,
@@ -162,6 +162,9 @@ export default {
 						'🍌 🍌 🍌 FROM LogUserForm <= ERR de CONNEXION du MEMBRE: ',
 						errorData
 					);
+					this.specError = errorData.message;
+					// alert(errorData.message);
+					alert('Email ou mot de passe incorrect');
 				}
 			} catch (err) {
 				console.error(
