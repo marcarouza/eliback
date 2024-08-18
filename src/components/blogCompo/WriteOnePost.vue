@@ -78,7 +78,7 @@ export default {
 			content: '',
 			category: '', // Catégorie comme une seule chaîne de caractères
 			tags: [], // Tableau pour les tags sélectionnés
-			authorId: '', // Utiliser l'ID utilisateur connu
+			author: '', // Utiliser l'ID utilisateur connu
 		};
 	},
 
@@ -95,13 +95,13 @@ export default {
 
 			// Assurez-vous que localUser existe avant d'essayer d'accéder à _id
 			if (localUser && localUser._id) {
-				this.authorId = localUser._id;
+				this.author = localUser._id;
 			} else {
 				console.error(
 					'Utilisateur local non trouvé dans sessionStorage'
 				);
 				// Gérer le cas où l'utilisateur n'est pas trouvé
-				this.authorId = null; // ou une autre valeur par défaut ou une action
+				this.author = null; // ou une autre valeur par défaut ou une action
 			}
 		},
 		async submitPost() {
@@ -111,7 +111,7 @@ export default {
 					content: this.content,
 					category: this.category, // Catégorie en tant que chaîne de caractères
 					tags: this.tags, // Les tags sont un tableau de chaînes de caractères
-					authorId: this.authorId, // Inclure l'ID de l'auteur
+					author: this.localUser.user, // L'ID de l'utilisateur local
 				};
 
 				const response = await fetch(

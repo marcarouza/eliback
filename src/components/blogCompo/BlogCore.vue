@@ -32,10 +32,10 @@
 							<div>
 								Posté par
 								<a
-									:href="`/users/${post.user._id}`"
+									:href="`/users/${post._id}`"
 									class="text-decoration-none"
 								>
-									{{ post.user.name }}
+									{{ post.author }}
 								</a>
 							</div>
 							<div>
@@ -92,7 +92,10 @@ export default {
 	name: 'BlogCore',
 	data() {
 		return {
-			allPosts: [], // Pour stocker les posts récupérés
+			allPosts: [],
+			authorID: '',
+
+			// Pour stocker les posts récupérés
 		};
 	},
 	methods: {
@@ -122,6 +125,22 @@ export default {
 				);
 			}
 		},
+		getLocalUser() {
+			const localUser = JSON.parse(
+				sessionStorage.getItem('localUser')
+			);
+
+			// Assurez-vous que localUser existe avant d'essayer d'accéder à _id
+			if (localUser && localUser._id) {
+				this.authorId = localUser._id;
+			} else {
+				console.error(
+					'Utilisateur local non trouvé dans sessionStorage'
+				);
+				// Gérer le cas où l'utilisateur n'est pas trouvé
+				this.authorId = null; // ou une autre valeur par défaut ou une action
+			}
+		},
 		formatDate(date) {
 			// Formatage de la date si nécessaire
 			return new Date(date).toLocaleDateString();
@@ -130,6 +149,7 @@ export default {
 	created() {
 		// Appel de la méthode pour récupérer les posts lorsque le composant est monté
 		this.fetchPosts();
+		this.getLocalUser();
 	},
 };
 </script>
