@@ -31,9 +31,9 @@
 			<div class="form-floating mb-4">
 				<select
 					class="form-select"
-					v-model="category"
-					id="category"
-					name="category"
+					v-model="categories"
+					id="categories"
+					name="categories"
 					required
 				>
 					<option value="" disabled selected>
@@ -43,7 +43,7 @@
 					<option value="lifestyle">Tekos Lifestyle</option>
 					<option value="travel">Travel</option>
 				</select>
-				<label for="category">Catégorie</label>
+				<label for="categories">Catégorie</label>
 			</div>
 			<div class="form-floating mb-4">
 				<select
@@ -78,7 +78,7 @@ export default {
 		return {
 			title: '',
 			content: '',
-			category: '', // Catégorie comme une seule chaîne de caractères
+			categories: '', // Catégorie comme une seule chaîne de caractères
 			tags: [], // Tableau pour les tags sélectionnés
 			author: '', // Utiliser l'ID utilisateur connu
 		};
@@ -89,7 +89,8 @@ export default {
 		this.getLocalUser();
 	},
 
-	mounted() {
+	monted() {
+		// Logique pour récupérer l'utilisateur local si nécessaire
 		this.getLocalUser();
 	},
 
@@ -115,10 +116,11 @@ export default {
 				const postData = {
 					title: this.title,
 					content: this.content,
-					category: this.category, // Catégorie en tant que chaîne de caractères
+					categories: this.categories, // Catégorie en tant que chaîne de caractères
 					tags: this.tags, // Les tags sont un tableau de chaînes de caractères
 					author: this.author, // Le pseudo de l'utilisateur local
 				};
+				console.log('🚀 ~ submitPost ~ postData:', postData);
 
 				const response = await fetch(
 					'https://eli-back.onrender.com/api/addOnePost',
@@ -136,7 +138,7 @@ export default {
 					// Réinitialiser le formulaire
 					this.title = '';
 					this.content = '';
-					this.category = '';
+					this.categories = '';
 					this.tags = [];
 					this.$router.push({name: 'homeblogpage'});
 				} else {
