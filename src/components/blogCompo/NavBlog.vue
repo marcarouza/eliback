@@ -1,10 +1,6 @@
 <template>
 	<nav class="navbar navbar-expand-lg bg-info">
 		<div class="container">
-			<!-- <a class="navbar-brand" href="/homeblog" title="accueil du Blog"
-				><i class="bi bi-journal iconi"></i
-			></a> -->
-
 			<router-link
 				class="navbar-brand"
 				:to="{name: 'homeblogpage'}"
@@ -25,9 +21,6 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav me-auto">
-					<!-- <li class="nav-item">
-					<a title="voir tous les articles" class="nav-link btn btn-primary" href="/allPosts">tout voir</a>
-				</li> -->
 					<li class="nav-item">
 						<a
 							title="nouvel article"

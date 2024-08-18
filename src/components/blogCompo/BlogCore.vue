@@ -3,52 +3,77 @@
 		<div class="row">
 			<!-- Blog Posts Section -->
 			<div class="col-md-8">
-				<h2>Articles récents</h2>
+				<h2 class="mb-4">Articles récents</h2>
 				<div
 					v-for="post in posts"
 					:key="post._id"
-					class="card mb-4"
+					class="card mb-4 shadow-sm"
 				>
-					<div class="card-header">{{ post.title }}</div>
+					<div class="card-header bg-primary text-white">
+						<h3 class="mb-0">{{ post.title }}</h3>
+					</div>
 					<div class="card-body">
 						<p class="card-text">
 							{{ post.summary }}
 						</p>
 						<a
 							:href="`/posts/${post._id}`"
-							class="btn btn-primary"
+							class="btn btn-outline-primary"
 						>
-							Read More
+							Lire la suite
 						</a>
 					</div>
-					<div class="card-footer text-muted">
-						Posted by
-						<a :href="`/users/${post.user._id}`">{{
-							post.user.name
-						}}</a>
-						on {{ formatDate(post.createdAt) }}
+					<div
+						class="card-footer text-muted d-flex justify-content-between align-items-center"
+					>
+						<div>
+							Posté par
+							<a
+								:href="`/users/${post.user._id}`"
+								class="text-decoration-none"
+							>
+								{{ post.user.name }}
+							</a>
+						</div>
+						<div>
+							{{ formatDate(post.createdAt) }}
+						</div>
 					</div>
 				</div>
 			</div>
 
 			<!-- Sidebar -->
 			<div class="col-md-4">
-				<h2>À propos de l'auteur</h2>
-				<p class="m-2 mb-3">
-					Quelques mots sur l'auteur : biographie etc.
-				</p>
-				<h3>Categories</h3>
-				<ul class="list-group mb-3">
-					<li class="list-group-item mb-1">
-						<a href="/category/tech">Tech</a>
-					</li>
-					<li class="list-group-item mb-1">
-						<a href="/category/lifestyle">Code</a>
-					</li>
-					<li class="list-group-item mb-1">
-						<a href="/category/travel">Jobs</a>
-					</li>
-				</ul>
+				<div class="p-3 mb-4 bg-light rounded shadow-sm">
+					<h2 class="mb-3">À propos de l'auteur</h2>
+					<p>Quelques mots sur l'auteur : biographie etc.</p>
+				</div>
+				<div class="p-3 bg-light rounded shadow-sm">
+					<h3 class="mb-3">Catégories</h3>
+					<ul class="list-group">
+						<li class="list-group-item mb-2">
+							<a
+								href="/category/tech"
+								class="text-decoration-none"
+								>Tech</a
+							>
+						</li>
+						<li class="list-group-item mb-2">
+							<a
+								href="/category/lifestyle"
+								class="text-decoration-none"
+								>Code</a
+							>
+						</li>
+						<li class="list-group-item">
+							<a
+								href="/category/travel"
+								class="text-decoration-none"
+								>Jobs</a
+							>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -96,5 +121,60 @@ export default {
 </script>
 
 <style scoped>
-/* Ajoutez votre CSS ici */
+.container {
+	max-width: 1100px;
+	margin: auto;
+}
+
+h2 {
+	font-size: 2rem;
+	font-weight: 600;
+	color: #343a40;
+}
+
+.card-header {
+	padding: 15px;
+	font-size: 1.25rem;
+}
+
+.card-text {
+	font-size: 1rem;
+	color: #6c757d;
+}
+
+.card-body {
+	padding: 20px;
+}
+
+.card-footer {
+	padding: 10px 20px;
+	background-color: #f8f9fa;
+}
+
+.btn-outline-primary {
+	font-weight: 600;
+	padding: 10px 20px;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-outline-primary:hover {
+	background-color: #007bff;
+	color: #fff;
+}
+
+.bg-light {
+	background-color: #f8f9fa !important;
+}
+
+.p-3 {
+	padding: 1rem !important;
+}
+
+.shadow-sm {
+	box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+.text-decoration-none {
+	text-decoration: none !important;
+}
 </style>
