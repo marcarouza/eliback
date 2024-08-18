@@ -6,36 +6,41 @@
 				<h2 class="mb-4">Articles récents</h2>
 
 				<div v-if="allPosts.length > 0">
-					v-for="post in allPosts" :key="post._id" class="card
-					mb-4 shadow-sm" >
-					<div class="card-header bg-primary text-white">
-						<h3 class="mb-0">{{ allPosts.title }}</h3>
-					</div>
-					<div class="card-body">
-						<p class="card-text">
-							{{ allPosts.summary }}
-						</p>
-						<a
-							:href="`/posts/${post._id}`"
-							class="btn btn-outline-primary"
-						>
-							Lire la suite
-						</a>
-					</div>
+					<!-- Boucle pour afficher chaque post -->
 					<div
-						class="card-footer text-muted d-flex justify-content-between align-items-center"
+						v-for="post in allPosts"
+						:key="post._id"
+						class="card mb-4 shadow-sm"
 					>
-						<div>
-							Posté par
+						<div class="card-header bg-primary text-white">
+							<h3 class="mb-0">{{ post.title }}</h3>
+						</div>
+						<div class="card-body">
+							<p class="card-text">
+								{{ post.summary }}
+							</p>
 							<a
-								:href="`/users/${post.user._id}`"
-								class="text-decoration-none"
+								:href="`/posts/${post._id}`"
+								class="btn btn-outline-primary"
 							>
-								{{ post.user.name }}
+								Lire la suite
 							</a>
 						</div>
-						<div>
-							{{ formatDate(post.createdAt) }}
+						<div
+							class="card-footer text-muted d-flex justify-content-between align-items-center"
+						>
+							<div>
+								Posté par
+								<a
+									:href="`/users/${post.user._id}`"
+									class="text-decoration-none"
+								>
+									{{ post.user.name }}
+								</a>
+							</div>
+							<div>
+								{{ formatDate(post.createdAt) }}
+							</div>
 						</div>
 					</div>
 				</div>
@@ -98,10 +103,12 @@ export default {
 				);
 				if (response.ok) {
 					const data = await response.json();
-					this.allPosts = data.allPosts;
+					this.allPosts = data.data;
 					console.log(
 						'🚀 ~ fetchPosts ~ data.allPosts:',
-						data.allPosts
+						this.allPosts,
+						'TYPE OF : ',
+						typeof this.allPosts
 					);
 				} else {
 					console.error(
