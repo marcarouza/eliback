@@ -1,4 +1,6 @@
 <template>
+	<!-- <Notif /> -->
+	<Notif_Ex />
 	<header class="py-5">
 		<div class="container px-5">
 			<div class="row gx-3 align-items-center">
@@ -70,13 +72,23 @@
 </template>
 
 <script>
+import Notif from './Notif.vue';
+import Notif_Ex from './Notif_Ex.vue';
+
 export default {
 	name: 'Hero',
 	data() {
-		return {};
+		return {
+			// showNotification: true, // Contrôle l'affichage de la notification
+			// notificationMessage: 'This is a notification message', // Message de la notification
+			// notificationType: 'success', // Type de la notification (info, success, warning, error)
+		};
 	},
-	components: {},
+	components: {Notif_Ex},
 	methods: {
+		handleNotificationClose() {
+			this.showNotification = false; // Ferme la notification lorsque l'événement 'close' est émis
+		},
 		// Vos méthodes ici
 	},
 	computed: {

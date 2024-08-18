@@ -131,7 +131,7 @@ export default {
 			) {
 				try {
 					const response = await fetch(
-						'https://eli-back.onrender.com/create_user',
+						'https://eli-back.onrender.com/api/signUser',
 						{
 							method: 'POST',
 							headers: {

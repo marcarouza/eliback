@@ -164,7 +164,7 @@ export default {
 					);
 					this.specError = errorData.message;
 					// alert(errorData.message);
-					alert('Email ou mot de passe incorrect');
+					alert('⚠️ Email ou mot de passe incorrect');
 				}
 			} catch (err) {
 				console.error(

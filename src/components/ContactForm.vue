@@ -194,6 +194,7 @@ export default {
 			},
 		};
 	},
+	components: {},
 	methods: {
 		async submitForm() {
 			if (
