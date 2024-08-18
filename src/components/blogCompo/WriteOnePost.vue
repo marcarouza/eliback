@@ -2,7 +2,7 @@
 	<div class="container mt-5">
 		<h1 class="text-center mb-4">Rédiger un nouvel article</h1>
 		<form @submit.prevent="submitPost">
-			<div class="form-floating mb-3">
+			<div class="form-floating mb-4">
 				<input
 					type="text"
 					class="form-control"
@@ -14,7 +14,7 @@
 				/>
 				<label for="title">Titre</label>
 			</div>
-			<div class="form-floating mb-3">
+			<div class="form-floating mb-4">
 				<textarea
 					class="form-control"
 					v-model="content"
@@ -26,7 +26,7 @@
 				></textarea>
 				<label for="content">Contenu</label>
 			</div>
-			<div class="form-floating mb-3">
+			<div class="form-floating mb-4">
 				<select
 					class="form-select"
 					v-model="category"
@@ -34,13 +34,16 @@
 					name="category"
 					required
 				>
+					<option value="" disabled selected>
+						Choisir une catégorie
+					</option>
 					<option value="tech">Tech</option>
 					<option value="lifestyle">Tekos Lifestyle</option>
 					<option value="travel">Travel</option>
 				</select>
 				<label for="category">Catégorie</label>
 			</div>
-			<div class="form-floating mb-3">
+			<div class="form-floating mb-4">
 				<select
 					class="form-select"
 					v-model="tags"
@@ -59,7 +62,9 @@
 				</select>
 				<label for="tags">Tags</label>
 			</div>
-			<button type="submit" class="btn btn-primary">Soumettre</button>
+			<button type="submit" class="btn btn-primary w-100 py-3">
+				Soumettre
+			</button>
 		</form>
 	</div>
 </template>
@@ -151,5 +156,51 @@ export default {
 </script>
 
 <style scoped>
-/* Vos styles ici */
+.container {
+	max-width: 800px;
+	margin: auto;
+	padding: 20px;
+	background-color: #f8f9fa;
+	border-radius: 8px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-bottom: 20px;
+	color: #343a40;
+}
+
+.form-floating .form-select,
+.form-floating .form-control,
+.form-floating textarea {
+	padding: 20px 15px;
+	font-size: 1rem;
+	height: auto;
+	border-radius: 8px;
+}
+
+.form-floating label {
+	padding: 0 15px;
+	font-size: 1rem;
+}
+
+.form-floating textarea {
+	min-height: 150px;
+	resize: none;
+}
+
+button[type='submit'] {
+	background-color: #007bff;
+	border: none;
+	font-size: 1.25rem;
+	font-weight: 600;
+	border-radius: 8px;
+	transition: background-color 0.3s ease;
+}
+
+button[type='submit']:hover {
+	background-color: #0056b3;
+}
 </style>
