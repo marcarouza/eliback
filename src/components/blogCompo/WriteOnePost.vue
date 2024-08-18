@@ -100,7 +100,7 @@ export default {
 			);
 
 			// Assurez-vous que localUser existe avant d'essayer d'accéder à _id
-			if (localUser && localUser._id) {
+			if (localUser && localUser.user) {
 				this.author = localUser.user;
 			} else {
 				console.error(
