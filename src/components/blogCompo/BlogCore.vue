@@ -4,17 +4,16 @@
 			<!-- Blog Posts Section -->
 			<div class="col-md-8">
 				<h2 class="mb-4">Articles récents</h2>
-				<div
-					v-for="post in posts"
-					:key="post._id"
-					class="card mb-4 shadow-sm"
-				>
+
+				<div v-if="allPosts.length > 0">
+					v-for="post in allPosts" :key="post._id" class="card
+					mb-4 shadow-sm" >
 					<div class="card-header bg-primary text-white">
-						<h3 class="mb-0">{{ post.title }}</h3>
+						<h3 class="mb-0">{{ allPosts.title }}</h3>
 					</div>
 					<div class="card-body">
 						<p class="card-text">
-							{{ post.summary }}
+							{{ allPosts.summary }}
 						</p>
 						<a
 							:href="`/posts/${post._id}`"
@@ -39,6 +38,10 @@
 							{{ formatDate(post.createdAt) }}
 						</div>
 					</div>
+				</div>
+
+				<div v-else class="hello">
+					<p>Aucune publication pour le moment</p>
 				</div>
 			</div>
 
@@ -84,7 +87,7 @@ export default {
 	name: 'BlogCore',
 	data() {
 		return {
-			posts: [], // Pour stocker les posts récupérés
+			allPosts: [], // Pour stocker les posts récupérés
 		};
 	},
 	methods: {
@@ -95,7 +98,11 @@ export default {
 				);
 				if (response.ok) {
 					const data = await response.json();
-					this.posts = data.allPosts;
+					this.allPosts = data.allPosts;
+					console.log(
+						'🚀 ~ fetchPosts ~ data.allPosts:',
+						data.allPosts
+					);
 				} else {
 					console.error(
 						'Erreur lors de la récupération des posts.'

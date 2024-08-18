@@ -22,30 +22,32 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav me-auto">
 					<li class="nav-item">
-						<a
+						<router-link
 							title="nouvel article"
 							id="blogLink1"
-							@click.prevent="navigateToWrite"
+							to="/writepostPage"
 							class="nav-link"
 							:class="{
 								active:
 									$route.path === '/writepostPage',
 							}"
-							>rédiger</a
 						>
+							rédiger
+						</router-link>
 					</li>
 					<li class="nav-item">
-						<a
+						<router-link
 							title="nouvel article"
 							id="blogLink2"
-							@click.prevent="navigateToSearch"
+							to="/searchpostPage"
 							class="nav-link"
 							:class="{
 								active:
 									$route.path === '/searchpostPage',
 							}"
-							>rechercher</a
 						>
+							rechercher
+						</router-link>
 					</li>
 				</ul>
 			</div>
