@@ -170,7 +170,9 @@ export default {
 						error
 					);
 					this.specError = errorData.message;
-					alert('⚠️ Email ou mot de passe incorrect');
+					alert(
+						'⚠️ EMAIL ou PSEUDO déjà utilisé par un memebre.'
+					);
 				}
 			} else {
 				console.error(
