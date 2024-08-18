@@ -160,13 +160,13 @@ export default {
 					} else {
 						const errorData = await response.json();
 						console.error(
-							'🍌 🍌 🍌 FROM LogUserForm <= ERR de CONNEXION du MEMBRE: ',
+							'🍌 FROM LogUserForm <= ERR de CONNEXION du MEMBRE: ',
 							errorData
 						);
 					}
 				} catch (err) {
 					console.error(
-						'🍌 🍌 🍌 FROM SignUserForm => EMAIL ou PSEUDO EXISTANT lors du SUBMIT du formulaire',
+						'🍌 FROM SignUserForm => EMAIL ou PSEUDO EXISTANT lors du SUBMIT du formulaire',
 						err
 					);
 					this.specError = errorData.message;
@@ -177,7 +177,7 @@ export default {
 				}
 			} else {
 				console.error(
-					'🍌 🍌 🍌 🍌 🍌  ~ FROM SIGNUSERFORM => tous les champs ne sont pas remplis'
+					'🍌 FROM SIGNUSERFORM => tous les champs ne sont pas remplis'
 				);
 			}
 		},
@@ -210,7 +210,7 @@ export default {
 
 				if (!response.ok) {
 					throw new Error(
-						'🍌 🍌 🍌 🍌 🍌 FROM FETCH signUserConfirm  =>  Failed to send message'
+						'🍌 FROM FETCH signUserConfirm  =>  Failed to send message'
 					);
 				}
 
@@ -221,7 +221,7 @@ export default {
 				);
 			} catch (error) {
 				console.error(
-					'🍌 🍌 🍌 🍌 🍌  FROM FETCH signUserConfirm  =>  ERR sending email: ' +
+					'🍌  FROM FETCH signUserConfirm  =>  ERR sending email: ' +
 						error.message
 				);
 			}

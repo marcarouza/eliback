@@ -159,7 +159,7 @@ export default {
 				} else {
 					const errorData = await response.json();
 					console.error(
-						'🍌 🍌 🍌 FROM LogUserForm <= ERR de CONNEXION du MEMBRE: ',
+						'🍌 FROM LogUserForm <= ERR de CONNEXION du MEMBRE: ',
 						errorData
 					);
 					this.specError = errorData.message;
@@ -168,7 +168,7 @@ export default {
 				}
 			} catch (err) {
 				console.error(
-					'🍌 🍌 🍌 FROM LogUserForm => ERR de TRY GLOBAL du SUBMIT du formulaire',
+					'🍌 FROM LogUserForm => ERR de TRY GLOBAL du SUBMIT du formulaire',
 					err
 				);
 			}
@@ -216,13 +216,13 @@ export default {
 					);
 				} catch (error) {
 					console.error(
-						'🍌 🍌 🍌 FROM LogUser checkUserLogged => Error decoding JWT:',
+						'🍌 FROM LogUser checkUserLogged => Error decoding JWT:',
 						error
 					);
 				}
 			} else {
 				console.log(
-					'🍌 🍌 🍌 FROM LogUser checkUserLogged => => No JWT token found'
+					'🍌 FROM LogUser checkUserLogged => => No JWT token found'
 				);
 			}
 		},

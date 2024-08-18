@@ -28,35 +28,30 @@
 			</div>
 			<div class="form-floating mb-3">
 				<select
+					style="min-height: 100px"
 					class="form-select"
-					v-model="category"
-					id="category"
-					name="category"
+					v-model="categories"
+					id="categories"
+					name="categories"
+					multiple
 					required
 				>
 					<option value="tech">Tech</option>
 					<option value="lifestyle">Tekos Lifestyle</option>
 					<option value="travel">Travel</option>
 				</select>
-				<label for="category">Catégorie</label>
+				<label for="categories">Catégories</label>
 			</div>
 			<div class="form-floating mb-3">
-				<select
-					class="form-select"
+				<input
+					type="text"
+					class="form-control"
 					v-model="tags"
 					id="tags"
 					name="tags"
-					multiple
+					placeholder="Séparez les tags par des virgules"
 					required
-				>
-					<option value="JavaScript">JavaScript</option>
-					<option value="VueJS">VueJS</option>
-					<option value="Web Development">
-						Web Development
-					</option>
-					<option value="Programming">Programming</option>
-					<option value="Frontend">Frontend</option>
-				</select>
+				/>
 				<label for="tags">Tags</label>
 			</div>
 			<button type="submit" class="btn btn-primary">Soumettre</button>
@@ -71,41 +66,19 @@ export default {
 		return {
 			title: '',
 			content: '',
-			category: '', // Catégorie comme une seule chaîne de caractères
-			tags: [], // Tableau pour les tags sélectionnés
-			authorId: '', // Utiliser l'ID utilisateur connu
+			categories: [],
+			tags: '',
+			authorId: localUser._id, // Utiliser l'ID utilisateur connu
 		};
 	},
-
-	mounted() {
-		// Logique pour récupérer l'utilisateur local si nécessaire
-		this.getLocalUser();
-	},
-
 	methods: {
-		getLocalUser() {
-			const localUser = JSON.parse(
-				sessionStorage.getItem('localUser')
-			);
-
-			// Assurez-vous que localUser existe avant d'essayer d'accéder à _id
-			if (localUser && localUser._id) {
-				this.authorId = localUser._id;
-			} else {
-				console.error(
-					'Utilisateur local non trouvé dans sessionStorage'
-				);
-				// Gérer le cas où l'utilisateur n'est pas trouvé
-				this.authorId = null; // ou une autre valeur par défaut ou une action
-			}
-		},
 		async submitPost() {
 			try {
 				const postData = {
 					title: this.title,
 					content: this.content,
-					category: this.category, // Catégorie en tant que chaîne de caractères
-					tags: this.tags, // Les tags sont un tableau de chaînes de caractères
+					categories: this.categories,
+					tags: this.tags.split(','), // Transformer les tags en tableau
 					authorId: this.authorId, // Inclure l'ID de l'auteur
 				};
 
@@ -125,9 +98,8 @@ export default {
 					// Réinitialiser le formulaire
 					this.title = '';
 					this.content = '';
-					this.category = '';
-					this.tags = [];
-					this.$router.push({name: 'homeblogpage'});
+					this.categories = [];
+					this.tags = '';
 				} else {
 					const errorData = await response.json();
 					console.error(
