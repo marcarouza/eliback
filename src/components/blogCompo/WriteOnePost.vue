@@ -82,10 +82,14 @@ export default {
 		};
 	},
 
-	mounted() {
+	created() {
 		// Logique pour récupérer l'utilisateur local si nécessaire
 		this.getLocalUser();
 	},
+
+	// mounted() {
+	// 	this.getLocalUser();
+	// },
 
 	methods: {
 		getLocalUser() {
@@ -95,7 +99,7 @@ export default {
 
 			// Assurez-vous que localUser existe avant d'essayer d'accéder à _id
 			if (localUser && localUser._id) {
-				this.author = localUser._id;
+				this.author = localUser.user;
 			} else {
 				console.error(
 					'Utilisateur local non trouvé dans sessionStorage'
@@ -111,7 +115,7 @@ export default {
 					content: this.content,
 					category: this.category, // Catégorie en tant que chaîne de caractères
 					tags: this.tags, // Les tags sont un tableau de chaînes de caractères
-					author: this.localUser.user, // L'ID de l'utilisateur local
+					author: this.author, // Le pseudo de l'utilisateur local
 				};
 
 				const response = await fetch(
