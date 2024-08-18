@@ -115,6 +115,7 @@ export default {
 			},
 			passwordVisible: false,
 			localUser: null,
+			specError: null,
 		};
 	},
 
@@ -157,8 +158,10 @@ export default {
 						this.$router.push({name: 'confirmsignuppage'});
 						// à rempalcer par une NOTIF <= Rediriger vers la page de confirmation
 					} else {
+						const errorData = await response.json();
 						console.error(
-							'🍌 🍌 🍌 🍌 🍌  ~ FROM SignUserForm => ERR lors de la création du MEMBRE'
+							'🍌 🍌 🍌 FROM LogUserForm <= ERR de CONNEXION du MEMBRE: ',
+							errorData
 						);
 					}
 				} catch (error) {
@@ -166,6 +169,8 @@ export default {
 						'🍌 🍌 🍌 🍌 🍌  ~ FROM SignUserForm => ERR lors du SUBMIT du formulaire',
 						error
 					);
+					this.specError = errorData.message;
+					alert('⚠️ Email ou mot de passe incorrect');
 				}
 			} else {
 				console.error(
