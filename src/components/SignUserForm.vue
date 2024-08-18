@@ -164,14 +164,15 @@ export default {
 							errorData
 						);
 					}
-				} catch (error) {
+				} catch (err) {
 					console.error(
-						'🍌 🍌 🍌 🍌 🍌  ~ FROM SignUserForm => ERR lors du SUBMIT du formulaire',
-						error
+						'🍌 🍌 🍌 FROM SignUserForm => EMAIL ou PSEUDO EXISTANT lors du SUBMIT du formulaire',
+						err
 					);
 					this.specError = errorData.message;
 					alert(
-						'⚠️ EMAIL ou PSEUDO déjà utilisé par un memebre.'
+						`⚠️ EMAIL ou PSEUDO déjà utilisé par un membre.
+						Astuce : modifier d'abord le pseudo seul ; si cel ane fonctionne pas modifier l' email.`
 					);
 				}
 			} else {
