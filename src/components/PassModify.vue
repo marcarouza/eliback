@@ -127,13 +127,13 @@ export default {
 				return;
 			}
 
-			console.log('🚀 ~ modifyPWD ~ this.newPWD:', this.newPWD);
+			console.log('🚨 ~ modifyPWD ~ this.newPWD:', this.newPWD);
 			console.log(
-				'🚀 ~ modifyPWD ~ this.currentPWD:',
+				'🚨  ~ modifyPWD ~ this.currentPWD:',
 				this.currentPWD
 			);
 			console.log(
-				'🚀 ~ modifyPWD ~ this.localUser._id:',
+				'🚨 ~ modifyPWD ~ this.localUser._id:',
 				this.localUser
 			);
 
@@ -176,7 +176,7 @@ export default {
 		},
 		checkLocaluser() {
 			this.localUser =
-				JSON.parse(localStirage.getItem('localUser')) || null;
+				JSON.parse(localStorage.getItem('localUser')) || null;
 			console.log(
 				' ℹ️  ✅ ✅  ℹ️ FROM checkLocaluser/modifyPWD ==> this.localUser :',
 				this.localUser
