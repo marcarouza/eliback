@@ -418,18 +418,6 @@ export default {
 </script>
 
 <style scoped>
-.table-striped tbody tr:nth-of-type(odd) {
-	background-color: #343a40 !important; /* Gris foncé */
-}
-
-.table-striped tbody tr:nth-of-type(even) {
-	background-color: #495057 !important; /* Gris foncé légèrement plus clair */
-}
-
-.table-striped tbody tr {
-	color: #ffffff !important; /* Texte en blanc pour le contraste */
-}
-
 .friends,
 .profil,
 .modify {
