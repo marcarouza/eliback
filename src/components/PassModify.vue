@@ -2,14 +2,16 @@
 	<div class="change-password">
 		<h2 class="text-center mb-5">Changer votre mot de passe</h2>
 		<form @submit.prevent="modifyPWD" class="mx-auto">
-			<div class="form-floating mb-3 wider-input">
+			<div class="mb-3 wider-input">
+				<label for="currentPWD" class="form-label"
+					>Mot de passe actuel</label
+				>
 				<div class="input-group">
 					<input
 						:type="currentPWDVisible ? 'text' : 'password'"
 						v-model="currentPWD"
 						class="form-control"
 						id="currentPWD"
-						placeholder="Mot de passe actuel"
 						required
 					/>
 					<button
@@ -26,16 +28,18 @@
 						></i>
 					</button>
 				</div>
-				<label for="currentPWD">Mot de passe actuel</label>
 			</div>
-			<div class="form-floating mb-3 wider-input">
+
+			<div class="mb-3 wider-input">
+				<label for="newPWD" class="form-label"
+					>Nouveau mot de passe</label
+				>
 				<div class="input-group">
 					<input
 						:type="newPWDVisible ? 'text' : 'password'"
 						v-model="newPWD"
 						class="form-control"
 						id="newPWD"
-						placeholder="Nouveau mot de passe"
 						required
 					/>
 					<button
@@ -52,16 +56,18 @@
 						></i>
 					</button>
 				</div>
-				<label for="newPWD">Nouveau mot de passe</label>
 			</div>
-			<div class="form-floating mb-3 wider-input">
+
+			<div class="mb-3 wider-input">
+				<label for="confirmPassword" class="form-label"
+					>Confirmer le mot de passe</label
+				>
 				<div class="input-group">
 					<input
 						:type="confirmPWDvisible ? 'text' : 'password'"
 						v-model="confirmPassword"
 						class="form-control"
 						id="confirmPassword"
-						placeholder="Confirmer le nouveau mot de passe"
 						required
 					/>
 					<button
@@ -78,14 +84,13 @@
 						></i>
 					</button>
 				</div>
-				<label for="confirmPassword"
-					>Confirmer le mot de passe</label
-				>
 			</div>
+
 			<button type="submit" class="btn btn-primary btn-block">
 				<i class="fas fa-key"></i> Modifier
 			</button>
 		</form>
+
 		<p v-if="errorMessage" class="text-danger text-center mt-3">
 			<i class="fas fa-exclamation-circle"></i> {{ errorMessage }}
 		</p>
@@ -119,7 +124,6 @@ export default {
 			if (this.newPWD !== this.confirmPassword) {
 				this.errorMessage =
 					'Les nouveaux mots de passe ne correspondent pas.';
-				alert(this.errorMessage);
 				return;
 			}
 
@@ -141,6 +145,7 @@ export default {
 				);
 
 				const data = await response.json();
+				console.log('ℹ️  FROM /api/modifyPWD  data:', data);
 
 				if (response.ok) {
 					this.successMessage =
