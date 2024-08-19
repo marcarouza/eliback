@@ -62,7 +62,9 @@
 
 			<div class="friends">
 				<h1 class="text-center mb-4">Gestions de votre réseau</h1>
-				<h2>Demandes reçues et envoyées, tous statuts confondus</h2>
+				<h2 class="mb-4">
+					Demandes reçues et envoyées, tous statuts confondus
+				</h2>
 				<table class="table table-striped table-bordered mt-3">
 					<thead>
 						<tr>
@@ -78,14 +80,45 @@
 							v-for="request in user.friendRequestsReceived"
 							:key="request.fromId"
 						>
-							<th>Reçue</th>
+							<th scope="row">
+								<i class="fas fa-inbox"></i> Reçue
+							</th>
 							<td>
 								{{
 									request.fromPseudo ||
 									'Utilisateur inconnu'
 								}}
 							</td>
-							<td>{{ request.status }}</td>
+							<td>
+								<!-- Icônes pour indiquer le statut -->
+								<span
+									v-if="request.status === 'pending'"
+									class="text-warning"
+								>
+									<i
+										class="fas fa-hourglass-half"
+									></i>
+									En attente
+								</span>
+								<span
+									v-if="
+										request.status === 'accepted'
+									"
+									class="text-success"
+								>
+									<i class="fas fa-check-circle"></i>
+									Acceptée
+								</span>
+								<span
+									v-if="
+										request.status === 'rejected'
+									"
+									class="text-danger"
+								>
+									<i class="fas fa-times-circle"></i>
+									Refusée
+								</span>
+							</td>
 							<td>
 								<button
 									v-if="request.status === 'pending'"
@@ -96,6 +129,7 @@
 										)
 									"
 								>
+									<i class="fas fa-check"></i>
 									Accepter
 								</button>
 								<button
@@ -107,13 +141,14 @@
 										)
 									"
 								>
+									<i class="fas fa-times"></i>
 									Refuser
 								</button>
 								<button
 									class="btn btn-secondary btn-sm action"
 									@click="blockUser(request.fromId)"
 								>
-									Bloquer
+									<i class="fas fa-ban"></i> Bloquer
 								</button>
 							</td>
 						</tr>
@@ -123,38 +158,54 @@
 							v-for="request in user.friendRequestsSent"
 							:key="request.toId"
 						>
-							<th>Envoyée</th>
+							<th scope="row">
+								<i class="fas fa-paper-plane"></i>
+								Envoyée
+							</th>
 							<td>
 								{{
 									request.toPseudo ||
 									'Utilisateur inconnu'
 								}}
 							</td>
-							<td>{{ request.status }}</td>
 							<td>
+								<!-- Icônes pour indiquer le statut -->
 								<span
 									v-if="request.status === 'pending'"
-									>En attente...</span
+									class="text-warning"
 								>
+									<i
+										class="fas fa-hourglass-half"
+									></i>
+									En attente
+								</span>
 								<span
 									v-if="
 										request.status === 'accepted'
 									"
 									class="text-success"
-									>Acceptée</span
 								>
+									<i class="fas fa-check-circle"></i>
+									Acceptée
+								</span>
 								<span
 									v-if="
 										request.status === 'rejected'
 									"
 									class="text-danger"
-									>Refusée</span
 								>
+									<i class="fas fa-times-circle"></i>
+									Refusée
+								</span>
+							</td>
+							<td>
+								<!-- Pas d'action pour les demandes envoyées, juste affichage du statut -->
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
+
 			<div class="modify px-5">
 				<div
 					class="d-flex justify-content-between align-items-center"
@@ -368,17 +419,29 @@ export default {
 </script>
 
 <style scoped>
+.table-striped tbody tr:nth-of-type(odd) {
+	background-color: #343a40 !important; /* Gris foncé */
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+	background-color: #495057 !important; /* Gris foncé légèrement plus clair */
+}
+
+.table-striped tbody tr {
+	color: #ffffff !important; /* Texte en blanc pour le contraste */
+}
+
 .friends,
 .profil,
 .modify {
 	margin-top: 2rem;
-	border: 1px solid #ccc;
+	border: 1px solid #b0b0b0;
 	margin: O;
 	padding: 1rem;
 	border-radius: 16px;
 	max-height: 650px;
 	overflow-y: auto;
-	background-color: #f8f9fa;
+	background-color: #e0e0e0;
 }
 
 .modifyProfil {
@@ -397,12 +460,21 @@ export default {
 }
 
 .btn.action {
-	padding: 1rem;
+	padding: rem;
 	border-radius: 0.5rem;
 	width: 150px;
 	height: min-content;
 
 	text-transform: uppercase;
 	letter-spacing: 0.13em;
+}
+
+.table-striped tbody tr {
+	padding: 1rem 0;
+}
+
+th,
+td {
+	padding: 0.5rem 0rem 0.6rem 1rem;
 }
 </style>

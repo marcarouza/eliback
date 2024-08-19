@@ -1,34 +1,63 @@
 <template>
 	<div class="container">
-		<h2 class="mb-5">Liste des membres 01 ( par pseudonymes)</h2>
+		<h2 class="mb-5">Les membres</h2>
+		<h3>
+			Les informations présentés ici sont publiques et autorisées par
+			les membres lors de l'inscription
+		</h3>
 		<div v-if="users.length > 0">
-			<div class="list-group">
-				<div
-					v-for="user in users"
-					:key="user._id"
-					class="list-group-item d-flex justify-content-between align-items-center"
-				>
-					<div>
-						<h5>ID: {{ user._id }}</h5>
-						<h5>{{ user.user }}</h5>
-						<h5>{{ user.isActive }}</h5>
-						<!-- <p class="mb-0 text-muted">{{ user.email }}</p> -->
-					</div>
-					<button
-						class="btn btn-primary"
-						@click="
-							sendFriendReq_NEW(
-								user._id,
-								user.user,
-								user.email
-							)
-						"
-					>
-						Demander en ami
-					</button>
-				</div>
-			</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Utilisateur</th>
+						<th scope="col">Statut</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(user, index) in users" :key="user._id">
+						<th scope="row">{{ index + 1 }}</th>
+						<td>{{ user.user }}</td>
+						<td>
+							<!-- Statut avec couleur personnalisée -->
+							<span v-if="user.isActive">
+								<i
+									class="fas fa-circle"
+									style="color: green"
+								></i>
+								<!-- Icône rouge pour connecté -->
+							</span>
+							<span v-else>
+								<i
+									class="fas fa-circle"
+									style="color: red"
+								></i>
+								<!-- Icône verte pour déconnecté -->
+							</span>
+							{{ user.isActive }}
+						</td>
+						<td>
+							<button
+								class="btn btn-primary"
+								@click="
+									sendFriendReq_NEW(
+										user._id,
+										user.user,
+										user.email
+									)
+								"
+							>
+								<i class="fas fa-user-plus"></i>
+								<!-- Icône pour ajouter en ami -->
+								Ajouter
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
+
 		<div v-else>
 			<p>
 				Impossible d'afficher le membres du site. Soit nous
