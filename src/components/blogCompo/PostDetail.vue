@@ -31,9 +31,15 @@ export default {
 					`https://eli-back.onrender.com/api/onePostById/${postId}`
 				);
 				if (response.ok) {
-					this.post = await response.json();
+					const result = await response.json();
 					console.log(
-						'🚀 ~ fetchOnePost ~ this.post :',
+						'✅ FROM fetchOnePost => ~ result :',
+						result
+					);
+					// Extraire les données du post
+					this.post = result.data;
+					console.log(
+						'✅ FROM fetchOnePost => this.post :',
 						this.post
 					);
 				} else {
