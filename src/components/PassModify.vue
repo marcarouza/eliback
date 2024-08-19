@@ -134,7 +134,7 @@ export default {
 			);
 			console.log(
 				'🚨 ~ modifyPWD ~ this.localUser._id:',
-				this.localUser
+				this.localUser._id
 			);
 
 			try {

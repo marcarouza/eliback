@@ -223,11 +223,6 @@ export default {
 					sessionStorage.clear();
 					localStorage.clear();
 					this.$router.replace({name: 'homepage'});
-					// 					this.$router.push({
-					//   name: 'homepage',
-					//   query: { _t: Date.now() }
-					// });
-					// this.$router.push({name: 'homepage'});
 				} else {
 					console.error('Erreur lors de la déconnexion');
 					throw new Error(
@@ -254,15 +249,6 @@ export default {
 			}
 		},
 		checkLocaluser() {
-			// this.localUser =
-			// 	JSON.parse(localStorage.getItem('localUser')) || null;
-			// console.log(
-			// 	'✅ FROM NAVOK ==> this.localUser :',
-			// 	this.localUser
-			// );
-
-			// sessionStorage.setItem('username', 'JaneDoe');
-
 			if (sessionStorage.getItem('localUser')) {
 				this.localUser = JSON.parse(
 					sessionStorage.getItem('localUser')
