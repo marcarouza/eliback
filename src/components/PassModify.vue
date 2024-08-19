@@ -37,7 +37,11 @@
 					>Confirmer le mot de passe</label
 				>
 			</div>
-			<button type="submit" class="btn btn-primary btn-block">
+			<button
+				@click="handleChangePassword"
+				type="submit"
+				class="btn btn-primary btn-block"
+			>
 				<i class="fas fa-key"></i> Modifier
 			</button>
 		</form>

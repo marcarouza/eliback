@@ -35,7 +35,6 @@
 								></i>
 								<!-- Icône verte pour déconnecté -->
 							</span>
-							{{ user.isActive }}
 						</td>
 						<td>
 							<button
