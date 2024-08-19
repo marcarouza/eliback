@@ -171,8 +171,8 @@ export default {
 							errorData.message.includes('11000')
 						) {
 							alert(
-								`⚠️ PSEUDO ou EMAIL déjà utilisé par un membre.
-                        Astuce : modifiez d'abord le pseudo seul, puis si cela ne fonctionne pas, modifiez l'email.`
+								`⚠️ PSEUDO (ou e-mail) déjà utilisé par un membre.
+                        Conseil : modifiez d'abord le pseudo seulement. Si cela ne fonctionne pas, modifiez l'email.`
 							);
 						}
 					}
@@ -182,10 +182,7 @@ export default {
 						err
 					);
 					this.specError = err.message;
-					alert(
-						`⚠️ EMAIL ou PSEUDO déjà utilisé par un membre.
-						Astuce : modifier d'abord le pseudo seul ; si cel ane fonctionne pas modifier l' email.`
-					);
+					alert(`⚠️ ${this.specError}`);
 				}
 			} else {
 				console.error(
