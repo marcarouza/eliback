@@ -166,7 +166,7 @@ export default {
 		},
 		checkLocaluser() {
 			this.localUser =
-				JSON.parse(localStorage.getItem('localUser')) || null;
+				JSON.parse(sessionStorage.getItem('localUser')) || null;
 			console.log(
 				' ℹ️   ✅   ℹ️ FROM checkLocaluser in modifyPWD ==> this.localUser :',
 				this.localUser
