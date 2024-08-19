@@ -1,7 +1,7 @@
 <template>
 	<div class="change-password">
 		<h2 class="text-center mb-5">Changer votre mot de passe</h2>
-		<form @submit.prevent="handleChangePassword" class="mx-auto">
+		<form @submit.prevent="modifyPWD" class="mx-auto">
 			<div class="form-floating mb-3 wider-input">
 				<input
 					v-model="currentPassword"
@@ -38,7 +38,7 @@
 				>
 			</div>
 			<button
-				@click="handleChangePassword"
+				@click.prevent="modifyPWD"
 				type="submit"
 				class="btn btn-primary btn-block"
 			>
@@ -74,7 +74,7 @@ export default {
 		this.checkLocaluser();
 	},
 	methods: {
-		async handleChangePassword() {
+		async modifyPWD() {
 			// Validation côté client
 			if (this.newPassword !== this.confirmPassword) {
 				this.errorMessage =
