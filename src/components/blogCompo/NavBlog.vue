@@ -1,6 +1,6 @@
 <template>
 	<nav class="navbar navbar-expand-lg bg-info">
-		<div class="container">
+		<div class="container px-5">
 			<router-link
 				class="navbar-brand"
 				:to="{name: 'homeblogpage'}"

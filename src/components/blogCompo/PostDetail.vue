@@ -1,13 +1,21 @@
 <template>
-	<div v-if="post" class="post-detail">
-		<h1>Titre &nbsp;{{ post.title }}</h1>
-		<p>Par {{ post.author }}</p>
-		<p>{{ post.content }}</p>
-		<p>Publié le {{ formatDate(post.createdAt) }}</p>
-	</div>
+	<div class="container mt-5">
+		<div v-if="post" class="post-detail">
+			<h1 class="text-center mb-4">Titre &nbsp;{{ post.title }}</h1>
+			<p class="text-center mb-4">Par {{ post.author }}</p>
+			<div class="content mb-4">
+				<p>{{ post.content }}</p>
+			</div>
+			<p class="text-end text-muted">
+				Publié le {{ formatDate(post.createdAt) }}
+			</p>
+		</div>
 
-	<div v-else class="nopost">
-		<p>Désolé, un poblème technique est survenu</p>
+		<div v-else class="nopost">
+			<p class="text-center">
+				Désolé, un problème technique est survenu
+			</p>
+		</div>
 	</div>
 </template>
 
@@ -49,7 +57,7 @@ export default {
 				}
 			} catch (error) {
 				console.error(
-					'🍌 Erreur CTACH GLBAL lors du FETCH réseau  de récupération du POST : ',
+					'🍌 Erreur CTACH GLBAL lors du FETCH réseau de récupération du POST : ',
 					error
 				);
 			}
@@ -62,9 +70,33 @@ export default {
 </script>
 
 <style scoped>
-.post-detail {
+.container {
 	max-width: 800px;
 	margin: auto;
 	padding: 20px;
+	background-color: #f8f9fa;
+	border-radius: 8px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-bottom: 20px;
+	color: #343a40;
+}
+
+p {
+	font-size: 1rem;
+	line-height: 1.5;
+	color: #343a40;
+}
+
+.content p {
+	margin-bottom: 20px;
+}
+
+.text-muted {
+	color: #6c757d;
 }
 </style>

@@ -11,6 +11,7 @@
 					<div>
 						<h5>ID: {{ user._id }}</h5>
 						<h5>{{ user.user }}</h5>
+						<h5>{{ user.isActive }}</h5>
 						<!-- <p class="mb-0 text-muted">{{ user.email }}</p> -->
 					</div>
 					<button

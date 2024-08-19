@@ -70,14 +70,14 @@
 							<a
 								href="/category/lifestyle"
 								class="text-decoration-none"
-								>Code</a
+								>Lifestyle</a
 							>
 						</li>
 						<li class="list-group-item">
 							<a
 								href="/category/travel"
 								class="text-decoration-none"
-								>Jobs</a
+								>Travel</a
 							>
 						</li>
 					</ul>
@@ -94,8 +94,6 @@ export default {
 		return {
 			allPosts: [],
 			authorID: '',
-
-			// Pour stocker les posts récupérés
 		};
 	},
 	methods: {
@@ -130,24 +128,20 @@ export default {
 				sessionStorage.getItem('localUser')
 			);
 
-			// Assurez-vous que localUser existe avant d'essayer d'accéder à _id
 			if (localUser && localUser._id) {
 				this.authorId = localUser._id;
 			} else {
 				console.error(
 					'Utilisateur local non trouvé dans sessionStorage'
 				);
-				// Gérer le cas où l'utilisateur n'est pas trouvé
-				this.authorId = null; // ou une autre valeur par défaut ou une action
+				this.authorId = null;
 			}
 		},
 		formatDate(date) {
-			// Formatage de la date si nécessaire
 			return new Date(date).toLocaleDateString();
 		},
 	},
 	created() {
-		// Appel de la méthode pour récupérer les posts lorsque le composant est monté
 		this.fetchPosts();
 		this.getLocalUser();
 	},
@@ -158,6 +152,10 @@ export default {
 .container {
 	max-width: 1100px;
 	margin: auto;
+	padding: 20px;
+	background-color: #f8f9fa;
+	border-radius: 8px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 h2 {

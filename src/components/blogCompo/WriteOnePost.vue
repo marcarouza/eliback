@@ -190,7 +190,7 @@ h1 {
 }
 
 .form-floating label {
-	padding: 0 15px;
+	padding: 15px 15px;
 	font-size: 1rem;
 }
 
