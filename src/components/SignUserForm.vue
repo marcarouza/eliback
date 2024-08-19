@@ -164,6 +164,17 @@ export default {
 							'🍌 FROM LogUserForm <= ERR de CONNEXION du MEMBRE: ',
 							errorData
 						);
+						this.specError = errorData.message;
+
+						if (
+							errorData.message &&
+							errorData.message.includes('11000')
+						) {
+							alert(
+								`⚠️ PSEUDO ou EMAIL déjà utilisé par un membre.
+                        Astuce : modifiez d'abord le pseudo seul, puis si cela ne fonctionne pas, modifiez l'email.`
+							);
+						}
 					}
 				} catch (err) {
 					console.error(
