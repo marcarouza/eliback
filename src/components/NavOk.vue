@@ -221,6 +221,7 @@ export default {
 					localStorage.removeItem('localUser'); // Supprimer l'utilisateur de localStorage
 					// sessionStorage.removeItem('localUser');
 					sessionStorage.clear();
+					localStorage.clear();
 					this.$router.replace({name: 'homepage'});
 					// 					this.$router.push({
 					//   name: 'homepage',
