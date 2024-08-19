@@ -61,7 +61,13 @@ export default {
 			confirmPassword: '',
 			errorMessage: '',
 			successMessage: '',
+			localUser: null,
 		};
+	},
+
+	mounted() {
+		// this.createLocalUser();
+		this.checkLocaluser();
 	},
 	methods: {
 		async handleChangePassword() {
@@ -69,12 +75,14 @@ export default {
 			if (this.newPassword !== this.confirmPassword) {
 				this.errorMessage =
 					'Les nouveaux mots de passe ne correspondent pas.';
+				alert(this.errorMessage);
+
 				return;
 			}
 
 			try {
 				const response = await fetch(
-					'https://eli-back.onrender.com/api/changePassword',
+					'https://eli-back.onrender.com/api/modifyPassword',
 					{
 						method: 'POST',
 						headers: {
@@ -82,6 +90,7 @@ export default {
 						},
 						credentials: 'include', // Inclut les cookies pour la session de l'utilisateur
 						body: JSON.stringify({
+							userID: this.localUser._id,
 							currentPassword: this.currentPassword,
 							newPassword: this.newPassword,
 						}),
@@ -94,6 +103,10 @@ export default {
 					this.successMessage =
 						'Mot de passe modifié avec succès.';
 					this.errorMessage = '';
+
+					alert(this.successMessage);
+
+					this.$router.push({name: 'userstatusPage'});
 				} else {
 					this.errorMessage =
 						data.message || "Une erreur s'est produite.";
@@ -104,6 +117,14 @@ export default {
 					'Erreur de connexion. Veuillez réessayer plus tard.';
 				this.successMessage = '';
 			}
+		},
+		checkLocaluser() {
+			this.localUser =
+				JSON.parse(localStorage.getItem('localUser')) || null;
+			console.log(
+				' ℹ️   ✅   ℹ️ FROM UserStatus ==> this.localUser :',
+				this.localUser
+			);
 		},
 	},
 };

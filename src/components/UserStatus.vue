@@ -459,7 +459,7 @@ export default {
 }
 
 .btn.action {
-	padding: rem;
+	padding: 0.3rem;
 	border-radius: 0.5rem;
 	width: 150px;
 	height: min-content;
