@@ -3,45 +3,86 @@
 		<h2 class="text-center mb-5">Changer votre mot de passe</h2>
 		<form @submit.prevent="modifyPWD" class="mx-auto">
 			<div class="form-floating mb-3 wider-input">
-				<input
-					v-model="currentPassword"
-					type="password"
-					class="form-control"
-					id="currentPassword"
-					placeholder="Mot de passe actuel"
-					required
-				/>
-				<label for="currentPassword">Mot de passe actuel</label>
+				<div class="input-group">
+					<input
+						:type="currentPWDVisible ? 'text' : 'password'"
+						v-model="currentPWD"
+						class="form-control"
+						id="currentPWD"
+						placeholder="Mot de passe actuel"
+						required
+					/>
+					<button
+						class="btn btn-outline-secondary"
+						type="button"
+						@click="toggleCurrentPWDVisibility"
+					>
+						<i
+							:class="
+								currentPWDVisible
+									? 'bi bi-eye-slash'
+									: 'bi bi-eye'
+							"
+						></i>
+					</button>
+				</div>
+				<label for="currentPWD">Mot de passe actuel</label>
 			</div>
 			<div class="form-floating mb-3 wider-input">
-				<input
-					v-model="newPassword"
-					type="password"
-					class="form-control"
-					id="newPassword"
-					placeholder="Nouveau mot de passe"
-					required
-				/>
-				<label for="newPassword">Nouveau mot de passe</label>
+				<div class="input-group">
+					<input
+						:type="newPWDVisible ? 'text' : 'password'"
+						v-model="newPWD"
+						class="form-control"
+						id="newPWD"
+						placeholder="Nouveau mot de passe"
+						required
+					/>
+					<button
+						class="btn btn-outline-secondary"
+						type="button"
+						@click="toggleNewPWDVisibility"
+					>
+						<i
+							:class="
+								newPWDVisible
+									? 'bi bi-eye-slash'
+									: 'bi bi-eye'
+							"
+						></i>
+					</button>
+				</div>
+				<label for="newPWD">Nouveau mot de passe</label>
 			</div>
 			<div class="form-floating mb-3 wider-input">
-				<input
-					v-model="confirmPassword"
-					type="password"
-					class="form-control"
-					id="confirmPassword"
-					placeholder="Confirmer le nouveau mot de passe"
-					required
-				/>
+				<div class="input-group">
+					<input
+						:type="confirmPWDvisible ? 'text' : 'password'"
+						v-model="confirmPassword"
+						class="form-control"
+						id="confirmPassword"
+						placeholder="Confirmer le nouveau mot de passe"
+						required
+					/>
+					<button
+						class="btn btn-outline-secondary"
+						type="button"
+						@click="toggleConfirmPasswordVisibility"
+					>
+						<i
+							:class="
+								confirmPWDvisible
+									? 'bi bi-eye-slash'
+									: 'bi bi-eye'
+							"
+						></i>
+					</button>
+				</div>
 				<label for="confirmPassword"
 					>Confirmer le mot de passe</label
 				>
 			</div>
-			<button
-				@click.prevent="modifyPWD"
-				type="submit"
-				class="btn btn-primary btn-block"
-			>
+			<button type="submit" class="btn btn-primary btn-block">
 				<i class="fas fa-key"></i> Modifier
 			</button>
 		</form>
@@ -57,46 +98,44 @@
 <script>
 export default {
 	name: 'PassModify',
-
 	data() {
 		return {
-			currentPassword: '',
-			newPassword: '',
+			currentPWD: '',
+			newPWD: '',
 			confirmPassword: '',
+			currentPWDVisible: false,
+			newPWDVisible: false,
+			confirmPWDvisible: false,
 			errorMessage: '',
 			successMessage: '',
 			localUser: null,
 		};
 	},
-
 	mounted() {
-		// this.createLocalUser();
 		this.checkLocaluser();
 	},
 	methods: {
 		async modifyPWD() {
-			// Validation côté client
-			if (this.newPassword !== this.confirmPassword) {
+			if (this.newPWD !== this.confirmPassword) {
 				this.errorMessage =
 					'Les nouveaux mots de passe ne correspondent pas.';
 				alert(this.errorMessage);
-
 				return;
 			}
 
 			try {
 				const response = await fetch(
-					'https://eli-back.onrender.com/api/modifyPassword',
+					'https://eli-back.onrender.com/api/modifyPWD',
 					{
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
 						},
-						credentials: 'include', // Inclut les cookies pour la session de l'utilisateur
+						credentials: 'include',
 						body: JSON.stringify({
 							userID: this.localUser._id,
-							currentPassword: this.currentPassword,
-							newPassword: this.newPassword,
+							currentPWD: this.currentPWD,
+							newPWD: this.newPWD,
 						}),
 					}
 				);
@@ -107,9 +146,7 @@ export default {
 					this.successMessage =
 						'Mot de passe modifié avec succès.';
 					this.errorMessage = '';
-
 					alert(this.successMessage);
-
 					this.$router.push({name: 'userstatusPage'});
 				} else {
 					this.errorMessage =
@@ -130,6 +167,15 @@ export default {
 				this.localUser
 			);
 		},
+		toggleCurrentPWDVisibility() {
+			this.currentPWDVisible = !this.currentPWDVisible;
+		},
+		toggleNewPWDVisibility() {
+			this.newPWDVisible = !this.newPWDVisible;
+		},
+		toggleConfirmPasswordVisibility() {
+			this.confirmPWDvisible = !this.confirmPWDvisible;
+		},
 	},
 };
 </script>
@@ -147,7 +193,7 @@ export default {
 }
 
 .wider-input {
-	width: 100%; /* Augmente la largeur des champs d'environ 30 % */
+	width: 100%;
 }
 
 .btn-block {
