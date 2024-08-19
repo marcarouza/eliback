@@ -161,7 +161,7 @@ export default {
 					this.successMessage =
 						'Mot de passe modifié avec succès.';
 					this.errorMessage = '';
-					this.$router.push({name: 'userstatusPage'});
+					// this.$router.push({name: 'userstatusPage'});
 				} else {
 					this.errorMessage =
 						data.message || "Une erreur s'est produite.";
