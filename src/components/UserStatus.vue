@@ -211,13 +211,12 @@
 					class="d-flex justify-content-between align-items-center"
 				>
 					<h3>Modifier votre profil</h3>
-					<button
-						type="button"
-						class="btn btn-secondary"
-						@click="initiatePasswordChange"
-					>
-						Changer votre mot de passe
-					</button>
+					<router-link :to="{name: 'passmodifypage'}">
+						<button type="button" class="btn btn-secondary">
+							<i class="fas fa-key"></i> Changer votre mot
+							de passe
+						</button>
+					</router-link>
 				</div>
 
 				<div class="modifyProfil">

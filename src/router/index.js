@@ -20,8 +20,14 @@ import userstatuspage from '../views/UserStatusPage.vue';
 import writepostpage from '../views/WritePostPage.vue';
 import rgpdpage from '../views/CguRgpdPage.vue';
 import postdetailpage from '../views/PostDetailPage.vue';
+import passmodifypage from '../views/PassModifyPage.vue';
 
 const routes = [
+	{
+		path: '/passmodifyPage',
+		name: 'passmodifypage',
+		component: passmodifypage,
+	},
 	{
 		path: '/posts/:id',
 		name: 'postdetailpage',
