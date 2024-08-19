@@ -151,7 +151,6 @@ export default {
 					this.successMessage =
 						'Mot de passe modifié avec succès.';
 					this.errorMessage = '';
-					alert(this.successMessage);
 					this.$router.push({name: 'userstatusPage'});
 				} else {
 					this.errorMessage =
@@ -159,6 +158,7 @@ export default {
 					this.successMessage = '';
 				}
 			} catch (error) {
+				console.log('🚀 ~ CATCH ERR  : ', error);
 				this.errorMessage =
 					'Erreur de connexion. Veuillez réessayer plus tard.';
 				this.successMessage = '';
@@ -168,7 +168,7 @@ export default {
 			this.localUser =
 				JSON.parse(localStorage.getItem('localUser')) || null;
 			console.log(
-				' ℹ️   ✅   ℹ️ FROM UserStatus ==> this.localUser :',
+				' ℹ️   ✅   ℹ️ FROM checkLocaluser in modifyPWD ==> this.localUser :',
 				this.localUser
 			);
 		},
