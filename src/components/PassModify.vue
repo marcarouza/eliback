@@ -127,6 +127,16 @@ export default {
 				return;
 			}
 
+			console.log('🚀 ~ modifyPWD ~ this.newPWD:', this.newPWD);
+			console.log(
+				'🚀 ~ modifyPWD ~ this.currentPWD:',
+				this.currentPWD
+			);
+			console.log(
+				'🚀 ~ modifyPWD ~ this.localUser._id:',
+				this.localUser
+			);
+
 			try {
 				const response = await fetch(
 					'https://eli-back.onrender.com/api/modifyPWD',
@@ -158,7 +168,7 @@ export default {
 					this.successMessage = '';
 				}
 			} catch (error) {
-				console.log('🚀 ~ CATCH ERR  : ', error);
+				console.log('🍌 ~ CATCH ERR  : ', error);
 				this.errorMessage =
 					'Erreur de connexion. Veuillez réessayer plus tard.';
 				this.successMessage = '';
@@ -166,7 +176,7 @@ export default {
 		},
 		checkLocaluser() {
 			this.localUser =
-				JSON.parse(sessionStorage.getItem('localUser')) || null;
+				JSON.parse(localStirage.getItem('localUser')) || null;
 			console.log(
 				' ℹ️  ✅ ✅  ℹ️ FROM checkLocaluser/modifyPWD ==> this.localUser :',
 				this.localUser

@@ -146,10 +146,10 @@ export default {
 					);
 
 					// Stocker l'utilisateur dans localStorage
-					// localStorage.setItem(
-					// 	'localUser',
-					// 	JSON.stringify(this.oneUser)
-					// );
+					localStorage.setItem(
+						'localUser',
+						JSON.stringify(this.oneUser)
+					);
 					sessionStorage.setItem(
 						'localUser',
 						JSON.stringify(this.oneUser)
