@@ -19,12 +19,12 @@
 							<p class="card-text">
 								{{ post.summary }}
 							</p>
-							<router-link
-								:to="`/posts/${post._id}`"
+							<a
+								:href="`/posts/${post._id}`"
 								class="btn btn-outline-primary"
 							>
 								Lire la suite
-							</router-link>
+							</a>
 						</div>
 						<div
 							class="card-footer text-muted d-flex justify-content-between align-items-center"

@@ -19,8 +19,14 @@ import signuserpage from '../views/SignUserPage.vue';
 import userstatuspage from '../views/UserStatusPage.vue';
 import writepostpage from '../views/WritePostPage.vue';
 import rgpdpage from '../views/CguRgpdPage.vue';
+import postdetailpage from '../views/PostDetailPage.vue';
 
 const routes = [
+	{
+		path: '/posts/:id',
+		name: 'postdetailpage',
+		component: postdetailpage,
+	},
 	{
 		path: '/rgpdPage',
 		name: 'rgpdpage',
