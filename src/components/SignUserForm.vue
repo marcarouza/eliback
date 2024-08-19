@@ -171,8 +171,7 @@ export default {
 							errorData.message.includes('11000')
 						) {
 							alert(
-								`⚠️ PSEUDO (ou e-mail) déjà utilisé par un membre.
-                        Conseil : modifiez d'abord le pseudo seulement. Si cela ne fonctionne pas, modifiez l'email.`
+								`⚠️ PSEUDO (ou e-mail) déjà utilisé par un membre. Conseil : modifiez d'abord le pseudo seulement. Si cela ne fonctionne pas, modifiez l'email.`
 							);
 						}
 					}
