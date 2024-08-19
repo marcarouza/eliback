@@ -422,7 +422,7 @@ export default {
 .profil,
 .modify {
 	margin-top: 2rem;
-	border: 1px solid #b0b0b0;
+	border: 1px solid #d5d5d5;
 	margin: O;
 	padding: 1rem;
 	border-radius: 16px;

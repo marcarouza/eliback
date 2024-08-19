@@ -159,6 +159,7 @@ export default {
 						// à rempalcer par une NOTIF <= Rediriger vers la page de confirmation
 					} else {
 						const errorData = await response.json();
+
 						console.error(
 							'🍌 FROM LogUserForm <= ERR de CONNEXION du MEMBRE: ',
 							errorData
@@ -169,7 +170,7 @@ export default {
 						'🍌 FROM SignUserForm => EMAIL ou PSEUDO EXISTANT lors du SUBMIT du formulaire',
 						err
 					);
-					this.specError = errorData.message;
+					this.specError = err.message;
 					alert(
 						`⚠️ EMAIL ou PSEUDO déjà utilisé par un membre.
 						Astuce : modifier d'abord le pseudo seul ; si cel ane fonctionne pas modifier l' email.`
