@@ -418,11 +418,22 @@ export default {
 </script>
 
 <style scoped>
+/* Ligne impaire */
+/* .table-striped tbody tr:nth-of-type(odd) {
+	background-color: #9e2222;
+} */
+
+/* Ligne paire */
+/* .table-striped tbody tr:nth-of-type(even) {
+	background-color: #cbcbcb61;
+	color: #fff;
+} */
+
 .friends,
 .profil,
 .modify {
 	margin-top: 2rem;
-	border: 1px solid #d5d5d5;
+	border: 1px solid #7171715e;
 	margin: O;
 	padding: 1rem;
 	border-radius: 16px;
@@ -454,14 +465,5 @@ export default {
 
 	text-transform: uppercase;
 	letter-spacing: 0.13em;
-}
-
-.table-striped tbody tr {
-	padding: 1rem 0;
-}
-
-th,
-td {
-	padding: 0.5rem 0rem 0.6rem 1rem;
 }
 </style>
