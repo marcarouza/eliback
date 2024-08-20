@@ -9,15 +9,13 @@
 			></button>
 		</div>
 
-		<div v-if="!user" class="chat-body">
-			<span class="bubServer">
-				Pour utiliser la messagerie instantanée, vous devez être
-				connecté(e).
-			</span>
-		</div>
-
-		<div v-else id="allMess" class="chat-body">
+		<div id="allMess" class="chat-body">
 			<!-- Messages vont ici -->
+
+			<span v-if="!isLoggedIn">
+				<!-- Pour utiliser la messagerie instantanée, vous devez être
+				connecté(e). -->
+			</span>
 		</div>
 
 		<div class="chat-footer">
@@ -41,127 +39,82 @@
 </template>
 
 <script>
-import socket from '../socket/socketClient.js';
-console.log('✅ 🐱  FROM ChathBox ===> SOCKET CLIENT : ', socket);
+import socket from '../../socket/socketClient.js';
+console.log('✅ 🐱  FROM ChatBox ===> SOCKET CLIENT : ', socket);
 
 export default {
 	name: 'Chat_Box',
 	data() {
 		return {
-			user: null,
 			isLoggedIn: false,
-			userLocal: null,
-			alllMessages: '',
-
-			// Vos données ici
+			localUser: null,
+			pseudo: '',
+			welcomeMsg:
+				'Pour utiliser la messagerie, vous devez être connecté(e) !',
+			completeID: null,
+			shortClientID: null,
 		};
 	},
 
 	mounted() {
-		this.fetchUserData();
 		this.checkLocalUser();
+		this.setupSocketListeners(this.pseudo);
 	},
+
+	watch: {
+		localUser(newValue) {
+			this.isLoggedIn = !!newValue;
+			if (this.isLoggedIn) {
+				this.pseudo = this.localUser.user;
+				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
+			} else {
+				this.welcomeMsg =
+					'Pour utiliser la messagerie, vous devez être connecté(e) !';
+				this.pseudo = '';
+			}
+			this.serverMsg(this.welcomeMsg);
+			this.displayChat();
+		},
+	},
+
 	methods: {
-		async fetchUserData() {
-			try {
-				const response = await fetch(
-					'https://eli-back.onrender.com/checkUserStatus',
-					{
-						method: 'GET',
-						credentials: 'include', // Pour envoyer les cookies avec la requête
-					}
-				);
-				console.log('🚀 ~ fetchUserData ~ response:', response);
-
-				if (!response.ok) {
-					throw new Error(
-						'🍌 🍌 🍌 🍌 🍌 FROM ChatBox fetchUserData ==> ERR Network response was not ok'
-					);
-				}
-
-				const data = await response.json();
-				this.user = data.user;
-				this.isLoggedIn = true;
-				console.log(
-					'✅ ~ FROM ChatBox fetchUserData  ==> checkUserStatus/ this.user :',
-					this.user
-				);
-				this.serverMsg(
-					`Bonjour ${this.user.user}, vous êtes connecté(e) !!!`
-				); // Afficher le message de bienvenue ici
-				this.setupSocketListeners();
-			} catch (error) {
-				console.error(
-					'🍌 🍌 🍌 🍌 FROM fetchUserData ==> problème avec requête fetch :',
-					error
-				);
-			}
-		},
-
 		checkLocalUser() {
-			this.localUser =
-				JSON.parse(localStorage.getItem('user')) || null;
-			console.log(
-				'✅ 🐱  FROM ChathBox  checkLocalUser ==> this.localUser :',
-				this.localUser
-			);
-
-			if (this.localUser) {
+			const userFromSession = sessionStorage.getItem('localUser');
+			if (userFromSession) {
+				this.localUser = JSON.parse(userFromSession);
 				this.isLoggedIn = true;
-				console.log(
-					'✅ 🐱  FROM ChathBox checkLocalUser() ==>',
-					this.isLoggedIn
-				);
-				// Si l'utilisateur est connecté, on le redirige vers la page du blog
+			} else {
+				this.localUser = null;
+				this.isLoggedIn = false;
 			}
 		},
+		serverMsg(message) {
+			console.log('🚀 ~ serverMsg ~ message:', message);
 
-		addDiv(data) {
-			console.log('🚀 ~ addDiv ~ data:', data);
 			const allMess = document.getElementById('allMess');
 
 			if (!allMess) {
 				console.error(
-					'🐱  🐱  🐱  FROM ChathBox ===> Element with ID "allMess" not found.'
+					'🐱  🐱  🐱  FROM ChatBox ===> Element with ID "allMess" not found.'
 				);
 				return;
 			}
 
-			const myDiv = document.createElement('div');
-			console.log('🚀 ~ addDiv ~ myDiv:', myDiv);
+			const myServerDiv = document.createElement('div');
+			console.log('🚀 ~ addDiv ~ myDiv:', myServerDiv);
 
-			myDiv.classList.add('bub1');
+			myServerDiv.classList.add('bubServer');
 
 			const span = document.createElement('span');
-			span.textContent = data.pseudo
-				? `${data.pseudo}: ${data.text}`
-				: `${data.user}: ${data.text}`;
-			myDiv.appendChild(span);
+			span.textContent = message;
+			myServerDiv.appendChild(span);
 
-			allMess.appendChild(myDiv);
+			allMess.appendChild(myServerDiv);
 		},
-		serverMsg(welcome) {
+
+		sendMess() {
 			const allMess = document.getElementById('allMess');
 
-			if (!allMess) {
-				console.error(
-					'🐱  🐱  🐱  FROM ChathBox ===> Element with ID "allMess"  non trouvé '
-				);
-				return;
-			}
-
-			const myDiv = document.createElement('div');
-			console.log('🚀 ~ addDiv ~ myDiv:', myDiv);
-
-			myDiv.classList.add('bubServer');
-
-			const span = document.createElement('span');
-			span.textContent = welcome;
-			myDiv.appendChild(span);
-
-			allMess.appendChild(myDiv);
-		},
-		sendMess(e) {
 			const messInput = document.getElementById('messInput');
 
 			if (!messInput) {
@@ -174,10 +127,22 @@ export default {
 
 			if (messTxt) {
 				socket.emit('message', messTxt);
+				const myMessDiv = document.createElement('div');
+				console.log('🚀 ~ addDiv ~ myDiv:', myMessDiv);
+
+				myMessDiv.classList.add('bub1');
+
+				const span = document.createElement('span');
+				span.textContent = this.pseudo + messTxt;
+				myMessDiv.appendChild(span);
+
+				allMess.appendChild(myMessDiv);
+
 				messInput.value = '';
 				messInput.focus();
 			}
 		},
+
 		displayChat() {
 			const chatPopin = document.getElementById('chatPopin');
 
@@ -193,34 +158,69 @@ export default {
 			const chatPopin = document.getElementById('chatPopin');
 			chatPopin.classList.add('hide-inactive');
 		},
-		sendMsg() {
-			document
-				.getElementById('msg_form')
-				.addEventListener('submit', this.sendMess);
+
+		addDiv(data) {
+			console.log('🚀 ~ addDiv ~ data:', data);
+			console.log('🚀 ~   data.pseudo — — — —', data.pseudo);
+
+			const allMess = document.getElementById('allMess');
+
+			if (!allMess) {
+				console.error('Element with ID "allMess" not found.');
+				return;
+			}
+
+			const myDiv = document.createElement('div');
+			console.log('🚀 ~ addDiv ~ myDiv:', myDiv);
+
+			myDiv.classList.add('bub1');
+
+			// Create span element
+			const span = document.createElement('span');
+
+			if (data.pseudo) {
+				span.textContent = `${data.pseudo}: ${data.text}`;
+			} else {
+				span.textContent = `${data.user}: ${data.text}`;
+			}
+
+			// Append span to div
+			myDiv.appendChild(span);
+
+			// Append div to allMess
+			allMess.appendChild(myDiv);
 		},
-		setupSocketListeners() {
-			if (this.user) {
+
+		setupSocketListeners(pseudo) {
+			if (this.isLoggedIn) {
 				socket.on('connect', () => {
-					const completeID = socket.id;
-					if (completeID) {
-						console.log('🚀 ~ completeID:', completeID);
-						const shortClientID = completeID.substring(0, 5);
+					this.completeID = socket.id;
+
+					if (this.completeID) {
 						console.log(
-							'🚀 ~ ~ shortClientID:',
-							shortClientID
+							'📱 ~ socket.on ~ this.completeID :',
+							this.completeID
 						);
-						socket.shortClientID = shortClientID;
+						this.shortClientID = this.completeID.substring(
+							0,
+							5
+						);
+						console.log(
+							'🚀 ~ socket.on ~ this.shortClientID:',
+							this.shortClientID
+						);
+						socket.shortClientID = this.shortClientID;
 
 						console.log(
-							`FROM CLIENT => ${shortClientID} es CONNECTÉ !`
+							`📬 📬 📬FROM setupSocketListeners => ${this.shortClientID} = ${pseudo} est CONNECTÉ !`
 						);
-						this.serverMsg(
-							`Bonjour ${shortClientID}, vous êtes connecté(e) !!!`
-						);
+						// this.serverMsg(
+						// 	`Bonjour ${shortClientID}, vous êtes connecté(e) !!!`
+						// );
 					}
 				});
 
-				socket.on('disconnect', () => {
+				socket.on('disconnect', (pseudo, shortClientID) => {
 					const completeID = socket.id;
 					if (completeID) {
 						const shortClientID = completeID.substring(0, 5);
@@ -235,7 +235,7 @@ export default {
 						'STRUCTURE de MSG envoyé à tout le monde : ',
 						data
 					);
-					this.addDiv(data);
+					this.sendMess(data);
 				});
 
 				socket.on('userLeft', (data) => {
@@ -584,7 +584,7 @@ export default {
 	margin-left: 0rem;
 	margin-right: 1rem;
 	max-width: 60%;
-	font-size: 0.9rem;
+	font-size: 0.8rem;
 	color: #101010;
 	box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
 	border: 1px solid #0018314f;
@@ -603,7 +603,7 @@ export default {
 	margin-left: 0rem;
 	margin-right: 1rem;
 	max-width: 60%;
-	font-size: 0.9rem;
+	font-size: 0.8rem;
 	color: #101010;
 }
 
@@ -620,11 +620,11 @@ export default {
 	margin-bottom: 1rem;
 	margin-left: 0rem;
 	margin-right: 1rem;
-	max-width: 60%;
-	font-size: 0.9rem;
-	color: #101010;
+	max-width: 80%;
+	font-size: 0.7rem;
+	color: #004fa4;
 	box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.1);
-	border: 1px solid #0018314f;
+	border: 1px solid #006cdf86;
 }
 
 /* Style pour la modale de connexion */
