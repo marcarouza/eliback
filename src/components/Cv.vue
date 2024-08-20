@@ -15,7 +15,7 @@
 								class="d-flex align-items-center justify-content-between mb-4"
 							>
 								<h2 class="text-primary fw-bolder mb-0">
-									Experience
+									Expèriences professionnelles
 								</h2>
 								<!-- Download resume button-->
 								<!-- Note: Set the link href target to a PDF file within your project-->
@@ -26,7 +26,7 @@
 									<div
 										class="d-inline-block bi bi-download me-2"
 									></div>
-									Download Resume
+									CV
 								</a>
 							</div>
 							<!-- Experience Card 1-->
@@ -46,46 +46,55 @@
 												<div
 													class="text-primary fw-bolder mb-2"
 												>
-													2019 - Present
+													Depuis mars
+													2024
 												</div>
 												<div
 													class="small fw-bolder"
 												>
-													Web Developer
+													Développeur web
 												</div>
 												<div
 													class="small text-muted"
 												>
-													Stark
-													Industries
+													Ifocop
 												</div>
 												<div
 													class="small text-muted"
 												>
-													Los Angeles, CA
+													Paris 11me
 												</div>
 											</div>
 										</div>
 										<div class="col-lg-8">
 											<div>
-												Lorem ipsum dolor
-												sit amet consectetur
-												adipisicing elit.
-												Delectus laudantium,
-												voluptatem quis
-												repellendus eaque
-												sit animi illo ipsam
-												amet officiis
-												corporis sed aliquam
-												non voluptate
-												corrupti excepturi
-												maxime porro fuga.
+												<h6>
+													Refonte du LMS
+													sous Moodle
+												</h6>
+
+												<ul>
+													<li>
+														Scripts JS
+													</li>
+													<li>
+														Templating
+														Html
+													</li>
+													<li>
+														Css
+														Responsive
+													</li>
+													<li>
+														Accessibilité
+													</li>
+												</ul>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<!-- Experience Card 2-->
+							<!-- Experience Card 3-->
 							<div
 								class="card shadow border-0 rounded-4 mb-5"
 							>
@@ -102,52 +111,62 @@
 												<div
 													class="text-primary fw-bolder mb-2"
 												>
-													2017 - 2019
+													2020 - 2023
 												</div>
 												<div
 													class="small fw-bolder"
 												>
-													SEM Specialist
+													Conception de
+													sites internet
 												</div>
 												<div
 													class="small text-muted"
 												>
-													Wayne
-													Enterprises
+													Entreprises et
+													particuliers
 												</div>
 												<div
 													class="small text-muted"
 												>
-													Gotham City, NY
+													Paris, Puteaux,
+													Neuilly
 												</div>
 											</div>
 										</div>
 										<div class="col-lg-8">
 											<div>
-												Lorem ipsum dolor
-												sit amet consectetur
-												adipisicing elit.
-												Delectus laudantium,
-												voluptatem quis
-												repellendus eaque
-												sit animi illo ipsam
-												amet officiis
-												corporis sed aliquam
-												non voluptate
-												corrupti excepturi
-												maxime porro fuga.
+												<h6>
+													Conception de
+													sites internet
+												</h6>
+
+												<ul>
+													<li>
+														Visibilité
+														et
+														performance.
+													</li>
+
+													<li>
+														Adaptation
+														pour des
+														designs
+														responsives
+													</li>
+													<li>
+														Stratégies
+														SEO |
+														Référencement
+														naturel
+													</li>
+												</ul>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</section>
-						<!-- Education Section-->
-						<section>
-							<h2 class="text-secondary fw-bolder mb-4">
-								Education
-							</h2>
-							<!-- Education Card 1-->
+							<!-- Experience Card 4-->
+
 							<div
 								class="card shadow border-0 rounded-4 mb-5"
 							>
@@ -162,61 +181,71 @@
 												class="bg-light p-4 rounded-4"
 											>
 												<div
-													class="text-secondary fw-bolder mb-2"
+													class="text-primary fw-bolder mb-2"
 												>
-													2015 - 2017
-												</div>
-												<div class="mb-2">
-													<div
-														class="small fw-bolder"
-													>
-														Barnett
-														College
-													</div>
-													<div
-														class="small text-muted"
-													>
-														Fairfield,
-														NY
-													</div>
+													2017 - 2022
 												</div>
 												<div
-													class="fst-italic"
+													class="small fw-bolder"
 												>
-													<div
-														class="small text-muted"
-													>
-														Master's
-													</div>
-													<div
-														class="small text-muted"
-													>
-														Web
-														Development
-													</div>
+													Création de
+													tutoriels vidéo
+												</div>
+												<div
+													class="small text-muted"
+												>
+													Indépendant
+												</div>
+												<div
+													class="small text-muted"
+												>
+													Puteaux,
+													Neuilly
 												</div>
 											</div>
 										</div>
 										<div class="col-lg-8">
 											<div>
-												Lorem ipsum dolor
-												sit amet consectetur
-												adipisicing elit.
-												Delectus laudantium,
-												voluptatem quis
-												repellendus eaque
-												sit animi illo ipsam
-												amet officiis
-												corporis sed aliquam
-												non voluptate
-												corrupti excepturi
-												maxime porro fuga.
+												<h6>
+													Plan, écriture,
+													réalisation et
+													montage.
+												</h6>
+
+												<ul>
+													<li>
+														Maintient
+														de
+														l'engagement
+														des
+														utilisateurs
+													</li>
+
+													<li>
+														Réponses
+														aux
+														questions
+														des
+														apprenants
+													</li>
+													<li>
+														Adaptant
+														des
+														contenus
+														aux
+														besoins
+														spécifiques
+														des
+														participants
+													</li>
+												</ul>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<!-- Education Card 2-->
+							<!-- Experience Card 4-->
+
 							<div
 								class="card shadow border-0 rounded-4 mb-5"
 							>
@@ -231,61 +260,87 @@
 												class="bg-light p-4 rounded-4"
 											>
 												<div
-													class="text-secondary fw-bolder mb-2"
+													class="text-primary fw-bolder mb-2"
 												>
-													2011 - 2015
-												</div>
-												<div class="mb-2">
-													<div
-														class="small fw-bolder"
-													>
-														ULA
-													</div>
-													<div
-														class="small text-muted"
-													>
-														Los
-														Angeles,
-														CA
-													</div>
+													2013 - 2022
 												</div>
 												<div
-													class="fst-italic"
+													class="small fw-bolder"
 												>
-													<div
-														class="small text-muted"
-													>
-														Undergraduate
-													</div>
-													<div
-														class="small text-muted"
-													>
-														Computer
-														Science
-													</div>
+													Formateur web |
+													graphisme
+												</div>
+												<div
+													class="small text-muted"
+												>
+													Formateur
+													indépendant
+												</div>
+												<div
+													class="small text-muted"
+												>
+													Ellipse
+													formations
+												</div>
+												<div
+													class="small text-muted"
+												>
+													Puteaux,
+													Neuilly
 												</div>
 											</div>
 										</div>
 										<div class="col-lg-8">
 											<div>
-												Lorem ipsum dolor
-												sit amet consectetur
-												adipisicing elit.
-												Delectus laudantium,
-												voluptatem quis
-												repellendus eaque
-												sit animi illo ipsam
-												amet officiis
-												corporis sed aliquam
-												non voluptate
-												corrupti excepturi
-												maxime porro fuga.
+												<h6>
+													Plan, écriture,
+													réalisation et
+													montage.
+												</h6>
+
+												<ul>
+													<li>
+														Conception
+														et
+														animation
+														de
+														formations
+														destinée à
+														des
+														groupes,
+														en
+														présentiel
+														et en
+														ligne
+													</li>
+
+													<li>
+														Accompagnement
+														des
+														apprenants
+														dans la
+														réalisation
+														de projets
+														concrets
+													</li>
+													<li>
+														Adaptations
+														des
+														contenus
+														aux
+														besoins
+														spécifiques
+														des
+														participants
+													</li>
+												</ul>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</section>
+
 						<!-- Divider-->
 						<div class="pb-5"></div>
 						<!-- Skills Section-->
@@ -312,8 +367,7 @@
 											>
 												<span
 													class="text-gradient d-inline"
-													>Professional
-													Skills</span
+													>Compétences</span
 												>
 											</h3>
 										</div>
@@ -326,8 +380,8 @@
 												<div
 													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
 												>
-													SEO/SEM
-													Marketing
+													Développement
+													Web
 												</div>
 											</div>
 											<div
@@ -336,15 +390,15 @@
 												<div
 													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
 												>
-													Statistical
-													Analysis
+													Gestion de
+													Versions
 												</div>
 											</div>
 											<div class="col">
 												<div
 													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
 												>
-													Web Development
+													Vidéo | Audio
 												</div>
 											</div>
 										</div>
@@ -357,8 +411,7 @@
 												<div
 													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
 												>
-													Network
-													Security
+													Base de Données
 												</div>
 											</div>
 											<div
@@ -367,16 +420,15 @@
 												<div
 													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
 												>
-													Adobe Software
-													Suite
+													Graphisme
 												</div>
 											</div>
 											<div class="col">
 												<div
 													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
 												>
-													User Interface
-													Design
+													Création de
+													Contenu
 												</div>
 											</div>
 										</div>
@@ -398,8 +450,9 @@
 											>
 												<span
 													class="text-gradient d-inline"
-													>Languages</span
-												>
+													>Langages |
+													Technologies
+												</span>
 											</h3>
 										</div>
 										<div
@@ -411,7 +464,7 @@
 												<div
 													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
 												>
-													HTML
+													HTML 5
 												</div>
 											</div>
 											<div
@@ -440,7 +493,7 @@
 												<div
 													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
 												>
-													Python
+													MongoDB
 												</div>
 											</div>
 											<div
@@ -449,7 +502,7 @@
 												<div
 													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
 												>
-													Ruby
+													Express
 												</div>
 											</div>
 											<div class="col">
@@ -457,6 +510,151 @@
 													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
 												>
 													Node.js
+												</div>
+											</div>
+										</div>
+										<div
+											class="row row-cols-1 row-cols-md-3 mt-4"
+										>
+											<div
+												class="col mb-4 mb-md-0"
+											>
+												<div
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+												>
+													Git
+												</div>
+											</div>
+											<div
+												class="col mb-4 mb-md-0"
+											>
+												<div
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+												>
+													Bootstrap 5
+												</div>
+											</div>
+											<div class="col">
+												<div
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+												>
+													Ajax
+												</div>
+											</div>
+											<div class="col mt-4">
+												<div
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+												>
+													Interfaces API
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- Languages list-->
+									<div class="mb-0 mt-5">
+										<div
+											class="d-flex align-items-center mb-4"
+										>
+											<div
+												class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3"
+											>
+												<i
+													class="bi bi-code-slash"
+												></i>
+											</div>
+											<h3
+												class="fw-bolder mb-0"
+											>
+												<span
+													class="text-gradient d-inline"
+													>FrameWorks</span
+												>
+											</h3>
+										</div>
+										<div
+											class="row row-cols-1 row-cols-md-3 mb-4"
+										>
+											<div
+												class="col mb-4 mb-md-0"
+											>
+												<div
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+												>
+													Vue JS
+												</div>
+											</div>
+											<div
+												class="col mb-4 mb-md-0"
+											>
+												<div
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+												>
+													Angular
+												</div>
+											</div>
+										</div>
+										<div
+											class="row row-cols-1 row-cols-md-3"
+										></div>
+									</div>
+									<div class="mb-0 mt-5">
+										<div
+											class="d-flex align-items-center mb-4"
+										>
+											<div
+												class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3"
+											>
+												<i
+													class="bi bi-code-slash"
+												></i>
+											</div>
+											<h3
+												class="fw-bolder mb-0"
+											>
+												<span
+													class="text-gradient d-inline"
+													>Logiciels</span
+												>
+											</h3>
+										</div>
+										<div
+											class="row row-cols-1 row-cols-md-3 mb-4"
+										>
+											<div
+												class="col mb-4 mb-md-0"
+											>
+												<div
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+												>
+													Visual Studio
+													Code
+												</div>
+											</div>
+											<div
+												class="col mb-4 mb-md-0"
+											>
+												<div
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+												>
+													Bruno
+												</div>
+											</div>
+											<div
+												class="col mb-4 mb-md-0"
+											>
+												<div
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+												>
+													Photoshop
+												</div>
+											</div>
+											<div
+												class="col mb-4 mb-md-0 mt-4"
+											>
+												<div
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+												>
+													LightRoom
 												</div>
 											</div>
 										</div>
