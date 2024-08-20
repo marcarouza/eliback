@@ -4,37 +4,21 @@
 			<div class="row">
 				<!-- Logo et informations -->
 				<div class="col-md-4 mb-1">
-					<hr />
-					<p>© 2024 eliazoura.fr Tous droits réservés.</p>
+					<p>
+						© 2024 | eliazoura.fr
+						<br />
+					</p>
 					<p class="small">
 						En utilisant ce site, vous acceptez notre
 						utilisation des cookies conformément à notre
-						<router-link
-							:to="{name: 'rgpdpage'}"
-							class="text-white"
-						>
-							<u>Politique de confidentialité</u>
+						<router-link :to="{name: 'rgpdpage'}">
+							<u>politique de confidentialité</u>
 						</router-link>
 					</p>
 				</div>
 
 				<!-- Liens utiles -->
-				<div class="col-md-4 mb-1">
-					<hr />
-					<ul class="list-unstyled">
-						<li class="nav-item">
-							<router-link
-								active-class="active"
-								class="nav-link"
-								to="/apiPage"
-								>api</router-link
-							>
-						</li>
-						<li class="nav-item">
-							version 1.5 du 19.08-13h55
-						</li>
-					</ul>
-				</div>
+				<div class="col-md-4 mb-1"></div>
 
 				<!-- Réseaux sociaux -->
 				<div class="col-md-4 mb-1 d-flex justify-content-end">
@@ -60,17 +44,6 @@
 							>
 								<span class="me-2">LinkedIn</span>
 								<i class="fab fa-linkedin"></i>
-							</a>
-						</li>
-						<li
-							class="mb-2 d-flex justify-content-end align-items-center"
-						>
-							<a
-								href="https://www.youtube.com/c/eliazoura"
-								class="text-white d-flex align-items-center"
-							>
-								<span class="me-2">YouTube</span>
-								<i class="fab fa-youtube"></i>
 							</a>
 						</li>
 					</ul>
