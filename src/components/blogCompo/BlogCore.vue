@@ -93,6 +93,7 @@ export default {
 	data() {
 		return {
 			allPosts: [],
+			author: '',
 			authorID: '',
 		};
 	},
@@ -129,7 +130,9 @@ export default {
 			);
 
 			if (localUser && localUser._id) {
-				this.authorId = localUser._id;
+				this.author = localUser.user;
+
+				this.authorID = localUser._id;
 			} else {
 				console.error(
 					'Utilisateur local non trouvé dans sessionStorage'

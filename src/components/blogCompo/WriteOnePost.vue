@@ -84,11 +84,6 @@ export default {
 		};
 	},
 
-	created() {
-		// Logique pour récupérer l'utilisateur local si nécessaire
-		this.getLocalUser();
-	},
-
 	monted() {
 		// Logique pour récupérer l'utilisateur local si nécessaire
 		this.getLocalUser();
@@ -98,6 +93,10 @@ export default {
 		getLocalUser() {
 			const localUser = JSON.parse(
 				sessionStorage.getItem('localUser')
+			);
+			console.log(
+				'🚨 ~ FROM getLocalUser in WRITEPOST / localUser:',
+				localUser
 			);
 
 			// Assurez-vous que localUser existe avant d'essayer d'accéder à _id
