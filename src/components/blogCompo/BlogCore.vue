@@ -17,7 +17,7 @@
 						</div>
 						<div class="card-body">
 							<p class="card-text">
-								{{ post.summary }}
+								{{ post.content }}
 							</p>
 							<router-link
 								:to="`/posts/${post._id}`"

@@ -95,7 +95,7 @@ export default {
 				sessionStorage.getItem('localUser')
 			);
 			console.log(
-				'🚨 ~ FROM getLocalUser in WRITEPOST / localUser:',
+				'🚨 FROM getLocalUser in WRITEPOST / localUser :',
 				localUser
 			);
 

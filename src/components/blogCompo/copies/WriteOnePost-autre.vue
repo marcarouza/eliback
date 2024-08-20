@@ -68,7 +68,7 @@ export default {
 			content: '',
 			categories: [],
 			tags: '',
-			authorId: localUser._id, // Utiliser l'ID utilisateur connu
+			author: '', // Utiliser l'ID utilisateur connu
 		};
 	},
 	methods: {
@@ -79,7 +79,7 @@ export default {
 					content: this.content,
 					categories: this.categories,
 					tags: this.tags.split(','), // Transformer les tags en tableau
-					authorId: this.authorId, // Inclure l'ID de l'auteur
+					author: this.author, // Inclure  l'auteur
 				};
 
 				const response = await fetch(
