@@ -84,7 +84,7 @@ export default {
 		};
 	},
 
-	monted() {
+	mounted() {
 		// Logique pour récupérer l'utilisateur local si nécessaire
 		this.getLocalUser();
 	},
