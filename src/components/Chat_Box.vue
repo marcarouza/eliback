@@ -157,7 +157,7 @@ export default {
 				myMessDiv.classList.add('bub1');
 
 				const span = document.createElement('span');
-				span.textContent = this.pseudo + messTxt;
+				span.textContent = this.pseudo + ' : ' + messTxt;
 				myMessDiv.appendChild(span);
 
 				allMess.appendChild(myMessDiv);
@@ -183,38 +183,36 @@ export default {
 			chatPopin.classList.add('hide-inactive');
 		},
 
-		addDiv() {
-			const addDiv = (data) => {
-				console.log('🚀 ~ addDiv ~ data:', data);
-				console.log('🚀 ~   data.pseudo — — — —', data.pseudo);
+		addDiv(data) {
+			console.log('🚀 ~ addDiv ~ data:', data);
+			console.log('🚀 ~   data.pseudo — — — —', data.pseudo);
 
-				const allMess = document.getElementById('allMess');
+			const allMess = document.getElementById('allMess');
 
-				if (!allMess) {
-					console.error('Element with ID "allMess" not found.');
-					return;
-				}
+			if (!allMess) {
+				console.error('Element with ID "allMess" not found.');
+				return;
+			}
 
-				const myDiv = document.createElement('div');
-				console.log('🚀 ~ addDiv ~ myDiv:', myDiv);
+			const myDiv = document.createElement('div');
+			console.log('🚀 ~ addDiv ~ myDiv:', myDiv);
 
-				myDiv.classList.add('bub1');
+			myDiv.classList.add('bub1');
 
-				// Create span element
-				const span = document.createElement('span');
+			// Create span element
+			const span = document.createElement('span');
 
-				if (data.pseudo) {
-					span.textContent = `${data.pseudo}: ${data.text}`;
-				} else {
-					span.textContent = `${data.user}: ${data.text}`;
-				}
+			if (data.pseudo) {
+				span.textContent = `${data.pseudo}: ${data.text}`;
+			} else {
+				span.textContent = `${data.user}: ${data.text}`;
+			}
 
-				// Append span to div
-				myDiv.appendChild(span);
+			// Append span to div
+			myDiv.appendChild(span);
 
-				// Append div to allMess
-				allMess.appendChild(myDiv);
-			};
+			// Append div to allMess
+			allMess.appendChild(myDiv);
 		},
 
 		setupSocketListeners(pseudo) {
@@ -237,12 +235,11 @@ export default {
 						);
 						socket.shortClientID = this.shortClientID;
 
+						socket.pseudo = this.pseudo;
+
 						console.log(
 							`📬 📬 📬FROM setupSocketListeners => ${this.shortClientID} = ${pseudo} est CONNECTÉ !`
 						);
-						// this.serverMsg(
-						// 	`Bonjour ${shortClientID}, vous êtes connecté(e) !!!`
-						// );
 					}
 				});
 
