@@ -12,20 +12,18 @@
 						</tr>
 						<tr>
 							<th>Nom</th>
-							<td>{{ user.nom || 'Non défini' }}</td>
+							<td>{{ user.lastname || 'Non défini' }}</td>
 						</tr>
 						<tr>
 							<th>Prénom</th>
-							<td>{{ user.prenom || 'Non défini' }}</td>
+							<td>{{ user.firstname || 'Non défini' }}</td>
 						</tr>
 						<tr>
 							<th>Date de naissance</th>
 							<td>
 								{{
-									user.dateNaissance
-										? formatDate(
-												user.dateNaissance
-										  )
+									user.birthdate
+										? formatDate(user.birthdate)
 										: 'Non définie'
 								}}
 							</td>
@@ -208,9 +206,9 @@
 
 			<div class="modify px-5">
 				<div
-					class="d-flex justify-content-between align-items-center"
+					class="d-flex justify-content-between align-items-center p-3"
 				>
-					<h3>Modifier votre profil</h3>
+					<h3>Compléter votre profil</h3>
 					<router-link :to="{name: 'passmodifypage'}">
 						<button type="button" class="btn btn-secondary">
 							<i class="fas fa-key"></i> Changer votre mot
@@ -220,62 +218,40 @@
 				</div>
 
 				<div class="modifyProfil">
-					<form @submit.prevent="updateProfile">
-						<div class="mb-3">
-							<label for="nom" class="form-label"
-								>Nom</label
-							>
+					<form @submit.prevent="convertDate">
+						<div class="mb-3 form-floating">
 							<input
-								v-model="profileForm.nom"
+								v-model="lastname"
 								type="text"
 								class="form-control"
-								id="nom"
+								id="lastname"
+								placeholder="Nom"
 							/>
+							<label for="lastname">Nom</label>
 						</div>
-						<div class="mb-3">
-							<label for="prenom" class="form-label"
-								>Prénom</label
-							>
+						<div class="mb-3 form-floating">
 							<input
-								v-model="profileForm.prenom"
+								v-model="firstname"
 								type="text"
 								class="form-control"
-								id="prenom"
+								id="firstname"
+								placeholder="Prénom"
 							/>
+							<label for="firstname">Prénom</label>
 						</div>
-						<div class="mb-3">
-							<label for="dateNaissance" class="form-label"
-								>Date de naissance</label
-							>
+						<div class="mb-3 form-floating">
 							<input
-								v-model="profileForm.dateNaissance"
+								v-model="birthDate"
 								type="date"
 								class="form-control"
-								id="dateNaissance"
+								id="birthDate"
+								placeholder="Date de naissance"
 							/>
-						</div>
-						<div class="mb-3">
-							<label for="pseudo" class="form-label"
-								>Pseudo</label
+							<label for="birthDate"
+								>Date de naissance</label
 							>
-							<input
-								v-model="profileForm.pseudo"
-								type="text"
-								class="form-control"
-								id="pseudo"
-							/>
 						</div>
-						<div class="mb-3">
-							<label for="email" class="form-label"
-								>Email</label
-							>
-							<input
-								v-model="profileForm.email"
-								type="email"
-								class="form-control"
-								id="email"
-							/>
-						</div>
+
 						<div class="d-flex justify-content-center">
 							<button
 								type="submit"
@@ -302,21 +278,60 @@ export default {
 		return {
 			user: null,
 			msgRes: '',
-			profileForm: {
-				nom: '',
-				prenom: '',
-				dateNaissance: '',
-				pseudo: '',
-				email: '',
-			},
+			lastname: '',
+			firstname: '',
+			birthDate: '',
 			localUser: null,
 		};
+	},
+
+	computed: {
+		infoPlus() {
+			return {
+				firstname: this.firstname,
+				lastname: this.lastname,
+				birthDate: this.birthDate,
+			};
+		},
 	},
 	mounted() {
 		this.fetchUserData();
 		this.checkLocaluser();
 	},
 	methods: {
+		async completeProfile() {
+			await fetch(
+				`https://eli-back.onrender.com/api/completeProfile`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(infoPlus),
+				}
+			);
+		},
+
+		convertDate() {
+			// Diviser la date en jour, mois et année
+			const [day, month, year] = this.birthDate.split('-');
+
+			console.log('🚀 ~ completeProfile ~ year:', year);
+			console.log('🚀 ~ completeProfile ~ month:', month);
+			console.log('🚀 ~ completeProfile ~ day:', day);
+			// Les mois en JavaScript sont indexés à partir de 0, donc soustraire 1 au mois
+			const date = new Date(year, month - 1, day).getTime();
+
+			console.log('🚀 ~ completeProfile ~ date:', date);
+
+			console.log(
+				'🚨  infoPlus  :   ',
+				this.infoPlus,
+				typeof this.infoPlus
+			);
+
+			// return date.getTime();
+		},
 		async fetchUserData() {
 			try {
 				const response = await fetch(
@@ -439,14 +454,14 @@ export default {
 	border-radius: 16px;
 	max-height: 650px;
 	overflow-y: auto;
-	background-color: #e0e0e0;
+	background-color: #eeeeee;
 }
 
 .modifyProfil {
 	margin-top: 2rem;
-	margin: 0 5rem;
+	margin: 0 2rem;
 	padding: 1rem;
-	border-radius: 16px;
+	border-radius: 10px;
 	max-height: 650px;
 	overflow-y: auto;
 	background-color: #f8f9fa;

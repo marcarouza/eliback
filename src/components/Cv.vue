@@ -4,7 +4,7 @@
 			<div class="container px-5 my-5">
 				<div class="text-center mb-5">
 					<h1 class="display-5 fw-bolder mb-0">
-						<span class="text-gradient d-inline">Resume</span>
+						<span class="text-gradient d-inline">mon CV</span>
 					</h1>
 				</div>
 				<div class="row gx-5 justify-content-center">
@@ -21,7 +21,7 @@
 								<!-- Note: Set the link href target to a PDF file within your project-->
 								<a
 									class="btn btn-primary px-4 py-3"
-									href="#!"
+									href="/pix/cv/elicv.pdf"
 								>
 									<div
 										class="d-inline-block bi bi-download me-2"

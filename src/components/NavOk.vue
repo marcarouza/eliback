@@ -24,7 +24,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ms-auto">
-					<li class="nav-item">
+					<li class="nav-item small-caps">
 						<router-link
 							active-class="active"
 							class="nav-link"
@@ -32,7 +32,7 @@
 							>cv</router-link
 						>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item small-caps">
 						<router-link
 							active-class="active"
 							class="nav-link"
@@ -40,7 +40,7 @@
 							>projets</router-link
 						>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item small-caps">
 						<router-link
 							active-class="active"
 							class="nav-link"
@@ -49,18 +49,19 @@
 						>
 					</li>
 
-					<li>
+					<li nav-item>
 						<a
 							id="blogLink"
 							@click.prevent="navigateToBlog"
-							class="nav-link"
+							class="nav-link small-caps"
 							:class="{
 								active: $route.path === '/homeblogPage',
 							}"
 							>blog</a
 						>
 					</li>
-
+				</ul>
+				<ul class="navbar-nav ms-auto">
 					<li class="nav-item dropdown">
 						<a
 							class="nav-link dropdown-toggle btn text-white border border-white border-opacity-25"
@@ -294,6 +295,9 @@ export default {
 </script>
 
 <style scoped>
+.small-caps {
+	font-variant: small-caps;
+}
 .hello {
 	font-size: 1rem;
 	color: rgb(255, 255, 255);
