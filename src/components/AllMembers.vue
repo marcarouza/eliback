@@ -1,17 +1,19 @@
 <template>
 	<div class="container">
-		<h2 class="mb-5">Les membres</h2>
-		<h3>
+		<h2 class="mb-3">Les membres</h2>
+		<h5 class="mb-3">
 			Les informations présentés ici sont publiques et autorisées par
 			les membres lors de l'inscription
-		</h3>
-		<div v-if="users.length > 0">
+		</h5>
+		<div class="card p-3" v-if="users.length > 0">
 			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
 						<th scope="col">Utilisateur</th>
-						<th scope="col">Statut</th>
+						<th class="text-center" scope="col">
+							État en ligne
+						</th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>
@@ -19,7 +21,7 @@
 					<tr v-for="(user, index) in users" :key="user._id">
 						<th scope="row">{{ index + 1 }}</th>
 						<td>{{ user.user }}</td>
-						<td>
+						<td class="text-center">
 							<!-- Statut avec couleur personnalisée -->
 							<span v-if="user.isActive">
 								<i
@@ -154,14 +156,11 @@ export default {
 					);
 				} else {
 					throw new Error(
-						`🍌 🍌 🍌 🍌 FROM fetchAllMembers ERR HTTP: ${response.status}`
+						`🍌  FROM fetchAllMembers ERR HTTP: ${response.status}`
 					);
 				}
 			} catch (err) {
-				console.error(
-					'🍌 🍌 🍌  ERR de récupération des membres:',
-					err
-				);
+				console.error('🍌  ERR de récupération des membres:', err);
 				// Vous pouvez également afficher un message d'erreur à l'utilisateur ici
 			}
 		},
@@ -190,12 +189,6 @@ export default {
 						data
 					);
 					this.msgRes = `✅ Demande d'ami envoyée à ${toPseudo}`;
-
-					// this.sendMAILreq2Friend(
-					// 	this.localUser,
-					// 	toPseudo,
-					// 	toEmail
-					// );
 				} else if (response.status === 409) {
 					// Si le statut est 409, c'est un conflit : demande déjà envoyée
 					this.msgRes = `⚠️ Une demande d'ami a déjà été envoyée à cette personne.`;
