@@ -147,44 +147,44 @@ export default {
 					data
 				);
 
-				this.serverMsg(data);
+				this.sendMess(data, 'bub1');
 			});
 
 			socket.on('userLeft', (data) => {
-				this.serverMsg(data);
+				this.sendMess(data, 'bubServer');
 			});
 
 			socket.on('userConnected', (data) => {
-				this.serverMsg(data);
+				this.sendMess(data, 'bubServer');
 			});
 		},
 		//
 
-		serverMsg(message) {
-			console.log('🚀 ~ serverMsg ~ message:', message);
+		// serverMsg(message) {
+		// 	console.log('🚀 ~ serverMsg ~ message:', message);
 
-			const allMess = document.getElementById('allMess');
+		// 	const allMess = document.getElementById('allMess');
 
-			if (!allMess) {
-				console.error(
-					'🐱  🐱  🐱  FROM ChatBox ===> Element with ID "allMess" not found.'
-				);
-				return;
-			}
+		// 	if (!allMess) {
+		// 		console.error(
+		// 			'🐱  🐱  🐱  FROM ChatBox ===> Element with ID "allMess" not found.'
+		// 		);
+		// 		return;
+		// 	}
 
-			const myServerDiv = document.createElement('div');
-			console.log('🚀 ~ addDiv ~ myDiv:', myServerDiv);
+		// 	const myServerDiv = document.createElement('div');
+		// 	console.log('🚀 ~ addDiv ~ myDiv:', myServerDiv);
 
-			myServerDiv.classList.add('bubServer');
+		// 	myServerDiv.classList.add('bubServer');
 
-			const span = document.createElement('span');
-			span.textContent = message;
-			myServerDiv.appendChild(span);
+		// 	const span = document.createElement('span');
+		// 	span.textContent = message;
+		// 	myServerDiv.appendChild(span);
 
-			allMess.appendChild(myServerDiv);
-		},
+		// 	allMess.appendChild(myServerDiv);
+		// },
 
-		sendMess(message) {
+		sendMess(fromClass) {
 			const allMess = document.getElementById('allMess');
 			const messInput = document.getElementById('messInput');
 
@@ -204,9 +204,9 @@ export default {
 				);
 
 				const myMessDiv = document.createElement('div');
-				console.log('🚀 ~ addDiv ~ myDiv:', myMessDiv);
+				// console.log('🚀 ~ addDiv ~ myDiv:', myMessDiv);
 
-				myMessDiv.classList.add('bub1');
+				myMessDiv.classList.add(fromClass);
 
 				const span = document.createElement('span');
 				span.textContent = this.pseudo + ' : ' + messTrim;
@@ -227,7 +227,7 @@ export default {
 			console.log('🚀 ~ receivedMessage ~ data:', data);
 		},
 
-		addDiv(data) {
+		addDiv(data, params) {
 			console.log('🚀 ~ addDiv ~ data:', data);
 			console.log('🚀 ~   data.pseudo — — — —', data.pseudo);
 
