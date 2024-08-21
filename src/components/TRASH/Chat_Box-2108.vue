@@ -24,9 +24,14 @@
 					id="messInput"
 					type="text"
 					class="form-control"
+					:disabled="!isLoggedIn"
 					placeholder="Votre message..."
 				/>
-				<button id="sendMsg" class="btn btn-primary send-button">
+				<button
+					id="sendMsg"
+					:disabled="!isLoggedIn"
+					class="btn btn-primary send-button"
+				>
 					<i class="bi bi-send"></i>
 				</button>
 			</form>
@@ -48,99 +53,160 @@ export default {
 		return {
 			isLoggedIn: false,
 			localUser: null,
-			pseudo: '',
+			pseudo: null,
 			welcomeMsg:
 				'Pour utiliser la messagerie, vous devez être connecté(e) !',
-			completeID: null,
+			socketID: null,
 			shortClientID: null,
+			userFromSession: null,
+			userFromStorage: null,
+			finalMessage: null,
 		};
 	},
 
 	mounted() {
-		this.checkLocalUser();
-		this.setupSocketListeners(this.pseudo);
+		this.getLocalUser();
+		this.hideChat();
 	},
-
-	watch: {
-		localUser(newValue) {
-			this.isLoggedIn = !!newValue;
-			if (this.isLoggedIn) {
-				this.pseudo = this.localUser.user;
-				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
-			} else {
-				this.welcomeMsg =
-					'Pour utiliser la messagerie, vous devez être connecté(e) !';
-				this.pseudo = '';
-			}
-			this.serverMsg(this.welcomeMsg);
-			this.displayChat();
-		},
-	},
-
 	methods: {
-		checkLocalUser() {
+		getLocalUser() {
 			const userFromSession = sessionStorage.getItem('localUser');
 			if (userFromSession) {
 				this.localUser = JSON.parse(userFromSession);
 				this.isLoggedIn = true;
+				this.pseudo = this.localUser.user;
+				this.welcomeMsg = `👉  Bonjour ${this.pseudo}, vous êtes en ligne !`;
+
+				this.setupSocketListeners();
+
+				this.displayChat();
 			} else {
-				this.localUser = null;
-				this.isLoggedIn = false;
+				const userFromStorage = localStorage.getItem('localUser');
+				if (userFromStorage) {
+					this.localUser = JSON.parse(userFromStorage);
+					this.isLoggedIn = true;
+					this.pseudo = this.localUser.user;
+					this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
+
+					this.setupSocketListeners();
+					this.displayChat();
+				} else {
+					this.hideChat();
+
+					this.welcomeMsg =
+						'Pour utiliser la messagerie, vous devez être connecté(e) !';
+					this.isLoggedIn = false;
+					this.localUser = null;
+					this.pseudo = null;
+					this.completeID = null;
+					this.shortClientID = null;
+					this.userFromSession = null;
+					this.userFromStorage = null;
+				}
 			}
+			this.serverMsg(this.welcomeMsg);
 		},
-		serverMsg(message) {
-			console.log('🚀 ~ serverMsg ~ message:', message);
 
-			const allMess = document.getElementById('allMess');
+		//
 
-			if (!allMess) {
-				console.error(
-					'🐱  🐱  🐱  FROM ChatBox ===> Element with ID "allMess" not found.'
+		setupSocketListeners() {
+			socket.on('connect', () => {
+				this.socketID = socket.id.substring(0, 5);
+				socket.pseudo = this.pseudo;
+				console.log(
+					'🚨 🚨 🚨 🚨 🚨   ~ socket.on ~ socket.pseudo :',
+					socket.pseudo
 				);
-				return;
-			}
+			});
 
-			const myServerDiv = document.createElement('div');
-			console.log('🚀 ~ addDiv ~ myDiv:', myServerDiv);
+			socket.on('disconnect', (pseudo, socket) => {
+				socket.emit('disconnect', {
+					message: `${pseudo} est déconnecté`,
+				});
 
-			myServerDiv.classList.add('bubServer');
+				this.hideChat();
+				window.location.reload();
+			});
 
-			const span = document.createElement('span');
-			span.textContent = message;
-			myServerDiv.appendChild(span);
+			socket.on('message', (data) => {
+				console.log(
+					'STRUCTURE de MSG envoyé à tout le monde : ',
+					data
+				);
 
-			allMess.appendChild(myServerDiv);
+				this.sendMess(data, 'bub1');
+			});
+
+			socket.on('userLeft', (data) => {
+				this.sendMess(data, 'bubServer');
+			});
+
+			socket.on('userConnected', (data) => {
+				this.sendMess(data, 'bubServer');
+			});
+		},
+		//
+
+		// serverMsg(message) {
+		// 	console.log('🚀 ~ serverMsg ~ message:', message);
+
+		// 	const allMess = document.getElementById('allMess');
+
+		// 	if (!allMess) {
+		// 		console.error(
+		// 			'🐱  🐱  🐱  FROM ChatBox ===> Element with ID "allMess" not found.'
+		// 		);
+		// 		return;
+		// 	}
+
+		// 	const myServerDiv = document.createElement('div');
+		// 	console.log('🚀 ~ addDiv ~ myDiv:', myServerDiv);
+
+		// 	myServerDiv.classList.add('bubServer');
+
+		// 	const span = document.createElement('span');
+		// 	span.textContent = message;
+		// 	myServerDiv.appendChild(span);
+
+		// 	allMess.appendChild(myServerDiv);
+		// },
+
+		sendMess(data, fromClass) {
+			this.addDiv(data, fromClass);
+
+			socket.emit('message', this.finalMessage);
+
+			this.messInput.value = '';
+			this.messInput.focus();
 		},
 
-		sendMess() {
+		addDiv(data, fromClass) {
 			const allMess = document.getElementById('allMess');
-
 			const messInput = document.getElementById('messInput');
-
-			if (!messInput) {
-				console.error('Element with ID "messInput" not found.');
+			if (!allMess || !messInput) {
+				console.error('Element with ID "allMess" not found.');
 				return;
 			}
 
-			const messTxt = messInput.value.trim();
-			console.log('🚀 ~ messTxt:', messTxt);
+			const myDiv = document.createElement('div');
 
-			if (messTxt) {
-				socket.emit('message', messTxt);
-				const myMessDiv = document.createElement('div');
-				console.log('🚀 ~ addDiv ~ myDiv:', myMessDiv);
+			myDiv.classList.add(fromClass);
 
-				myMessDiv.classList.add('bub1');
+			// Create span element
+			const span = document.createElement('span');
 
-				const span = document.createElement('span');
-				span.textContent = this.pseudo + messTxt;
-				myMessDiv.appendChild(span);
+			span.textContent = `${this.pseudo}: ${data.text}`;
+			this.finalMessage = span.textContent;
 
-				allMess.appendChild(myMessDiv);
+			// Append span to div
+			myDiv.appendChild(span);
 
-				messInput.value = '';
-				messInput.focus();
-			}
+			// Append div to allMess
+			allMess.appendChild(myDiv);
+		},
+
+		receivedMessage(data) {
+			console.log('🚀 ~ receivedMessage ~ data:', data);
 		},
 
 		displayChat() {
@@ -157,95 +223,6 @@ export default {
 		hideChat() {
 			const chatPopin = document.getElementById('chatPopin');
 			chatPopin.classList.add('hide-inactive');
-		},
-
-		addDiv(data) {
-			console.log('🚀 ~ addDiv ~ data:', data);
-			console.log('🚀 ~   data.pseudo — — — —', data.pseudo);
-
-			const allMess = document.getElementById('allMess');
-
-			if (!allMess) {
-				console.error('Element with ID "allMess" not found.');
-				return;
-			}
-
-			const myDiv = document.createElement('div');
-			console.log('🚀 ~ addDiv ~ myDiv:', myDiv);
-
-			myDiv.classList.add('bub1');
-
-			// Create span element
-			const span = document.createElement('span');
-
-			if (data.pseudo) {
-				span.textContent = `${data.pseudo}: ${data.text}`;
-			} else {
-				span.textContent = `${data.user}: ${data.text}`;
-			}
-
-			// Append span to div
-			myDiv.appendChild(span);
-
-			// Append div to allMess
-			allMess.appendChild(myDiv);
-		},
-
-		setupSocketListeners(pseudo) {
-			if (this.isLoggedIn) {
-				socket.on('connect', () => {
-					this.completeID = socket.id;
-
-					if (this.completeID) {
-						console.log(
-							'📱 ~ socket.on ~ this.completeID :',
-							this.completeID
-						);
-						this.shortClientID = this.completeID.substring(
-							0,
-							5
-						);
-						console.log(
-							'🚀 ~ socket.on ~ this.shortClientID:',
-							this.shortClientID
-						);
-						socket.shortClientID = this.shortClientID;
-
-						console.log(
-							`📬 📬 📬FROM setupSocketListeners => ${this.shortClientID} = ${pseudo} est CONNECTÉ !`
-						);
-						// this.serverMsg(
-						// 	`Bonjour ${shortClientID}, vous êtes connecté(e) !!!`
-						// );
-					}
-				});
-
-				socket.on('disconnect', (pseudo, shortClientID) => {
-					const completeID = socket.id;
-					if (completeID) {
-						const shortClientID = completeID.substring(0, 5);
-						console.log(
-							`FROM CLIENT => ${shortClientID} est déconnecté`
-						);
-					}
-				});
-
-				socket.on('message', (data) => {
-					console.log(
-						'STRUCTURE de MSG envoyé à tout le monde : ',
-						data
-					);
-					this.sendMess(data);
-				});
-
-				socket.on('userLeft', (data) => {
-					this.serverMsg(data);
-				});
-
-				socket.on('userConnected', (data) => {
-					this.serverMsg(data);
-				});
-			}
 		},
 	},
 };

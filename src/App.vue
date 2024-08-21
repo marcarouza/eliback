@@ -7,14 +7,14 @@
 		<Footer />
 
 		<!-- Affichage conditionnel de Chat_Box basé sur la route -->
-		<Chat_Box v-if="showChatBox" />
+		<Chat_Box :show="showChatBox" />
 	</div>
 </template>
 
 <script>
 import CommonHead from './components/CommonHead.vue';
 import Footer from './components/Footer.vue';
-import Chat_Box from './components/Chat_Box.vue';
+import Chat_Box from './components/TRASH/Chat_Box-2108.vue';
 
 export default {
 	name: 'App',
@@ -85,15 +85,6 @@ export default {
 			if (chatPopin) {
 				chatPopin.classList.add('hide-inactive');
 			}
-		},
-
-		setupSocketListeners() {
-			// Ajoutez ici la configuration des écouteurs de socket si nécessaire
-		},
-
-		serverMsg(message) {
-			// Logique pour afficher un message du serveur dans l'interface utilisateur
-			console.log(message);
 		},
 	},
 	computed: {
