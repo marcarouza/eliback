@@ -107,9 +107,6 @@ export default {
 			}
 			this.serverMsg(this.welcomeMsg);
 		},
-		disConnect() {
-			socket.disconnect();
-		},
 
 		//
 
@@ -139,6 +136,9 @@ export default {
 				socket.emit('disconnect', {
 					message: `${pseudo} est déconnecté`,
 				});
+
+				this.hideChat();
+				window.location.reload();
 			});
 
 			socket.on('message', (data) => {
