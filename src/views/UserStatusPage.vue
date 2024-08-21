@@ -3,7 +3,7 @@
 		<NavOk />
 		<UserStatus />
 		<TabWhats />
-		<Chat_Box />
+		<!-- <Chat_Box /> -->
 	</div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
 		UserStatus,
 		NavOk,
 		SignUserForm,
-		Chat_Box,
+		// Chat_Box,
 		TabWhats,
 	},
 	data() {

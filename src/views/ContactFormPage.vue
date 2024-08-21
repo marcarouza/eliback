@@ -5,7 +5,7 @@
 		<ContactForm />
 		<TabWhats />
 
-		<Chat_Box />
+		<!-- <Chat_Box /> -->
 	</div>
 </template>
 
@@ -13,7 +13,7 @@
 import NavOk from '../components/NavOk.vue';
 import ContactForm from '../components/ContactForm.vue';
 
-import Chat_Box from '../components/Chat_Box.vue';
+// import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
 
 export default {
@@ -23,7 +23,7 @@ export default {
 	components: {
 		NavOk,
 		ContactForm,
-		Chat_Box,
+		// Chat_Box,
 		TabWhats,
 	},
 

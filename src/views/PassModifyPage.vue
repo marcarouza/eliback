@@ -4,14 +4,14 @@
 	<div class="d-flex flex-column align-items-center justify-content-center">
 		<PassModify />
 		<TabWhats />
-		<Chat_Box />
+		<!-- <Chat_Box /> -->
 	</div>
 </template>
 
 <script>
 import NavOk from '../components/NavOk.vue';
 import PassModify from '../components/PassModify';
-import Chat_Box from '../components/Chat_Box.vue';
+// import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
 
 export default {
@@ -19,7 +19,7 @@ export default {
 	components: {
 		NavOk,
 		PassModify,
-		Chat_Box,
+		// Chat_Box,
 		TabWhats,
 	},
 };

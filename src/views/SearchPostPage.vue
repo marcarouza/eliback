@@ -6,7 +6,7 @@
 		<SearchPost />
 		<TabWhats />
 
-		<Chat_Box />
+		<!-- <Chat_Box /> -->
 	</div>
 </template>
 
@@ -15,7 +15,7 @@ import NavOk from '../components/NavOk.vue';
 import NavBlog from '../components/blogCompo/NavBlog.vue';
 import SearchPost from '../components/blogCompo/SearchPost.vue';
 
-import Chat_Box from '../components/Chat_Box.vue';
+// import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
 
 export default {
@@ -26,7 +26,7 @@ export default {
 		NavBlog,
 		SearchPost,
 		TabWhats,
-		Chat_Box,
+		// Chat_Box,
 	},
 	mounted() {
 		this.$emit(

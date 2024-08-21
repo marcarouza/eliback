@@ -3,14 +3,14 @@
 		<NavOk />
 		<Cv />
 		<TabWhats />
-		<Chat_Box />
+		<!-- <Chat_Box /> -->
 	</div>
 </template>
 
 <script>
 import NavOk from '../components/NavOk';
 import Cv from '../components/Cv.vue';
-import Chat_Box from '../components/Chat_Box.vue';
+// import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
 
 export default {
@@ -24,7 +24,7 @@ export default {
 	components: {
 		NavOk,
 		Cv,
-		Chat_Box,
+		// Chat_Box,
 		TabWhats,
 	},
 

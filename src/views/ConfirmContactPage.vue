@@ -6,7 +6,7 @@
 		>
 			<ConfirmContact />
 			<TabWhats />
-			<Chat_Box />
+			<!-- <Chat_Box /> -->
 		</div>
 	</div>
 </template>
@@ -14,7 +14,7 @@
 <script>
 import NavOk from '../components/NavOk.vue';
 import ConfirmContact from '../components/ConfirmContact.vue';
-import Chat_Box from '../components/Chat_Box.vue';
+// import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
 
 export default {
@@ -23,7 +23,7 @@ export default {
 	components: {
 		NavOk,
 		ConfirmContact,
-		Chat_Box,
+		// Chat_Box,
 		TabWhats,
 	},
 	mounted() {

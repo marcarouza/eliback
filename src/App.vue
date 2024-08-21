@@ -5,38 +5,101 @@
 			<router-view @updatePageTitle="updatePageTitle" />
 		</div>
 		<Footer />
+
+		<!-- Affichage conditionnel de Chat_Box basé sur la route -->
+		<Chat_Box v-if="showChatBox" />
 	</div>
 </template>
 
 <script>
-// import NavOk from './components/NavOk.vue';
-
 import CommonHead from './components/CommonHead.vue';
 import Footer from './components/Footer.vue';
+import Chat_Box from './components/Chat_Box.vue';
 
 export default {
 	name: 'App',
 	components: {
 		CommonHead,
+		Chat_Box,
 		Footer,
 	},
 	data() {
 		return {
-			// Vos données ici
 			pageTitle: '▶︎ Eli Azoura | Développeur Full Stack',
+			isLoggedIn: false,
+			localUser: null,
+			pseudo: '',
+			welcomeMsg: '',
 		};
 	},
+
+	mounted() {
+		this.checkLocalUser();
+	},
 	methods: {
-		// Vos méthodes ici
+		checkLocalUser() {
+			const userFromSession = sessionStorage.getItem('localUser');
+			if (userFromSession) {
+				this.localUser = JSON.parse(userFromSession);
+				this.isLoggedIn = true;
+				this.pseudo = this.localUser.user;
+				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
+
+				this.setupSocketListeners();
+				this.displayChat();
+			} else {
+				const userFromStorage = localStorage.getItem('localUser');
+				if (userFromStorage) {
+					this.localUser = JSON.parse(userFromStorage);
+					this.isLoggedIn = true;
+					this.pseudo = this.localUser.user;
+					this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
+
+					this.setupSocketListeners();
+					this.displayChat();
+				} else {
+					this.welcomeMsg =
+						'Pour utiliser la messagerie, vous devez être connecté(e) !';
+					this.isLoggedIn = false;
+					this.hideChat();
+				}
+			}
+			this.serverMsg(this.welcomeMsg);
+		},
+
 		updatePageTitle(newTitle) {
 			this.pageTitle = newTitle;
 		},
+
+		displayChat() {
+			const chatPopin = document.getElementById('chatPopin');
+			if (!chatPopin) {
+				console.error('Element with ID "chatPopin" not found.');
+				return;
+			}
+			chatPopin.classList.remove('hide-inactive');
+		},
+
+		hideChat() {
+			const chatPopin = document.getElementById('chatPopin');
+			if (chatPopin) {
+				chatPopin.classList.add('hide-inactive');
+			}
+		},
+
+		setupSocketListeners() {
+			// Ajoutez ici la configuration des écouteurs de socket si nécessaire
+		},
+
+		serverMsg(message) {
+			// Logique pour afficher un message du serveur dans l'interface utilisateur
+			console.log(message);
+		},
 	},
 	computed: {
-		// Vos propriétés calculées ici
-	},
-	watch: {
-		// Vos observateurs ici
+		showChatBox() {
+			return this.$route.meta.showChatBox !== false; // Affiche Chat_Box sauf si explicitement désactivé
+		},
 	},
 };
 </script>
