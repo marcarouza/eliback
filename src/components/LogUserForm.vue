@@ -5,7 +5,7 @@
 				<h5 class="text-center mb-4" id="title">
 					Connexion en tant que membre
 				</h5>
-				<form @submit.prevent="submitForm" id="loginForm">
+				<form @submit.prevent="fetchToLog" id="loginForm">
 					<div class="form-floating mb-3">
 						<input
 							type="email"
@@ -97,19 +97,15 @@ export default {
 		};
 	},
 	mounted() {
-		// this.createLocalUser();
-		this.checkLocaluser();
+		// this.decodeUSERfromTOKEN();
+		this.getLocalUser();
 		this.getAllDocCookiess();
 	},
-	created() {
-		this.getAllDocCookiess();
-	},
+	// created() {
+	// 	this.getAllDocCookiess();
+	// },
 	methods: {
-		getAllDocCookiess() {
-			const jwtCookie = document.cookie;
-			console.log('🚀 ~ mounted ~ jwtCookie:', jwtCookie);
-		},
-		async submitForm() {
+		async fetchToLog() {
 			try {
 				const response = await fetch(
 					'https://eli-back.onrender.com/logUser',
@@ -123,12 +119,12 @@ export default {
 					}
 				);
 				console.log(
-					'🚀 ~ submitForm ~ this.formData:',
+					'🚀 ~ fetchToLog ~ this.formData:',
 					this.formData
 				);
 
-				console.log('🚀 ~ submitForm RESPONSE : ', response);
-				console.log('🚀 ~ submitForm RESPONSE OK : ', response.ok);
+				console.log('🚀 ~ fetchToLog RESPONSE : ', response);
+				console.log('🚀 ~ fetchToLog RESPONSE OK : ', response.ok);
 
 				if (response.ok) {
 					const result = await response.json();
@@ -141,11 +137,11 @@ export default {
 
 					// Afficher l'objet oneUser après l'avoir peuplé
 					console.log(
-						'🚀 ~ data ~ this.oneUser APRES :',
+						'✅  FROMM https://eli-back.onrender.com/logUser =+>this.oneUser  :',
 						this.oneUser
 					);
 
-					// Stocker l'utilisateur dans localStorage
+					// Stocker l'utilisateur
 					localStorage.setItem(
 						'localUser',
 						JSON.stringify(this.oneUser)
@@ -155,7 +151,11 @@ export default {
 						JSON.stringify(this.oneUser)
 					);
 					this.isLoggedIn = true;
-					this.$router.push({name: 'homepage'});
+
+					this.decodeUSERfromTOKEN();
+					this.getAllDocCookiess();
+
+					// this.$router.push({name: 'homepage'});
 				} else {
 					const errorData = await response.json();
 					console.error(
@@ -173,8 +173,55 @@ export default {
 				);
 			}
 		},
+		//
+		//
+		getAllDocCookiess() {
+			const allCookies = document.cookie;
+			console.log('🚀 ~ mounted ~ allCookies:', allCookies);
+		},
 
-		checkLocaluser() {
+		//
+
+		decodeUSERfromTOKEN() {
+			const token = Cookies.get('jwt');
+			console.log('Token JWT:', token);
+			console.log(
+				'ℹ️ 👁️ FROM LogUser decodeUSERfromTOKEN => TOKEN :',
+				token
+			);
+			if (token) {
+				try {
+					const decoded = jwtDecode(token); // Décoder le JWT
+					console.log(
+						'ℹ️ 👁️ FROM LogUser decodeUSERfromTOKEN => DECODED TOKEN :',
+						decoded
+					);
+					// Vérifiez si les champs existent dans le JWT décodé
+					this.id = decoded.id || null;
+					this.email = decoded.email || null;
+					this.pseudo = decoded.user || null;
+					console.log(
+						'ℹ️ 👁️ FROM LogUser => User ID from JWT id / email / pseudo:',
+						this.id,
+						this.email,
+						this.pseudo
+					);
+				} catch (error) {
+					console.error(
+						'🍌 FROM LogUser decodeUSERfromTOKEN => Error decoding JWT:',
+						error
+					);
+				}
+			} else {
+				console.log(
+					'🍌 FROM LogUser decodeUSERfromTOKEN => => No JWT token found'
+				);
+			}
+		},
+
+		//
+
+		getLocalUser() {
 			this.localUser =
 				JSON.parse(localStorage.getItem('localUser')) || null;
 			console.log(
@@ -183,49 +230,6 @@ export default {
 			);
 		},
 
-		checkUserLogged() {
-			console.log('Tous les cookies:', document.cookie);
-			const token = Cookies.get('jwt');
-			console.log('Token JWT:', token);
-			console.log(
-				'ℹ️ 👁️ FROM LogUser checkUserLogged => TOKEN :',
-				token
-			);
-			if (token) {
-				try {
-					const decoded = jwtDecode(token); // Décoder le JWT
-					console.log(
-						'ℹ️ 👁️ FROM LogUser checkUserLogged => DECODED TOKEN :',
-						decoded
-					);
-					// Vérifiez si les champs existent dans le JWT décodé
-					this.id = decoded.id || null;
-					this.email = decoded.email || null;
-					this.pseudo = decoded.user || null;
-					console.log(
-						'ℹ️ 👁️ FROM LogUser => User ID from JWT:',
-						this.id
-					);
-					console.log(
-						'ℹ️ 👁️ FROM LogUser => User email from JWT:',
-						this.email
-					);
-					console.log(
-						'ℹ️ 👁️ FROM LogUser => User pseudo from JWT:',
-						this.pseudo
-					);
-				} catch (error) {
-					console.error(
-						'🍌 FROM LogUser checkUserLogged => Error decoding JWT:',
-						error
-					);
-				}
-			} else {
-				console.log(
-					'🍌 FROM LogUser checkUserLogged => => No JWT token found'
-				);
-			}
-		},
 		togglePasswordVisibility() {
 			this.passwordVisible = !this.passwordVisible;
 		},

@@ -3,11 +3,32 @@
 		<NavOk />
 		<div class="container m-5">
 			<h1>API POUR LECTURE DU TOKEN from FETCH API getCookie</h1>
-			<p v-if="token">JWT Token => {{ token }}</p>
-			<p v-else>no token !</p>
-			<p v-if="tokenData">
-				TokenData from jwtDecode(this.jwt)=> {{ tokenData }}
-			</p>
+
+			<table class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Clé</th>
+						<th>Valeur</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-if="token">
+						<td>JWT Token</td>
+						<td>{{ token }}</td>
+					</tr>
+					<tr v-else>
+						<td colspan="2">No token!</td>
+					</tr>
+					<tr v-if="tokenData">
+						<td>Token Data (Decoded)</td>
+						<td>{{ tokenData }}</td>
+					</tr>
+					<tr v-if="cookies">
+						<td>Cookies</td>
+						<td>{{ cookies }}</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </template>
@@ -36,7 +57,7 @@ export default {
 		this.getCookieInfo();
 		this.checkJwtCookie();
 		this.viewCookie();
-		getCookieByName();
+		this.getCookieByName();
 	},
 	methods: {
 		checkJwtCookie() {
@@ -47,6 +68,28 @@ export default {
 				this.tokenData = jwtDecode(this.jwt);
 			} else {
 				console.log('Cookie "jwt" non trouvé');
+			}
+		},
+
+		checkUserLogged() {
+			const token = Cookies.get('jwt');
+			if (token) {
+				try {
+					const decoded = jwtDecode(token);
+					console.log('Token décodé:', decoded);
+					this.oneUser = {
+						id: decoded.id,
+						email: decoded.email,
+						pseudo: decoded.user,
+					};
+				} catch (error) {
+					console.error(
+						'Erreur lors du décodage du token JWT:',
+						error
+					);
+				}
+			} else {
+				console.log('Aucun token JWT trouvé');
 			}
 		},
 
@@ -81,15 +124,12 @@ export default {
 					'🚫 FROM ApiPage / getCookieInfo  NO jwt FOUND ! :',
 					err
 				);
-				localStorage.removeItem('localUser');
 			}
 		},
 
 		viewCookie() {
-			console.log(
-				'Cookie from via vueCookies:',
-				VueCookies.get('jwt')
-			);
+			const vueJWTCookie = VueCookies.get('jwt');
+			console.log('Cookie from via vueCookies:', vueJWTCookie);
 		},
 		getCookieByName(name) {
 			const cookies = document.cookie.split(';');
@@ -103,3 +143,17 @@ export default {
 	},
 };
 </script>
+
+<style scoped>
+table {
+	max-width: 980px;
+
+	td {
+		word-wrap: break-word; /* Permet de passer à la ligne pour les mots longs */
+		overflow-wrap: break-word; /* Le remplaçant moderne de word-wrap */
+	}
+
+	table-layout: fixed;
+	/* border-collapse: collapse; */
+}
+</style>

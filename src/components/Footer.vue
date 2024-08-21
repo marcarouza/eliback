@@ -6,6 +6,9 @@
 				<div class="col-md-4 mb-1">
 					<p>
 						© 2024 | eliazoura.fr
+						<span class="text-black-50"
+							>version 1.5 du 20.08-15H00</span
+						>
 						<br />
 					</p>
 					<p class="small">
@@ -20,19 +23,16 @@
 				<!-- Liens utiles -->
 				<!-- Liens utiles -->
 				<div class="col-md-4 mb-1">
-					<hr />
 					<ul class="list-unstyled">
 						<li class="nav-item">
 							<router-link
 								active-class="active"
-								class="nav-link"
+								class="nav-link text-black-50"
 								to="/apiPage"
 								>api</router-link
 							>
 						</li>
-						<li class="nav-item">
-							version 1.5 du 19.08-13h55
-						</li>
+						<li class="nav-item"></li>
 					</ul>
 				</div>
 

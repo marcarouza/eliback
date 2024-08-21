@@ -220,9 +220,9 @@ export default {
 					console.log('🚀 ~ DECONNEXION REUSSIE !!! ');
 					this.user = null; // Mettre à jour l'utilisateur à null
 					localStorage.removeItem('localUser'); // Supprimer l'utilisateur de localStorage
-					// sessionStorage.removeItem('localUser');
-					sessionStorage.clear();
-					localStorage.clear();
+					sessionStorage.removeItem('localUser');
+					// sessionStorage.clear();
+					// localStorage.clear();
 					this.$router.replace({name: 'homepage'});
 				} else {
 					console.error('Erreur lors de la déconnexion');

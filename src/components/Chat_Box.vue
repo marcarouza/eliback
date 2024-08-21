@@ -60,57 +60,42 @@ export default {
 				'Pour utiliser la messagerie, vous devez être connecté(e) !',
 			completeID: null,
 			shortClientID: null,
+			userFromSession: '',
+			userFromStorage: '',
 		};
 	},
 
 	mounted() {
+		this.hideChat();
 		this.checkLocalUser();
 		this.setupSocketListeners(this.pseudo);
 	},
-
 	methods: {
 		checkLocalUser() {
 			const userFromSession = sessionStorage.getItem('localUser');
 			if (userFromSession) {
 				this.localUser = JSON.parse(userFromSession);
 				this.isLoggedIn = true;
-
 				this.pseudo = this.localUser.user;
 				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
 				this.displayChat();
 			} else {
-				this.localUser = null;
-				this.isLoggedIn = false;
+				const userFromStorage = localStorage.getItem('localUser');
+				if (userFromStorage) {
+					this.localUser = JSON.parse(userFromStorage);
+					this.isLoggedIn = true;
+					this.pseudo = this.localUser.user;
+					this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
+					this.displayChat();
+				} else {
+					this.welcomeMsg =
+						'Pour utiliser la messagerie, vous devez être connecté(e) !';
+					this.isLoggedIn = false;
+				}
 			}
-
 			this.serverMsg(this.welcomeMsg);
 		},
-		// checkLocalUser() {
-		// 	if (sessionStorage.getItem('localUser')) {
-		// 		this.localUser = JSON.parse(
-		// 			sessionStorage.getItem('localUser')
-		// 		);
-		// 		console.log('Utilisateur récupéré:', this.localUser);
-		// 		this.isLoggedIn = true;
-		// 	} else {
-		// 		console.log(
-		// 			'ℹ️  🚫  ℹ️ FROM NavOk ==> Aucun utilisateur  dans sessionStorage.'
-		// 		);
-		// 	}
-
-		// 	if (this.isLoggedIn) {
-		// 		this.pseudo = this.localUser.user;
-		// 		this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
-		// 		this.displayChat();
-		// 	} else {
-		// 		// this.isLoggedIn = false;
-		// 		this.welcomeMsg =
-		// 			'Pour utiliser la messagerie, vous devez être connecté(e) !';
-		// 		this.pseudo = '';
-		// 	}
-
-		// 	this.serverMsg(this.welcomeMsg);
-		// },
+		//
 
 		serverMsg(message) {
 			console.log('🚀 ~ serverMsg ~ message:', message);
