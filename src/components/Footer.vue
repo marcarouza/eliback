@@ -18,7 +18,23 @@
 				</div>
 
 				<!-- Liens utiles -->
-				<div class="col-md-4 mb-1"></div>
+				<!-- Liens utiles -->
+				<div class="col-md-4 mb-1">
+					<hr />
+					<ul class="list-unstyled">
+						<li class="nav-item">
+							<router-link
+								active-class="active"
+								class="nav-link"
+								to="/apiPage"
+								>api</router-link
+							>
+						</li>
+						<li class="nav-item">
+							version 1.5 du 19.08-13h55
+						</li>
+					</ul>
+				</div>
 
 				<!-- Réseaux sociaux -->
 				<div class="col-md-4 mb-1 d-flex justify-content-end">
