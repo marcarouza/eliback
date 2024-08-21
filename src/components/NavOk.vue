@@ -223,7 +223,8 @@ export default {
 					sessionStorage.removeItem('localUser');
 					// sessionStorage.clear();
 					// localStorage.clear();
-					this.$router.replace({name: 'homepage'});
+					window.location.reload();
+					this.$router.push({name: 'homepage'});
 				} else {
 					console.error('Erreur lors de la déconnexion');
 					throw new Error(

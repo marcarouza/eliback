@@ -68,7 +68,8 @@ export default {
 	mounted() {
 		this.hideChat();
 		this.checkLocalUser();
-		this.setupSocketListeners(this.pseudo);
+
+		// this.setupSocketListeners();
 	},
 	methods: {
 		checkLocalUser() {
@@ -78,6 +79,9 @@ export default {
 				this.isLoggedIn = true;
 				this.pseudo = this.localUser.user;
 				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
+
+				this.setupSocketListeners();
+
 				this.displayChat();
 			} else {
 				const userFromStorage = localStorage.getItem('localUser');
@@ -86,11 +90,14 @@ export default {
 					this.isLoggedIn = true;
 					this.pseudo = this.localUser.user;
 					this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
+
+					this.setupSocketListeners();
 					this.displayChat();
 				} else {
 					this.welcomeMsg =
 						'Pour utiliser la messagerie, vous devez être connecté(e) !';
 					this.isLoggedIn = false;
+					this.hideChat();
 				}
 			}
 			this.serverMsg(this.welcomeMsg);
@@ -204,6 +211,7 @@ export default {
 			if (this.isLoggedIn) {
 				socket.on('connect', () => {
 					this.completeID = socket.id;
+					socket.pseudo = this.pseudo;
 
 					if (this.completeID) {
 						console.log(
