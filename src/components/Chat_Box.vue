@@ -76,7 +76,7 @@ export default {
 				this.localUser = JSON.parse(userFromSession);
 				this.isLoggedIn = true;
 				this.pseudo = this.localUser.user;
-				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
+				this.welcomeMsg = `👉  Bonjour ${this.pseudo}, vous êtes en ligne !`;
 
 				this.setupSocketListeners();
 
@@ -246,11 +246,7 @@ export default {
 			// Create span element
 			const span = document.createElement('span');
 
-			if (data.pseudo) {
-				span.textContent = `${data.pseudo}: ${data.text}`;
-			} else {
-				span.textContent = `${data.user}: ${data.text}`;
-			}
+			span.textContent = `${data.pseudo}: ${data.text}`;
 
 			// Append span to div
 			myDiv.appendChild(span);
