@@ -56,7 +56,6 @@ export default {
 	mounted() {
 		this.getCookieInfo();
 		this.checkJwtCookie();
-		this.viewCookie();
 		this.getCookieByName();
 	},
 	methods: {
@@ -110,7 +109,7 @@ export default {
 				}
 
 				const data = await response.json();
-				console.log('🚀 ~ getCookieInfo ~ data:', data);
+				console.log('🚀 ~ getCookieInfo ~ dataTOKEN is :', data);
 				this.token = data.token;
 
 				// Décoder le token pour obtenir les données
@@ -119,6 +118,8 @@ export default {
 					'🚩 Données du token via jwtDecode:',
 					this.tokenData
 				);
+
+				this.vueCookie();
 			} catch (err) {
 				console.error(
 					'🚫 FROM ApiPage / getCookieInfo  NO jwt FOUND ! :',
@@ -127,9 +128,12 @@ export default {
 			}
 		},
 
-		viewCookie() {
+		vueCookie() {
 			const vueJWTCookie = VueCookies.get('jwt');
-			console.log('Cookie from via vueCookies:', vueJWTCookie);
+			console.log(
+				'✅ 🤷🏽‍♂️ FROM vueCookie / LogUserFORM C:',
+				vueJWTCookie
+			);
 		},
 		getCookieByName(name) {
 			const cookies = document.cookie.split(';');

@@ -155,7 +155,7 @@ export default {
 					this.decodeUSERfromTOKEN();
 					this.getAllDocCookiess();
 
-					// this.$router.push({name: 'homepage'});
+					this.$router.push({name: 'homepage'});
 				} else {
 					const errorData = await response.json();
 					console.error(
@@ -184,11 +184,7 @@ export default {
 
 		decodeUSERfromTOKEN() {
 			const token = Cookies.get('jwt');
-			console.log('Token JWT:', token);
-			console.log(
-				'ℹ️ 👁️ FROM LogUser decodeUSERfromTOKEN => TOKEN :',
-				token
-			);
+
 			if (token) {
 				try {
 					const decoded = jwtDecode(token); // Décoder le JWT
