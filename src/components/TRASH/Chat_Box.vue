@@ -11,10 +11,10 @@
 
 		<div ref="allMess" id="allMess" class="chat-body">
 			<!-- Messages vont ici -->
-			<span v-if="!isLoggedIn">
+			<div v-if="!isLoggedIn">
 				<!-- Pour utiliser la messagerie instantanée, vous devez être
 				connecté(e). -->
-			</span>
+			</div>
 		</div>
 
 		<div class="chat-footer">
@@ -22,14 +22,14 @@
 				<input
 					ref="messInput"
 					v-model="msgBody.msgToSend"
-					:disabled="!isLoggedIn"
+					:disabled="isLoggedIn"
 					id="messInput"
 					type="text"
 					class="form-control"
 					placeholder="Votre message..."
 				/>
 				<button
-					:disabled="!isLoggedIn"
+					:disabled="isLoggedIn"
 					id="sendMsg"
 					class="btn btn-primary send-button"
 				>
@@ -63,7 +63,7 @@ export default {
 				msgToSend: null,
 				time: null,
 			},
-			oneBubble: null, // Remplacer le point-virgule par une virgule
+			oneBubble: null, // Correction: Point-virgule remplacé par une virgule
 		};
 	},
 
@@ -71,7 +71,7 @@ export default {
 		this.getLocalUser();
 		this.msgBody.pseudo = this.pseudo;
 
-		this.setupSocketListeners(this.pseudo);
+		this.setupSocketListeners();
 	},
 
 	watch: {
@@ -130,18 +130,20 @@ export default {
 			bubble.classList.add(oneClass);
 
 			const p = document.createElement('p');
-			p.textContent = this.msgBody.msgToSend; // Ajouter le texte du message
+			p.textContent = this.msgBody.msgToSend; // Correction: Ajout du texte du message
 			bubble.appendChild(p);
 
 			this.oneBubble = bubble;
 		},
 
 		sendSocketMsg() {
-			this.$refs.allMess.appendChild(this.oneBubble); // Utilisation correcte de this.$refs
+			if (this.oneBubble) {
+				this.$refs.allMess.appendChild(this.oneBubble); // Correction: Utilisation correcte de this.$refs
+			}
 
 			this.msgBody.time = this.getCurrentTimestamp();
 			socket.emit('message', this.msgBody);
-			this.$refs.messInput.value = '';
+			this.msgBody.msgToSend = ''; // Correction: Remet à zéro le champ de saisie
 			this.$refs.messInput.focus();
 		},
 
@@ -155,6 +157,7 @@ export default {
 			});
 
 			socket.on('disconnect', () => {
+				const completeID = this.msgBody.socketID;
 				if (completeID) {
 					const shortClientID = completeID.substring(0, 5);
 					console.log(
@@ -173,6 +176,7 @@ export default {
 
 			socket.on('userLeft', (data) => {
 				this.serverMsg(data);
+				this.createBubble('bubble-server');
 			});
 
 			socket.on('userConnected', (data) => {
@@ -193,7 +197,9 @@ export default {
 
 		hideChat() {
 			const chatPopin = document.getElementById('chatPopin');
-			chatPopin.classList.add('hide-inactive');
+			if (chatPopin) {
+				chatPopin.classList.add('hide-inactive');
+			}
 		},
 
 		getCurrentTimestamp() {

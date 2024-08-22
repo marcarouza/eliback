@@ -7,7 +7,7 @@
 					<p>
 						© 2024 | eliazoura.fr
 						<span class="text-black-50"
-							>version 1.5 du 20.08-15H00</span
+							>version 1.6 du 22.08-12H00</span
 						>
 						<br />
 					</p>
