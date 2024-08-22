@@ -1,40 +1,75 @@
 <template>
-	<div id="app-container">
-		<CommonHead :pageTitle="pageTitle" />
-		<div id="content-container">
-			<router-view @updatePageTitle="updatePageTitle" />
+	<div id="chatPopin" class="chat-popin chat-container hide-inactive">
+		<div class="chat-header">
+			<span>Chat avec vos amis…</span>
+			<button
+				@click="displayChat"
+				id="closeChatBtn"
+				class="btn btn-close btn-primary float-end"
+			></button>
 		</div>
-		<Footer />
 
-		<!-- Affichage conditionnel de Chat_Box basé sur la route -->
-		<Chat_Box :show="showChatBox" />
+		<!-- <div v-if="!isLoggedIn" class="chat-body">
+			<span class="bubServer">
+				Pour utiliser la messagerie instantanée, vous devez être
+				connecté(e).
+			</span>
+		</div> -->
+
+		<div id="allMess" class="chat-body">
+			<!-- Messages vont ici -->
+
+			<span v-if="!isLoggedIn">
+				<!-- Pour utiliser la messagerie instantanée, vous devez être
+				connecté(e). -->
+			</span>
+		</div>
+
+		<div class="chat-footer">
+			<form id="msg_form" class="chatInput" @submit.prevent="sendMess">
+				<input
+					id="messInput"
+					type="text"
+					class="form-control"
+					placeholder="Votre message..."
+				/>
+				<button id="sendMsg" class="btn btn-primary send-button">
+					<i class="bi bi-send"></i>
+				</button>
+			</form>
+		</div>
+	</div>
+
+	<div @click="displayChat" id="chatToggleBtn" class="stickedTab">
+		<i class="bi bi-chat-dots-fill chat_bubble"></i>
 	</div>
 </template>
 
 <script>
-import CommonHead from './components/CommonHead.vue';
-import Footer from './components/Footer.vue';
-import Chat_Box from './components/Chat_Box.vue';
+import socket from '../socket/socketClient.js';
+console.log('✅ 🐱  FROM ChatBox ===> SOCKET CLIENT : ', socket);
 
 export default {
-	name: 'App',
-	components: {
-		CommonHead,
-		Chat_Box,
-		Footer,
-	},
+	name: 'ChatBox',
 	data() {
 		return {
-			pageTitle: '▶︎ Eli Azoura | Développeur Full Stack',
 			isLoggedIn: false,
 			localUser: null,
 			pseudo: '',
-			welcomeMsg: '',
+			welcomeMsg:
+				'Pour utiliser la messagerie, vous devez être connecté(e) !',
+			completeID: null,
+			shortClientID: null,
+			userFromSession: '',
+			userFromStorage: '',
 		};
 	},
 
 	mounted() {
+		this.hideChat();
 		this.checkLocalUser();
+
+		// this.setupSocketListeners();
 	},
 	methods: {
 		checkLocalUser() {
@@ -46,6 +81,7 @@ export default {
 				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
 
 				this.setupSocketListeners();
+
 				this.displayChat();
 			} else {
 				const userFromStorage = localStorage.getItem('localUser');
@@ -66,36 +102,172 @@ export default {
 			}
 			this.serverMsg(this.welcomeMsg);
 		},
+		//
 
-		updatePageTitle(newTitle) {
-			this.pageTitle = newTitle;
+		serverMsg(message) {
+			console.log('🚀 ~ serverMsg ~ message:', message);
+
+			const allMess = document.getElementById('allMess');
+
+			if (!allMess) {
+				console.error(
+					'🐱  🐱  🐱  FROM ChatBox ===> Element with ID "allMess" not found.'
+				);
+				return;
+			}
+
+			const myServerDiv = document.createElement('div');
+			console.log('🚀 ~ addDiv ~ myDiv:', myServerDiv);
+
+			myServerDiv.classList.add('bubServer');
+
+			const span = document.createElement('span');
+			span.textContent = message;
+			myServerDiv.appendChild(span);
+
+			allMess.appendChild(myServerDiv);
+		},
+
+		sendMess(message) {
+			const allMess = document.getElementById('allMess');
+
+			const messInput = document.getElementById('messInput');
+
+			if (!messInput) {
+				console.error('Element with ID "messInput" not found.');
+				return;
+			}
+
+			const messTxt = messInput.value.trim();
+			console.log('🚀 ~ messTxt:', messTxt);
+
+			if (messTxt) {
+				socket.emit('message', messTxt);
+				const myMessDiv = document.createElement('div');
+				console.log('🚀 ~ addDiv ~ myDiv:', myMessDiv);
+
+				myMessDiv.classList.add('bub1');
+
+				const span = document.createElement('span');
+				span.textContent = this.pseudo + ' : ' + messTxt;
+				myMessDiv.appendChild(span);
+
+				allMess.appendChild(myMessDiv);
+
+				messInput.value = '';
+				messInput.focus();
+			}
 		},
 
 		displayChat() {
 			const chatPopin = document.getElementById('chatPopin');
+
 			if (!chatPopin) {
 				console.error('Element with ID "chatPopin" not found.');
 				return;
 			}
-			chatPopin.classList.remove('hide-inactive');
+
+			chatPopin.classList.toggle('hide-inactive');
 		},
 
 		hideChat() {
 			const chatPopin = document.getElementById('chatPopin');
-			if (chatPopin) {
-				chatPopin.classList.add('hide-inactive');
-			}
+			chatPopin.classList.add('hide-inactive');
 		},
-	},
-	computed: {
-		showChatBox() {
-			return this.$route.meta.showChatBox !== false; // Affiche Chat_Box sauf si explicitement désactivé
+
+		addDiv(data) {
+			console.log('🚀 ~ addDiv ~ data:', data);
+			console.log('🚀 ~   data.pseudo — — — —', data.pseudo);
+
+			const allMess = document.getElementById('allMess');
+
+			if (!allMess) {
+				console.error('Element with ID "allMess" not found.');
+				return;
+			}
+
+			const myDiv = document.createElement('div');
+			console.log('🚀 ~ addDiv ~ myDiv:', myDiv);
+
+			myDiv.classList.add('bub1');
+
+			// Create span element
+			const span = document.createElement('span');
+
+			if (data.pseudo) {
+				span.textContent = `${data.pseudo}: ${data.text}`;
+			} else {
+				span.textContent = `${data.user}: ${data.text}`;
+			}
+
+			// Append span to div
+			myDiv.appendChild(span);
+
+			// Append div to allMess
+			allMess.appendChild(myDiv);
+		},
+
+		setupSocketListeners(pseudo) {
+			if (this.isLoggedIn) {
+				socket.on('connect', () => {
+					this.completeID = socket.id;
+					socket.pseudo = this.pseudo;
+
+					if (this.completeID) {
+						console.log(
+							'📱 ~ socket.on ~ this.completeID :',
+							this.completeID
+						);
+						this.shortClientID = this.completeID.substring(
+							0,
+							5
+						);
+						console.log(
+							'🚀 ~ socket.on ~ this.shortClientID:',
+							this.shortClientID
+						);
+						socket.shortClientID = this.shortClientID;
+
+						socket.pseudo = this.pseudo;
+
+						console.log(
+							`📬 📬 📬FROM setupSocketListeners => ${this.shortClientID} = ${pseudo} est CONNECTÉ !`
+						);
+					}
+				});
+
+				socket.on('disconnect', (pseudo, shortClientID) => {
+					const completeID = socket.id;
+					if (completeID) {
+						const shortClientID = completeID.substring(0, 5);
+						console.log(
+							`FROM CLIENT => ${shortClientID} est déconnecté`
+						);
+					}
+				});
+
+				socket.on('message', (data) => {
+					console.log(
+						'STRUCTURE de MSG envoyé à tout le monde : ',
+						data
+					);
+					this.sendMess(data);
+				});
+
+				socket.on('userLeft', (data) => {
+					this.serverMsg(data);
+				});
+
+				socket.on('userConnected', (data) => {
+					this.serverMsg(data);
+				});
+			}
 		},
 	},
 };
 </script>
 
-<style scoped>
+<style>
 .chat_bubble {
 	font-size: 2rem;
 	color: #004fa4;

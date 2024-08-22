@@ -42,7 +42,7 @@ const routes = [
 		path: '/confirmloggedinPage',
 		name: 'confirmloggedinpage',
 		component: confirmloggedinpage,
-		meta: {requiresAuth: true},
+		meta: {showChatBox: false},
 	},
 	{
 		path: '/projetsPage',
@@ -79,6 +79,7 @@ const routes = [
 		path: '/loguserPage',
 		name: 'loguserpage',
 		component: loguserpage,
+		meta: {showChatBox: false},
 	},
 	{
 		path: '/contactFormPage',
@@ -117,6 +118,7 @@ const routes = [
 		path: '/apiPage',
 		name: 'apipage',
 		component: apipage,
+		meta: {showChatBox: false},
 	},
 	{
 		path: '/userstatusPage',
@@ -133,11 +135,13 @@ const routes = [
 		path: '/confirmSignUpPage',
 		name: 'confirmsignuppage',
 		component: confirmsignuppage,
+		meta: {showChatBox: false},
 	},
 	{
 		path: '/:pathMatch(.*)*',
 		name: 'notfoundpage',
 		component: notfoundpage,
+		meta: {showChatBox: false},
 	},
 ];
 
