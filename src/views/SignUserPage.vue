@@ -14,13 +14,15 @@ import TabWhats from '../components/TabWhats.vue';
 
 export default {
 	name: 'SignUserPage',
-	emits: ['updatePageTitle'], // Déclarez l'événement ici
+	emits: ['updatePageTitle'],
 
+	data() {
+		return {
+			pageTitle: 'USER STATUS  | Développeur Full Stack',
+		};
+	},
 	mounted() {
-		this.$emit(
-			'updatePageTitle',
-			`Création d'un compte | Développeur Full Stack`
-		);
+		this.$emit('updatePageTitle', this.pageTitle);
 	},
 
 	components: {
@@ -28,16 +30,6 @@ export default {
 		NavOk,
 		SignUserForm,
 		TabWhats,
-	},
-
-	methods: {
-		// Vos méthodes ici
-	},
-	computed: {
-		// Vos propriétés calculées ici
-	},
-	watch: {
-		// Vos observateurs ici
 	},
 };
 </script>

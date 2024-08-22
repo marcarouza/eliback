@@ -91,6 +91,7 @@ export default {
 		this.fetchUserData();
 		this.fetchAllMembers();
 		this.checkLocaluser();
+		this.$emit('updatePageTitle', 'Les membres du site', true);
 	},
 	methods: {
 		display(message) {

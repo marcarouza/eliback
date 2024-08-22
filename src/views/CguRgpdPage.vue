@@ -527,6 +527,8 @@
 import NavOk from '../components/NavOk.vue';
 export default {
 	name: 'RgpdPage',
+	emits: ['updatePageTitle'], // Déclarez l'événement ici
+
 	components: {
 		NavOk,
 	},
@@ -541,7 +543,13 @@ export default {
 		if (acceptedTerms) {
 			this.showTerms = false;
 		}
+
+		this.$emit(
+			'updatePageTitle',
+			`Conditions d'utilisation et RGPD | Eli | Développeur Full Stack`
+		);
 	},
+
 	methods: {
 		acceptTerms() {
 			alert(

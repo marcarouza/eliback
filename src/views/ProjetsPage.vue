@@ -26,13 +26,12 @@ export default {
 		TabWhats,
 	},
 	data() {
-		return {};
+		return {
+			pageTitle: 'USER STATUS  | Développeur Full Stack',
+		};
 	},
 	mounted() {
-		this.$emit(
-			'updatePageTitle',
-			`Mes projets | Eli | Développeur Full Stack | `
-		);
+		this.$emit('updatePageTitle', this.pageTitle);
 	},
 };
 </script>

@@ -20,6 +20,12 @@ export default {
 		ConfirmSignUp,
 		TabWhats,
 	},
+	mounted() {
+		this.$emit(
+			'updatePageTitle',
+			`Confirmation | Développeur Full Stack`
+		);
+	},
 };
 </script>
 

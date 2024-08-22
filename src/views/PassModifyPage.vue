@@ -16,11 +16,22 @@ import TabWhats from '../components/TabWhats.vue';
 
 export default {
 	name: 'PassModifyPage',
+	emits: ['updatePageTitle'], // Déclarez l'événement ici
+
 	components: {
 		NavOk,
 		// PassModify,
 		// Chat_Box,
 		TabWhats,
+	},
+
+	data() {
+		return {
+			pageTitle: 'USER STATUS  | Développeur Full Stack',
+		};
+	},
+	mounted() {
+		this.$emit('updatePageTitle', this.pageTitle);
 	},
 };
 </script>

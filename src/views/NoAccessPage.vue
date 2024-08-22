@@ -25,11 +25,14 @@ export default {
 		NoAccess,
 		TabWhats,
 	},
+
+	data() {
+		return {
+			pageTitle: '😤 Accès restreint | Eli | Développeur Full Stac',
+		};
+	},
 	mounted() {
-		this.$emit(
-			'updatePageTitle',
-			`😤 Accès restreint | Eli | Développeur Full Stack`
-		);
+		this.$emit('updatePageTitle', this.pageTitle);
 	},
 };
 </script>

@@ -18,6 +18,13 @@ export default {
 	},
 
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
+
+	mounted() {
+		this.$emit(
+			'updatePageTitle',
+			`COnnexion Ok ! | Développeur Full Stack`
+		);
+	},
 	// Autres options du composant
 };
 </script>

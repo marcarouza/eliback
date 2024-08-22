@@ -1,32 +1,24 @@
 <template>
-	<Head>
+	<head>
 		<title>{{ pageTitle }}</title>
-		<meta
-			name="description"
-			content="Description commune à toutes les pages"
-		/>
-		<!-- Ajoutez d'autres balises méta communes ici -->
-	</Head>
+	</head>
 </template>
 
 <script>
-import {Head} from '@vueuse/head';
-
 export default {
-	name: 'CommonHead',
 	props: {
 		pageTitle: {
 			type: String,
 			required: true,
 		},
 	},
-
-	components: {
-		Head,
+	watch: {
+		pageTitle(newTitle) {
+			document.title = newTitle;
+		},
+	},
+	mounted() {
+		document.title = this.pageTitle;
 	},
 };
 </script>
-
-<style scoped>
-/* Styles spécifiques si nécessaire */
-</style>

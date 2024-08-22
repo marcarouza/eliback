@@ -27,17 +27,13 @@ export default {
 		TabWhats,
 		// Chat_Box,
 	},
-	mounted() {
-		this.$emit(
-			'updatePageTitle',
-			`Post de Blog | Développeur Full Stack`
-		);
-	},
-
 	data() {
 		return {
-			// Vos données ici
+			pageTitle: 'USER STATUS  | Développeur Full Stack',
 		};
+	},
+	mounted() {
+		this.$emit('updatePageTitle', this.pageTitle);
 	},
 	methods: {
 		// Vos méthodes ici

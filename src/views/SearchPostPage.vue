@@ -20,7 +20,7 @@ import TabWhats from '../components/TabWhats.vue';
 
 export default {
 	name: 'SearchPostPage',
-	emits: ['updatePageTitle'], // Déclarez l'événement ici
+	emits: ['updatePageTitle'],
 	components: {
 		NavOk,
 		NavBlog,
@@ -28,17 +28,13 @@ export default {
 		TabWhats,
 		// Chat_Box,
 	},
-	mounted() {
-		this.$emit(
-			'updatePageTitle',
-			`Rechercher un POST  | Eli | Développeur Full Stack`
-		);
-	},
-
 	data() {
 		return {
-			// Vos données ici
+			pageTitle: 'USER STATUS  | Développeur Full Stack',
 		};
+	},
+	mounted() {
+		this.$emit('updatePageTitle', this.pageTitle);
 	},
 	methods: {
 		// Vos méthodes ici
