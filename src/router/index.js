@@ -27,13 +27,13 @@ const routes = [
 		path: '/passmodifyPage',
 		name: 'passmodifypage',
 		component: passmodifypage,
-		meta: {showChatBox: true},
+		// meta: {showChatBox: true},
 	},
 	{
 		path: '/posts/:id',
 		name: 'postdetailpage',
 		component: postdetailpage,
-		meta: {showChatBox: true},
+		// meta: {showChatBox: true},
 	},
 	{
 		path: '/rgpdPage',
@@ -45,7 +45,7 @@ const routes = [
 		path: '/confirmloggedinPage',
 		name: 'confirmloggedinpage',
 		component: confirmloggedinpage,
-		meta: {requiresAuth: true},
+		// meta: {requiresAuth: true},
 		meta: {showChatBox: false},
 	},
 	{
@@ -64,7 +64,7 @@ const routes = [
 		path: '/allMembersPage',
 		name: 'allmemberspage',
 		component: allmemberspage,
-		meta: {requiresAuth: true},
+		// meta: {requiresAuth: true},
 		// meta: {showChatBox: true},
 	},
 	{
