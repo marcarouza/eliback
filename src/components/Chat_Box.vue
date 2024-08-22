@@ -222,7 +222,7 @@ export default {
 	},
 };
 </script>
-<style>
+<style scoped>
 .chat_bubble {
 	font-size: 2rem;
 	color: #004fa4;
