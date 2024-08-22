@@ -53,12 +53,12 @@ const routes = [
 		path: '/noAccessPage',
 		name: 'noaccesspage',
 		component: noaccesspage,
+		meta: {showChatBox: false},
 	},
 	{
 		path: '/allMembersPage',
 		name: 'allmemberspage',
 		component: allmemberspage,
-		meta: {requiresAuth: true},
 	},
 	{
 		path: '/homePage',
@@ -95,19 +95,16 @@ const routes = [
 		path: '/homeblogPage',
 		name: 'homeblogpage',
 		component: homeblogpage,
-		meta: {requiresAuth: true},
 	},
 	{
 		path: '/searchpostPage',
 		name: 'searchpostPage',
 		component: searchpostpage,
-		meta: {requiresAuth: true},
 	},
 	{
 		path: '/writepostPage',
 		name: 'writepostPage',
 		component: writepostpage,
-		meta: {requiresAuth: true},
 	},
 	{
 		path: '/cookiesPage',
@@ -124,7 +121,6 @@ const routes = [
 		path: '/userstatusPage',
 		name: 'userstatusPage',
 		component: userstatuspage,
-		meta: {requiresAuth: true},
 	},
 	{
 		path: '/confirmContactPage',

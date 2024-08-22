@@ -19,7 +19,7 @@ export default {
 	components: {
 		NavOk,
 		// PassModify,
-		Chat_Box,
+		// Chat_Box,
 		TabWhats,
 	},
 };

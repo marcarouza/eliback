@@ -7,20 +7,20 @@
 		<Footer />
 
 		<!-- Affichage conditionnel de Chat_Box basé sur la route -->
-		<Chat_Box :show="showChatBox" />
+		<ChatBox :show="showChatBox" />
 	</div>
 </template>
 
 <script>
 import CommonHead from './components/CommonHead.vue';
 import Footer from './components/Footer.vue';
-import Chat_Box from './components/Chat_Box.vue';
+import ChatBox from './components/ChatBox.vue';
 
 export default {
 	name: 'App',
 	components: {
 		CommonHead,
-		Chat_Box,
+		ChatBox,
 		Footer,
 	},
 	data() {
