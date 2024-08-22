@@ -71,7 +71,7 @@ export default {
 		this.getLocalUser();
 		this.msgBody.pseudo = this.pseudo;
 
-		this.setupSocketListeners(this.pseudo);
+		this.setupSocketListeners();
 	},
 
 	watch: {

@@ -11,10 +11,6 @@
 
 		<div ref="allMess" id="allMess" class="chat-body">
 			<!-- Messages vont ici -->
-			<div v-if="!isLoggedIn">
-				<!-- Pour utiliser la messagerie instantanée, vous devez être
-				connecté(e). -->
-			</div>
 		</div>
 
 		<div class="chat-footer">
@@ -22,14 +18,14 @@
 				<input
 					ref="messInput"
 					v-model="msgBody.msgToSend"
-					:disabled="isLoggedIn"
+					:disabled="!isLoggedIn"
 					id="messInput"
 					type="text"
 					class="form-control"
 					placeholder="Votre message..."
 				/>
 				<button
-					:disabled="isLoggedIn"
+					:disabled="!isLoggedIn"
 					id="sendMsg"
 					class="btn btn-primary send-button"
 				>
