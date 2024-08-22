@@ -29,7 +29,7 @@ export default {
 	},
 	data() {
 		return {
-			pageTitle: 'USER STATUS  | Développeur Full Stack',
+			pageTitle: `Détail d'un post | Développeur Full Stack`,
 		};
 	},
 	mounted() {

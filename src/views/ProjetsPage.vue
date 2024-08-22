@@ -27,7 +27,7 @@ export default {
 	},
 	data() {
 		return {
-			pageTitle: 'USER STATUS  | Développeur Full Stack',
+			pageTitle: 'Projets | Développeur Full Stack',
 		};
 	},
 	mounted() {

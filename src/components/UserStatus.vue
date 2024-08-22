@@ -353,7 +353,6 @@ export default {
 				}
 				const data = await response.json();
 				this.user = data.user;
-				// this.initProfileForm(); A REACTIVER POUR MODIFIER LE PROFIL DU MEMEBRE CONNECTE
 			} catch (err) {
 				console.error(
 					'FROM USER STATUS problème avec requête fetch :',

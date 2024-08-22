@@ -29,7 +29,7 @@ export default {
 
 	data() {
 		return {
-			pageTitle: 'Page inexistante | Développeur Full Stack',
+			pageTitle: '😎 Page inexistante | Développeur Full Stack',
 		};
 	},
 	mounted() {
