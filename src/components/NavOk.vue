@@ -191,8 +191,11 @@ export default {
 				}
 				const data = await response.json();
 				this.user = data.user;
-				this.userId = data.user._id;
-				// this.userId = data.user._id;
+				// this.userID = data.user._id;
+				console.log(
+					'🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 ~ fetchUserData ~ this.userID:',
+					this.userID
+				);
 
 				this.isLoggedIn = true;
 				console.log(
@@ -208,6 +211,10 @@ export default {
 		},
 		async fetchLogOutApi() {
 			try {
+				console.log(
+					'User ID before sending to logOutApi:',
+					this.userID
+				);
 				const response = await fetch(
 					'https://eli-back.onrender.com/logOutApi',
 					{
@@ -216,7 +223,7 @@ export default {
 						headers: {
 							'Content-Type': 'application/json',
 						},
-						body: JSON.stringify({user: this.localUser}), // Envoyer l'identifiant
+						body: JSON.stringify({userID: this.userID}), // Envoyer l'identifiant
 					}
 				);
 
