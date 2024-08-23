@@ -6,14 +6,12 @@
 	>
 		<NotFound />
 		<TabWhats />
-		<!-- <Chat_Box /> -->
 	</div>
 </template>
 
 <script>
 import NavOk from '../components/NavOk.vue';
 import NotFound from '../components/NotFound.vue';
-// import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
 
 export default {
@@ -23,7 +21,6 @@ export default {
 	components: {
 		NavOk,
 		NotFound,
-		// Chat_Box,
 		TabWhats,
 	},
 

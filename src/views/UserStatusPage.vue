@@ -3,7 +3,6 @@
 		<NavOk />
 		<UserStatus />
 		<TabWhats />
-		<!-- <Chat_Box /> -->
 	</div>
 </template>
 
@@ -12,7 +11,6 @@ import NavOk from '../components/NavOk.vue';
 import UserStatus from '../components/UserStatus.vue';
 import CommonHead from '../components/CommonHead.vue';
 import SignUserForm from '../components/SignUserForm.vue';
-// import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
 
 export default {
@@ -23,7 +21,6 @@ export default {
 		UserStatus,
 		NavOk,
 		SignUserForm,
-		// Chat_Box,
 		TabWhats,
 	},
 	data() {

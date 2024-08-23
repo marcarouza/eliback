@@ -8,7 +8,6 @@
 
 		<TabWhats />
 
-		<!-- <Chat_Box /> -->
 	</div>
 </template>
 
@@ -17,7 +16,6 @@ import NavOk from '../components/NavOk.vue';
 import NavBlog from '../components/blogCompo/NavBlog.vue';
 import WriteOnePost from '../components/blogCompo/WriteOnePost.vue';
 
-// import Chat_Box from '../components/Chat_Box.vue';
 import TabWhats from '../components/TabWhats.vue';
 
 export default {
@@ -28,7 +26,6 @@ export default {
 		NavBlog,
 		WriteOnePost,
 		TabWhats,
-		// Chat_Box,
 	},
 	data() {
 		return {
