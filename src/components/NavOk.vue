@@ -165,6 +165,7 @@ export default {
 			isLoggedIn: false,
 			user: '',
 			localUser: null,
+			userID: '',
 		};
 	},
 
@@ -190,6 +191,8 @@ export default {
 				}
 				const data = await response.json();
 				this.user = data.user;
+				// this.userId = data.user._id;
+
 				this.isLoggedIn = true;
 				console.log(
 					'🚀 ~ FROM NAVOK ==> checkUserStatus ~ this.user:',
@@ -202,8 +205,45 @@ export default {
 				);
 			}
 		},
-
 		async fetchLogOutApi() {
+			try {
+				const response = await fetch(
+					'https://eli-back.onrender.com/logOutApi',
+					{
+						method: 'POST', // Utilisez POST pour envoyer des données
+						credentials: 'include', // Pour envoyer les cookies avec la requête
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({userId: this.userId}), // Envoyer l'identifiant
+					}
+				);
+
+				console.log('✅ FROM NavOk ~ LogOutApi :', response);
+
+				if (response.ok) {
+					this.isLoggedIn = false;
+					console.log('🚀 ~ DECONNEXION REUSSIE !!! ');
+					this.user = null; // Mettre à jour l'utilisateur à null
+					localStorage.removeItem('localUser'); // Supprimer l'utilisateur de localStorage
+					sessionStorage.removeItem('localUser');
+					window.location.reload();
+					this.$router.push({name: 'homepage'});
+				} else {
+					console.error('Erreur lors de la déconnexion');
+					throw new Error(
+						'🍌 🍌 🍌 🍌 🍌 FROM NAVOK ==> ERR Network response was not ok'
+					);
+				}
+			} catch (error) {
+				console.error(
+					'🍌 🍌 🍌 🍌 🍌 FROM NAVOK ==> problème avec requête fetch :',
+					error
+				);
+			}
+		},
+
+		async fetchLogOutApi_NO() {
 			try {
 				const logout = await fetch(
 					'https://eli-back.onrender.com/logOutApi',
@@ -257,6 +297,7 @@ export default {
 				);
 				console.log('Utilisateur récupéré:', this.localUser);
 				this.isLoggedIn = true;
+				this.userID = this.localUser._id;
 			} else {
 				console.log(
 					'ℹ️  🚫  ℹ️ FROM NavOk ==> Aucun utilisateur  dans sessionStorage.'
