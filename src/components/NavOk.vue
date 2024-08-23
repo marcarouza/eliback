@@ -299,6 +299,10 @@ export default {
 					: null;
 				if (this.localUser) {
 					this.userID = this.localUser._id;
+					console.log(
+						'🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀  ~ checkLocaluser ~ this.userID:',
+						this.userID
+					);
 				}
 				console.log(
 					'✅ ℹ️  FROM checkLocaluser in NavOk ==> this.localUser :',
