@@ -216,7 +216,7 @@ export default {
 						headers: {
 							'Content-Type': 'application/json',
 						},
-						body: JSON.stringify({userId: this.userId}), // Envoyer l'identifiant
+						body: JSON.stringify({user: this.localUser}), // Envoyer l'identifiant
 					}
 				);
 
