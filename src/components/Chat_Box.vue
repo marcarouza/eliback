@@ -142,7 +142,8 @@ export default {
 			console.log('🚀 ~ messTxt:', messTxt);
 
 			if (messTxt) {
-				socket.emit('message', messTxt);
+				const messageData = {pseudo: this.pseudo, text: messTxt};
+				socket.emit('message', messageData);
 				const myMessDiv = document.createElement('div');
 				console.log('🚀 ~ addDiv ~ myDiv:', myMessDiv);
 
@@ -177,8 +178,6 @@ export default {
 
 		addDiv(data) {
 			console.log('🚀 ~ addDiv ~ data:', data);
-			console.log('🚀 ~   data.pseudo — — — —', data.pseudo);
-
 			const allMess = document.getElementById('allMess');
 
 			if (!allMess) {
@@ -187,23 +186,12 @@ export default {
 			}
 
 			const myDiv = document.createElement('div');
-			console.log('🚀 ~ addDiv ~ myDiv:', myDiv);
-
 			myDiv.classList.add('bub1');
 
-			// Create span element
 			const span = document.createElement('span');
+			span.textContent = `${data.pseudo}: ${data.text}`;
 
-			if (data.pseudo) {
-				span.textContent = `${data.pseudo}: ${data.text}`;
-			} else {
-				span.textContent = `${data.user}: ${data.text}`;
-			}
-
-			// Append span to div
 			myDiv.appendChild(span);
-
-			// Append div to allMess
 			allMess.appendChild(myDiv);
 		},
 
@@ -251,7 +239,8 @@ export default {
 						'STRUCTURE de MSG envoyé à tout le monde : ',
 						data
 					);
-					this.sendMess(data);
+					this.addDiv(data); // Affiche le message reçu de tout utilisateur
+					// this.sendMess(data);
 				});
 
 				socket.on('userLeft', (data) => {
