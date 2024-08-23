@@ -293,7 +293,7 @@ export default {
 		},
 		checkLocaluser() {
 			try {
-				const localUserData = localStorage.getItem('localuser');
+				const localUserData = localStorage.getItem('localUser');
 				this.localUser = localUserData
 					? JSON.parse(localUserData)
 					: null;
