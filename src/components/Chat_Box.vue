@@ -2,6 +2,7 @@
 	<div id="chatPopin" class="chat-popin chat-container hide-inactive">
 		<div class="chat-header">
 			<span>Chat avec vos amis…</span>
+			<span class="userCount" id="userCount"></span>
 			<button
 				@click="displayChat"
 				id="closeChatBtn"
@@ -9,20 +10,8 @@
 			></button>
 		</div>
 
-		<!-- <div v-if="!isLoggedIn" class="chat-body">
-			<span class="bubServer">
-				Pour utiliser la messagerie instantanée, vous devez être
-				connecté(e).
-			</span>
-		</div> -->
-
 		<div id="allMess" class="chat-body">
 			<!-- Messages vont ici -->
-
-			<span v-if="!isLoggedIn">
-				<!-- Pour utiliser la messagerie instantanée, vous devez être
-				connecté(e). -->
-			</span>
 		</div>
 
 		<div class="chat-footer">
@@ -55,6 +44,7 @@ export default {
 		return {
 			isLoggedIn: false,
 			localUser: null,
+			userCount: 0,
 			pseudo: '',
 			welcomeMsg:
 				'Pour utiliser la messagerie, vous devez être connecté(e) !',
@@ -203,37 +193,39 @@ export default {
 					this.completeID = socket.id;
 					socket.pseudo = this.pseudo;
 
-					if (this.completeID) {
-						console.log(
-							'📱 ~ socket.on ~ this.completeID :',
-							this.completeID
-						);
-						this.shortClientID = this.completeID.substring(
-							0,
-							5
-						);
-						console.log(
-							'🚀 ~ socket.on ~ this.shortClientID:',
-							this.shortClientID
-						);
-						socket.shortClientID = this.shortClientID;
+					// if (this.completeID) {
+					// 	console.log(
+					// 		'📱 ~ socket.on ~ this.completeID :',
+					// 		this.completeID
+					// 	);
+					// 	this.shortClientID = this.completeID.substring(
+					// 		0,
+					// 		5
+					// 	);
+					// 	console.log(
+					// 		'🚀 ~ socket.on ~ this.shortClientID:',
+					// 		this.shortClientID
+					// 	);
+					// 	socket.shortClientID = this.shortClientID;
 
-						socket.pseudo = this.pseudo;
+					// 	socket.pseudo = this.pseudo;
 
-						console.log(
-							`📬 📬 📬FROM setupSocketListeners => ${this.shortClientID} = ${pseudo} est CONNECTÉ !`
-						);
-					}
+					// 	console.log(
+					// 		`📬 📬 📬FROM setupSocketListeners => ${this.shortClientID} = ${pseudo} est CONNECTÉ !`
+					// 	);
+					// }
 				});
 
-				socket.on('disconnect', (pseudo, shortClientID) => {
-					const completeID = socket.id;
-					if (completeID) {
-						const shortClientID = completeID.substring(0, 5);
-						console.log(
-							`FROM CLIENT => ${shortClientID} est déconnecté`
-						);
-					}
+				socket.on('disconnect', (pseudo) => {
+					// Créer un message pour informer les autres utilisateurs que cet utilisateur est déconnecté
+					const message = `${this.pseudo} est déconnecté`;
+
+					// Ajouter ce message à l'interface utilisateur via serverMsg
+					this.serverMsg(message);
+
+					// Note : Il n'est pas nécessaire d'émettre un événement ici,
+					// car 'disconnect' est déjà géré par le serveur et les autres clients.
+					console.log('Utilisateur déconnecté:', this.pseudo);
 				});
 
 				socket.on('message', (data) => {
@@ -245,9 +237,9 @@ export default {
 					// this.sendMess(data);
 				});
 
-				socket.on('userLeft', (data) => {
-					this.serverMsg(data);
-				});
+				// socket.on('userLeft', (data) => {
+				// 	this.serverMsg(data);
+				// });
 
 				socket.on('userConnected', (data) => {
 					this.serverMsg(data);
@@ -257,6 +249,8 @@ export default {
 					console.log(
 						`Nombre d'utilisateurs connectés : ${count}`
 					);
+
+					this.userCount = count;
 
 					this.serverMsg(`Membres connectés : ${data}`);
 
@@ -272,6 +266,17 @@ export default {
 </script>
 
 <style>
+.user-count {
+	text-align: right;
+	top: 10px;
+	right: 10px;
+	background-color: #88acd2;
+	color: #fff;
+	padding: 1px;
+	border-radius: 3px;
+	font-size: 0.5rem;
+}
+
 .chat_bubble {
 	font-size: 2rem;
 	color: #004fa4;
