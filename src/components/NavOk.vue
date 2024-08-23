@@ -291,6 +291,28 @@ export default {
 			}
 		},
 		checkLocaluser() {
+			try {
+				const localUserData = localStorage.getItem('localuser');
+				this.localUser = localUserData
+					? JSON.parse(localUserData)
+					: null;
+				if (this.localUser) {
+					this.userID = this.localUser._id;
+				}
+				console.log(
+					'✅ ℹ️  FROM checkLocaluser in NavOk ==> this.localUser :',
+					this.localUser
+				);
+			} catch (error) {
+				console.error(
+					'Erreur lors de la récupération ou du parsing de localUser:',
+					error
+				);
+				this.localUser = null; // Assurez-vous que localUser est null en cas d'erreur
+			}
+		},
+
+		checkLocaluser_NO() {
 			if (sessionStorage.getItem('localUser')) {
 				this.localUser = JSON.parse(
 					sessionStorage.getItem('localUser')
@@ -298,6 +320,10 @@ export default {
 				console.log('Utilisateur récupéré:', this.localUser);
 				this.isLoggedIn = true;
 				this.userID = this.localUser._id;
+				console.log(
+					'🚀 ~ checkLocaluser ~ this.userID POUR UTILISATION dans logOut API :',
+					this.userID
+				);
 			} else {
 				console.log(
 					'ℹ️  🚫  ℹ️ FROM NavOk ==> Aucun utilisateur  dans sessionStorage.'

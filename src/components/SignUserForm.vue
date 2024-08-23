@@ -192,7 +192,7 @@ export default {
 
 		checkLocaluser() {
 			this.localUser =
-				JSON.parse(localStorage.getItem('localuser')) || null;
+				JSON.parse(localStorage.getItem('localUser')) || null;
 			console.log(
 				'✅ ℹ️  FROM SignUserForm ==> this.localUser :',
 				this.localUser
