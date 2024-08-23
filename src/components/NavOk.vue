@@ -191,6 +191,7 @@ export default {
 				}
 				const data = await response.json();
 				this.user = data.user;
+				this.userId = data.user._id;
 				// this.userId = data.user._id;
 
 				this.isLoggedIn = true;
