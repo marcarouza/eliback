@@ -193,6 +193,8 @@ export default {
 
 			myDiv.appendChild(span);
 			allMess.appendChild(myDiv);
+
+			socket.emit('message', `${data.pseudo}: ${data.text}`);
 		},
 
 		setupSocketListeners(pseudo) {
@@ -249,6 +251,19 @@ export default {
 
 				socket.on('userConnected', (data) => {
 					this.serverMsg(data);
+				});
+
+				socket.on('updateUserCount', (count) => {
+					console.log(
+						`Nombre d'utilisateurs connectés : ${count}`
+					);
+
+					this.serverMsg(`Membres connectés : ${data}`);
+
+					// Mettez à jour l'interface utilisateur avec le nouveau nombre de connectés
+					document.getElementById(
+						'userCount'
+					).textContent = `Utilisateurs connectés : ${count}`;
 				});
 			}
 		},
