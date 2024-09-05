@@ -15,42 +15,27 @@
 						active-class="active"
 						class="nav-link"
 						to="/cvPage"
+						>cv</router-link
 					>
-						<i
-							class="fas fa-file-alt"
-							title="CV"
-							aria-label="CV"
-						></i>
-					</router-link>
 				</li>
 				<li class="nav-item small-caps">
 					<router-link
 						active-class="active"
 						class="nav-link"
 						to="/projetsPage"
+						>projets</router-link
 					>
-						<i
-							class="fas fa-code"
-							title="PROJETS"
-							aria-label="PROJETS"
-						></i>
-					</router-link>
 				</li>
 				<li class="nav-item small-caps">
 					<router-link
 						active-class="active"
 						class="nav-link"
 						to="/contactFormPage"
+						>contact</router-link
 					>
-						<i
-							class="fas fa-envelope"
-							title="CONTACT"
-							aria-label="CONTACT"
-						></i>
-					</router-link>
 				</li>
 
-				<li class="nav-item small-caps">
+				<li nav-item>
 					<a
 						id="blogLink"
 						@click.prevent="navigateToBlog"
@@ -58,13 +43,8 @@
 						:class="{
 							active: $route.path === '/homeblogPage',
 						}"
+						>blog</a
 					>
-						<i
-							class="fas fa-blog"
-							title="BLOG"
-							aria-label="BLOG"
-						></i>
-					</a>
 				</li>
 			</ul>
 
@@ -395,18 +375,6 @@ export default {
 </script>
 
 <style scoped>
-.navbar-nav {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	width: 100%;
-}
-
-.nav-item {
-	margin-left: 15px; /* Optionnel : espacement entre les éléments */
-	margin-right: 15px; /* Optionnel : espacement entre les éléments */
-}
-
 .small-caps {
 	font-variant: small-caps;
 }
