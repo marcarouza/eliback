@@ -211,7 +211,7 @@ export default {
 				}
 				const data = await response.json();
 				this.user = data.user;
-				// this.userID = data.user._id;
+				this.userID = data.user._id;
 				console.log(
 					'🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 ~ fetchUserData ~ this.userID:',
 					this.userID
