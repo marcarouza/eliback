@@ -68,18 +68,6 @@
 				</li>
 			</ul>
 
-			<!-- Bouton de basculement pour petits écrans -->
-			<!-- <button
-				class="navbar-toggler"
-				type="button"
-				data-bs-toggle="collapse"
-				data-bs-target="#navbarNav"
-				aria-controls="navbarNav"
-				aria-expanded="false"
-				aria-label="Toggle navigation"
-			>
-				<span class="navbar-toggler-icon"></span>
-			</button> -->
 			<div class="" id="">
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item dropdown">
@@ -112,17 +100,6 @@
 									<!-- &nbsp;déconnecté -->
 								</span>
 							</li>
-
-							<!-- <i
-								v-if="user"
-								class="bi bi-person userlogged"
-								title="mon compte"
-							>
-								<span class="icon-disconnected px-4">
-									<i class="fas fa-user-slash"></i>
-									&nbsp;déconnecté
-								</span></i
-							> -->
 						</a>
 						<ul
 							v-if="user"
@@ -469,12 +446,6 @@ export default {
 	font-size: 0.8rem;
 }
 
-/* Style pour l'élément "non connecté" */
-/* ul.list-unstyled > li > span {
-	padding-left: 1rem;
-	padding-right: 1rem;
-} */
-
 /* Autres styles potentiellement nécessaires */
 .navbar .dropdown-toggle.btn {
 	padding: 0.2rem 0.5rem;
@@ -484,11 +455,8 @@ export default {
 
 .navbar-nav .dropdown-menu {
 	position: absolute;
-	/* right: 0px; */
+
 	left: -30px;
-	/* right: 0px; */
-	/* margin: 0; */
-	/* width: 50px; */
 }
 
 .navbar .bi-person {
@@ -507,11 +475,8 @@ export default {
 
 	.navbar-nav .dropdown-menu {
 		position: absolute;
-		/* right: 0px; */
+
 		left: -30px;
-		/* right: 0px; */
-		/* margin: 0; */
-		/* width: 50px; */
 	}
 }
 
