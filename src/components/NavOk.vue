@@ -375,14 +375,14 @@ export default {
 
 .custom-icon {
 	font-size: 1.1rem;
-	color: #f20c0c;
+	color: #ffffff;
 	transition: color 0.3s ease, transform 0.15s ease;
 }
 
 .custom-icon:hover {
 	font-size: 1.2rem;
 
-	color: #f6ff00;
+	color: #ffffff;
 
 	transform: rotate(15deg);
 }
@@ -423,7 +423,7 @@ export default {
 }
 
 .icon-disconnected {
-	color: orange;
+	color: rgb(255, 157, 0);
 	font-size: 0.8rem;
 }
 
