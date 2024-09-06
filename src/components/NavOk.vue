@@ -101,7 +101,7 @@
 											class="bi bi-check-circle connected"
 											>&nbsp;&nbsp;{{
 												user.user
-											}}&nbsp;&nbsp;</i
+											}}</i
 										>
 									</span></router-link
 								>
@@ -392,19 +392,19 @@ export default {
 
 <style scoped>
 .connected {
-	font-size: 1.3rem;
+	font-size: 1.5rem;
 }
 
 .custom-icon {
 	font-size: 1.1rem;
-	color: #ffffff;
+	color: #f20c0c;
 	transition: color 0.3s ease, transform 0.15s ease;
 }
 
 .custom-icon:hover {
 	font-size: 1.2rem;
 
-	color: #ffffff;
+	color: #f6ff00;
 
 	transform: rotate(15deg);
 }
@@ -456,7 +456,7 @@ export default {
 
 .userlogged {
 	font-size: 0.8rem;
-	color: rgb(255, 255, 255);
+	color: rgb(0, 223, 0);
 }
 
 .active {
@@ -546,7 +546,7 @@ export default {
 
 	.custom-icon {
 		font-size: 1rem;
-		color: #1ae010;
+		color: #ffffff;
 	}
 
 	.user_menu_item {
@@ -566,7 +566,7 @@ export default {
 	.navbar-nav .dropdown-menu {
 		position: absolute;
 		/* right: 0px; */
-		left: -15px;
+		left: -10px;
 		/* right: 0px; */
 		/* margin: 0; */
 		/* width: 50px; */
