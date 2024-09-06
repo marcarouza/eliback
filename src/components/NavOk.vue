@@ -98,9 +98,9 @@
 								>
 									<span claass="account">
 										<i
-											class="bi bi-check-circle"
-										></i
-										>&nbsp;{{ user.user }}
+											class="bi bi-check-circle connected"
+											>&nbsp;{{ user.user }}</i
+										>
 									</span></router-link
 								>
 							</li>
@@ -389,14 +389,20 @@ export default {
 </script>
 
 <style scoped>
+.connected {
+	font-size: 1.1rem;
+}
+
 .custom-icon {
 	font-size: 1.1rem;
 	color: #ffffff;
-	transition: color 0.3s ease, transform 0.3s ease;
+	transition: color 0.3s ease, transform 0.15s ease;
 }
 
 .custom-icon:hover {
-	color: #ffcc00;
+	font-size: 1.2rem;
+
+	color: #f6ff00;
 
 	transform: rotate(15deg);
 }
