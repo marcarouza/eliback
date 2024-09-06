@@ -99,7 +99,9 @@
 									<span claass="account">
 										<i
 											class="bi bi-check-circle connected"
-											>&nbsp;{{ user.user }}</i
+											>&nbsp;&nbsp;{{
+												user.user
+											}}</i
 										>
 									</span></router-link
 								>
@@ -390,7 +392,7 @@ export default {
 
 <style scoped>
 .connected {
-	font-size: 1.1rem;
+	font-size: 1.5rem;
 }
 
 .custom-icon {
