@@ -17,7 +17,7 @@
 						to="/cvPage"
 					>
 						<i
-							class="fas fa-file-alt"
+							class="fas fa-file-alt custom-icon"
 							title="CV"
 							aria-label="CV"
 						></i>
@@ -30,7 +30,7 @@
 						to="/projetsPage"
 					>
 						<i
-							class="fas fa-code"
+							class="fas fa-code custom-icon"
 							title="PROJETS"
 							aria-label="PROJETS"
 						></i>
@@ -43,7 +43,7 @@
 						to="/contactFormPage"
 					>
 						<i
-							class="fas fa-envelope"
+							class="fas fa-envelope custom-icon"
 							title="CONTACT"
 							aria-label="CONTACT"
 						></i>
@@ -60,7 +60,7 @@
 						}"
 					>
 						<i
-							class="fas fa-blog"
+							class="fas fa-blog custom-icon"
 							title="BLOG"
 							aria-label="BLOG"
 						></i>
@@ -389,29 +389,42 @@ export default {
 </script>
 
 <style scoped>
+.custom-icon {
+	font-size: 1.1rem;
+	color: #ffffff;
+	transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.custom-icon:hover {
+	color: #ffcc00;
+
+	transform: rotate(15deg);
+}
+
 .userMenu {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	width: min-content;
+	justify-content: space-evenly;
+	width: 100px;
 	/* justify-content: center; */
 	/* gap: 5px; */
 }
 
 .navbar {
-	background-color: #fbf8f8;
-	padding: 10px;
+	/* background-color: #fbf8f8; */
+	/* padding: 10px; */
 }
-.navbar-nav {
+/* .navbar-nav {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	/* width: 50%; */
-}
+
+} */
 
 .nav-item {
-	margin-left: 15px; /* Optionnel : espacement entre les éléments */
-	margin-right: 15px; /* Optionnel : espacement entre les éléments */
+	margin-left: 30px;
+	/* margin-right: 5px; */
 }
 
 .small-caps {
@@ -471,10 +484,10 @@ ul.list-unstyled > li > span {
 
 /* Autres styles potentiellement nécessaires */
 .navbar .dropdown-toggle.btn {
-	padding: 0.375rem 0.75rem;
+	/* padding: 0.375rem 0.75rem; */
 }
 
 .navbar .bi-person {
-	font-size: 1.2rem;
+	font-size: 1.5rem;
 }
 </style>
