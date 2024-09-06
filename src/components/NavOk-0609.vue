@@ -1,5 +1,187 @@
 <template>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<div class="container bg-black">
+		<div class="row row-cols-1 row-cols-sm-3">
+			<div class="col mb-3">
+				<router-link class="navbar-brand" to="/">
+					<img
+						class="d-inline-block align-text-top elilogo"
+						src="/pix/logos/eliLogo192x192.png"
+						alt="Eli Azoura"
+					/>
+				</router-link>
+			</div>
+			<div class="col mb-3">
+				<ul class="navbar-nav">
+					<li class="nav-item small-caps">
+						<router-link
+							active-class="active"
+							class="nav-link"
+							to="/cvPage"
+						>
+							<i
+								class="fas fa-file-alt custom-icon"
+								title="CV"
+								aria-label="CV"
+							></i>
+						</router-link>
+					</li>
+					<li class="nav-item small-caps">
+						<router-link
+							active-class="active"
+							class="nav-link"
+							to="/projetsPage"
+						>
+							<i
+								class="fas fa-code custom-icon"
+								title="PROJETS"
+								aria-label="PROJETS"
+							></i>
+						</router-link>
+					</li>
+					<li class="nav-item small-caps">
+						<router-link
+							active-class="active"
+							class="nav-link"
+							to="/contactFormPage"
+						>
+							<i
+								class="fas fa-envelope custom-icon"
+								title="CONTACT"
+								aria-label="CONTACT"
+							></i>
+						</router-link>
+					</li>
+
+					<li class="nav-item small-caps">
+						<a
+							id="blogLink"
+							@click.prevent="navigateToBlog"
+							class="nav-link small-caps"
+							:class="{
+								active: $route.path === '/homeblogPage',
+							}"
+						>
+							<i
+								class="fas fa-blog custom-icon"
+								title="BLOG"
+								aria-label="BLOG"
+							></i>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="col mb-3">
+				<div class="" id="">
+					<ul class="navbar-nav ms-auto">
+						<li class="nav-item dropdown">
+							<a
+								class="userMenu dropdown-toggle btn text-white border border-white border-opacity-25"
+								href="#"
+								id="navbarDropdown"
+								role="button"
+								data-bs-toggle="dropdown"
+								aria-expanded="false"
+							>
+								<li v-if="user" class="userlogged">
+									<router-link
+										class="dropdown-item"
+										to="/userstatusPage"
+									>
+										<span claass="account">
+											<i
+												class="bi bi-check-circle connected"
+												>&nbsp;&nbsp;{{
+													user.user
+												}}</i
+											>
+										</span></router-link
+									>
+								</li>
+								<li v-else>
+									<span
+										class="icon-disconnected px-4"
+									>
+										<i
+											class="fas fa-user-slash"
+										></i>
+										<!-- &nbsp;déconnecté -->
+									</span>
+								</li>
+
+								<!-- <i
+								v-if="user"
+								class="bi bi-person userlogged"
+								title="mon compte"
+							>
+								<span class="icon-disconnected px-4">
+									<i class="fas fa-user-slash"></i>
+									&nbsp;déconnecté
+								</span></i
+							> -->
+							</a>
+							<ul
+								v-if="user"
+								class="dropdown-menu user_menu"
+								aria-labelledby="navbarDropdown"
+							>
+								<li>
+									<router-link
+										class="dropdown-item user_menu_item"
+										to="/userstatusPage"
+										@click.prevent="
+											navigateToPrivateNEW
+										"
+									>
+										mon compte
+									</router-link>
+								</li>
+								<li>
+									<router-link
+										class="dropdown-item user_menu_item"
+										to="/allMembersPage"
+										>tous les membres</router-link
+									>
+								</li>
+								<li>
+									<a
+										href="#"
+										class="dropdown-item user_menu_item"
+										@click.prevent="
+											fetchLogOutApi
+										"
+										>déconnexion</a
+									>
+								</li>
+							</ul>
+
+							<ul
+								v-else
+								id="dynamicWidth"
+								class="dropdown-menu user_menu"
+								aria-labelledby="navbarDropdown"
+							>
+								<li>
+									<router-link
+										class="dropdown-item user_menu_item"
+										to="/loguserPage"
+										>connexion</router-link
+									>
+								</li>
+								<li>
+									<router-link
+										class="dropdown-item user_menu_item"
+										to="/signuserPage"
+										>créer un compte</router-link
+									>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<nav class="navbar bg-dark row row-cols-1 row-cols-sm-3">
 		<div class="container">
 			<router-link class="navbar-brand" to="/">
 				<img
@@ -7,8 +189,8 @@
 					src="/pix/logos/eliLogo192x192.png"
 					alt="Eli Azoura"
 				/>
-				<!-- <span class="hello">Bienvenue dans mon réseau</span> -->
 			</router-link>
+
 			<ul class="navbar-nav">
 				<li class="nav-item small-caps">
 					<router-link
@@ -68,18 +250,6 @@
 				</li>
 			</ul>
 
-			<!-- Bouton de basculement pour petits écrans -->
-			<!-- <button
-				class="navbar-toggler"
-				type="button"
-				data-bs-toggle="collapse"
-				data-bs-target="#navbarNav"
-				aria-controls="navbarNav"
-				aria-expanded="false"
-				aria-label="Toggle navigation"
-			>
-				<span class="navbar-toggler-icon"></span>
-			</button> -->
 			<div class="" id="">
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item dropdown">
