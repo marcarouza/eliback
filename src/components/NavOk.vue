@@ -371,7 +371,7 @@ export default {
 	justify-content: space-evenly;
 	/* width: 100%; */
 	/* justify-content: center; */
-	/* gap: 5px; */
+	gap: 5px;
 }
 
 .navbar-nav {
