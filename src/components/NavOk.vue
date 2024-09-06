@@ -470,18 +470,22 @@ export default {
 
 /* Styles pour le menu utilisateur */
 .user_menu {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-end;
+	/* display: flex; */
+	/* flex-direction: column; */
+	/* align-items: flex-end; */
 	/* justify-content: center; */
 	min-width: 50px !important;
 	background-color: #212529;
 	padding: 0;
-	margin: 0;
-	/* white-space: nowrap; */
+	/* margin: 0; */
+	white-space: nowrap;
 }
 
 .user_menu_item {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: center;
 	padding: 8px 16px;
 	color: #fff;
 	font-size: 0.8rem;
@@ -500,6 +504,15 @@ export default {
 	margin: 0;
 }
 
+.navbar-nav .dropdown-menu {
+	position: absolute;
+	/* right: 0px; */
+	left: -30px;
+	/* right: 0px; */
+	/* margin: 0; */
+	/* width: 50px; */
+}
+
 .navbar .bi-person {
 	font-size: 1.5rem;
 }
@@ -512,6 +525,15 @@ export default {
 	.custom-icon {
 		font-size: 1rem;
 		color: #e0c410;
+	}
+
+	.navbar-nav .dropdown-menu {
+		position: absolute;
+		/* right: 0px; */
+		left: -30px;
+		/* right: 0px; */
+		/* margin: 0; */
+		/* width: 50px; */
 	}
 }
 
@@ -528,7 +550,7 @@ export default {
 	}
 
 	.user_menu_item {
-		padding: 8px 5px 8px 5px;
+		padding: 5px 8px 8px 8px;
 		color: #fff;
 		font-size: 0.8rem;
 		justify-content: flex-end;
@@ -536,9 +558,18 @@ export default {
 
 	.user_menu {
 		min-width: 100px !important;
-		width: 50px;
+		/* width: 50px; */
 		background-color: #212529;
 		/* white-space: nowrap; */
+	}
+
+	.navbar-nav .dropdown-menu {
+		position: absolute;
+		/* right: 0px; */
+		left: -15px;
+		/* right: 0px; */
+		/* margin: 0; */
+		/* width: 50px; */
 	}
 }
 </style>
