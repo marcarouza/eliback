@@ -9,7 +9,7 @@
 				/>
 				<!-- <span class="hello">Bienvenue dans mon réseau</span> -->
 			</router-link>
-			<ul class="navbar-nav ms-auto">
+			<ul class="navbar-nav">
 				<li class="nav-item small-caps">
 					<router-link
 						active-class="active"
@@ -80,11 +80,11 @@
 			>
 				<span class="navbar-toggler-icon"></span>
 			</button> -->
-			<div class="collapse navbar-collapse" id="navbarNav">
+			<div class="" id="">
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item dropdown">
 						<a
-							class="nav-link dropdown-toggle btn text-white border border-white border-opacity-25"
+							class="userMenu dropdown-toggle btn text-white border border-white border-opacity-25"
 							href="#"
 							id="navbarDropdown"
 							role="button"
@@ -107,7 +107,7 @@
 							<li v-else>
 								<span class="icon-disconnected px-4">
 									<i class="fas fa-user-slash"></i>
-									&nbsp;déconnecté
+									<!-- &nbsp;déconnecté -->
 								</span>
 							</li>
 
@@ -389,11 +389,21 @@ export default {
 </script>
 
 <style scoped>
+.userMenu {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.navbar {
+	background-color: #fbf8f8;
+	padding: 10px;
+}
 .navbar-nav {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	width: 100%;
+	/* width: 50%; */
 }
 
 .nav-item {
