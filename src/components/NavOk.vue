@@ -393,6 +393,9 @@ export default {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	width: min-content;
+	/* justify-content: center; */
+	/* gap: 5px; */
 }
 
 .navbar {
