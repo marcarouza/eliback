@@ -178,28 +178,6 @@
 								>
 							</li>
 						</ul>
-
-						<!-- <ul class="list-unstyled mb-0 ms-3">
-							<li v-if="user" class="userlogged">
-								<router-link
-									class="dropdown-item"
-									to="/userstatusPage"
-								>
-									<span class="account">
-										<i
-											class="bi bi-check-circle"
-										></i
-										>&nbsp;{{ user.user }}
-									</span></router-link
-								>
-							</li>
-							<li v-else>
-								<span class="icon-disconnected px-4">
-									<i class="fas fa-user-slash"></i>
-									&nbsp;déconnecté
-								</span>
-							</li>
-						</ul> -->
 					</li>
 				</ul>
 			</div>
@@ -392,7 +370,7 @@ export default {
 
 <style scoped>
 .connected {
-	font-size: 1.5rem;
+	font-size: 1rem;
 }
 
 .custom-icon {
