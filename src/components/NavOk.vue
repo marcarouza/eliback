@@ -414,7 +414,7 @@ export default {
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-evenly;
-	width: 100%;
+	/* width: 100%; */
 	/* justify-content: center; */
 	/* gap: 5px; */
 }
@@ -470,25 +470,34 @@ export default {
 
 /* Styles pour le menu utilisateur */
 .user_menu {
-	width: 200px; /* Comme spécifié dans le style en ligne */
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	/* justify-content: center; */
+	min-width: 50px !important;
 	background-color: #212529;
-	white-space: nowrap;
+	padding: 0;
+	margin: 0;
+	/* white-space: nowrap; */
 }
 
 .user_menu_item {
 	padding: 8px 16px;
 	color: #fff;
+	font-size: 0.8rem;
 }
 
 /* Style pour l'élément "non connecté" */
-ul.list-unstyled > li > span {
+/* ul.list-unstyled > li > span {
 	padding-left: 1rem;
 	padding-right: 1rem;
-}
+} */
 
 /* Autres styles potentiellement nécessaires */
 .navbar .dropdown-toggle.btn {
-	/* padding: 0.375rem 0.75rem; */
+	padding: 0.2rem 0.5rem;
+	/* padding: 0; */
+	margin: 0;
 }
 
 .navbar .bi-person {
@@ -516,6 +525,20 @@ ul.list-unstyled > li > span {
 	.custom-icon {
 		font-size: 1rem;
 		color: #1ae010;
+	}
+
+	.user_menu_item {
+		padding: 8px 5px 8px 5px;
+		color: #fff;
+		font-size: 0.8rem;
+		justify-content: flex-end;
+	}
+
+	.user_menu {
+		min-width: 100px !important;
+		width: 50px;
+		background-color: #212529;
+		/* white-space: nowrap; */
 	}
 }
 </style>
