@@ -7,7 +7,7 @@
 					src="/pix/logos/eliLogo192x192.png"
 					alt="Eli Azoura"
 				/>
-				<span class="hello">Bienvenue dans mon réseau</span>
+				<!-- <span class="hello">Bienvenue dans mon réseau</span> -->
 			</router-link>
 			<ul class="navbar-nav ms-auto">
 				<li class="nav-item small-caps">
@@ -69,7 +69,7 @@
 			</ul>
 
 			<!-- Bouton de basculement pour petits écrans -->
-			<button
+			<!-- <button
 				class="navbar-toggler"
 				type="button"
 				data-bs-toggle="collapse"
@@ -79,7 +79,7 @@
 				aria-label="Toggle navigation"
 			>
 				<span class="navbar-toggler-icon"></span>
-			</button>
+			</button> -->
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item dropdown">
@@ -91,10 +91,36 @@
 							data-bs-toggle="dropdown"
 							aria-expanded="false"
 						>
-							<i
+							<li v-if="user" class="userlogged">
+								<router-link
+									class="dropdown-item"
+									to="/userstatusPage"
+								>
+									<span claass="account">
+										<i
+											class="bi bi-check-circle"
+										></i
+										>&nbsp;{{ user.user }}
+									</span></router-link
+								>
+							</li>
+							<li v-else>
+								<span class="icon-disconnected px-4">
+									<i class="fas fa-user-slash"></i>
+									&nbsp;déconnecté
+								</span>
+							</li>
+
+							<!-- <i
+								v-if="user"
+								class="bi bi-person userlogged"
 								title="mon compte"
-								class="bi bi-person"
-							></i>
+							>
+								<span class="icon-disconnected px-4">
+									<i class="fas fa-user-slash"></i>
+									&nbsp;déconnecté
+								</span></i
+							> -->
 						</a>
 						<ul
 							v-if="user"
@@ -150,25 +176,28 @@
 								>
 							</li>
 						</ul>
-					</li>
-				</ul>
-				<ul class="list-unstyled mb-0 ms-3">
-					<li v-if="user" class="userlogged">
-						<router-link
-							class="dropdown-item"
-							to="/userstatusPage"
-						>
-							<span claass="account">
-								<i class="bi bi-check-circle"></i
-								>&nbsp;{{ user.user }}
-							</span></router-link
-						>
-					</li>
-					<li v-else>
-						<span class="icon-disconnected px-4">
-							<i class="fas fa-user-slash"></i>
-							&nbsp;déconnecté
-						</span>
+
+						<!-- <ul class="list-unstyled mb-0 ms-3">
+							<li v-if="user" class="userlogged">
+								<router-link
+									class="dropdown-item"
+									to="/userstatusPage"
+								>
+									<span class="account">
+										<i
+											class="bi bi-check-circle"
+										></i
+										>&nbsp;{{ user.user }}
+									</span></router-link
+								>
+							</li>
+							<li v-else>
+								<span class="icon-disconnected px-4">
+									<i class="fas fa-user-slash"></i>
+									&nbsp;déconnecté
+								</span>
+							</li>
+						</ul> -->
 					</li>
 				</ul>
 			</div>
@@ -271,41 +300,6 @@ export default {
 			}
 		},
 
-		async fetchLogOutApi_NO() {
-			try {
-				const logout = await fetch(
-					'https://eli-back.onrender.com/logOutApi',
-					{
-						method: 'GET',
-						credentials: 'include', // Pour envoyer les cookies avec la requête
-					}
-				);
-
-				console.log('✅ FROM NavOk ~ LogOutApi :', logout);
-
-				if (logout.ok) {
-					this.isLoggedIn = false;
-					console.log('🚀 ~ DECONNEXION REUSSIE !!! ');
-					this.user = null; // Mettre à jour l'utilisateur à null
-					localStorage.removeItem('localUser'); // Supprimer l'utilisateur de localStorage
-					sessionStorage.removeItem('localUser');
-					// sessionStorage.clear();
-					// localStorage.clear();
-					window.location.reload();
-					this.$router.push({name: 'homepage'});
-				} else {
-					console.error('Erreur lors de la déconnexion');
-					throw new Error(
-						'🍌 🍌 🍌 🍌 🍌 FROM NAVOK ==> ERR Network response was not ok'
-					);
-				}
-			} catch (error) {
-				console.error(
-					'🍌 🍌 🍌 🍌 🍌 FROM NAVOK ==> problème avec requête fetch :',
-					error
-				);
-			}
-		},
 		navigateToBlog() {
 			if (this.user) {
 				// Si l'utilisateur est connecté, on le redirige vers la page du blog
