@@ -239,7 +239,7 @@ export default {
 					this.user = null; // Mettre à jour l'utilisateur à null
 					localStorage.removeItem('localUser'); // Supprimer l'utilisateur de localStorage
 					sessionStorage.removeItem('localUser');
-					window.location.reload();
+					// window.location.reload();
 					this.$router.push({name: 'homepage'});
 				} else {
 					console.error('Erreur lors de la déconnexion');

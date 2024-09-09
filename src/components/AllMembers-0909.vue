@@ -19,10 +19,7 @@
 				</thead>
 				<tbody>
 					<tr v-for="(user, index) in users" :key="user._id">
-						<div
-							v-if="user._id != localUser._id"
-							class="test"
-						></div>
+
 						<th scope="row">{{ index + 1 }}</th>
 						<td>{{ user.user }}</td>
 						<td class="text-center">
@@ -43,7 +40,7 @@
 							</span>
 						</td>
 						<td>
-							<button
+							<button 
 								class="btn btn-primary"
 								@click="
 									sendFriendReq_NEW(
