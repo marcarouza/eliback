@@ -19,9 +19,19 @@
 				</thead>
 				<tbody>
 					<tr v-for="(user, index) in users" :key="user._id">
-						<th scope="row">{{ index + 1 }}</th>
-						<td>{{ user.user }}</td>
-						<td class="text-center">
+						<th
+							v-show="user._id !== localUser._id"
+							scope="row"
+						>
+							{{ index + 1 }}
+						</th>
+						<td v-show="user._id !== localUser._id">
+							{{ user.user }}
+						</td>
+						<td
+							v-show="user._id !== localUser._id"
+							class="text-center"
+						>
 							<!-- Statut avec couleur personnalisée -->
 							<span v-if="user.isActive">
 								<i
