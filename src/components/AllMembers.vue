@@ -40,7 +40,7 @@
 						</td>
 						<td>
 							<button
-								v-show="user._id == localUser._id"
+								v-show="user._id !== localUser._id"
 								class="btn btn-primary"
 								@click="
 									sendFriendReq_NEW(
