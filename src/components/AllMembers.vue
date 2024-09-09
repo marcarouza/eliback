@@ -18,39 +18,30 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="(user, index) in users" :key="user._id">
-						<th
-							v-show="user._id != localUser._id"
-							scope="row"
-						>
-							{{ index + 1 }}
-						</th>
-						<td v-show="user._id != localUser._id">
-							{{ user.user }}
-						</td>
-						<td
-							v-show="user._id != localUser._id"
-							class="text-center"
-						>
+					<tr
+						v-for="(user, index) in users"
+						:key="user._id"
+						v-if="user._id != localUser._id"
+					>
+						<th scope="row">{{ index + 1 }}</th>
+						<td>{{ user.user }}</td>
+						<td class="text-center">
 							<!-- Statut avec couleur personnalisée -->
 							<span v-if="user.isActive">
 								<i
 									class="fas fa-circle"
 									style="color: green"
 								></i>
-								<!-- Icône verte pour connecté -->
 							</span>
 							<span v-else>
 								<i
 									class="fas fa-circle"
 									style="color: red"
 								></i>
-								<!-- Icône rouge pour déconnecté -->
 							</span>
 						</td>
 						<td>
 							<button
-								v-show="user._id != localUser._id"
 								class="btn btn-primary"
 								@click="
 									sendFriendReq_NEW(
@@ -60,9 +51,7 @@
 									)
 								"
 							>
-								<i class="fas fa-user-plus"></i>
-								<!-- Icône pour ajouter en ami -->
-								Ajouter
+								<i class="fas fa-user-plus"></i> Ajouter
 							</button>
 						</td>
 					</tr>
