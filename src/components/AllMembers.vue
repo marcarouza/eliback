@@ -20,16 +20,16 @@
 				<tbody>
 					<tr v-for="(user, index) in users" :key="user._id">
 						<th
-							v-show="user._id !== localUser._id"
+							v-show="user._id != localUser._id"
 							scope="row"
 						>
 							{{ index + 1 }}
 						</th>
-						<td v-show="user._id !== localUser._id">
+						<td v-show="user._id != localUser._id">
 							{{ user.user }}
 						</td>
 						<td
-							v-show="user._id !== localUser._id"
+							v-show="user._id != localUser._id"
 							class="text-center"
 						>
 							<!-- Statut avec couleur personnalisée -->
@@ -50,7 +50,7 @@
 						</td>
 						<td>
 							<button
-								v-show="user._id !== localUser._id"
+								v-show="user._id != localUser._id"
 								class="btn btn-primary"
 								@click="
 									sendFriendReq_NEW(
