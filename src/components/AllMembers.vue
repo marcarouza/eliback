@@ -51,8 +51,12 @@
 								<i class="fas fa-user-plus"></i>
 								Ajouter
 							</button>
-							<button disabled="true" v-else>
-								vous même
+							<button
+								v-else
+								disabled
+								class="btn btn-secondary"
+							>
+								🙋
 							</button>
 						</td>
 					</tr>
