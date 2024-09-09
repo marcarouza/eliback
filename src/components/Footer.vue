@@ -21,7 +21,6 @@
 				</div>
 
 				<!-- Liens utiles -->
-				<!-- Liens utiles -->
 				<div class="col-md-4 mb-1">
 					<ul class="list-unstyled">
 						<li class="nav-item">

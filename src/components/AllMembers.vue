@@ -37,10 +37,17 @@
 							</span>
 						</td>
 						<td>
-							<button v-if="user._id != localUser._id">
-								class="btn btn-primary" @click="
-								sendFriendReq_NEW( user._id, user.user,
-								user.email ) " >
+							<button
+								v-if="user._id != localUser._id"
+								class="btn btn-primary"
+								@click="
+									sendFriendReq_NEW(
+										user._id,
+										user.user,
+										user.email
+									)
+								"
+							>
 								<i class="fas fa-user-plus"></i>
 								Ajouter
 							</button>
