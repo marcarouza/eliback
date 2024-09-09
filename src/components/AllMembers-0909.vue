@@ -1,33 +1,68 @@
 <template>
 	<div class="container">
-		<h2 class="mb-5">Liste des membres 01 ( par pseudonymes)</h2>
-		<div v-if="users.length > 0">
-			<div class="list-group">
-				<div
-					v-for="user in users"
-					:key="user._id"
-					class="list-group-item d-flex justify-content-between align-items-center"
-				>
-					<div>
-						<h5>ID: {{ user._id }}</h5>
-						<h5>{{ user.user }}</h5>
-						<!-- <p class="mb-0 text-muted">{{ user.email }}</p> -->
-					</div>
-					<button
-						class="btn btn-primary"
-						@click="
-							sendFriendReq_NEW(
-								user._id,
-								user.user,
-								user.email
-							)
-						"
-					>
-						Demander en ami
-					</button>
-				</div>
-			</div>
+		<h2 class="mb-3">Les membres</h2>
+		<h5 class="mb-3">
+			Les informations présentés ici sont publiques et autorisées par
+			les membres lors de l'inscription
+		</h5>
+		<div class="card p-3" v-if="users.length > 0">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Utilisateur</th>
+						<th class="text-center" scope="col">
+							État en ligne
+						</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(user, index) in users" :key="user._id">
+						<div
+							v-if="user._id != localUser._id"
+							class="test"
+						></div>
+						<th scope="row">{{ index + 1 }}</th>
+						<td>{{ user.user }}</td>
+						<td class="text-center">
+							<!-- Statut avec couleur personnalisée -->
+							<span v-if="user.isActive">
+								<i
+									class="fas fa-circle"
+									style="color: green"
+								></i>
+								<!-- Icône rouge pour connecté -->
+							</span>
+							<span v-else>
+								<i
+									class="fas fa-circle"
+									style="color: red"
+								></i>
+								<!-- Icône verte pour déconnecté -->
+							</span>
+						</td>
+						<td>
+							<button
+								class="btn btn-primary"
+								@click="
+									sendFriendReq_NEW(
+										user._id,
+										user.user,
+										user.email
+									)
+								"
+							>
+								<i class="fas fa-user-plus"></i>
+								<!-- Icône pour ajouter en ami -->
+								Ajouter
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
+
 		<div v-else>
 			<p>
 				Impossible d'afficher le membres du site. Soit nous
@@ -60,6 +95,7 @@ export default {
 		this.fetchUserData();
 		this.fetchAllMembers();
 		this.checkLocaluser();
+		this.$emit('updatePageTitle', 'Les membres du site', true);
 	},
 	methods: {
 		display(message) {
@@ -125,18 +161,15 @@ export default {
 					);
 				} else {
 					throw new Error(
-						`🍌 🍌 🍌 🍌 FROM fetchAllMembers ERR HTTP: ${response.status}`
+						`🍌  FROM fetchAllMembers ERR HTTP: ${response.status}`
 					);
 				}
 			} catch (err) {
-				console.error(
-					'🍌 🍌 🍌  ERR de récupération des membres:',
-					err
-				);
+				console.error('🍌  ERR de récupération des membres:', err);
 				// Vous pouvez également afficher un message d'erreur à l'utilisateur ici
 			}
 		},
-		async sendFriendReq_NEW(toID, toPseudo, toEmail) {
+		async sendFriendReq_NEW(toID, toPseudo) {
 			try {
 				const response = await fetch(
 					'https://eli-back.onrender.com/askFor1Friend',
@@ -161,12 +194,6 @@ export default {
 						data
 					);
 					this.msgRes = `✅ Demande d'ami envoyée à ${toPseudo}`;
-
-					this.sendMAILreq2Friend(
-						this.localUser,
-						toPseudo,
-						toEmail
-					);
 				} else if (response.status === 409) {
 					// Si le statut est 409, c'est un conflit : demande déjà envoyée
 					this.msgRes = `⚠️ Une demande d'ami a déjà été envoyée à cette personne.`;
@@ -185,6 +212,9 @@ export default {
 		},
 
 		async sendMAILreq2Friend(fromONE, toONE, toPseudo) {
+			console.log('🚀 ~ sendMAILreq2Friend ~ toPseudo:', toPseudo);
+			console.log('🚀 ~ sendMAILreq2Friend ~ toONE:', toONE);
+			console.log('🚀 ~ sendMAILreq2Friend ~ fromONE:', fromONE);
 			BoX = {
 				from: fromONE.email,
 				to: toONE,
@@ -193,6 +223,8 @@ export default {
 				subject: "Demande d'ami",
 				text: `Vous avez reçu une demande d\'ami`,
 			};
+
+			console.log('🚀 ~ sendMAILreq2Friend ~ BoX:', BoX);
 
 			try {
 				const response = await fetch(
@@ -205,8 +237,9 @@ export default {
 						body: JSON.stringify({
 							fromEmail: this.localUser.email,
 							toEmail: toEmail,
-							pwd: this.formData.pwd,
 							pseudo: this.formData.user,
+							subject: "Demande d'ami depuis eliazoura.fr",
+							text: `Vous avez reçu une demande d\'ami de la part de ${fromONE}`,
 						}),
 					}
 				);

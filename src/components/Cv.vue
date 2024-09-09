@@ -14,19 +14,20 @@
 							<div
 								class="d-flex align-items-center justify-content-between mb-4"
 							>
-								<h2 class="text-primary fw-bolder mb-0">
-									Expèriences professionnelles
-								</h2>
-								<!-- Download resume button-->
-								<!-- Note: Set the link href target to a PDF file within your project-->
+								<h3 class="text-primary fw-bolder mb-0">
+									Expériences professionnelles
+								</h3>
+
 								<a
-									class="btn btn-primary px-4 py-3"
-									href="/pix/cv/elicv.pdf"
+									class="btn btn-gradient px-3 py-1"
+									href="/pix/cv/cv_resume.pdf"
 								>
 									<div
 										class="d-inline-block bi bi-download me-2"
 									></div>
-									CV
+									<small>
+										CV&nbsp;&nbsp;|&nbsp;&nbsp;Resume</small
+									>
 								</a>
 							</div>
 							<!-- Experience Card 1-->
@@ -693,5 +694,15 @@ export default {
 </script>
 
 <style scoped>
+.btn-gradient {
+	background-image: linear-gradient(45deg, #7132b4, #4377d2);
+	color: white; /* Pour le contraste du texte */
+	border: none; /* Supprimer les bordures */
+}
+
+/* Facultatif : Pour ajouter un effet de survol */
+.btn-gradient:hover {
+	background-image: linear-gradient(to right, #2575fc, #6a11cb);
+}
 /* Votre style ici */
 </style>

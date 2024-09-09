@@ -110,9 +110,7 @@
 								<router-link
 									class="dropdown-item user_menu_item"
 									to="/userstatusPage"
-									@click.prevent="
-										navigateToPrivateNEW
-									"
+									@click.prevent="navigateToPrivate"
 								>
 									mon compte
 								</router-link>
@@ -313,7 +311,7 @@ export default {
 				);
 			}
 		},
-		navigateToPrivateNEW() {
+		navigateToPrivate() {
 			if (this.isLoggedIn) {
 				// Si l'utilisateur est connecté, on le redirige vers la page du blog
 				this.$router.push({name: 'userstatusPage'});
@@ -465,7 +463,7 @@ export default {
 
 @media (max-width: 576px) {
 	.connected {
-		font-size: 1.2rem;
+		font-size: 0.8rem;
 	}
 
 	.custom-icon {
@@ -481,6 +479,10 @@ export default {
 }
 
 @media (max-width: 430px) {
+	.connected {
+		font-size: 0.8rem;
+	}
+
 	.navGlobal {
 		display: flex;
 		flex-direction: row !important;

@@ -19,41 +19,46 @@
 				</thead>
 				<tbody>
 					<tr v-for="(user, index) in users" :key="user._id">
-						<th scope="row">{{ index + 1 }}</th>
-						<td>{{ user.user }}</td>
-						<td class="text-center">
-							<!-- Statut avec couleur personnalisée -->
-							<span v-if="user.isActive">
-								<i
-									class="fas fa-circle"
-									style="color: green"
-								></i>
-								<!-- Icône rouge pour connecté -->
-							</span>
-							<span v-else>
-								<i
-									class="fas fa-circle"
-									style="color: red"
-								></i>
-								<!-- Icône verte pour déconnecté -->
-							</span>
-						</td>
-						<td>
-							<button
-								class="btn btn-primary"
-								@click="
-									sendFriendReq_NEW(
-										user._id,
-										user.user,
-										user.email
-									)
-								"
-							>
-								<i class="fas fa-user-plus"></i>
-								<!-- Icône pour ajouter en ami -->
-								Ajouter
-							</button>
-						</td>
+						<div
+							v-if="user._id != localUser._id"
+							class="test"
+						>
+							<th scope="row">{{ index + 1 }}</th>
+							<td>{{ user.user }}</td>
+							<td class="text-center">
+								<!-- Statut avec couleur personnalisée -->
+								<span v-if="user.isActive">
+									<i
+										class="fas fa-circle"
+										style="color: green"
+									></i>
+									<!-- Icône rouge pour connecté -->
+								</span>
+								<span v-else>
+									<i
+										class="fas fa-circle"
+										style="color: red"
+									></i>
+									<!-- Icône verte pour déconnecté -->
+								</span>
+							</td>
+							<td>
+								<button
+									class="btn btn-primary"
+									@click="
+										sendFriendReq_NEW(
+											user._id,
+											user.user,
+											user.email
+										)
+									"
+								>
+									<i class="fas fa-user-plus"></i>
+									<!-- Icône pour ajouter en ami -->
+									Ajouter
+								</button>
+							</td>
+						</div>
 					</tr>
 				</tbody>
 			</table>
