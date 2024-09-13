@@ -38,7 +38,7 @@
 						</td>
 						<td>
 							<button
-								v-if="user._id != localUser._id"
+								v-if="fromID != localUser._id"
 								class="btn btn-primary"
 								@click="
 									sendFriendReq(
@@ -89,51 +89,70 @@ export default {
 	},
 
 	mounted() {
-		this.fetchUserData();
+		// this.fetchUserData();
+		this.getLocalUser();
 		this.fetchAllMembers();
-		this.checkLocaluser();
+		// this.checkLocaluser();
 		this.$emit('updatePageTitle', 'Les membres du site', true);
 	},
 	methods: {
 		display(message) {
 			alert(message);
 		},
-		async fetchUserData() {
-			try {
-				const response = await fetch(
-					'https://eli-back.onrender.com/checkUserStatus',
-					{
-						method: 'GET',
-						credentials: 'include', // Pour envoyer les cookies avec la requête
-					}
-				);
-				if (!response.ok) {
-					throw new Error(
-						'🍌 🍌 🍌 🍌 🍌 FROM AllMembers ==> ERR Network response was not ok'
-					);
-				}
-				const data = await response.json();
-				this.user = data.user;
-				this.isLoggedIn = true;
-				console.log(
-					'✅  FROM AllMembers ==> checkUserStatus ~ this.user:',
-					this.user
-				);
 
-				if (this.user) {
-					this.fromID = this.user._id;
-					console.log(
-						'✅ ✅ ✅ FROM AllMembers ~ this.fromID:',
-						this.fromID
-					);
-				}
-			} catch (error) {
+		getLocalUser() {
+			const localUser = JSON.parse(
+				sessionStorage.getItem('localUser')
+			);
+
+			if (localUser && localUser._id) {
+				this.user = localUser.user;
+
+				this.fromID = localUser._id;
+				this.isLoggedIn = true;
+			} else {
 				console.error(
-					'🍌 🍌 🍌 🍌 🍌 FROM AllMembers ==> problème avec requête fetch :',
-					error
+					'Utilisateur local non trouvé dans sessionStorage'
 				);
+				this.authorId = null;
 			}
 		},
+		// async fetchUserData() {
+		// 	try {
+		// 		const response = await fetch(
+		// 			'https://eli-back.onrender.com/checkUserStatus',
+		// 			{
+		// 				method: 'GET',
+		// 				credentials: 'include', // Pour envoyer les cookies avec la requête
+		// 			}
+		// 		);
+		// 		if (!response.ok) {
+		// 			throw new Error(
+		// 				'🍌 🍌 🍌 🍌 🍌 FROM AllMembers ==> ERR Network response was not ok'
+		// 			);
+		// 		}
+		// 		const data = await response.json();
+		// 		this.user = data.user;
+		// 		this.isLoggedIn = true;
+		// 		console.log(
+		// 			'✅  FROM AllMembers ==> checkUserStatus ~ this.user:',
+		// 			this.user
+		// 		);
+
+		// 		if (this.user) {
+		// 			this.fromID = this.user._id;
+		// 			console.log(
+		// 				'✅ ✅ ✅ FROM AllMembers ~ this.fromID:',
+		// 				this.fromID
+		// 			);
+		// 		}
+		// 	} catch (error) {
+		// 		console.error(
+		// 			'🍌 🍌 🍌 🍌 🍌 FROM AllMembers ==> problème avec requête fetch :',
+		// 			error
+		// 		);
+		// 	}
+		// },
 		async fetchAllMembers() {
 			try {
 				const response = await fetch(
