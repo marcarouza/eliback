@@ -169,7 +169,7 @@ export default {
 		async sendFriendReq(toID, toPseudo) {
 			try {
 				const response = await fetch(
-					'https://eli-back.onrender.com/askFor1Friend',
+					'https://eli-back.onrender.com/api/askFor1Friend',
 					{
 						method: 'POST',
 						headers: {
