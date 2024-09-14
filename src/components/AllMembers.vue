@@ -38,7 +38,7 @@
 						</td>
 						<td>
 							<button
-								v-if="fromID != localUser._id"
+								v-if="fromID != user._id"
 								class="btn btn-primary"
 								@click="
 									sendFriendReq(
