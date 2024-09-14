@@ -114,7 +114,7 @@ export default {
 				console.error(
 					'Utilisateur local non trouvé dans sessionStorage'
 				);
-				this.authorId = null;
+				this.fromID = null;
 			}
 		},
 		// async fetchUserData() {
