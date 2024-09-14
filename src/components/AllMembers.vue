@@ -103,15 +103,18 @@ export default {
 		getLocalUser() {
 			this.localUser = JSON.parse(sessionStorage.getItem('localUser'));
 
-			if (localUser && localUser._id) {
+			if (this.localUser && this.localUser._id) {
 				console.log(
 					'🚀 ~ getLocalUser ~ localUser._id:',
-					localUser._id
+					this.localUser._id
 				);
-				console.log('🚀 ~ getLocalUser ~ localUser:', localUser);
-				this.user = localUser.user;
+				console.log(
+					'🚀 ~ getLocalUser ~ localUser:',
+					this.localUser
+				);
+				this.user = this.localUser.user;
 
-				this.fromID = localUser._id;
+				this.fromID = this.localUser._id;
 				this.isLoggedIn = true;
 			} else {
 				console.error(
