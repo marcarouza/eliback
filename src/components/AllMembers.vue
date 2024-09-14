@@ -101,11 +101,14 @@ export default {
 		},
 
 		getLocalUser() {
-			const localUser = JSON.parse(
-				sessionStorage.getItem('localUser')
-			);
+			this.localUser = JSON.parse(sessionStorage.getItem('localUser'));
 
 			if (localUser && localUser._id) {
+				console.log(
+					'🚀 ~ getLocalUser ~ localUser._id:',
+					localUser._id
+				);
+				console.log('🚀 ~ getLocalUser ~ localUser:', localUser);
 				this.user = localUser.user;
 
 				this.fromID = localUser._id;
