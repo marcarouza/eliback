@@ -75,7 +75,7 @@
 					<tbody>
 						<!-- Demandes d'amis reçues -->
 						<tr
-							v-for="request in user.friendRequestsReceived"
+							v-for="request in user.friendReqIN"
 							:key="request.fromId"
 						>
 							<th scope="row">
@@ -153,7 +153,7 @@
 
 						<!-- Demandes d'amis envoyées -->
 						<tr
-							v-for="request in user.friendRequestsSent"
+							v-for="request in user.friendReqOUT"
 							:key="request.toId"
 						>
 							<th scope="row">
