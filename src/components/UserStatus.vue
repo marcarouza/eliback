@@ -75,22 +75,22 @@
 					<tbody>
 						<!-- Demandes d'amis reçues -->
 						<tr
-							v-for="request in user.friendReqIN"
-							:key="request.fromID"
+							v-for="req in user.friendReqIN"
+							:key="req.fromID"
 						>
 							<th scope="row">
 								<i class="fas fa-inbox"></i> Reçue
 							</th>
 							<td>
 								{{
-									request.fromPseudo ||
+									req.fromPseudo ||
 									'Utilisateur inconnu'
 								}}
 							</td>
 							<td>
 								<!-- Icônes pour indiquer le statut -->
 								<span
-									v-if="request.status === 'pending'"
+									v-if="req.status === 'pending'"
 									class="text-warning"
 								>
 									<i
@@ -99,18 +99,14 @@
 									En attente
 								</span>
 								<span
-									v-if="
-										request.status === 'accepted'
-									"
+									v-if="req.status === 'accepted'"
 									class="text-success"
 								>
 									<i class="fas fa-check-circle"></i>
 									Acceptée
 								</span>
 								<span
-									v-if="
-										request.status === 'rejected'
-									"
+									v-if="req.status === 'rejected'"
 									class="text-danger"
 								>
 									<i class="fas fa-times-circle"></i>
@@ -119,24 +115,20 @@
 							</td>
 							<td>
 								<button
-									v-if="request.status === 'pending'"
+									v-if="req.status === 'pending'"
 									class="btn btn-success btn-sm action"
 									@click="
-										acceptFriendReq(
-											request.fromID
-										)
+										acceptFriendReq(req.fromID)
 									"
 								>
 									<i class="fas fa-check"></i>
 									Accepter
 								</button>
 								<button
-									v-if="request.status === 'pending'"
+									v-if="req.status === 'pending'"
 									class="btn btn-danger btn-sm action"
 									@click="
-										rejectFriendReq(
-											request.fromID
-										)
+										rejectFriendReq(req.fromID)
 									"
 								>
 									<i class="fas fa-times"></i>
@@ -144,7 +136,7 @@
 								</button>
 								<button
 									class="btn btn-secondary btn-sm action"
-									@click="blockUser(request.fromId)"
+									@click="blockUser(req.fromID)"
 								>
 									<i class="fas fa-ban"></i> Bloquer
 								</button>
@@ -153,8 +145,8 @@
 
 						<!-- Demandes d'amis envoyées -->
 						<tr
-							v-for="request in user.friendReqOUT"
-							:key="request.toID"
+							v-for="req in user.friendReqOUT"
+							:key="req.toID"
 						>
 							<th scope="row">
 								<i class="fas fa-paper-plane"></i>
@@ -162,14 +154,14 @@
 							</th>
 							<td>
 								{{
-									request.toPseudo ||
+									req.toPseudo ||
 									'Utilisateur inconnu'
 								}}
 							</td>
 							<td>
 								<!-- Icônes pour indiquer le statut -->
 								<span
-									v-if="request.status === 'pending'"
+									v-if="req.status === 'pending'"
 									class="text-warning"
 								>
 									<i
@@ -178,18 +170,14 @@
 									En attente
 								</span>
 								<span
-									v-if="
-										request.status === 'accepted'
-									"
+									v-if="req.status === 'accepted'"
 									class="text-success"
 								>
 									<i class="fas fa-check-circle"></i>
 									Acceptée
 								</span>
 								<span
-									v-if="
-										request.status === 'rejected'
-									"
+									v-if="req.status === 'rejected'"
 									class="text-danger"
 								>
 									<i class="fas fa-times-circle"></i>
@@ -297,7 +285,7 @@ export default {
 	mounted() {
 		this.getLocalUser();
 
-		this.fetchUserData();
+		this.checkAllUsersStatus();
 		// this.checkLocaluser();
 	},
 	methods: {
@@ -334,17 +322,17 @@ export default {
 
 			// return date.getTime();
 		},
-		async fetchUserData() {
+		async checkAllUsersStatus() {
 			try {
 				const response = await fetch(
-					'https://eli-back.onrender.com/checkUserStatus',
+					'https://eli-back.onrender.com/api/checkAllUsersStatus',
 					{
 						method: 'GET',
 						credentials: 'include',
 					}
 				);
 				console.log(
-					' ℹ️    ℹ️    ℹ️ FROM UserStatus~ fetchUserData ~ response:',
+					' ℹ️    ℹ️    ℹ️ FROM UserStatus~ checkAllUsersStatus ~ response:',
 					response
 				);
 
@@ -362,14 +350,14 @@ export default {
 				);
 			}
 		},
-		checkLocaluser() {
-			this.localUser =
-				JSON.parse(localStorage.getItem('localUser')) || null;
-			console.log(
-				' ℹ️   ✅   ℹ️ FROM UserStatus ==> this.localUser :',
-				this.localUser
-			);
-		},
+		// checkLocaluser() {
+		// 	this.localUser =
+		// 		JSON.parse(localStorage.getItem('localUser')) || null;
+		// 	console.log(
+		// 		' ℹ️   ✅   ℹ️ FROM UserStatus ==> this.localUser :',
+		// 		this.localUser
+		// 	);
+		// },
 		getLocalUser() {
 			this.localUser = JSON.parse(sessionStorage.getItem('localUser'));
 
@@ -397,13 +385,13 @@ export default {
 		formatDate(date) {
 			return new Date(date).toLocaleDateString('fr-FR');
 		},
-		async acceptFriendReq(requestId) {
+		async acceptFriendReq(reqId) {
 			try {
-				console.log('🚀 ~ acceptFriendReq ~ requestId:', requestId);
+				console.log('🚀 ~ acceptFriendReq ~ reqId:', reqId);
 				console.log(
-					'🚀 ~ acceptFriendReq ~ requestId:',
+					'🚀 ~ acceptFriendReq ~ reqId:',
 					this.user._id,
-					typeof requestId,
+					typeof reqId,
 					typeof this.user._id
 				);
 
@@ -415,7 +403,7 @@ export default {
 							'Content-Type': 'application/json',
 						},
 						body: JSON.stringify({
-							fromID: requestId,
+							fromID: reqId,
 							toID: this.user._id, // ID de l'utilisateur actuel
 						}),
 						credentials: 'include',
@@ -428,11 +416,11 @@ export default {
 					this.msgRes = `✅ Demande d'ami acceptée avec succès`;
 
 					// Mettre à jour le statut de la demande dans la liste sans rafraîchir la page
-					const request = this.user.friendReqIN.find(
-						(req) => req.fromID === requestId
+					const req = this.user.friendReqIN.find(
+						(req) => req.fromID === reqId
 					);
-					if (request) {
-						request.status = 'accepted';
+					if (req) {
+						req.status = 'accepted';
 					}
 				} else {
 					const data = await response.json();
