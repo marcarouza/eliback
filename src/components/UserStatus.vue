@@ -76,7 +76,7 @@
 						<!-- Demandes d'amis reçues -->
 						<tr
 							v-for="request in user.friendReqIN"
-							:key="request.fromId"
+							:key="request.fromID"
 						>
 							<th scope="row">
 								<i class="fas fa-inbox"></i> Reçue
@@ -123,7 +123,7 @@
 									class="btn btn-success btn-sm action"
 									@click="
 										acceptFriendReq(
-											request.fromId
+											request.fromID
 										)
 									"
 								>
@@ -134,8 +134,8 @@
 									v-if="request.status === 'pending'"
 									class="btn btn-danger btn-sm action"
 									@click="
-										rejectFriendRequest(
-											request.fromId
+										rejectFriendReq(
+											request.fromID
 										)
 									"
 								>
@@ -154,7 +154,7 @@
 						<!-- Demandes d'amis envoyées -->
 						<tr
 							v-for="request in user.friendReqOUT"
-							:key="request.toId"
+							:key="request.toID"
 						>
 							<th scope="row">
 								<i class="fas fa-paper-plane"></i>
@@ -295,8 +295,10 @@ export default {
 		},
 	},
 	mounted() {
+		this.getLocalUser();
+
 		this.fetchUserData();
-		this.checkLocaluser();
+		// this.checkLocaluser();
 	},
 	methods: {
 		async completeProfile() {
@@ -368,6 +370,29 @@ export default {
 				this.localUser
 			);
 		},
+		getLocalUser() {
+			this.localUser = JSON.parse(sessionStorage.getItem('localUser'));
+
+			if (this.localUser && this.localUser._id) {
+				console.log(
+					'🚀 ~ getLocalUser ~ localUser._id:',
+					this.localUser._id
+				);
+				console.log(
+					'🚀 ~ getLocalUser ~ localUser:',
+					this.localUser
+				);
+				this.user = this.localUser.user;
+
+				this.fromID = this.localUser._id;
+				this.isLoggedIn = true;
+			} else {
+				console.error(
+					'Utilisateur local non trouvé dans sessionStorage'
+				);
+				this.fromID = null;
+			}
+		},
 
 		formatDate(date) {
 			return new Date(date).toLocaleDateString('fr-FR');
@@ -390,8 +415,8 @@ export default {
 							'Content-Type': 'application/json',
 						},
 						body: JSON.stringify({
-							fromId: requestId, // Remarquez que j'ai changé `fromID` en `fromId` pour correspondre au backend
-							toId: this.user._id, // ID de l'utilisateur actuel
+							fromID: requestId,
+							toID: this.user._id, // ID de l'utilisateur actuel
 						}),
 						credentials: 'include',
 					}
@@ -403,8 +428,8 @@ export default {
 					this.msgRes = `✅ Demande d'ami acceptée avec succès`;
 
 					// Mettre à jour le statut de la demande dans la liste sans rafraîchir la page
-					const request = this.user.friendRequestsReceived.find(
-						(req) => req.fromId === requestId
+					const request = this.user.friendReqIN.find(
+						(req) => req.fromID === requestId
 					);
 					if (request) {
 						request.status = 'accepted';
