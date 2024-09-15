@@ -265,6 +265,7 @@ export default {
 	data() {
 		return {
 			user: null,
+			users: [],
 			msgRes: '',
 			lastname: '',
 			firstname: '',
@@ -285,7 +286,7 @@ export default {
 	mounted() {
 		this.getLocalUser();
 
-		this.checkAllUsersStatus();
+		this.checkUserStatus();
 		// this.checkLocaluser();
 	},
 	methods: {
@@ -322,17 +323,17 @@ export default {
 
 			// return date.getTime();
 		},
-		async checkAllUsersStatus() {
+		async checkUserStatus() {
 			try {
 				const response = await fetch(
-					'https://eli-back.onrender.com/api/checkAllUsersStatus',
+					'https://eli-back.onrender.com/api/checkUserStatus',
 					{
 						method: 'GET',
 						credentials: 'include',
 					}
 				);
 				console.log(
-					' ℹ️    ℹ️    ℹ️ FROM UserStatus~ checkAllUsersStatus ~ response:',
+					' ℹ️    ℹ️    ℹ️ FROM UserStatus~ checkUserStatus ~ response:',
 					response
 				);
 
@@ -364,12 +365,11 @@ export default {
 			if (this.localUser && this.localUser._id) {
 				console.log(
 					'🚀 ~ getLocalUser ~ localUser._id:',
-					this.localUser._id
-				);
-				console.log(
+					this.localUser._id,
 					'🚀 ~ getLocalUser ~ localUser:',
 					this.localUser
 				);
+
 				this.user = this.localUser.user;
 
 				this.fromID = this.localUser._id;
