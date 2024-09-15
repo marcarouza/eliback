@@ -207,7 +207,7 @@ export default {
 			) {
 				try {
 					const response = await fetch(
-						'https://eli-back.onrender.com/contactFormPost',
+						'https://eli-back.onrender.com//api/contactFormPost',
 						{
 							method: 'POST',
 							headers: {

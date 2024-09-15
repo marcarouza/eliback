@@ -182,7 +182,7 @@ export default {
 		async fetchUserData() {
 			try {
 				const response = await fetch(
-					'https://eli-back.onrender.com/checkUserStatus',
+					'https://eli-back.onrender.com/api/checkUserStatus',
 					{
 						method: 'GET',
 						credentials: 'include', // Pour envoyer les cookies avec la requête
@@ -220,7 +220,7 @@ export default {
 					this.userID
 				);
 				const response = await fetch(
-					'https://eli-back.onrender.com/logOutApi',
+					'https://eli-back.onrender.com/api/logOut',
 					{
 						method: 'POST', // Utilisez POST pour envoyer des données
 						credentials: 'include', // Pour envoyer les cookies avec la requête
