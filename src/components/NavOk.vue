@@ -237,10 +237,10 @@ export default {
 					this.isLoggedIn = false;
 					console.log('🚀 ~ DECONNEXION REUSSIE !!! ');
 					this.user = null; // Mettre à jour l'utilisateur à null
-					localStorage.removeItem('localUser'); // Supprimer l'utilisateur de localStorage
+					localStorage.removeItem('localUser');
 					sessionStorage.removeItem('localUser');
-					// window.location.reload();
 					this.$router.push({name: 'homepage'});
+					window.location.reload();
 				} else {
 					console.error('Erreur lors de la déconnexion');
 					throw new Error(
