@@ -126,7 +126,7 @@
 								<a
 									href="#"
 									class="dropdown-item user_menu_item"
-									@click.prevent="fetchLogOutApi"
+									@click.prevent="logOUTapi"
 									>déconnexion</a
 								>
 							</li>
@@ -213,7 +213,7 @@ export default {
 				);
 			}
 		},
-		async fetchLogOutApi() {
+		async logOUTapi() {
 			try {
 				console.log(
 					'User ID before sending to logOutApi:',
@@ -240,7 +240,7 @@ export default {
 					localStorage.removeItem('localUser');
 					sessionStorage.removeItem('localUser');
 					this.$router.push({name: 'homepage'});
-					window.location.reload();
+					// window.location.reload();
 				} else {
 					console.error('Erreur lors de la déconnexion');
 					throw new Error(
@@ -293,24 +293,24 @@ export default {
 			}
 		},
 
-		checkLocaluser_NO() {
-			if (sessionStorage.getItem('localUser')) {
-				this.localUser = JSON.parse(
-					sessionStorage.getItem('localUser')
-				);
-				console.log('Utilisateur récupéré:', this.localUser);
-				this.isLoggedIn = true;
-				this.userID = this.localUser._id;
-				console.log(
-					'🚀 ~ checkLocaluser ~ this.userID POUR UTILISATION dans logOut API :',
-					this.userID
-				);
-			} else {
-				console.log(
-					'ℹ️  🚫  ℹ️ FROM NavOk ==> Aucun utilisateur  dans sessionStorage.'
-				);
-			}
-		},
+		// checkLocaluser_NO() {
+		// 	if (sessionStorage.getItem('localUser')) {
+		// 		this.localUser = JSON.parse(
+		// 			sessionStorage.getItem('localUser')
+		// 		);
+		// 		console.log('Utilisateur récupéré:', this.localUser);
+		// 		this.isLoggedIn = true;
+		// 		this.userID = this.localUser._id;
+		// 		console.log(
+		// 			'🚀 ~ checkLocaluser ~ this.userID POUR UTILISATION dans logOut API :',
+		// 			this.userID
+		// 		);
+		// 	} else {
+		// 		console.log(
+		// 			'ℹ️  🚫  ℹ️ FROM NavOk ==> Aucun utilisateur  dans sessionStorage.'
+		// 		);
+		// 	}
+		// },
 		navigateToPrivate() {
 			if (this.isLoggedIn) {
 				// Si l'utilisateur est connecté, on le redirige vers la page du blog

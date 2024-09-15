@@ -77,6 +77,7 @@ export default {
 		return {
 			users: [],
 			user: '',
+			toID: '',
 			fromID: '',
 			msgRes: '',
 			toFriend: '',
@@ -191,7 +192,7 @@ export default {
 				// Vous pouvez également afficher un message d'erreur à l'utilisateur ici
 			}
 		},
-		async sendFriendReq(toID, toPseudo) {
+		async sendFriendReq() {
 			try {
 				const response = await fetch(
 					'https://eli-back.onrender.com/api/askFor1Friend',
@@ -201,7 +202,7 @@ export default {
 							'Content-Type': 'application/json',
 						},
 						body: JSON.stringify({
-							toID: toID,
+							toID: this.toID,
 							fromID: this.fromID,
 						}),
 						credentials: 'include',
