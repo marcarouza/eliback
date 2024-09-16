@@ -110,13 +110,9 @@ export default {
 				this.user = this.localUser.user;
 
 				this.fromID = this.localUser._id;
-
 				//
 				this.isLoggedIn = true;
 				//
-				//
-				// Variable utilisée dans sendFriendRequest
-				this.toID = user._id;
 				console.log('🚀 ~ getLocalUser ~ this.toID:', this.toID);
 			} else {
 				console.error(
@@ -194,6 +190,8 @@ export default {
 			}
 		},
 		async sendFriendReq(fromID, toID) {
+			console.log('👉 sendFriendReq ~ toID:', toID);
+			console.log('👉 sendFriendReq ~ fromID:', fromID);
 			try {
 				const response = await fetch(
 					'https://eli-back.onrender.com/api/askFor1Friend',
