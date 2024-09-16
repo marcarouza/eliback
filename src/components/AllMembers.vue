@@ -41,11 +41,7 @@
 								v-if="fromID != user._id"
 								class="btn btn-primary"
 								@click="
-									sendFriendReq(
-										user._id,
-										user.user,
-										user.email
-									)
+									sendFriendReq(user._id, user.user)
 								"
 							>
 								<i class="fas fa-user-plus"></i>
@@ -116,7 +112,13 @@ export default {
 				this.user = this.localUser.user;
 
 				this.fromID = this.localUser._id;
+
+				//
 				this.isLoggedIn = true;
+				//
+				//
+				// Variable utilisée dans sendFriendRequest
+				this.toID = user._id;
 			} else {
 				console.error(
 					'Utilisateur local non trouvé dans sessionStorage'
