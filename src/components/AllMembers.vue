@@ -164,7 +164,7 @@ export default {
 		async fetchAllMembers() {
 			try {
 				const response = await fetch(
-					'https://eli-back.onrender.com/allMembers',
+					'https://eli-back.onrender.com//api/allMembers',
 					{
 						method: 'GET',
 						credentials: 'include', // Pour envoyer les cookies avec la requête
@@ -193,7 +193,7 @@ export default {
 				// Vous pouvez également afficher un message d'erreur à l'utilisateur ici
 			}
 		},
-		async sendFriendReq() {
+		async sendFriendReq(fromID, toID) {
 			try {
 				const response = await fetch(
 					'https://eli-back.onrender.com/api/askFor1Friend',
@@ -203,8 +203,8 @@ export default {
 							'Content-Type': 'application/json',
 						},
 						body: JSON.stringify({
-							toID: this.toID,
-							fromID: this.fromID,
+							fromID: fromID,
+							toID: toID,
 						}),
 						credentials: 'include',
 					}
