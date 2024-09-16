@@ -189,7 +189,7 @@ export default {
 				// Vous pouvez également afficher un message d'erreur à l'utilisateur ici
 			}
 		},
-		async sendFriendReq(fromID, toID, toPseudo) {
+		async sendFriendReq(fromID, toID) {
 			console.log('👉 sendFriendReq ~ toID:', toID);
 			console.log('👉 sendFriendReq ~ fromID:', fromID);
 			// console.log('🚀 ~ sendFriendReq ~ toPseudo:', toPseudo);
