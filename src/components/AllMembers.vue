@@ -189,9 +189,11 @@ export default {
 				// Vous pouvez également afficher un message d'erreur à l'utilisateur ici
 			}
 		},
-		async sendFriendReq(fromID, toID) {
+		async sendFriendReq(fromID, toID, toPseudo) {
 			console.log('👉 sendFriendReq ~ toID:', toID);
 			console.log('👉 sendFriendReq ~ fromID:', fromID);
+			// console.log('🚀 ~ sendFriendReq ~ toPseudo:', toPseudo);
+
 			try {
 				const response = await fetch(
 					'https://eli-back.onrender.com/api/askFor1Friend',
@@ -214,7 +216,7 @@ export default {
 					this.msgRes = `✅ Demande d'ami envoyée à ${toPseudo}`;
 				} else if (response.status === 409) {
 					// Si le statut est 409, c'est un conflit : demande déjà envoyée
-					this.msgRes = `⚠️ Une demande d'ami a déjà été envoyée à cette personne.`;
+					this.msgRes = `⚠️ Une demande d'ami a déjà été envoyée à  ${toPseudo}`;
 				} else {
 					// Pour toutes les autres réponses non-OK
 					const data = await response.json(); // Récupérer les détails de l'erreur
@@ -280,69 +282,6 @@ export default {
 				);
 			}
 		},
-
-		// async sendFriendReq(toID) {
-		// 	try {
-		// 		const response = await fetch(
-		// 			'https://eli-back.onrender.com/askFor1Friend',
-		// 			{
-		// 				method: 'POST',
-		// 				headers: {
-		// 					'Content-Type': 'application/json',
-		// 					// 'Authorization': `Bearer ${this.token}`,
-		// 				},
-		// 				body: JSON.stringify({
-		// 					toID: toID,
-		// 					fromID: this.fromID,
-		// 				}),
-		// 				credentials: 'include',
-		// 			}
-		// 		);
-		// 		if (response.ok) {
-		// 			console.log(
-		// 				'🚀 ~ sendFriendReq ~ response:',
-		// 				response,
-		// 				response.ok
-		// 			);
-		// 			console.log(
-		// 				'✅ FROM /askForFriend API => toID:',
-		// 				toID
-		// 			);
-		// 			console.log(
-		// 				'✅  FROM /askForFriend API => fromID:',
-		// 				fromID
-		// 			);
-		// 			alert(
-		// 				`✅  FROM /askForFriend  Demande d'ami envoyée à ${fromID.user}!`
-		// 			);
-		// 		} else {
-		// 			console.log('FROM /askForFriend API =>  toID:', toID);
-		// 			console.log(
-		// 				'FROM /askForFriend API => ~ fromID:',
-		// 				fromID
-		// 			);
-
-		// 			console.error(
-		// 				"👁️ 🍌 👁️  FROM /askForFriend API => La réponse n'est pas Ok !"
-		// 			);
-		// 		}
-		// 	} catch (error) {
-		// 		console.error(
-		// 			"🍌 👁️ 🍌  FROM /askForFriend API => Err FETCH demande d'ami:",
-		// 			error
-		// 		);
-		// 	}
-		// 	this.errorMessage =
-		// 		'🍌 👁️ 👁️ Impossible de récupérer les membres. Veuillez réessayer plus tard.';
-		// },
-		// checkLocaluser() {
-		// 	this.localUser =
-		// 		JSON.parse(localStorage.getItem('localUser')) || null;
-		// 	console.log(
-		// 		' ℹ️   ✅   ℹ️ FROM UserStatus ==> this.localUser :',
-		// 		this.localUser
-		// 	);
-		// },
 
 		isFriend(userId) {
 			// Retourne vrai si l'utilisateur est déjà ami
