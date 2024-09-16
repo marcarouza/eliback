@@ -45,7 +45,7 @@
 								<i class="fas fa-user-plus"></i>
 								Ajouter
 							</button>
-							<button v-else class="btn btn-dark">
+							<button v-else disabled class="btn btn-dark">
 								🙋
 							</button>
 						</td>
