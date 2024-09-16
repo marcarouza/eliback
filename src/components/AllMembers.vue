@@ -40,9 +40,7 @@
 							<button
 								v-if="fromID != user._id"
 								class="btn btn-primary"
-								@click="
-									sendFriendReq(user._id, user.user)
-								"
+								@click="sendFriendReq(fromID, user._id)"
 							>
 								<i class="fas fa-user-plus"></i>
 								Ajouter
@@ -119,6 +117,7 @@ export default {
 				//
 				// Variable utilisée dans sendFriendRequest
 				this.toID = user._id;
+				console.log('🚀 ~ getLocalUser ~ this.toID:', this.toID);
 			} else {
 				console.error(
 					'Utilisateur local non trouvé dans sessionStorage'
@@ -212,7 +211,6 @@ export default {
 				);
 
 				if (response.ok) {
-					//  requête réussie
 					const data = await response.json();
 					console.log('ℹ️ ✅ ✅  sendFriendReq ~ data:', data);
 					this.msgRes = `✅ Demande d'ami envoyée à ${toPseudo}`;
