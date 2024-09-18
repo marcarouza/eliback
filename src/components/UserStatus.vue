@@ -158,7 +158,7 @@
 									'Utilisateur inconnu'
 								}}
 							</td>
-							<td v-if="search.status === 'pending'">
+							<td v-if="req.status === 'pending'">
 								<button
 									class="btn btn-success btn-sm action"
 									@click="
@@ -288,7 +288,6 @@ export default {
 		this.getLocalUser();
 
 		this.checkUserStatus();
-		// this.checkLocaluser();
 	},
 	methods: {
 		async completeProfile() {
@@ -352,14 +351,7 @@ export default {
 				);
 			}
 		},
-		// checkLocaluser() {
-		// 	this.localUser =
-		// 		JSON.parse(localStorage.getItem('localUser')) || null;
-		// 	console.log(
-		// 		' ℹ️   ✅   ℹ️ FROM UserStatus ==> this.localUser :',
-		// 		this.localUser
-		// 	);
-		// },
+
 		getLocalUser() {
 			this.localUser = JSON.parse(sessionStorage.getItem('localUser'));
 
@@ -440,7 +432,7 @@ export default {
 			} catch (err) {
 				this.msgRes = `❌ Problème de connexion, veuillez réessayer plus tard.`;
 				console.error(
-					"Erreur lors de l'acceptation de la demande d'ami:",
+					"L'acceptation d'ami ne fonctionne pas : ",
 					err
 				);
 			} finally {
