@@ -113,9 +113,8 @@
 									Refusée
 								</span>
 							</td>
-							<td>
+							<td v-if="req.status === 'pending'">
 								<button
-									v-if="req.status === 'pending'"
 									class="btn btn-success btn-sm action"
 									@click="
 										acceptFriendReq(req.fromID)
@@ -125,7 +124,6 @@
 									Accepter
 								</button>
 								<button
-									v-if="req.status === 'pending'"
 									class="btn btn-danger btn-sm action"
 									@click="
 										rejectFriendReq(req.fromID)
@@ -158,8 +156,9 @@
 									'Utilisateur inconnu'
 								}}
 							</td>
-							<td v-if="req.status === 'pending'">
+							<td>
 								<button
+									v-if="req.status === 'pending'"
 									class="btn btn-success btn-sm action"
 									@click="
 										acceptFriendReq(search.fromID)
@@ -169,6 +168,7 @@
 									Accepter
 								</button>
 								<button
+									v-if="req.status === 'pending'"
 									class="btn btn-danger btn-sm action"
 									@click="
 										rejectFriendReq(search.fromID)
@@ -178,6 +178,7 @@
 									Refuser
 								</button>
 								<button
+									v-if="req.status === 'pending'"
 									class="btn btn-dark btn-sm action"
 									@click="blockUser(search.fromID)"
 								>
