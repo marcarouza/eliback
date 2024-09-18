@@ -135,7 +135,7 @@
 									Refuser
 								</button>
 								<button
-									class="btn btn-secondary btn-sm action"
+									class="btn btn-dark btn-sm action"
 									@click="blockUser(req.fromID)"
 								>
 									<i class="fas fa-ban"></i> Bloquer

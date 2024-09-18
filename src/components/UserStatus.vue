@@ -135,7 +135,7 @@
 									Refuser
 								</button>
 								<button
-									class="btn btn-secondary btn-sm action"
+									class="btn btn-dark btn-sm action"
 									@click="blockUser(req.fromID)"
 								>
 									<i class="fas fa-ban"></i> Bloquer
@@ -386,11 +386,20 @@ export default {
 			return new Date(date).toLocaleDateString('fr-FR');
 		},
 		async acceptFriendReq(reqId) {
+			if (!this.user || !this.user._id) {
+				this.msgRes =
+					"❌ Problème d'identification, veuillez vous reconnecter (après deconnexion)";
+				this.display(this.msgRes);
+				return;
+			}
 			try {
 				console.log('🚀 ~ acceptFriendReq ~ reqId:', reqId);
 				console.log(
-					'🚀 ~ acceptFriendReq ~ reqId:',
+					'🚀 ~ acceptFriendReq ~ reqId //////// this.user._id : ',
+					reqId,
+					'    /////   ',
 					this.user._id,
+					'    /////   ',
 					typeof reqId,
 					typeof this.user._id
 				);
@@ -412,8 +421,6 @@ export default {
 
 				if (response.ok) {
 					const data = await response.json();
-					console.log("✅ Demande d'ami acceptée:", data);
-					this.msgRes = `✅ Demande d'ami acceptée avec succès`;
 
 					// Mettre à jour le statut de la demande dans la liste sans rafraîchir la page
 					const req = this.user.friendReqIN.find(
@@ -422,6 +429,9 @@ export default {
 					if (req) {
 						req.status = 'accepted';
 					}
+
+					console.log("✅ Demande d'ami acceptée:", data);
+					this.msgRes = `✅ Demande d'ami acceptée avec succès`;
 				} else {
 					const data = await response.json();
 					this.msgRes = `❌ Erreur innatendue : ${data.message}`;
