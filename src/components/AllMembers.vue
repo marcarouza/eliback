@@ -45,7 +45,7 @@
 								<i class="fas fa-user-plus"></i>
 								Ajouter
 							</button>
-							<button v-else disabled class="btn btn-dark">
+							<button v-else class="btn btn-dark">
 								🙋
 							</button>
 						</td>
@@ -218,9 +218,9 @@ export default {
 					// Si le statut est 409, c'est un conflit : demande déjà envoyée
 					this.msgRes = `⚠️ Une demande d'ami a déjà été envoyée à  ${toPseudo}`;
 				} else {
-					// Pour toutes les autres réponses non-OK
+					// Pour toutes les autres réponses non-OK : demande deja faite par exemple
 					const data = await response.json(); // Récupérer les détails de l'erreur
-					this.msgRes = `❌ Erreur inattendue: ${data.message}`;
+					this.msgRes = `${data.message}`;
 				}
 				this.display(this.msgRes);
 			} catch (err) {
