@@ -196,7 +196,7 @@ export default {
 				} else {
 					// Pour toutes les autres réponses non-OK
 					const data = await response.json(); // Récupérer les détails de l'erreur
-					this.msgRes = `❌ Erreur inattendue: ${data.message}`;
+					this.msgRes = `❌ Erreur inattendueeeee 0909 : ${data.message}`;
 				}
 				this.display(this.msgRes);
 			} catch (err) {

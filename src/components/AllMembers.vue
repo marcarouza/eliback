@@ -40,7 +40,13 @@
 							<button
 								v-if="fromID != user._id"
 								class="btn btn-primary"
-								@click="sendFriendReq(fromID, user._id)"
+								@click="
+									sendFriendReq(
+										fromID,
+										user._id,
+										user.user
+									)
+								"
 							>
 								<i class="fas fa-user-plus"></i>
 								Ajouter
@@ -189,7 +195,7 @@ export default {
 				// Vous pouvez également afficher un message d'erreur à l'utilisateur ici
 			}
 		},
-		async sendFriendReq(fromID, toID) {
+		async sendFriendReq(fromID, toID, toPseudo) {
 			console.log('👉 sendFriendReq ~ toID:', toID);
 			console.log('👉 sendFriendReq ~ fromID:', fromID);
 			// console.log('🚀 ~ sendFriendReq ~ toPseudo:', toPseudo);
