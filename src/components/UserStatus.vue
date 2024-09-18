@@ -114,32 +114,37 @@
 								</span>
 							</td>
 							<td>
-								<button
-									v-if="req.status === 'pending'"
-									class="btn btn-success btn-sm action"
-									@click="
-										acceptFriendReq(req.fromID)
-									"
-								>
-									<i class="fas fa-check"></i>
-									Accepter
-								</button>
-								<button
-									v-if="req.status === 'pending'"
-									class="btn btn-danger btn-sm action"
-									@click="
-										rejectFriendReq(req.fromID)
-									"
-								>
-									<i class="fas fa-times"></i>
-									Refuser
-								</button>
-								<button
-									class="btn btn-secondary btn-sm action"
-									@click="blockUser(req.fromID)"
-								>
-									<i class="fas fa-ban"></i> Bloquer
-								</button>
+								<div v-if="req.status === 'pending'">
+									<button
+										class="btn btn-success btn-sm action"
+										@click="
+											acceptFriendReq(
+												req.fromID
+											)
+										"
+									>
+										<i class="fas fa-check"></i>
+										Accepter
+									</button>
+									<button
+										class="btn btn-danger btn-sm action"
+										@click="
+											rejectFriendReq(
+												req.fromID
+											)
+										"
+									>
+										<i class="fas fa-times"></i>
+										Refuser
+									</button>
+									<button
+										class="btn btn-black btn-sm action"
+										@click="blockUser(req.fromID)"
+									>
+										<i class="fas fa-ban"></i>
+										Bloquer
+									</button>
+								</div>
 							</td>
 						</tr>
 
@@ -396,7 +401,7 @@ export default {
 				);
 
 				const response = await fetch(
-					'https://eli-back.onrender.com/acceptFriendReq',
+					'https://eli-back.onrender.com/api/acceptFriendReq',
 					{
 						method: 'POST',
 						headers: {
