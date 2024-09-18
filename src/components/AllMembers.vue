@@ -222,7 +222,13 @@ export default {
 					this.msgRes = `✅ Demande d'ami envoyée à ${toPseudo}`;
 				} else if (response.status === 409) {
 					// Si le statut est 409, c'est un conflit : demande déjà envoyée
-					this.msgRes = `⚠️ Une demande d'ami a déjà été envoyée à  ${toPseudo}`;
+
+					this.msgRes = toPseudo
+						? `⚠️ Une demande d'ami a déjà été envoyée à  ${toPseudo}`
+						: `⚠️ Une demande d'ami a déjà été envoyée à  ${toID.substring(
+								0,
+								5
+						  )}`;
 				} else {
 					// Pour toutes les autres réponses non-OK : demande deja faite par exemple
 					const data = await response.json(); // Récupérer les détails de l'erreur
