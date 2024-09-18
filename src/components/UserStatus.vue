@@ -393,7 +393,11 @@ export default {
 			return new Date(date).toLocaleDateString('fr-FR');
 		},
 		async acceptFriendReq(fromID) {
-			try {
+			if (!this.user || !this.user._id) {
+				this.msgRes =
+					'❌ Erreur inopinée, Veuillez vous déconnecter puis vous reconnecter.';
+				this.display(this.msgRes);
+
 				console.log(
 					'🧑🏻‍💻 this.user._id /// this.fromID /// :',
 
@@ -404,7 +408,9 @@ export default {
 					typeof fromID,
 					typeof this.user._id
 				);
-
+				return;
+			}
+			try {
 				const response = await fetch(
 					'https://eli-back.onrender.com/api/acceptFriendReq',
 					{
@@ -428,10 +434,8 @@ export default {
 						(search) => search.fromID === fromID
 					);
 					if (search) {
-						search.status = 'accepted';
-
 						console.log("✅ Demande d'ami acceptée:", data);
-						this.msgRes = `✅ Demande d'ami acceptée avec succès`;
+						this.msgRes = `🤝 Demande d'ami acceptée avec succès 🎉`;
 					}
 				} else {
 					const data = await response.json();
