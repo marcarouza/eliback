@@ -75,22 +75,22 @@
 					<tbody>
 						<!-- Demandes d'amis reçues -->
 						<tr
-							v-for="search in user.friendReqIN"
-							:key="search.fromID"
+							v-for="req in user.friendReqIN"
+							:key="req.fromID"
 						>
 							<th scope="row">
 								<i class="fas fa-inbox"></i> Reçue
 							</th>
 							<td>
 								{{
-									search.fromPseudo ||
+									req.fromPseudo ||
 									'Utilisateur inconnu'
 								}}
 							</td>
 							<td>
 								<!-- Icônes pour indiquer le statut -->
 								<span
-									v-if="search.status === 'pending'"
+									v-if="req.status === 'pending'"
 									class="text-warning"
 								>
 									<i
@@ -99,53 +99,54 @@
 									En attente
 								</span>
 								<span
-									v-if="search.status === 'accepted'"
+									v-if="req.status === 'accepted'"
 									class="text-success"
 								>
 									<i class="fas fa-check-circle"></i>
 									Acceptée
 								</span>
 								<span
-									v-if="search.status === 'rejected'"
+									v-if="req.status === 'rejected'"
 									class="text-danger"
 								>
 									<i class="fas fa-times-circle"></i>
 									Refusée
 								</span>
 							</td>
-							<td v-if="search.status === 'pending'">
+							<td>
 								<button
+									v-if="req.status === 'pending'"
 									class="btn btn-success btn-sm action"
 									@click="
-										acceptFriendReq(search.fromID)
+										acceptFriendReq(req.fromID)
 									"
 								>
 									<i class="fas fa-check"></i>
 									Accepter
 								</button>
 								<button
+									v-if="req.status === 'pending'"
 									class="btn btn-danger btn-sm action"
 									@click="
-										rejectFriendReq(search.fromID)
+										rejectFriendReq(req.fromID)
 									"
 								>
 									<i class="fas fa-times"></i>
 									Refuser
 								</button>
 								<button
-									class="btn btn-dark btn-sm action"
-									@click="blockUser(search.fromID)"
+									class="btn btn-secondary btn-sm action"
+									@click="blockUser(req.fromID)"
 								>
-									<i class="fas fa-ban"></i>
-									Bloquer
+									<i class="fas fa-ban"></i> Bloquer
 								</button>
 							</td>
 						</tr>
 
 						<!-- Demandes d'amis envoyées -->
 						<tr
-							v-for="search in user.friendReqOUT"
-							:key="search.toID"
+							v-for="req in user.friendReqOUT"
+							:key="req.toID"
 						>
 							<th scope="row">
 								<i class="fas fa-paper-plane"></i>
@@ -153,14 +154,14 @@
 							</th>
 							<td>
 								{{
-									search.toPseudo ||
+									req.toPseudo ||
 									'Utilisateur inconnu'
 								}}
 							</td>
 							<td>
 								<!-- Icônes pour indiquer le statut -->
 								<span
-									v-if="search.status === 'pending'"
+									v-if="req.status === 'pending'"
 									class="text-warning"
 								>
 									<i
@@ -169,14 +170,14 @@
 									En attente
 								</span>
 								<span
-									v-if="search.status === 'accepted'"
+									v-if="req.status === 'accepted'"
 									class="text-success"
 								>
 									<i class="fas fa-check-circle"></i>
 									Acceptée
 								</span>
 								<span
-									v-if="search.status === 'rejected'"
+									v-if="req.status === 'rejected'"
 									class="text-danger"
 								>
 									<i class="fas fa-times-circle"></i>
@@ -284,11 +285,72 @@ export default {
 	},
 	mounted() {
 		this.getLocalUser();
-		// this.checkLocaluser();
 
-		// this.checkUserStatus();
+		this.checkUserStatus();
+		// this.checkLocaluser();
 	},
 	methods: {
+		async completeProfile() {
+			await fetch(
+				`https://eli-back.onrender.com/api/completeProfile`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(infoPlus),
+				}
+			);
+		},
+
+		convertDate() {
+			// Diviser la date en jour, mois et année
+			const [day, month, year] = this.birthDate.split('-');
+
+			console.log('🚀 ~ completeProfile ~ year:', year);
+			console.log('🚀 ~ completeProfile ~ month:', month);
+			console.log('🚀 ~ completeProfile ~ day:', day);
+			// Les mois en JavaScript sont indexés à partir de 0, donc soustraire 1 au mois
+			const date = new Date(year, month - 1, day).getTime();
+
+			console.log('🚀 ~ completeProfile ~ date:', date);
+
+			console.log(
+				'🚨  infoPlus  :   ',
+				this.infoPlus,
+				typeof this.infoPlus
+			);
+
+			// return date.getTime();
+		},
+		async checkUserStatus() {
+			try {
+				const response = await fetch(
+					'https://eli-back.onrender.com/api/checkUserStatus',
+					{
+						method: 'GET',
+						credentials: 'include',
+					}
+				);
+				console.log(
+					' ℹ️    ℹ️    ℹ️ FROM UserStatus~ checkUserStatus ~ response:',
+					response
+				);
+
+				if (!response.ok) {
+					throw new Error(
+						'FROM USER STATUS ERR Network response was not ok'
+					);
+				}
+				const data = await response.json();
+				this.user = data.user;
+			} catch (err) {
+				console.error(
+					'FROM USER STATUS problème avec requête fetch :',
+					err
+				);
+			}
+		},
 		// checkLocaluser() {
 		// 	this.localUser =
 		// 		JSON.parse(localStorage.getItem('localUser')) || null;
@@ -297,7 +359,6 @@ export default {
 		// 		this.localUser
 		// 	);
 		// },
-
 		getLocalUser() {
 			this.localUser = JSON.parse(sessionStorage.getItem('localUser'));
 
@@ -321,34 +382,30 @@ export default {
 			}
 		},
 
-		async acceptFriendReq(fromID) {
-			if (!this.user || !this.user._id) {
-				this.msgRes =
-					'❌ Erreur inopinée, Veuillez vous déconnecter puis vous reconnecter.';
-				this.display(this.msgRes);
-
+		formatDate(date) {
+			return new Date(date).toLocaleDateString('fr-FR');
+		},
+		async acceptFriendReq(reqId) {
+			try {
+				console.log('🚀 ~ acceptFriendReq ~ reqId:', reqId);
 				console.log(
-					'🧑🏻‍💻 this.user._id /// this.fromID /// :',
-
+					'////// ~ acceptFriendReq ~ reqId /// this.user._id : ',
+					reqId,
+					'//////',
 					this.user._id,
-					' /// ',
-					fromID,
-					' /// et le sTYPE OF ',
-					typeof fromID,
+					typeof reqId,
 					typeof this.user._id
 				);
-				return;
-			}
-			try {
+
 				const response = await fetch(
-					'https://eli-back.onrender.com/api/acceptFriendReq',
+					'https://eli-back.onrender.com/acceptFriendReq',
 					{
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
 						},
 						body: JSON.stringify({
-							fromID: fromID, // ID de la provenance
+							fromID: reqId,
 							toID: this.user._id, // ID de l'utilisateur actuel
 						}),
 						credentials: 'include',
@@ -357,14 +414,15 @@ export default {
 
 				if (response.ok) {
 					const data = await response.json();
+					console.log("✅ Demande d'ami acceptée:", data);
+					this.msgRes = `✅ Demande d'ami acceptée avec succès`;
 
 					// Mettre à jour le statut de la demande dans la liste sans rafraîchir la page
-					const search = this.user.friendReqIN.find(
-						(search) => search.fromID === fromID
+					const req = this.user.friendReqIN.find(
+						(req) => req.fromID === reqId
 					);
-					if (search) {
-						console.log("✅ Demande d'ami acceptée:", data);
-						this.msgRes = `🤝 Demande d'ami acceptée avec succès 🎉`;
+					if (req) {
+						req.status = 'accepted';
 					}
 				} else {
 					const data = await response.json();
@@ -380,72 +438,6 @@ export default {
 				this.display(this.msgRes);
 			}
 		},
-
-		// async completeProfile() {
-		// 	await fetch(
-		// 		`https://eli-back.onrender.com/api/completeProfile`,
-		// 		{
-		// 			method: 'POST',
-		// 			headers: {
-		// 				'Content-Type': 'application/json',
-		// 			},
-		// 			body: JSON.stringify(infoPlus),
-		// 		}
-		// 	);
-		// },
-
-		// convertDate() {
-		// 	// Diviser la date en jour, mois et année
-		// 	const [day, month, year] = this.birthDate.split('-');
-
-		// 	console.log('🚀 ~ completeProfile ~ year:', year);
-		// 	console.log('🚀 ~ completeProfile ~ month:', month);
-		// 	console.log('🚀 ~ completeProfile ~ day:', day);
-		// 	// Les mois en JavaScript sont indexés à partir de 0, donc soustraire 1 au mois
-		// 	const date = new Date(year, month - 1, day).getTime();
-
-		// 	console.log('🚀 ~ completeProfile ~ date:', date);
-
-		// 	console.log(
-		// 		'🚨  infoPlus  :   ',
-		// 		this.infoPlus,
-		// 		typeof this.infoPlus
-		// 	);
-
-		// 	// return date.getTime();
-		// },
-		// async checkUserStatus() {
-		// 	try {
-		// 		const response = await fetch(
-		// 			'https://eli-back.onrender.com/api/checkUserStatus',
-		// 			{
-		// 				method: 'GET',
-		// 				credentials: 'include',
-		// 			}
-		// 		);
-		// 		console.log(
-		// 			' ℹ️    ℹ️    ℹ️ FROM UserStatus~ checkUserStatus ~ response:',
-		// 			response
-		// 		);
-
-		// 		if (!response.ok) {
-		// 			throw new Error(
-		// 				'FROM USER STATUS ERR Network response was not ok'
-		// 			);
-		// 		}
-		// 		const data = await response.json();
-		// 		this.user = data.user;
-		// 	} catch (err) {
-		// 		console.error(
-		// 			'FROM USER STATUS problème avec searchuête fetch :',
-		// 			err
-		// 		);
-		// 	}
-		// },
-
-		// formatDate(date) {
-		// 	return new Date(date).toLocaleDateString('fr-FR');
-		// },
 
 		display(message) {
 			alert(message);

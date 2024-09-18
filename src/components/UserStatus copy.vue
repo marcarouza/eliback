@@ -113,19 +113,17 @@
 									Refusée
 								</span>
 							</td>
-							<td>
+							<td v-if="search.status === 'pending'">
 								<button
-									v-if="search.status === 'pending'"
 									class="btn btn-success btn-sm action"
 									@click="
 										acceptFriendReq(search.fromID)
 									"
 								>
 									<i class="fas fa-check"></i>
-									Accepter {{ search.fromID }}
+									Accepter
 								</button>
 								<button
-									v-if="search.status === 'pending'"
 									class="btn btn-danger btn-sm action"
 									@click="
 										rejectFriendReq(search.fromID)
@@ -135,7 +133,6 @@
 									Refuser
 								</button>
 								<button
-									v-if="search.status === 'pending'"
 									class="btn btn-dark btn-sm action"
 									@click="blockUser(search.fromID)"
 								>
@@ -287,72 +284,11 @@ export default {
 	},
 	mounted() {
 		this.getLocalUser();
+		// this.checkLocaluser();
 
 		// this.checkUserStatus();
-		// this.checkLocaluser();
 	},
 	methods: {
-		async completeProfile() {
-			await fetch(
-				`https://eli-back.onrender.com/api/completeProfile`,
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify(infoPlus),
-				}
-			);
-		},
-
-		convertDate() {
-			// Diviser la date en jour, mois et année
-			const [day, month, year] = this.birthDate.split('-');
-
-			console.log('🚀 ~ completeProfile ~ year:', year);
-			console.log('🚀 ~ completeProfile ~ month:', month);
-			console.log('🚀 ~ completeProfile ~ day:', day);
-			// Les mois en JavaScript sont indexés à partir de 0, donc soustraire 1 au mois
-			const date = new Date(year, month - 1, day).getTime();
-
-			console.log('🚀 ~ completeProfile ~ date:', date);
-
-			console.log(
-				'🚨  infoPlus  :   ',
-				this.infoPlus,
-				typeof this.infoPlus
-			);
-
-			// return date.getTime();
-		},
-		async checkUserStatus() {
-			try {
-				const response = await fetch(
-					'https://eli-back.onrender.com/api/checkUserStatus',
-					{
-						method: 'GET',
-						credentials: 'include',
-					}
-				);
-				console.log(
-					' ℹ️    ℹ️    ℹ️ FROM UserStatus~ checkUserStatus ~ response:',
-					response
-				);
-
-				if (!response.ok) {
-					throw new Error(
-						'FROM USER STATUS ERR Network response was not ok'
-					);
-				}
-				const data = await response.json();
-				this.user = data.user;
-			} catch (err) {
-				console.error(
-					'FROM USER STATUS problème avec searchuête fetch :',
-					err
-				);
-			}
-		},
 		// checkLocaluser() {
 		// 	this.localUser =
 		// 		JSON.parse(localStorage.getItem('localUser')) || null;
@@ -361,6 +297,7 @@ export default {
 		// 		this.localUser
 		// 	);
 		// },
+
 		getLocalUser() {
 			this.localUser = JSON.parse(sessionStorage.getItem('localUser'));
 
@@ -384,9 +321,6 @@ export default {
 			}
 		},
 
-		formatDate(date) {
-			return new Date(date).toLocaleDateString('fr-FR');
-		},
 		async acceptFriendReq(fromID) {
 			if (!this.user || !this.user._id) {
 				this.msgRes =
@@ -446,6 +380,72 @@ export default {
 				this.display(this.msgRes);
 			}
 		},
+
+		// async completeProfile() {
+		// 	await fetch(
+		// 		`https://eli-back.onrender.com/api/completeProfile`,
+		// 		{
+		// 			method: 'POST',
+		// 			headers: {
+		// 				'Content-Type': 'application/json',
+		// 			},
+		// 			body: JSON.stringify(infoPlus),
+		// 		}
+		// 	);
+		// },
+
+		// convertDate() {
+		// 	// Diviser la date en jour, mois et année
+		// 	const [day, month, year] = this.birthDate.split('-');
+
+		// 	console.log('🚀 ~ completeProfile ~ year:', year);
+		// 	console.log('🚀 ~ completeProfile ~ month:', month);
+		// 	console.log('🚀 ~ completeProfile ~ day:', day);
+		// 	// Les mois en JavaScript sont indexés à partir de 0, donc soustraire 1 au mois
+		// 	const date = new Date(year, month - 1, day).getTime();
+
+		// 	console.log('🚀 ~ completeProfile ~ date:', date);
+
+		// 	console.log(
+		// 		'🚨  infoPlus  :   ',
+		// 		this.infoPlus,
+		// 		typeof this.infoPlus
+		// 	);
+
+		// 	// return date.getTime();
+		// },
+		// async checkUserStatus() {
+		// 	try {
+		// 		const response = await fetch(
+		// 			'https://eli-back.onrender.com/api/checkUserStatus',
+		// 			{
+		// 				method: 'GET',
+		// 				credentials: 'include',
+		// 			}
+		// 		);
+		// 		console.log(
+		// 			' ℹ️    ℹ️    ℹ️ FROM UserStatus~ checkUserStatus ~ response:',
+		// 			response
+		// 		);
+
+		// 		if (!response.ok) {
+		// 			throw new Error(
+		// 				'FROM USER STATUS ERR Network response was not ok'
+		// 			);
+		// 		}
+		// 		const data = await response.json();
+		// 		this.user = data.user;
+		// 	} catch (err) {
+		// 		console.error(
+		// 			'FROM USER STATUS problème avec searchuête fetch :',
+		// 			err
+		// 		);
+		// 	}
+		// },
+
+		// formatDate(date) {
+		// 	return new Date(date).toLocaleDateString('fr-FR');
+		// },
 
 		display(message) {
 			alert(message);
