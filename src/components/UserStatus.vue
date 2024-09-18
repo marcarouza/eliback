@@ -75,22 +75,22 @@
 					<tbody>
 						<!-- Demandes d'amis reçues -->
 						<tr
-							v-for="req in user.friendReqIN"
-							:key="req.fromID"
+							v-for="search in user.friendReqIN"
+							:key="search.fromID"
 						>
 							<th scope="row">
 								<i class="fas fa-inbox"></i> Reçue
 							</th>
 							<td>
 								{{
-									req.fromPseudo ||
+									search.fromPseudo ||
 									'Utilisateur inconnu'
 								}}
 							</td>
 							<td>
 								<!-- Icônes pour indiquer le statut -->
 								<span
-									v-if="req.status === 'pending'"
+									v-if="search.status === 'pending'"
 									class="text-warning"
 								>
 									<i
@@ -99,14 +99,14 @@
 									En attente
 								</span>
 								<span
-									v-if="req.status === 'accepted'"
+									v-if="search.status === 'accepted'"
 									class="text-success"
 								>
 									<i class="fas fa-check-circle"></i>
 									Acceptée
 								</span>
 								<span
-									v-if="req.status === 'rejected'"
+									v-if="search.status === 'rejected'"
 									class="text-danger"
 								>
 									<i class="fas fa-times-circle"></i>
@@ -114,23 +114,23 @@
 								</span>
 							</td>
 							<td>
-								<div v-if="req.status === 'pending'">
+								<div v-if="search.status === 'pending'">
 									<button
 										class="btn btn-success btn-sm action"
 										@click="
 											acceptFriendReq(
-												req.fromID
+												search.fromID
 											)
 										"
 									>
 										<i class="fas fa-check"></i>
-										Accepter
+										Accepter {{ search.fromID }}
 									</button>
 									<button
 										class="btn btn-danger btn-sm action"
 										@click="
 											rejectFriendReq(
-												req.fromID
+												search.fromID
 											)
 										"
 									>
@@ -138,8 +138,10 @@
 										Refuser
 									</button>
 									<button
-										class="btn btn-black btn-sm action"
-										@click="blockUser(req.fromID)"
+										class="btn btn-dark btn-sm action"
+										@click="
+											blockUser(search.fromID)
+										"
 									>
 										<i class="fas fa-ban"></i>
 										Bloquer
@@ -150,8 +152,8 @@
 
 						<!-- Demandes d'amis envoyées -->
 						<tr
-							v-for="req in user.friendReqOUT"
-							:key="req.toID"
+							v-for="search in user.friendSearchOUT"
+							:key="search.toID"
 						>
 							<th scope="row">
 								<i class="fas fa-paper-plane"></i>
@@ -159,14 +161,14 @@
 							</th>
 							<td>
 								{{
-									req.toPseudo ||
+									search.toPseudo ||
 									'Utilisateur inconnu'
 								}}
 							</td>
 							<td>
 								<!-- Icônes pour indiquer le statut -->
 								<span
-									v-if="req.status === 'pending'"
+									v-if="search.status === 'pending'"
 									class="text-warning"
 								>
 									<i
@@ -175,14 +177,14 @@
 									En attente
 								</span>
 								<span
-									v-if="req.status === 'accepted'"
+									v-if="search.status === 'accepted'"
 									class="text-success"
 								>
 									<i class="fas fa-check-circle"></i>
 									Acceptée
 								</span>
 								<span
-									v-if="req.status === 'rejected'"
+									v-if="search.status === 'rejected'"
 									class="text-danger"
 								>
 									<i class="fas fa-times-circle"></i>
@@ -291,7 +293,7 @@ export default {
 	mounted() {
 		this.getLocalUser();
 
-		this.checkUserStatus();
+		// this.checkUserStatus();
 		// this.checkLocaluser();
 	},
 	methods: {
@@ -351,7 +353,7 @@ export default {
 				this.user = data.user;
 			} catch (err) {
 				console.error(
-					'FROM USER STATUS problème avec requête fetch :',
+					'FROM USER STATUS problème avec searchuête fetch :',
 					err
 				);
 			}
@@ -390,13 +392,16 @@ export default {
 		formatDate(date) {
 			return new Date(date).toLocaleDateString('fr-FR');
 		},
-		async acceptFriendReq(reqId) {
+		async acceptFriendReq(fromID) {
 			try {
-				console.log('🚀 ~ acceptFriendReq ~ reqId:', reqId);
 				console.log(
-					'🚀 ~ acceptFriendReq ~ reqId:',
+					'🧑🏻‍💻 this.user._id /// this.fromID /// :',
+
 					this.user._id,
-					typeof reqId,
+					' /// ',
+					fromID,
+					' /// et le sTYPE OF ',
+					typeof fromID,
 					typeof this.user._id
 				);
 
@@ -408,7 +413,7 @@ export default {
 							'Content-Type': 'application/json',
 						},
 						body: JSON.stringify({
-							fromID: reqId,
+							fromID: fromID, // ID de la provenance
 							toID: this.user._id, // ID de l'utilisateur actuel
 						}),
 						credentials: 'include',
@@ -417,15 +422,16 @@ export default {
 
 				if (response.ok) {
 					const data = await response.json();
-					console.log("✅ Demande d'ami acceptée:", data);
-					this.msgRes = `✅ Demande d'ami acceptée avec succès`;
 
 					// Mettre à jour le statut de la demande dans la liste sans rafraîchir la page
-					const req = this.user.friendReqIN.find(
-						(req) => req.fromID === reqId
+					const search = this.user.friendReqIN.find(
+						(search) => search.fromID === fromID
 					);
-					if (req) {
-						req.status = 'accepted';
+					if (search) {
+						search.status = 'accepted';
+
+						console.log("✅ Demande d'ami acceptée:", data);
+						this.msgRes = `✅ Demande d'ami acceptée avec succès`;
 					}
 				} else {
 					const data = await response.json();
