@@ -147,7 +147,7 @@
 
 						<!-- Demandes d'amis envoyées -->
 						<tr
-							v-for="search in user.friendSearchOUT"
+							v-for="search in user.friendReqOUT"
 							:key="search.toID"
 						>
 							<th scope="row">
