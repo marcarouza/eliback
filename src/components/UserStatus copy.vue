@@ -114,45 +114,40 @@
 								</span>
 							</td>
 							<td>
-								<div v-if="search.status === 'pending'">
-									<button
-										class="btn btn-success btn-sm action"
-										@click="
-											acceptFriendReq(
-												search.fromID
-											)
-										"
-									>
-										<i class="fas fa-check"></i>
-										Accepter {{ search.fromID }}
-									</button>
-									<button
-										class="btn btn-danger btn-sm action"
-										@click="
-											rejectFriendReq(
-												search.fromID
-											)
-										"
-									>
-										<i class="fas fa-times"></i>
-										Refuser
-									</button>
-									<button
-										class="btn btn-dark btn-sm action"
-										@click="
-											blockUser(search.fromID)
-										"
-									>
-										<i class="fas fa-ban"></i>
-										Bloquer
-									</button>
-								</div>
+								<button
+									v-if="search.status === 'pending'"
+									class="btn btn-success btn-sm action"
+									@click="
+										acceptFriendReq(search.fromID)
+									"
+								>
+									<i class="fas fa-check"></i>
+									Accepter {{ search.fromID }}
+								</button>
+								<button
+									v-if="search.status === 'pending'"
+									class="btn btn-danger btn-sm action"
+									@click="
+										rejectFriendReq(search.fromID)
+									"
+								>
+									<i class="fas fa-times"></i>
+									Refuser
+								</button>
+								<button
+									v-if="search.status === 'pending'"
+									class="btn btn-dark btn-sm action"
+									@click="blockUser(search.fromID)"
+								>
+									<i class="fas fa-ban"></i>
+									Bloquer
+								</button>
 							</td>
 						</tr>
 
 						<!-- Demandes d'amis envoyées -->
 						<tr
-							v-for="search in user.friendSearchOUT"
+							v-for="search in user.friendReqOUT"
 							:key="search.toID"
 						>
 							<th scope="row">
