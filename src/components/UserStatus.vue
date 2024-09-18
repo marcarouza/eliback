@@ -158,31 +158,32 @@
 									'Utilisateur inconnu'
 								}}
 							</td>
-							<td>
-								<!-- Icônes pour indiquer le statut -->
-								<span
-									v-if="req.status === 'pending'"
-									class="text-warning"
+							<td v-if="search.status === 'pending'">
+								<button
+									class="btn btn-success btn-sm action"
+									@click="
+										acceptFriendReq(search.fromID)
+									"
 								>
-									<i
-										class="fas fa-hourglass-half"
-									></i>
-									En attente
-								</span>
-								<span
-									v-if="req.status === 'accepted'"
-									class="text-success"
+									<i class="fas fa-check"></i>
+									Accepter
+								</button>
+								<button
+									class="btn btn-danger btn-sm action"
+									@click="
+										rejectFriendReq(search.fromID)
+									"
 								>
-									<i class="fas fa-check-circle"></i>
-									Acceptée
-								</span>
-								<span
-									v-if="req.status === 'rejected'"
-									class="text-danger"
+									<i class="fas fa-times"></i>
+									Refuser
+								</button>
+								<button
+									class="btn btn-dark btn-sm action"
+									@click="blockUser(search.fromID)"
 								>
-									<i class="fas fa-times-circle"></i>
-									Refusée
-								</span>
+									<i class="fas fa-ban"></i>
+									Bloquer
+								</button>
 							</td>
 							<td>
 								<!-- Pas d'action pour les demandes envoyées, juste affichage du statut -->
@@ -405,7 +406,7 @@ export default {
 				);
 
 				const response = await fetch(
-					'https://eli-back.onrender.com/acceptFriendReq',
+					'https://eli-back.onrender.com/api/acceptFriendReq',
 					{
 						method: 'POST',
 						headers: {
