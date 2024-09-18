@@ -57,7 +57,6 @@
 					</tbody>
 				</table>
 			</div>
-
 			<div class="friends">
 				<h1 class="text-center mb-4">Gestions de votre réseau</h1>
 				<h2 class="mb-4">
@@ -142,7 +141,6 @@
 								</button>
 							</td>
 						</tr>
-
 						<!-- Demandes d'amis envoyées -->
 						<tr
 							v-for="req in user.friendReqOUT"
@@ -191,7 +189,6 @@
 					</tbody>
 				</table>
 			</div>
-
 			<div class="modify px-5">
 				<div
 					class="d-flex justify-content-between align-items-center p-3"
@@ -204,7 +201,6 @@
 						</button>
 					</router-link>
 				</div>
-
 				<div class="modifyProfil">
 					<form @submit.prevent="convertDate">
 						<div class="mb-3 form-floating">
@@ -239,7 +235,6 @@
 								>Date de naissance</label
 							>
 						</div>
-
 						<div class="d-flex justify-content-center">
 							<button
 								type="submit"
@@ -252,16 +247,14 @@
 				</div>
 			</div>
 		</div>
-
 		<div v-else>
 			<h3>Une erreur est survenue, veuillez vous reconnecter</h3>
 		</div>
 	</div>
 </template>
-
 <script>
 export default {
-	name: 'UserStatus',
+	name: 'UserStatus-0609',
 	data() {
 		return {
 			user: null,
@@ -273,7 +266,6 @@ export default {
 			localUser: null,
 		};
 	},
-
 	computed: {
 		infoPlus() {
 			return {
@@ -285,44 +277,38 @@ export default {
 	},
 	mounted() {
 		this.getLocalUser();
-
 		this.checkUserStatus();
 		// this.checkLocaluser();
 	},
 	methods: {
-		async completeProfile() {
-			await fetch(
-				`https://eli-back.onrender.com/api/completeProfile`,
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify(infoPlus),
-				}
-			);
-		},
-
-		convertDate() {
-			// Diviser la date en jour, mois et année
-			const [day, month, year] = this.birthDate.split('-');
-
-			console.log('🚀 ~ completeProfile ~ year:', year);
-			console.log('🚀 ~ completeProfile ~ month:', month);
-			console.log('🚀 ~ completeProfile ~ day:', day);
-			// Les mois en JavaScript sont indexés à partir de 0, donc soustraire 1 au mois
-			const date = new Date(year, month - 1, day).getTime();
-
-			console.log('🚀 ~ completeProfile ~ date:', date);
-
-			console.log(
-				'🚨  infoPlus  :   ',
-				this.infoPlus,
-				typeof this.infoPlus
-			);
-
-			// return date.getTime();
-		},
+		// async completeProfile() {
+		// 	await fetch(
+		// 		`https://eli-back.onrender.com/api/completeProfile`,
+		// 		{
+		// 			method: 'POST',
+		// 			headers: {
+		// 				'Content-Type': 'application/json',
+		// 			},
+		// 			body: JSON.stringify(infoPlus),
+		// 		}
+		// 	);
+		// },
+		// convertDate() {
+		// 	// Diviser la date en jour, mois et année
+		// 	const [day, month, year] = this.birthDate.split('-');
+		// 	console.log('🚀 ~ completeProfile ~ year:', year);
+		// 	console.log('🚀 ~ completeProfile ~ month:', month);
+		// 	console.log('🚀 ~ completeProfile ~ day:', day);
+		// 	// Les mois en JavaScript sont indexés à partir de 0, donc soustraire 1 au mois
+		// 	const date = new Date(year, month - 1, day).getTime();
+		// 	console.log('🚀 ~ completeProfile ~ date:', date);
+		// 	console.log(
+		// 		'🚨  infoPlus  :   ',
+		// 		this.infoPlus,
+		// 		typeof this.infoPlus
+		// 	);
+		// 	// return date.getTime();
+		// },
 		async checkUserStatus() {
 			try {
 				const response = await fetch(
@@ -336,7 +322,6 @@ export default {
 					' ℹ️    ℹ️    ℹ️ FROM UserStatus~ checkUserStatus ~ response:',
 					response
 				);
-
 				if (!response.ok) {
 					throw new Error(
 						'FROM USER STATUS ERR Network response was not ok'
@@ -361,7 +346,6 @@ export default {
 		// },
 		getLocalUser() {
 			this.localUser = JSON.parse(sessionStorage.getItem('localUser'));
-
 			if (this.localUser && this.localUser._id) {
 				console.log(
 					'🚀 ~ getLocalUser ~ localUser._id:',
@@ -369,9 +353,7 @@ export default {
 					'🚀 ~ getLocalUser ~ localUser:',
 					this.localUser
 				);
-
 				this.user = this.localUser.user;
-
 				this.fromID = this.localUser._id;
 				this.isLoggedIn = true;
 			} else {
@@ -381,7 +363,6 @@ export default {
 				this.fromID = null;
 			}
 		},
-
 		formatDate(date) {
 			return new Date(date).toLocaleDateString('fr-FR');
 		},
@@ -394,7 +375,6 @@ export default {
 					typeof reqId,
 					typeof this.user._id
 				);
-
 				const response = await fetch(
 					'https://eli-back.onrender.com/acceptFriendReq',
 					{
@@ -409,12 +389,10 @@ export default {
 						credentials: 'include',
 					}
 				);
-
 				if (response.ok) {
 					const data = await response.json();
 					console.log("✅ Demande d'ami acceptée:", data);
 					this.msgRes = `✅ Demande d'ami acceptée avec succès`;
-
 					// Mettre à jour le statut de la demande dans la liste sans rafraîchir la page
 					const req = this.user.friendReqIN.find(
 						(req) => req.fromID === reqId
@@ -436,26 +414,22 @@ export default {
 				this.display(this.msgRes);
 			}
 		},
-
 		display(message) {
 			alert(message);
 		},
 	},
 };
 </script>
-
 <style scoped>
 /* Ligne impaire */
 /* .table-striped tbody tr:nth-of-type(odd) {
 	background-color: #9e2222;
 } */
-
 /* Ligne paire */
 /* .table-striped tbody tr:nth-of-type(even) {
 	background-color: #cbcbcb61;
 	color: #fff;
 } */
-
 .friends,
 .profil,
 .modify {
@@ -468,7 +442,6 @@ export default {
 	overflow-y: auto;
 	background-color: #eeeeee;
 }
-
 .modifyProfil {
 	margin-top: 2rem;
 	margin: 0 2rem;
@@ -478,18 +451,15 @@ export default {
 	overflow-y: auto;
 	background-color: #f8f9fa;
 }
-
 .action {
 	/* margin-top: 1rem; */
 	margin: 0 1rem;
 }
-
 .btn.action {
 	padding: 0.3rem;
 	border-radius: 0.5rem;
 	width: 150px;
 	height: min-content;
-
 	text-transform: uppercase;
 	letter-spacing: 0.13em;
 }

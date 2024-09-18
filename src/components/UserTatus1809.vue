@@ -261,7 +261,7 @@
 
 <script>
 export default {
-	name: 'UserStatus',
+	name: 'UserStatus1809',
 	data() {
 		return {
 			user: null,
@@ -389,7 +389,9 @@ export default {
 			try {
 				console.log('🚀 ~ acceptFriendReq ~ reqId:', reqId);
 				console.log(
-					'🚀 ~ acceptFriendReq ~ reqId:',
+					'////// ~ acceptFriendReq ~ reqId /// this.user._id : ',
+					reqId,
+					'//////',
 					this.user._id,
 					typeof reqId,
 					typeof this.user._id
