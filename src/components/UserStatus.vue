@@ -157,34 +157,30 @@
 								}}
 							</td>
 							<td>
-								<button
+								<!-- Icônes pour indiquer le statut -->
+								<span
 									v-if="req.status === 'pending'"
-									class="btn btn-success btn-sm action"
-									@click="
-										acceptFriendReq(search.fromID)
-									"
+									class="text-warning"
 								>
-									<i class="fas fa-check"></i>
-									Accepter
-								</button>
-								<button
-									v-if="req.status === 'pending'"
-									class="btn btn-danger btn-sm action"
-									@click="
-										rejectFriendReq(search.fromID)
-									"
+									<i
+										class="fas fa-hourglass-half"
+									></i>
+									En attente
+								</span>
+								<span
+									v-if="req.status === 'accepted'"
+									class="text-success"
 								>
-									<i class="fas fa-times"></i>
-									Refuser
-								</button>
-								<button
-									v-if="req.status === 'pending'"
-									class="btn btn-dark btn-sm action"
-									@click="blockUser(search.fromID)"
+									<i class="fas fa-check-circle"></i>
+									Acceptée
+								</span>
+								<span
+									v-if="req.status === 'rejected'"
+									class="text-danger"
 								>
-									<i class="fas fa-ban"></i>
-									Bloquer
-								</button>
+									<i class="fas fa-times-circle"></i>
+									Refusée
+								</span>
 							</td>
 							<td>
 								<!-- Pas d'action pour les demandes envoyées, juste affichage du statut -->
