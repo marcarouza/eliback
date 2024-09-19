@@ -383,17 +383,6 @@ export default {
 				return;
 			}
 			try {
-				console.log('🚀 ~ acceptFriendReq ~ reqId:', reqId);
-				console.log(
-					'🚀 ~ acceptFriendReq ~ reqId //////// this.user._id : ',
-					reqId,
-					'    /////   ',
-					this.user._id,
-					'    /////   ',
-					typeof reqId,
-					typeof this.user._id
-				);
-
 				const response = await fetch(
 					'https://eli-back.onrender.com/api/acceptFriendReq',
 					{
@@ -407,6 +396,16 @@ export default {
 						}),
 						credentials: 'include',
 					}
+				);
+
+				console.log(
+					'🚀 ~ acceptFriendReq ~ reqId //////// this.user._id : ',
+					reqId,
+					'    /////   ',
+					this.user._id,
+					'    /////   ',
+					typeof reqId,
+					typeof this.user._id
 				);
 
 				if (response.ok) {
