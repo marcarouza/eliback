@@ -227,7 +227,7 @@ export default {
 						headers: {
 							'Content-Type': 'application/json',
 						},
-						body: JSON.stringify({userID: this.userID}), // Envoyer l'identifiant
+						body: JSON.stringify({fromID: this.userID}), // Envoyer l'identifiant
 					}
 				);
 
