@@ -99,38 +99,32 @@
 	</div>
 
 	<div class="container">
-		<p class="coo">
-			position de la souris dans la fenêtre de votre navigateur : X=
-			{{ x }}, Y= {{ y }}
-		</p>
-
 		<table class="table table-striped table-bordered mt-3">
-			<caption
-				classs="text-center bg-dark text-white p-2 caption-style"
-			>
-				Ces informations sont fournies automatiquement par votre
-				navigateur dès que vous arrivez sur cette page
-			</caption>
 			<tbody>
 				<tr>
-					<th>Position de la souris dans la fenêtre</th>
-					<td>
-						X
-						{{ x }}
-					</td>
-					<td>Y= {{ y }}</td>
+					<th>
+						Position en pixels, du pointeur souris (dans cette
+						fenêtre)
+					</th>
+					<td class="col-small">X</td>
+					<td class="col-small">Y</td>
 				</tr>
 				<tr>
-					<th></th>
-					<td>
+					<th v-if="x > winWidth">
+						Votre pointeur est dans cette fenêtre
+					</th>
+					<th v-else>
+						"Votre pointeur est en dehors de cette fenêtre"
+					</th>
+					<td class="col-small">
 						{{ x }}
 					</td>
-					<td>{{ y }}</td>
+					<td class="col-small">{{ y }}</td>
 				</tr>
 			</tbody>
 			<tfoot>
 				<tr>
-					<td class="table-active text-right" colspan="2">
+					<td class="table-active text-center" colspan="2">
 						Informations à titre informatif récoltées de façon
 						anonyme
 					</td>
@@ -149,16 +143,27 @@ import {defineOptions} from 'vue';
 // Définir le nom du composant
 defineOptions({name: 'AgentInfo'});
 
+// Hooks du cycle de vie
+onMounted(() => {
+	getUserAgentInfo();
+	window.addEventListener('mousemove', showCoordinates);
+	window.addEventListener('resize', updateWindowWidth);
+});
+
 // Définition des propriétés réactives
 const userAgentInfo = ref(null);
 const x = ref(null);
 const y = ref(null);
+const winWidth = ref(window.innerWidth);
+const winHeight = ref(window.innerHeight);
 
 // Fonction pour afficher les coordonnées de la souris
 function showCoordinates(event) {
+	winWidth.value = window.innerWidth;
+	winHeight.value = window.innerHeight;
 	x.value = event.clientX;
 	y.value = event.clientY;
-	console.log(`Souris : X=${x}, Y=${y}`);
+	// console.log(`Souris : X=${x}, Y=${y}`);
 }
 
 // Fonction pour obtenir les informations de l'agent utilisateur
@@ -185,13 +190,6 @@ const getUserAgentInfo = async () => {
 		console.error('FROM UserAgent problème avec requête fetch :', err);
 	}
 };
-
-// Hooks du cycle de vie
-onMounted(() => {
-	getUserAgentInfo();
-	window.addEventListener('mousemove', showCoordinates);
-	console.log('Le composant UserAgentInfo est monté');
-});
 </script>
 
 <style scoped>
