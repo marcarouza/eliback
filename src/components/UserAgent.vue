@@ -97,7 +97,7 @@ import {ref, onMounted} from 'vue';
 import {defineOptions} from 'vue';
 
 // Définir le nom du composant
-defineOptions({name: 'UserAgentInfo'});
+defineOptions({name: 'AgentInfo'});
 
 // Définition des propriétés réactives
 const userAgentInfo = ref(null);

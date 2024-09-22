@@ -1,14 +1,14 @@
 <template>
 	<div>
 		<NavOk />
-		<UserAgent />
+		<AgentInfo />
 		<TabWhats />
 	</div>
 </template>
 
 <script>
 import NavOk from '../components/NavOk';
-import UserAgent from '../components/UserAgent.vue';
+import AgentInfo from '../components/UserAgent.vue';
 import TabWhats from '../components/TabWhats.vue';
 
 export default {
@@ -16,7 +16,7 @@ export default {
 	emits: ['updatePageTitle'],
 	components: {
 		NavOk,
-		UserAgent,
+		AgentInfo,
 		TabWhats,
 	},
 	mounted() {
