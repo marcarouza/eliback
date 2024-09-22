@@ -265,9 +265,9 @@ let lastY = 0;
 // Propriété calculée pour vérifier si le pointeur est dans la fenêtre
 const pointerInside = computed(() => {
 	return (
-		x.value > 0 &&
+		x.value > 10 &&
 		x.value < winWidth.value - 10 &&
-		y.value > 1 &&
+		y.value > 10 &&
 		y.value < winHeight.value - 10
 	);
 });
