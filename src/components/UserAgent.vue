@@ -125,6 +125,12 @@
 
 <script setup>
 import {ref, onMounted} from 'vue';
+import {defineOptions} from 'vue';
+
+// Définir le nom du composant
+defineOptions({
+	name: 'UserAgent',
+});
 
 // Définition des propriétés réactives
 const title = ref('Mon Composant Vue 3');
