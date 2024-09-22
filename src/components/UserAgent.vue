@@ -156,10 +156,8 @@
 </template>
 
 <script setup>
-import {ref, onMounted, onUnmounted} from 'vue';
+import {ref, computed, onMounted, onUnmounted} from 'vue';
 import {defineOptions} from 'vue';
-
-// const err = ref(null);
 
 // Définir le nom du composant
 defineOptions({name: 'AgentInfo'});
@@ -167,9 +165,7 @@ defineOptions({name: 'AgentInfo'});
 // Hooks du cycle de vie
 onMounted(() => {
 	getUserAgentInfo();
-	pointerInside();
 	window.addEventListener('mousemove', showCoordinates);
-	window.addEventListener('mousemove', pointerInside);
 	window.addEventListener('resize', updateDim);
 });
 
@@ -178,37 +174,28 @@ onUnmounted(() => {
 	window.removeEventListener('resize', updateDim);
 });
 
+// Définition des propriétés réactives
+const userAgentInfo = ref(null);
+const x = ref(0);
+const y = ref(0);
+const winWidth = ref(window.innerWidth);
+const winHeight = ref(window.innerHeight);
+
 // Propriété calculée pour vérifier si le pointeur est dans la fenêtre
-function pointerInside() {
-	const hello =
-		x.value > 0 &&
-		x.value < winWidth.value - 1 &&
-		y.value > 1 &&
-		y.value < winHeight.value - 1;
-
-	console.log('Pointeur dans la fenêtre:', hello);
-
+const pointerInside = computed(() => {
 	return (
 		x.value > 0 &&
 		x.value < winWidth.value - 1 &&
 		y.value > 1 &&
 		y.value < winHeight.value - 1
 	);
-}
-
-// Définition des propriétés réactives
-const userAgentInfo = ref(null);
-const x = ref(0);
-const y = ref(0);
-const pointerInside = ref(false);
-const winWidth = ref(window.innerWidth);
-const winHeight = ref(window.innerHeight);
+});
 
 // Fonction pour afficher les coordonnées de la souris
 function showCoordinates(event) {
 	x.value = event.clientX;
 	y.value = event.clientY;
-	// console.log(`Souris : X=${x}, Y=${y}`);
+	console.log('Pointeur dans la fenêtre:', pointerInside.value);
 }
 
 function updateDim() {
@@ -219,10 +206,8 @@ function updateDim() {
 // Fonction pour obtenir les informations de l'agent utilisateur
 const getUserAgentInfo = async () => {
 	try {
-		// err.value = null;
 		const response = await fetch(
 			'https://eli-back.onrender.com/api/info',
-
 			{
 				method: 'GET',
 				credentials: 'include',
