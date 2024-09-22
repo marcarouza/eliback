@@ -70,14 +70,17 @@
 								{{
 									userAgentInfo.isBot
 										? 'De type robot'
-										: 'De type agent ou navigateur'
+										: 'Non : agent ou navigateur'
 								}}
 							</td>
 						</tr>
 					</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="2">
+							<td
+								class="table-active text-right"
+								colspan="2"
+							>
 								Informations à titre informatif
 								récoltées de façon anonyme
 							</td>
