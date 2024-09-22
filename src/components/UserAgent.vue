@@ -130,7 +130,17 @@
 					>
 						{{ x }}
 					</td>
-					<td class="blackCell">{{ y }}</td>
+					<td
+						:class="[
+							'position',
+							{
+								inside: pointerInside,
+								outside: !pointerInside,
+							},
+						]"
+					>
+						{{ y }}
+					</td>
 				</tr>
 			</tbody>
 			<tfoot>
