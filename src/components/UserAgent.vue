@@ -109,6 +109,13 @@
 					<td class="celFix">X</td>
 					<td class="celFix">Y</td>
 				</tr>
+				<tr class="p">
+					Le pointeur est
+					{{
+						isPointerInWindow ? 'dans' : 'hors de'
+					}}
+					la fenêtre.
+				</tr>
 				<tr>
 					<th v-if="x > winWidth && y > winHeight">
 						Votre pointeur est en dehors de la fenêtre
@@ -136,7 +143,7 @@
 </template>
 
 <script setup>
-import {ref, onMounted} from 'vue';
+import {ref, computed, onMounted, onUnmounted} from 'vue';
 import {defineOptions} from 'vue';
 
 // const err = ref(null);
@@ -151,10 +158,15 @@ onMounted(() => {
 	window.addEventListener('resize', updateWindowWidth);
 });
 
+onUnmounted(() => {
+	window.removeEventListener('mousemove', showCoordinates);
+	window.removeEventListener('resize', updateWindowDimensions);
+});
+
 // Définition des propriétés réactives
 const userAgentInfo = ref(null);
-const x = ref(null);
-const y = ref(null);
+const x = ref(0);
+const y = ref(0);
 const winWidth = ref(window.innerWidth);
 const winHeight = ref(window.innerHeight);
 
