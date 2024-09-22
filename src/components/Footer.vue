@@ -31,7 +31,14 @@
 								>api</router-link
 							>
 						</li>
-						<li class="nav-item"></li>
+						<li class="nav-item">
+							<router-link
+								active-class="active"
+								class="nav-link text-black-50"
+								to="/infoagentpage"
+								>info</router-link
+							>
+						</li>
 					</ul>
 				</div>
 
