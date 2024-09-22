@@ -156,7 +156,7 @@
 </template>
 
 <script setup>
-import {ref, computed, onMounted, onUnmounted} from 'vue';
+import {ref, onMounted, onUnmounted} from 'vue';
 import {defineOptions} from 'vue';
 
 // const err = ref(null);
@@ -167,6 +167,7 @@ defineOptions({name: 'AgentInfo'});
 // Hooks du cycle de vie
 onMounted(() => {
 	getUserAgentInfo();
+	pointerInside();
 	window.addEventListener('mousemove', showCoordinates);
 	window.addEventListener('resize', updateDim);
 });
@@ -177,7 +178,7 @@ onUnmounted(() => {
 });
 
 // Propriété calculée pour vérifier si le pointeur est dans la fenêtre
-const pointerInside = computed(() => {
+const pointerInside = () => {
 	const inOut =
 		x.value > 0 &&
 		x.value < winWidth.value - 1 &&
@@ -187,12 +188,13 @@ const pointerInside = computed(() => {
 	console.log('Pointeur dans la fenêtre:', inOut);
 
 	return inOut;
-});
+};
 
 // Définition des propriétés réactives
 const userAgentInfo = ref(null);
 const x = ref(0);
 const y = ref(0);
+// const inOut = ref(false);
 const winWidth = ref(window.innerWidth);
 const winHeight = ref(window.innerHeight);
 
