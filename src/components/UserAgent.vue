@@ -250,9 +250,9 @@ let lastY = 0;
 const pointerInside = computed(() => {
 	return (
 		x.value > 0 &&
-		x.value < winWidth.value - 1 &&
+		x.value < winWidth.value - 10 &&
 		y.value > 1 &&
-		y.value < winHeight.value - 1
+		y.value < winHeight.value - 10
 	);
 });
 
