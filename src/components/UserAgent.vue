@@ -178,16 +178,13 @@ onUnmounted(() => {
 
 // Propriété calculée pour vérifier si le pointeur est dans la fenêtre
 const pointerInside = computed(() => {
-
-const inOut = (
+	const inOut =
 		x.value >= 0 &&
 		x.value <= winWidth.value &&
 		y.value >= 0 &&
-		y.value <= winHeight.value
-)
+		y.value <= winHeight.value;
 
-
-console.log(inOut)
+	console.log(inOut);
 
 	return (
 		x.value >= 0 &&
@@ -221,9 +218,6 @@ const getUserAgentInfo = async () => {
 	try {
 		// err.value = null;
 		const response = await fetch(
-			console.log("🚀 ~ pointerInside ~ inOut:", inOut)
-			console.log("🚀 ~ pointerInside ~ inOut:", inOut)
-			console.log("🚀 ~ pointerInside ~ inOut:", inOut)
 			'https://eli-back.onrender.com/api/info',
 
 			{
