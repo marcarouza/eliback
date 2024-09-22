@@ -146,4 +146,8 @@ onMounted(() => {
 h1 {
 	color: #42b883;
 }
+
+.caption-style {
+  caption-side: top;
+}
 </style>
