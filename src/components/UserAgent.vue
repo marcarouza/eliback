@@ -210,11 +210,12 @@ h1 {
 	font-size: 1.2rem;
 	background-color: black;
 	color: white;
+	text-align: right;
 }
 
 .celFix {
 	width: 150px;
-	text-align: right;
+	text-align: center;
 	font-weight: bold;
 }
 </style>
