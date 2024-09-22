@@ -7,13 +7,13 @@
 					utilisateur
 				</h1>
 				<table class="table table-striped table-bordered mt-3">
-					<caption
+					<!-- <caption
 						classs="text-center bg-dark text-white p-2 caption-style"
 					>
 						> Ces informations sont fournies automatiquement
 						par votre navigateur dès que vous arrivez sur
 						cette page
-					</caption>
+					</caption> -->
 					<tbody>
 						<tr>
 							<th>Navigateur (agent) utilisé</th>
@@ -106,8 +106,8 @@
 						Position en pixels, du pointeur souris (dans cette
 						fenêtre)
 					</th>
-					<td class="blackCell col-small">X</td>
-					<td class="blackCell col-small">Y</td>
+					<td class="celFix">X</td>
+					<td class="celFix">Y</td>
 				</tr>
 				<tr>
 					<th v-if="x > winWidth">
@@ -116,10 +116,10 @@
 					<th v-else>
 						"Votre pointeur est en dehors de cette fenêtre"
 					</th>
-					<td class="col-small">
+					<td class="blackCell">
 						{{ x }}
 					</td>
-					<td class="col-small">{{ y }}</td>
+					<td class="blackCell">{{ y }}</td>
 				</tr>
 			</tbody>
 			<tfoot>
@@ -205,7 +205,16 @@ h1 {
 }
 
 .blackCell {
+	width: 100px;
+	font-weight: bold;
+	font-size: 1.2rem;
 	background-color: black;
 	color: white;
+}
+
+.celFix {
+	width: 150px;
+	text-align: right;
+	font-weight: bold;
 }
 </style>
