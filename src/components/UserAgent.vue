@@ -117,9 +117,9 @@
 					la fenêtre.
 				</tr>
 				<tr>
-					<th></th>
-					<th></th>
+					<th>sdsdsd</th>
 					<td
+						class="celFix"
 						:class="[
 							'cellFix',
 							{
@@ -130,7 +130,9 @@
 					>
 						{{ x }}
 					</td>
+
 					<td
+						class="celFix"
 						:class="[
 							'cellFix',
 							{
@@ -228,7 +230,7 @@ const getUserAgentInfo = async () => {
 </script> -->
 
 <script setup>
-import {ref, computed, onMounted, onUnmounted} from 'vue';
+import {ref, computed, onMounted, reactive, onUnmounted} from 'vue';
 import {defineOptions} from 'vue';
 
 // Définir le nom du composant
