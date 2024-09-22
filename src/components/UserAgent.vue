@@ -112,7 +112,7 @@
 				<tr class="p">
 					Le pointeur est
 					{{
-						isPointerInWindow ? 'dans' : 'hors de'
+						pointerWindow ? 'dans' : 'hors de'
 					}}
 					la fenêtre.
 				</tr>
@@ -124,7 +124,15 @@
 						Votre pointeur est en dehors de la fenêtre
 					</th>
 					<th v-else>"Votre pointeur est dans cette fenêtre"</th>
-					<td class="blackCell">
+					<td
+						:class="[
+							'position',
+							{
+								inside: pointerWindow,
+								outside: !pointerWindow,
+							},
+						]"
+					>
 						{{ x }}
 					</td>
 					<td class="blackCell">{{ y }}</td>
@@ -161,6 +169,16 @@ onMounted(() => {
 onUnmounted(() => {
 	window.removeEventListener('mousemove', showCoordinates);
 	window.removeEventListener('resize', updateWindowDimensions);
+});
+
+// Propriété calculée pour vérifier si le pointeur est dans la fenêtre
+const pointerWindow = computed(() => {
+	return (
+		x.value >= 0 &&
+		x.value <= winWidth.value &&
+		y.value >= 0 &&
+		y.value <= winHeight.value
+	);
 });
 
 // Définition des propriétés réactives
@@ -211,6 +229,13 @@ const getUserAgentInfo = async () => {
 <style scoped>
 h1 {
 	color: #42b883;
+}
+
+.inside {
+	background-color: lightgreen;
+}
+.outside {
+	background-color: red;
 }
 
 .caption-style {
