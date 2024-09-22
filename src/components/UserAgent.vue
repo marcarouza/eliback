@@ -8,10 +8,10 @@
 				</h1>
 				<h2>Informations anonymes</h2>
 				<table class="table table-striped table-bordered mt-3">
-					<caption>
-						Ces informations sont fournies automatiquement par
-						votre navigateur dès que vous arrivez sur cette
-						page
+					<caption classs="text-center bg-dark text-white p-2 caption-style"">
+						> Ces informations sont fournies automatiquement
+						par votre navigateur dès que vous arrivez sur
+						cette page
 					</caption>
 					<tbody>
 						<tr>
