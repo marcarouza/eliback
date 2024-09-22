@@ -106,8 +106,8 @@
 						Position en pixels, du pointeur souris (dans cette
 						fenêtre)
 					</th>
-					<td class="col-small">X</td>
-					<td class="col-small">Y</td>
+					<td class="blackCell col-small">X</td>
+					<td class="blackCell col-small">Y</td>
 				</tr>
 				<tr>
 					<th v-if="x > winWidth">
@@ -159,11 +159,14 @@ const winHeight = ref(window.innerHeight);
 
 // Fonction pour afficher les coordonnées de la souris
 function showCoordinates(event) {
-	winWidth.value = window.innerWidth;
-	winHeight.value = window.innerHeight;
 	x.value = event.clientX;
 	y.value = event.clientY;
 	// console.log(`Souris : X=${x}, Y=${y}`);
+}
+
+function updateWindowWidth() {
+	winWidth.value = window.innerWidth;
+	winHeight.value = window.innerHeight;
 }
 
 // Fonction pour obtenir les informations de l'agent utilisateur
@@ -199,5 +202,10 @@ h1 {
 
 .caption-style {
 	caption-side: top;
+}
+
+.blackCell {
+	background-color: black;
+	color: white;
 }
 </style>
