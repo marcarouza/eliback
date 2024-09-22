@@ -109,15 +109,13 @@
 					<td class="celFix">X</td>
 					<td class="celFix">Y</td>
 				</tr>
+				<tr></tr>
 				<tr>
-					Le pointeur est
-					{{
-						pointerInside ? 'dans' : 'hors de'
-					}}
-					la fenêtre.
-				</tr>
-				<tr>
-					<th>sdsdsd</th>
+					<th>
+						Le pointeur est
+						{{ pointerInside ? 'dans' : 'hors de' }}
+						la fenêtre.
+					</th>
 					<td
 						class="celFix"
 						:class="[
