@@ -109,7 +109,7 @@
 					<td class="celFix">X</td>
 					<td class="celFix">Y</td>
 				</tr>
-				<tr class="p">
+				<tr>
 					Le pointeur est
 					{{
 						pointerInside ? 'dans' : 'hors de'
@@ -117,8 +117,8 @@
 					la fenêtre.
 				</tr>
 				<tr>
-					<th v-if="pointerInside"></th>
-					<th v-else></th>
+					<th></th>
+					<th></th>
 					<td
 						:class="[
 							'position',
@@ -179,23 +179,28 @@ onUnmounted(() => {
 });
 
 // Propriété calculée pour vérifier si le pointeur est dans la fenêtre
-const pointerInside = () => {
-	const inOut =
+function pointerInside() {
+	const hello =
 		x.value > 0 &&
 		x.value < winWidth.value - 1 &&
 		y.value > 1 &&
 		y.value < winHeight.value - 1;
 
-	console.log('Pointeur dans la fenêtre:', inOut);
+	console.log('Pointeur dans la fenêtre:', hello);
 
-	return inOut;
-};
+	return (
+		x.value > 0 &&
+		x.value < winWidth.value - 1 &&
+		y.value > 1 &&
+		y.value < winHeight.value - 1
+	);
+}
 
 // Définition des propriétés réactives
 const userAgentInfo = ref(null);
 const x = ref(0);
 const y = ref(0);
-const inOut = ref(false);
+const pointerInside = ref(false);
 const winWidth = ref(window.innerWidth);
 const winHeight = ref(window.innerHeight);
 
