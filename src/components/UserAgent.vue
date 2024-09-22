@@ -169,6 +169,7 @@ onMounted(() => {
 	getUserAgentInfo();
 	pointerInside();
 	window.addEventListener('mousemove', showCoordinates);
+	window.addEventListener('mousemove', pointerInside);
 	window.addEventListener('resize', updateDim);
 });
 
@@ -194,7 +195,7 @@ const pointerInside = () => {
 const userAgentInfo = ref(null);
 const x = ref(0);
 const y = ref(0);
-// const inOut = ref(false);
+const inOut = ref(false);
 const winWidth = ref(window.innerWidth);
 const winHeight = ref(window.innerHeight);
 
