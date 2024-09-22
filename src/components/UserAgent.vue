@@ -100,26 +100,29 @@
 
 	<div class="container">
 		<table class="table table-striped table-bordered mt-3">
-			<tbody>
+			<thead>
 				<tr>
-					<th>
+					<th colspan="3">
 						Position en pixels, du pointeur souris (dans cette
 						fenêtre)
 					</th>
-					<td class="celFix">X</td>
-					<td class="celFix">Y</td>
 				</tr>
-				<tr></tr>
+				<tr>
+					<th>Information</th>
+					<th>X</th>
+					<th>Y</th>
+				</tr>
+			</thead>
+			<tbody>
 				<tr>
 					<th>
 						Le pointeur est
-						{{ pointerInside ? 'dans' : 'hors de' }}
-						la fenêtre.
+						{{ pointerInside ? 'dans' : 'hors de' }} la
+						fenêtre.
 					</th>
 					<td
-						class="celFix"
 						:class="[
-							'cellFix',
+							'celFix',
 							{
 								inside: pointerInside,
 								outside: !pointerInside,
@@ -128,11 +131,9 @@
 					>
 						{{ x }}
 					</td>
-
 					<td
-						class="celFix"
 						:class="[
-							'cellFix',
+							'celFix',
 							{
 								inside: pointerInside,
 								outside: !pointerInside,
@@ -145,7 +146,7 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<td class="table-active text-center" colspan="2">
+					<td class="table-active text-center" colspan="3">
 						Informations à titre informatif récoltées de façon
 						anonyme
 					</td>
