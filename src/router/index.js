@@ -21,8 +21,15 @@ import writepostpage from '../views/WritePostPage.vue';
 import rgpdpage from '../views/CguRgpdPage.vue';
 import postdetailpage from '../views/PostDetailPage.vue';
 import passmodifypage from '../views/PassModifyPage.vue';
+import infoagentpage from '../views/InfoAgentPage.vue';
 
 const routes = [
+	{
+		path: '/infoagentPage',
+		name: 'infoagentpage',
+		component: infoagentpage,
+	},
+
 	{
 		path: '/passmodifyPage',
 		name: 'passmodifypage',

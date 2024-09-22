@@ -463,9 +463,13 @@
 												class="col mb-4 mb-md-0"
 											>
 												<div
-													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+													class="d-flex align-items-center justify-content-center bg-light rounded-4 p-3 h-100"
 												>
-													HTML 5
+													<i
+														title="HTML 5"
+														class="fab fa-html5 logoHTML"
+													>
+													</i>
 												</div>
 											</div>
 											<div
@@ -710,6 +714,13 @@ export default {
 </script>
 
 <style scoped>
+.logoHTML {
+	justify-content: center;
+	font-size: 2rem;
+	text-align: center;
+	color: #0066ff;
+}
+
 .btn-gradient {
 	background-image: linear-gradient(45deg, #7132b4, #4377d2);
 	color: white; /* Pour le contraste du texte */

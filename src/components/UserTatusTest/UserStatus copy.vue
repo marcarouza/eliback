@@ -66,8 +66,8 @@
 				<table class="table table-striped table-bordered mt-3">
 					<thead>
 						<tr>
-							<th>Type de demande</th>
-							<th>Utilisateur</th>
+							<th>Demande</th>
+							<th>Membre</th>
 							<th>Statut</th>
 							<th>Action</th>
 						</tr>
