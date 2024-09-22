@@ -121,7 +121,7 @@
 					<th></th>
 					<td
 						:class="[
-							'blackCell',
+							'',
 							{
 								inside: pointerInside,
 								outside: !pointerInside,
@@ -132,7 +132,7 @@
 					</td>
 					<td
 						:class="[
-							'blackCell',
+							'',
 							{
 								inside: pointerInside,
 								outside: !pointerInside,
