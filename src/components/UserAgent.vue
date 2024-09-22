@@ -110,12 +110,13 @@
 					<td class="celFix">Y</td>
 				</tr>
 				<tr>
-					<th v-if="x > winWidth">
-						Votre pointeur est dans cette fenêtre
+					<th v-if="x > winWidth && y > winHeight">
+						Votre pointeur est en dehors de la fenêtre
 					</th>
-					<th v-else>
-						"Votre pointeur est en dehors de cette fenêtre"
+					<th v-if="x < winWidth && y < winHeight">
+						Votre pointeur est en dehors de la fenêtre
 					</th>
+					<th v-else>"Votre pointeur est dans cette fenêtre"</th>
 					<td class="blackCell">
 						{{ x }}
 					</td>
