@@ -117,6 +117,8 @@
 					la fenêtre.
 				</tr>
 				<tr>
+					<th v-if="pointerInside"></th>
+					<th v-else></th>
 					<td
 						:class="[
 							'position',
@@ -128,17 +130,7 @@
 					>
 						{{ x }}
 					</td>
-					<td
-						:class="[
-							'position',
-							{
-								inside: pointerInside,
-								outside: !pointerInside,
-							},
-						]"
-					>
-						{{ y }}
-					</td>
+					<td class="blackCell">{{ y }}</td>
 				</tr>
 			</tbody>
 			<tfoot>
