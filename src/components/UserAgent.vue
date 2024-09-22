@@ -98,7 +98,7 @@
 		</div>
 	</div>
 
-	<div class="mouse">
+	<div class="container">
 		<p class="coo">
 			position de la souris dans la fenêtre de votre navigateur : X=
 			{{ x }}, Y= {{ y }}
@@ -108,16 +108,24 @@
 			<caption
 				classs="text-center bg-dark text-white p-2 caption-style"
 			>
-				> Ces informations sont fournies automatiquement par votre
+				Ces informations sont fournies automatiquement par votre
 				navigateur dès que vous arrivez sur cette page
 			</caption>
 			<tbody>
 				<tr>
-					<th>Navigateur (agent) utilisé</th>
+					<th>Position de la souris dans la fenêtre</th>
 					<td>
-						{{ userAgentInfo.browser || 'Non défini' }}
+						X
+						{{ x }}
 					</td>
-					<td>autre cellule</td>
+					<td>Y= {{ y }}</td>
+				</tr>
+				<tr>
+					<th></th>
+					<td>
+						{{ x }}
+					</td>
+					<td>{{ y }}</td>
 				</tr>
 			</tbody>
 			<tfoot>
@@ -143,12 +151,14 @@ defineOptions({name: 'AgentInfo'});
 
 // Définition des propriétés réactives
 const userAgentInfo = ref(null);
+const x = ref(null);
+const y = ref(null);
 
 // Fonction pour afficher les coordonnées de la souris
 function showCoordinates(event) {
-	const x = event.clientX;
-	const y = event.clientY;
-	console.log(`Position de la souris : X=${x}, Y=${y}`);
+	x = event.clientX;
+	y = event.clientY;
+	console.log(`Souris : X=${x}, Y=${y}`);
 }
 
 // Fonction pour obtenir les informations de l'agent utilisateur
