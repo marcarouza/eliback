@@ -154,7 +154,7 @@
 		</table>
 	</div>
 </template>
-
+<!-- 
 <script setup>
 import {ref, computed, onMounted, onUnmounted} from 'vue';
 import {defineOptions} from 'vue';
@@ -225,6 +225,94 @@ const getUserAgentInfo = async () => {
 		console.error('FROM UserAgent problème avec requête fetch :', err);
 	}
 };
+</script> -->
+
+<script setup>
+import {ref, computed, onMounted, onUnmounted} from 'vue';
+import {defineOptions} from 'vue';
+
+// Définir le nom du composant
+defineOptions({name: 'AgentInfo'});
+
+// Définition des propriétés réactives
+const userAgentInfo = ref(null);
+const x = ref(0);
+const y = ref(0);
+const winWidth = ref(window.innerWidth);
+const winHeight = ref(window.innerHeight);
+
+// Variables pour le suivi de la souris
+let rafId = null;
+let lastX = 0;
+let lastY = 0;
+
+// Propriété calculée pour vérifier si le pointeur est dans la fenêtre
+const pointerInside = computed(() => {
+	return (
+		x.value > 0 &&
+		x.value < winWidth.value - 1 &&
+		y.value > 1 &&
+		y.value < winHeight.value - 1
+	);
+});
+
+// Fonction pour mettre à jour les coordonnées de la souris
+function updateMousePosition() {
+	x.value = lastX;
+	y.value = lastY;
+	console.log('Pointeur dans la fenêtre:', pointerInside.value);
+	rafId = requestAnimationFrame(updateMousePosition);
+}
+
+// Fonction pour capturer les coordonnées de la souris
+function captureMousePosition(event) {
+	lastX = event.clientX;
+	lastY = event.clientY;
+}
+
+function updateDim() {
+	winWidth.value = window.innerWidth;
+	winHeight.value = window.innerHeight;
+}
+
+// Fonction pour obtenir les informations de l'agent utilisateur
+const getUserAgentInfo = async () => {
+	try {
+		const response = await fetch(
+			'https://eli-back.onrender.com/api/info',
+			{
+				method: 'GET',
+				credentials: 'include',
+			}
+		);
+		if (!response.ok) {
+			throw new Error(
+				`FROM UserAgent API response was not ok ==> ${response.status}`
+			);
+		}
+		const data = await response.json();
+		console.log('🚀 ~ getUserAgentInfo ~ data:', data);
+		userAgentInfo.value = data.userAgentInfo;
+	} catch (err) {
+		console.error('FROM UserAgent problème avec requête fetch :', err);
+	}
+};
+
+// Hooks du cycle de vie
+onMounted(() => {
+	getUserAgentInfo();
+	window.addEventListener('mousemove', captureMousePosition);
+	window.addEventListener('resize', updateDim);
+	rafId = requestAnimationFrame(updateMousePosition);
+});
+
+onUnmounted(() => {
+	window.removeEventListener('mousemove', captureMousePosition);
+	window.removeEventListener('resize', updateDim);
+	if (rafId) {
+		cancelAnimationFrame(rafId);
+	}
+});
 </script>
 
 <style scoped>
