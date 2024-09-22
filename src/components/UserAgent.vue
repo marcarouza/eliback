@@ -121,7 +121,7 @@
 					<th></th>
 					<td
 						:class="[
-							'position',
+							'blackCell',
 							{
 								inside: pointerInside,
 								outside: !pointerInside,
@@ -132,7 +132,7 @@
 					</td>
 					<td
 						:class="[
-							'position',
+							'blackCell',
 							{
 								inside: pointerInside,
 								outside: !pointerInside,
@@ -234,6 +234,22 @@ import {defineOptions} from 'vue';
 // Définir le nom du composant
 defineOptions({name: 'AgentInfo'});
 
+// Hooks du cycle de vie
+onMounted(() => {
+	getUserAgentInfo();
+	window.addEventListener('mousemove', captureMousePosition);
+	window.addEventListener('resize', updateDim);
+	rafId = requestAnimationFrame(updateMousePosition);
+});
+
+onUnmounted(() => {
+	window.removeEventListener('mousemove', captureMousePosition);
+	window.removeEventListener('resize', updateDim);
+	if (rafId) {
+		cancelAnimationFrame(rafId);
+	}
+});
+
 // Définition des propriétés réactives
 const userAgentInfo = ref(null);
 const x = ref(0);
@@ -297,22 +313,6 @@ const getUserAgentInfo = async () => {
 		console.error('FROM UserAgent problème avec requête fetch :', err);
 	}
 };
-
-// Hooks du cycle de vie
-onMounted(() => {
-	getUserAgentInfo();
-	window.addEventListener('mousemove', captureMousePosition);
-	window.addEventListener('resize', updateDim);
-	rafId = requestAnimationFrame(updateMousePosition);
-});
-
-onUnmounted(() => {
-	window.removeEventListener('mousemove', captureMousePosition);
-	window.removeEventListener('resize', updateDim);
-	if (rafId) {
-		cancelAnimationFrame(rafId);
-	}
-});
 </script>
 
 <style scoped>
@@ -336,7 +336,7 @@ h1 {
 }
 
 .blackCell {
-	width: 100px;
+	width: 150px;
 	font-weight: bold;
 	font-size: 1.2rem;
 	background-color: black;
