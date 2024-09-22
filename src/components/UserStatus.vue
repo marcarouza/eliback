@@ -257,7 +257,7 @@
 	</div>
 </template>
 
-<script>
+<!-- <script>
 export default {
 	name: 'UserStatus',
 	data() {
@@ -441,6 +441,78 @@ export default {
 		},
 	},
 };
+</script> -->
+
+">
+<!-- Version Vue 3 avec <script setup> -->
+<script setup>
+import {ref, computed, onMounted} from 'vue';
+
+// État réactif
+const user = ref(null);
+const users = ref([]);
+const msgRes = ref('');
+const lastname = ref('');
+const firstname = ref('');
+const birthDate = ref('');
+const localUser = ref(null);
+
+// Propriété calculée
+const infoPlus = computed(() => ({
+	firstname: firstname.value,
+	lastname: lastname.value,
+	birthDate: birthDate.value,
+}));
+
+// Méthodes
+const completeProfile = async () => {
+	await fetch('https://eli-back.onrender.com/api/completeProfile', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(infoPlus.value),
+	});
+};
+
+const checkUserStatus = async () => {
+	try {
+		const response = await fetch(
+			'https://eli-back.onrender.com/api/checkUserStatus',
+			{
+				method: 'GET',
+				credentials: 'include',
+			}
+		);
+		if (!response.ok) {
+			throw new Error(
+				'FROM USER STATUS ERR Network response was not ok'
+			);
+		}
+		const data = await response.json();
+		user.value = data.user;
+	} catch (err) {
+		console.error('FROM USER STATUS problème avec requête fetch :', err);
+	}
+};
+
+const getLocalUser = () => {
+	localUser.value = JSON.parse(sessionStorage.getItem('localUser'));
+	if (localUser.value && localUser.value._id) {
+		user.value = localUser.value.user;
+		// Notez que 'fromID' et 'isLoggedIn' devraient être définis comme des refs si nécessaire
+	} else {
+		console.error('Utilisateur local non trouvé dans sessionStorage');
+	}
+};
+
+// Hook de cycle de vie
+onMounted(() => {
+	getLocalUser();
+	checkUserStatus();
+});
+
+// ... autres méthodes converties de manière similaire ...
 </script>
 
 <style scoped>

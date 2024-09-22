@@ -9,6 +9,44 @@
 				/>
 				<span class="hello">Bienvenue dans mon réseau</span>
 			</router-link>
+			<ul class="navbar-nav ms-auto">
+				<li class="nav-item small-caps">
+					<router-link
+						active-class="active"
+						class="nav-link"
+						to="/cvPage"
+						>cv</router-link
+					>
+				</li>
+				<li class="nav-item small-caps">
+					<router-link
+						active-class="active"
+						class="nav-link"
+						to="/projetsPage"
+						>projets</router-link
+					>
+				</li>
+				<li class="nav-item small-caps">
+					<router-link
+						active-class="active"
+						class="nav-link"
+						to="/contactFormPage"
+						>contact</router-link
+					>
+				</li>
+
+				<li nav-item>
+					<a
+						id="blogLink"
+						@click.prevent="navigateToBlog"
+						class="nav-link small-caps"
+						:class="{
+							active: $route.path === '/homeblogPage',
+						}"
+						>blog</a
+					>
+				</li>
+			</ul>
 
 			<!-- Bouton de basculement pour petits écrans -->
 			<button
@@ -24,43 +62,6 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ms-auto">
-					<li class="nav-item">
-						<router-link
-							active-class="active"
-							class="nav-link"
-							to="/cvPage"
-							>cv</router-link
-						>
-					</li>
-					<li class="nav-item">
-						<router-link
-							active-class="active"
-							class="nav-link"
-							to="/projetsPage"
-							>projets</router-link
-						>
-					</li>
-					<li class="nav-item">
-						<router-link
-							active-class="active"
-							class="nav-link"
-							to="/contactFormPage"
-							>contact</router-link
-						>
-					</li>
-
-					<li>
-						<a
-							id="blogLink"
-							@click.prevent="navigateToBlog"
-							class="nav-link"
-							:class="{
-								active: $route.path === '/homeblogPage',
-							}"
-							>blog</a
-						>
-					</li>
-
 					<li class="nav-item dropdown">
 						<a
 							class="nav-link dropdown-toggle btn text-white border border-white border-opacity-25"
@@ -164,6 +165,7 @@ export default {
 			isLoggedIn: false,
 			user: '',
 			localUser: null,
+			userID: '',
 		};
 	},
 
@@ -189,6 +191,12 @@ export default {
 				}
 				const data = await response.json();
 				this.user = data.user;
+				// this.userID = data.user._id;
+				console.log(
+					'🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 ~ fetchUserData ~ this.userID:',
+					this.userID
+				);
+
 				this.isLoggedIn = true;
 				console.log(
 					'🚀 ~ FROM NAVOK ==> checkUserStatus ~ this.user:',
@@ -201,8 +209,49 @@ export default {
 				);
 			}
 		},
-
 		async fetchLogOutApi() {
+			try {
+				console.log(
+					'User ID before sending to logOutApi:',
+					this.userID
+				);
+				const response = await fetch(
+					'https://eli-back.onrender.com/logOutApi',
+					{
+						method: 'POST', // Utilisez POST pour envoyer des données
+						credentials: 'include', // Pour envoyer les cookies avec la requête
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({userID: this.userID}), // Envoyer l'identifiant
+					}
+				);
+
+				console.log('✅ FROM NavOk ~ LogOutApi :', response);
+
+				if (response.ok) {
+					this.isLoggedIn = false;
+					console.log('🚀 ~ DECONNEXION REUSSIE !!! ');
+					this.user = null; // Mettre à jour l'utilisateur à null
+					localStorage.removeItem('localUser'); // Supprimer l'utilisateur de localStorage
+					sessionStorage.removeItem('localUser');
+					window.location.reload();
+					this.$router.push({name: 'homepage'});
+				} else {
+					console.error('Erreur lors de la déconnexion');
+					throw new Error(
+						'🍌 🍌 🍌 🍌 🍌 FROM NAVOK ==> ERR Network response was not ok'
+					);
+				}
+			} catch (error) {
+				console.error(
+					'🍌 🍌 🍌 🍌 🍌 FROM NAVOK ==> problème avec requête fetch :',
+					error
+				);
+			}
+		},
+
+		async fetchLogOutApi_NO() {
 			try {
 				const logout = await fetch(
 					'https://eli-back.onrender.com/logOutApi',
@@ -220,13 +269,10 @@ export default {
 					this.user = null; // Mettre à jour l'utilisateur à null
 					localStorage.removeItem('localUser'); // Supprimer l'utilisateur de localStorage
 					sessionStorage.removeItem('localUser');
+					// sessionStorage.clear();
+					// localStorage.clear();
 					window.location.reload();
-					this.$router.replace({name: 'homepage'});
-					// 					this.$router.push({
-					//   name: 'homepage',
-					//   query: { _t: Date.now() }
-					// });
-					// this.$router.push({name: 'homepage'});
+					this.$router.push({name: 'homepage'});
 				} else {
 					console.error('Erreur lors de la déconnexion');
 					throw new Error(
@@ -253,21 +299,43 @@ export default {
 			}
 		},
 		checkLocaluser() {
-			// this.localUser =
-			// 	JSON.parse(localStorage.getItem('localUser')) || null;
-			// console.log(
-			// 	'✅ FROM NAVOK ==> this.localUser :',
-			// 	this.localUser
-			// );
+			try {
+				const localUserData = localStorage.getItem('localUser');
+				this.localUser = localUserData
+					? JSON.parse(localUserData)
+					: null;
+				if (this.localUser) {
+					this.userID = this.localUser._id;
+					console.log(
+						'🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀  ~ checkLocaluser ~ this.userID:',
+						this.userID
+					);
+				}
+				console.log(
+					'✅ ℹ️  FROM checkLocaluser in NavOk ==> this.localUser :',
+					this.localUser
+				);
+			} catch (error) {
+				console.error(
+					'Erreur lors de la récupération ou du parsing de localUser:',
+					error
+				);
+				this.localUser = null; // Assurez-vous que localUser est null en cas d'erreur
+			}
+		},
 
-			// sessionStorage.setItem('username', 'JaneDoe');
-
+		checkLocaluser_NO() {
 			if (sessionStorage.getItem('localUser')) {
 				this.localUser = JSON.parse(
 					sessionStorage.getItem('localUser')
 				);
 				console.log('Utilisateur récupéré:', this.localUser);
 				this.isLoggedIn = true;
+				this.userID = this.localUser._id;
+				console.log(
+					'🚀 ~ checkLocaluser ~ this.userID POUR UTILISATION dans logOut API :',
+					this.userID
+				);
 			} else {
 				console.log(
 					'ℹ️  🚫  ℹ️ FROM NavOk ==> Aucun utilisateur  dans sessionStorage.'
@@ -307,6 +375,9 @@ export default {
 </script>
 
 <style scoped>
+.small-caps {
+	font-variant: small-caps;
+}
 .hello {
 	font-size: 1rem;
 	color: rgb(255, 255, 255);
