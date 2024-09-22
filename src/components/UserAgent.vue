@@ -179,19 +179,14 @@ onUnmounted(() => {
 // Propriété calculée pour vérifier si le pointeur est dans la fenêtre
 const pointerInside = computed(() => {
 	const inOut =
-		x.value >= 0 &&
-		x.value <= winWidth.value &&
-		y.value >= 0 &&
-		y.value <= winHeight.value;
+		x.value > 0 &&
+		x.value < winWidth.value - 1 &&
+		y.value > 1 &&
+		y.value < winHeight.value - 1;
 
-	console.log(inOut);
+	console.log('Pointeur dans la fenêtre:', inOut);
 
-	return (
-		x.value >= 0 &&
-		x.value <= winWidth.value &&
-		y.value >= 0 &&
-		y.value <= winHeight.value
-	);
+	return inOut;
 });
 
 // Définition des propriétés réactives
