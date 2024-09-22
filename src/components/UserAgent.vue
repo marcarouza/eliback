@@ -117,13 +117,12 @@
 					la fenêtre.
 				</tr>
 				<tr>
-					<th v-if="x > winWidth && y > winHeight">
+					<th v-if="pointerWindow">
+						Votre pointeur est dans cette fenêtre
+					</th>
+					<th v-else>
 						Votre pointeur est en dehors de la fenêtre
 					</th>
-					<th v-if="x < winWidth && y < winHeight">
-						Votre pointeur est en dehors de la fenêtre
-					</th>
-					<th v-else>"Votre pointeur est dans cette fenêtre"</th>
 					<td
 						:class="[
 							'position',
@@ -229,6 +228,10 @@ const getUserAgentInfo = async () => {
 <style scoped>
 h1 {
 	color: #42b883;
+}
+
+.position {
+	background-color: gray;
 }
 
 .inside {
