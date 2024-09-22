@@ -87,7 +87,10 @@
 			</div>
 		</div>
 		<div v-else>
-			<h3>Une erreur est survenue, veuillez vous reconnecter</h3>
+			<h3>
+				Les informations de votre client ou agent, ne sont pas
+				disponibles.
+			</h3>
 		</div>
 	</div>
 </template>
@@ -110,15 +113,19 @@ const getUserAgentInfo = async () => {
 		// err.value = null;
 		const response = await fetch(
 			'https://eli-back.onrender.com/api/info',
+
 			{
 				method: 'GET',
 				credentials: 'include',
 			}
 		);
 		if (!response.ok) {
-			throw new Error('FROM UserAgent response was not ok');
+			throw new Error(
+				`FROM UserAgent API response was not ok ==> ${response.status}`
+			);
 		}
 		const data = await response.json();
+		console.log('🚀 ~ getUserAgentInfo ~ data:', data);
 		userAgentInfo.value = data.userAgentInfo;
 	} catch (err) {
 		console.error('FROM UserAgent problème avec requête fetch :', err);
