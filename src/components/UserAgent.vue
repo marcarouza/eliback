@@ -168,12 +168,12 @@ defineOptions({name: 'AgentInfo'});
 onMounted(() => {
 	getUserAgentInfo();
 	window.addEventListener('mousemove', showCoordinates);
-	window.addEventListener('resize', updateWindowWidth);
+	window.addEventListener('resize', updateDim);
 });
 
 onUnmounted(() => {
 	window.removeEventListener('mousemove', showCoordinates);
-	window.removeEventListener('resize', updateWindowDimensions);
+	window.removeEventListener('resize', updateDim);
 });
 
 // Propriété calculée pour vérifier si le pointeur est dans la fenêtre
@@ -208,7 +208,7 @@ function showCoordinates(event) {
 	// console.log(`Souris : X=${x}, Y=${y}`);
 }
 
-function updateWindowWidth() {
+function updateDim() {
 	winWidth.value = window.innerWidth;
 	winHeight.value = window.innerHeight;
 }
