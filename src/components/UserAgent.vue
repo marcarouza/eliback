@@ -10,7 +10,7 @@
 				<table class="table table-striped table-bordered mt-3">
 					<caption>
 						Ces informations sont fournies automatiquement par
-						votre navigateur dés que vous arrivez sur cette
+						votre navigateur dès que vous arrivez sur cette
 						page
 					</caption>
 					<tbody>
@@ -54,50 +54,26 @@
 						</tr>
 						<tr>
 							<th>Type d'appareil</th>
-
-							<td v-if="userAgentInfo.isDesktop">
+							<td>
 								{{
-									'Ordinateur de bureau' ||
-									'Information non disponible'
-								}}
-							</td>
-							<td v-if="userAgentInfo.isMobile">
-								{{
-									'Appareil mobile' ||
-									'Information non disponible'
+									userAgentInfo.isDesktop
+										? 'Ordinateur de bureau'
+										: userAgentInfo.isMobile
+										? 'Appareil mobile'
+										: 'Information non disponible'
 								}}
 							</td>
 						</tr>
 						<tr>
 							<th>Appareil de type robot</th>
-							<td v-if="userAgentInfo.isBot">
-								{{ 'De type robot' || 'Non défini' }}
-							</td>
-							<td v-if="!userAgentInfo.isBot">
+							<td>
 								{{
-									'De type agent ou navigateur' ||
-									'Non défini'
+									userAgentInfo.isBot
+										? 'De type robot'
+										: 'De type agent ou navigateur'
 								}}
 							</td>
 						</tr>
-						<!-- <tr>
-							<th>Rôle</th>
-							<td>{{ user.role }}</td>
-						</tr>
-						<tr>
-							<th>Statut du compte</th>
-							<td>
-								{{
-									user.isActive ? 'Actif' : 'Inactif'
-								}}
-							</td>
-						</tr>
-						<tr>
-							<th>Date d'inscription</th>
-							<td>
-								{{ formatDate(user.dateInscription) }}
-							</td>
-						</tr> -->
 					</tbody>
 					<tfoot>
 						<tr>
@@ -110,16 +86,9 @@
 				</table>
 			</div>
 		</div>
-
 		<div v-else>
 			<h3>Une erreur est survenue, veuillez vous reconnecter</h3>
 		</div>
-	</div>
-	<div>
-		<!-- Le template contient la structure HTML du composant -->
-		<h1>{{ title }}</h1>
-		<p>{{ message }}</p>
-		<button @click="incrementCount">Compteur: {{ count }}</button>
 	</div>
 </template>
 
@@ -128,28 +97,39 @@ import {ref, onMounted} from 'vue';
 import {defineOptions} from 'vue';
 
 // Définir le nom du composant
-defineOptions({
-	name: 'UserAgent',
-});
+defineOptions({name: 'UserAgentInfo'});
 
 // Définition des propriétés réactives
-const title = ref('Mon Composant Vue 3');
-const message = ref('Bienvenue dans ce composant!');
-const count = ref(0);
+const userAgentInfo = ref(null);
 
-// Méthodes
-const incrementCount = () => {
-	count.value++;
+// Fonction pour obtenir les informations de l'agent utilisateur
+const getUserAgentInfo = async () => {
+	try {
+		const response = await fetch(
+			'https://eli-back.onrender.com/api/info',
+			{
+				method: 'GET',
+				credentials: 'include',
+			}
+		);
+		if (!response.ok) {
+			throw new Error('FROM UserAgent response was not ok');
+		}
+		const data = await response.json();
+		userAgentInfo.value = data.userAgentInfo;
+	} catch (err) {
+		console.error('FROM UserAgent problème avec requête fetch :', err);
+	}
 };
 
 // Hooks du cycle de vie
 onMounted(() => {
-	console.log('Le composant est monté');
+	getUserAgentInfo();
+	console.log('Le composant UserAgentInfo est monté');
 });
 </script>
 
 <style scoped>
-/* Styles spécifiques au composant */
 h1 {
 	color: #42b883;
 }
