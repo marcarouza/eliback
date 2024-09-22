@@ -112,29 +112,33 @@
 				<tr class="p">
 					Le pointeur est
 					{{
-						pointerWindow ? 'dans' : 'hors de'
+						pointerInside ? 'dans' : 'hors de'
 					}}
 					la fenêtre.
 				</tr>
 				<tr>
-					<th v-if="pointerWindow">
-						Votre pointeur est dans cette fenêtre
-					</th>
-					<th v-else>
-						Votre pointeur est en dehors de la fenêtre
-					</th>
 					<td
 						:class="[
 							'position',
 							{
-								inside: pointerWindow,
-								outside: !pointerWindow,
+								inside: pointerInside,
+								outside: !pointerInside,
 							},
 						]"
 					>
 						{{ x }}
 					</td>
-					<td class="blackCell">{{ y }}</td>
+					<td
+						:class="[
+							'position',
+							{
+								inside: pointerInside,
+								outside: !pointerInside,
+							},
+						]"
+					>
+						{{ y }}
+					</td>
 				</tr>
 			</tbody>
 			<tfoot>
@@ -171,7 +175,7 @@ onUnmounted(() => {
 });
 
 // Propriété calculée pour vérifier si le pointeur est dans la fenêtre
-const pointerWindow = computed(() => {
+const pointerInside = computed(() => {
 	return (
 		x.value >= 0 &&
 		x.value <= winWidth.value &&
