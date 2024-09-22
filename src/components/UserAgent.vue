@@ -97,6 +97,39 @@
 			</h3>
 		</div>
 	</div>
+
+	<div class="mouse">
+		<p class="coo">
+			position de la souris dans la fenêtre de votre navigateur : X=
+			{{ x }}, Y= {{ y }}
+		</p>
+
+		<table class="table table-striped table-bordered mt-3">
+			<caption
+				classs="text-center bg-dark text-white p-2 caption-style"
+			>
+				> Ces informations sont fournies automatiquement par votre
+				navigateur dès que vous arrivez sur cette page
+			</caption>
+			<tbody>
+				<tr>
+					<th>Navigateur (agent) utilisé</th>
+					<td>
+						{{ userAgentInfo.browser || 'Non défini' }}
+					</td>
+					<td>autre cellule</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td class="table-active text-right" colspan="2">
+						Informations à titre informatif récoltées de façon
+						anonyme
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
 </template>
 
 <script setup>
@@ -110,6 +143,13 @@ defineOptions({name: 'AgentInfo'});
 
 // Définition des propriétés réactives
 const userAgentInfo = ref(null);
+
+// Fonction pour afficher les coordonnées de la souris
+function showCoordinates(event) {
+	const x = event.clientX;
+	const y = event.clientY;
+	console.log(`Position de la souris : X=${x}, Y=${y}`);
+}
 
 // Fonction pour obtenir les informations de l'agent utilisateur
 const getUserAgentInfo = async () => {
@@ -139,6 +179,7 @@ const getUserAgentInfo = async () => {
 // Hooks du cycle de vie
 onMounted(() => {
 	getUserAgentInfo();
+	window.addEventListener('mousemove', showCoordinates);
 	console.log('Le composant UserAgentInfo est monté');
 });
 </script>
