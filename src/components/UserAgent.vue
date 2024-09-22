@@ -96,6 +96,8 @@
 import {ref, onMounted} from 'vue';
 import {defineOptions} from 'vue';
 
+// const err = ref(null);
+
 // Définir le nom du composant
 defineOptions({name: 'AgentInfo'});
 
@@ -105,6 +107,7 @@ const userAgentInfo = ref(null);
 // Fonction pour obtenir les informations de l'agent utilisateur
 const getUserAgentInfo = async () => {
 	try {
+		// err.value = null;
 		const response = await fetch(
 			'https://eli-back.onrender.com/api/info',
 			{
