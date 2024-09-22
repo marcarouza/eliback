@@ -80,7 +80,7 @@
 						<tr>
 							<td
 								class="table-active text-right"
-								colspan="2"
+								colspan="3"
 							>
 								Informations à titre informatif
 								récoltées de façon anonyme
@@ -156,8 +156,8 @@ const y = ref(null);
 
 // Fonction pour afficher les coordonnées de la souris
 function showCoordinates(event) {
-	x = event.clientX;
-	y = event.clientY;
+	x.value = event.clientX;
+	y.value = event.clientY;
 	console.log(`Souris : X=${x}, Y=${y}`);
 }
 
