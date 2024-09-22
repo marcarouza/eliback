@@ -506,6 +506,10 @@ const getLocalUser = () => {
 	}
 };
 
+const formatDate = (date) => {
+	return new Date(date).toLocaleDateString('fr-FR');
+};
+
 // Hook de cycle de vie
 onMounted(() => {
 	getLocalUser();
