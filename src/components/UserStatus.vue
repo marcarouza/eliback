@@ -436,6 +436,70 @@ export default {
 			}
 		},
 
+		async rejectFriendReq(reqId) {
+			if (!this.user || !this.user._id) {
+				this.msgRes =
+					"❌ Problème d'identification, veuillez vous reconnecter (après deconnexion)";
+				this.display(this.msgRes);
+				return;
+			}
+			try {
+				const response = await fetch(
+					'https://eli-back.onrender.com/api/rejectFriendReq',
+					{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({
+							fromID: reqId,
+							toID: this.user._id, // ID de l'utilisateur actuel
+						}),
+						credentials: 'include',
+					}
+				);
+
+				console.log(
+					'🗑️ ~ rejectFriendReq ~ reqId //////// this.user._id : ',
+					reqId,
+					'    /////   ',
+					this.user._id,
+					'    /////   ',
+					typeof reqId,
+					typeof this.user._id
+				);
+
+				if (response.ok) {
+					const data = await response.json();
+
+					// Mettre à jour le statut de la demande dans la liste sans rafraîchir la page
+					const req = this.user.friendReqIN.find(
+						(req) => req.fromID === reqId
+					);
+					if (req) {
+						req.status = 'rejected';
+					}
+
+					console.log(
+						"🗑️ ✅ 🗑️  Demande d'ami rejetée : ",
+						data
+					);
+					this.msgRes = `🗑️  Demande d'ami rejetée ! 😳`;
+				} else {
+					const data = await response.json();
+					this.msgRes = `❌ 🗑️  Erreur innatendue : ${data.message}`;
+				}
+			} catch (err) {
+				this.msgRes = `❌ 🗑️ Problème de connexion, veuillez réessayer plus tard.`;
+				console.error(
+					"🗑️ Le rejet d'ami ne fonctionne pas : ",
+					err
+				);
+			} finally {
+				this.display(this.msgRes);
+			}
+		},
+
 		display(message) {
 			alert(message);
 		},
@@ -443,7 +507,6 @@ export default {
 };
 </script>
 
-">
 <!-- Version Vue 3 avec <script setup> -->
 <!-- <script setup>
 import {ref, computed, onMounted} from 'vue';
@@ -520,17 +583,6 @@ onMounted(() => {
 </script> -->
 
 <style scoped>
-/* Ligne impaire */
-/* .table-striped tbody tr:nth-of-type(odd) {
-	background-color: #9e2222;
-} */
-
-/* Ligne paire */
-/* .table-striped tbody tr:nth-of-type(even) {
-	background-color: #cbcbcb61;
-	color: #fff;
-} */
-
 .friends,
 .profil,
 .modify {
