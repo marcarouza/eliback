@@ -308,24 +308,6 @@ export default {
 			}
 		},
 
-		// checkLocaluser_NO() {
-		// 	if (sessionStorage.getItem('localUser')) {
-		// 		this.localUser = JSON.parse(
-		// 			sessionStorage.getItem('localUser')
-		// 		);
-		// 		console.log('Utilisateur récupéré:', this.localUser);
-		// 		this.isLoggedIn = true;
-		// 		this.userID = this.localUser._id;
-		// 		console.log(
-		// 			'🚀 ~ checkLocaluser ~ this.userID POUR UTILISATION dans logOut API :',
-		// 			this.userID
-		// 		);
-		// 	} else {
-		// 		console.log(
-		// 			'ℹ️  🚫  ℹ️ FROM NavOk ==> Aucun utilisateur  dans sessionStorage.'
-		// 		);
-		// 	}
-		// },
 		navigateToPrivate() {
 			if (this.isLoggedIn) {
 				// Si l'utilisateur est connecté, on le redirige vers la page du blog
@@ -463,14 +445,15 @@ export default {
 /* Autres styles potentiellement nécessaires */
 .navbar .dropdown-toggle.btn {
 	padding: 0.2rem 0.5rem;
-	/* padding: 0; */
 	margin: 0;
 }
 
 .navbar-nav .dropdown-menu {
 	position: absolute;
-
+	border-radius: 0 0 0.25rem 0.25rem;
 	left: -30px;
+	top: 120%;
+	border: 0px;
 }
 
 .navbar .bi-person {
@@ -480,6 +463,10 @@ export default {
 @media (max-width: 576px) {
 	.connected {
 		font-size: 0.8rem;
+	}
+
+	.navbar-nav .dropdown-menu {
+		left: -50px;
 	}
 
 	.custom-icon {
