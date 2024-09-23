@@ -39,6 +39,7 @@ export default {
 
 <style scoped>
 .vh-100 {
-	height: 100vh;
+	height: 80vh;
+	/* margin-top: 100px; */
 }
 </style>

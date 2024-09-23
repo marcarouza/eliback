@@ -1,74 +1,31 @@
 <template>
-	<footer class="footer bg-dark text-white py-4">
+	<footer class="bg-dark text-white py-4 mt-3">
 		<div class="container">
 			<div class="row">
-				<!-- Logo et informations -->
-				<div class="col-md-4 mb-1">
-					<p>
-						© 2024 | eliazoura.fr
-						<span class="text-black-50"
-							>version 1.5 du 20.08-15H00</span
-						>
-						<br />
-					</p>
-					<p class="small">
-						En utilisant ce site, vous acceptez notre
-						utilisation des cookies conformément à notre
-						<router-link :to="{name: 'rgpdpage'}">
-							<u>politique de confidentialité</u>
-						</router-link>
+				<div
+					class="col-12 col-md-6 text-center text-md-start mb-3 mb-md-0"
+				>
+					<p class="mb-0">
+						&copy; 2024 Eli Azoura. Tous droits réservés.
 					</p>
 				</div>
-
-				<!-- Liens utiles -->
-				<div class="col-md-4 mb-1">
-					<ul class="list-unstyled">
-						<li class="nav-item">
-							<router-link
-								active-class="active"
-								class="nav-link text-black-50"
-								to="/apiPage"
-								>api</router-link
-							>
-						</li>
-						<li class="nav-item">
-							<router-link
-								active-class="active"
-								class="nav-link text-black-50"
-								to="/infoagentpage"
-								>info</router-link
-							>
-						</li>
-					</ul>
-				</div>
-
-				<!-- Réseaux sociaux -->
-				<div class="col-md-4 mb-1 d-flex justify-content-end">
-					<hr />
-					<ul class="list-unstyled">
-						<li
-							class="mb-2 d-flex justify-content-end align-items-center"
-						>
-							<a
-								href="https://gitlab.com/eliazoura"
-								class="text-white d-flex align-items-center"
-							>
-								<span class="me-2">GitLab</span>
-								<i class="fab fa-gitlab"></i>
-							</a>
-						</li>
-						<li
-							class="mb-2 d-flex justify-content-end align-items-center"
-						>
-							<a
-								href="https://www.linkedin.com/in/eliazoura"
-								class="text-white d-flex align-items-center"
-							>
-								<span class="me-2">LinkedIn</span>
-								<i class="fab fa-linkedin"></i>
-							</a>
-						</li>
-					</ul>
+				<div class="col-12 col-md-6 text-center text-md-end">
+					<a
+						href="https://gitlab.com/eliazoura"
+						class="text-white me-3"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<i class="fab fa-gitlab"></i>
+					</a>
+					<a
+						href="https://www.linkedin.com/in/eliazoura"
+						class="text-white"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<i class="fab fa-linkedin"></i>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -85,6 +42,10 @@ export default {
 </script>
 
 <style scoped>
+.fab {
+	font-size: 1.5rem;
+	font-size: x-large;
+}
 .footer {
 	position: relative;
 	bottom: 0;
