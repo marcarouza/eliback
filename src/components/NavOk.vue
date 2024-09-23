@@ -7,7 +7,6 @@
 					src="/pix/logos/eliLogo192x192.png"
 					alt="Eli Azoura"
 				/>
-				<!-- <span class="hello">Bienvenue dans mon réseau</span> -->
 			</router-link>
 			<ul class="navbar-nav">
 				<li class="nav-item small-caps">
@@ -49,15 +48,12 @@
 						></i>
 					</router-link>
 				</li>
-
 				<li class="nav-item small-caps">
 					<a
 						id="blogLink"
 						@click.prevent="navigateToBlog"
 						class="nav-link small-caps"
-						:class="{
-							active: $route.path === '/homeblogPage',
-						}"
+						:class="{active: $route.path === '/homeblogPage'}"
 					>
 						<i
 							class="fas fa-blog custom-icon"
@@ -68,7 +64,7 @@
 				</li>
 			</ul>
 
-			<div class="" id="">
+			<div>
 				<ul class="navbar-nav ms-auto">
 					<li class="nav-item dropdown">
 						<a
@@ -79,27 +75,26 @@
 							data-bs-toggle="dropdown"
 							aria-expanded="false"
 						>
-							<li v-if="user" class="userlogged">
+							<template v-if="user">
 								<router-link
 									class="dropdown-item"
 									to="/userstatusPage"
 								>
-									<span claass="account">
+									<span class="account">
 										<i
 											class="bi bi-check-circle connected"
 											>&nbsp;&nbsp;{{
 												user.user
 											}}</i
 										>
-									</span></router-link
-								>
-							</li>
-							<li v-else>
+									</span>
+								</router-link>
+							</template>
+							<template v-else>
 								<span class="icon-disconnected px-4">
 									<i class="fas fa-user-slash"></i>
-									<!-- &nbsp;déconnecté -->
 								</span>
-							</li>
+							</template>
 						</a>
 						<ul
 							v-if="user"
@@ -119,19 +114,20 @@
 								<router-link
 									class="dropdown-item user_menu_item"
 									to="/allMembersPage"
-									>tous les membres</router-link
 								>
+									tous les membres
+								</router-link>
 							</li>
 							<li>
 								<a
 									href="#"
 									class="dropdown-item user_menu_item"
 									@click.prevent="logOUTapi"
-									>déconnexion</a
 								>
+									déconnexion
+								</a>
 							</li>
 						</ul>
-
 						<ul
 							v-else
 							id="dynamicWidth"
@@ -142,15 +138,17 @@
 								<router-link
 									class="dropdown-item user_menu_item"
 									to="/loguserPage"
-									>connexion</router-link
 								>
+									connexion
+								</router-link>
 							</li>
 							<li>
 								<router-link
 									class="dropdown-item user_menu_item"
 									to="/signuserPage"
-									>créer un compte</router-link
 								>
+									créer un compte
+								</router-link>
 							</li>
 						</ul>
 					</li>
