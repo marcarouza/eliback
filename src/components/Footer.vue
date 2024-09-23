@@ -12,7 +12,7 @@
 				<div class="col-12 col-md-6 text-center text-md-end">
 					<a
 						href="https://gitlab.com/eliazoura"
-						class="text-white me-3"
+						class="text-white me-5"
 						target="_blank"
 						rel="noopener noreferrer"
 					>
