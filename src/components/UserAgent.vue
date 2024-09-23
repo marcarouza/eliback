@@ -109,8 +109,8 @@
 				</tr>
 				<tr>
 					<th>Information</th>
-					<th>X</th>
-					<th>Y</th>
+					<th class="celFix">X</th>
+					<th class="celFix">Y</th>
 				</tr>
 			</thead>
 			<tbody>
