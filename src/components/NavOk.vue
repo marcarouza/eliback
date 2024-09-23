@@ -238,6 +238,11 @@ export default {
 					localStorage.removeItem('localUser');
 					sessionStorage.removeItem('localUser');
 					this.$router.push({name: 'homepage'});
+					this.$nextTick(() => {
+						new bootstrap.Dropdown(
+							document.getElementById('navbarDropdown')
+						);
+					});
 					// window.location.reload();
 				} else {
 					console.error('Erreur lors de la déconnexion');
