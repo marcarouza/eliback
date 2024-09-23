@@ -85,7 +85,7 @@
 											class="bi bi-check-circle connected"
 											>&nbsp;&nbsp;{{
 												user.user
-											}}</i
+											}}&nbsp;&nbsp;</i
 										>
 									</span>
 								</router-link>
@@ -344,6 +344,7 @@ export default {
 <style scoped>
 .connected {
 	font-size: 1rem;
+	color: rgb(0, 179, 96);
 }
 
 .custom-icon {
