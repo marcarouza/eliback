@@ -75,7 +75,7 @@
 							data-bs-toggle="dropdown"
 							aria-expanded="false"
 						>
-							<template v-if="user">
+							<li v-if="user">
 								<router-link
 									class="dropdown-item"
 									to="/userstatusPage"
@@ -89,12 +89,12 @@
 										>
 									</span>
 								</router-link>
-							</template>
-							<template v-else>
+							</li>
+							<li v-else>
 								<span class="icon-disconnected px-4">
 									<i class="fas fa-user-slash"></i>
 								</span>
-							</template>
+							</li>
 						</a>
 						<ul
 							v-if="user"
@@ -349,7 +349,7 @@ export default {
 <style scoped>
 .connected {
 	font-size: 1rem;
-	color: rgb(0, 179, 96);
+	color: rgb(0, 209, 112);
 }
 
 .custom-icon {
