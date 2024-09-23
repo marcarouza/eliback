@@ -305,44 +305,56 @@ export default {
 					'User ID before sending to logOutApi:',
 					this.userID
 				);
+
 				const response = await fetch(
 					'https://eli-back.onrender.com/api/logOut',
 					{
-						method: 'POST', // Utilisez POST pour envoyer des données
-						credentials: 'include', // Pour envoyer les cookies avec la requête
+						method: 'POST',
+						credentials: 'include',
 						headers: {
 							'Content-Type': 'application/json',
 						},
-						body: JSON.stringify({fromID: this.userID}), // Envoyer l'identifiant
+						body: JSON.stringify({fromID: this.userID}),
 					}
 				);
 
 				console.log('✅ FROM NavOk ~ LogOutApi :', response);
 
-				if (response.ok) {
-					this.isLoggedIn = false;
-					console.log('🚀 ~ DECONNEXION REUSSIE !!! ');
-					this.user = null; // Mettre à jour l'utilisateur à null
-					localStorage.removeItem('localUser');
-					sessionStorage.removeItem('localUser');
-					this.$router.push({name: 'homepage'});
-					this.$nextTick(() => {
-						new bootstrap.Dropdown(
-							document.getElementById('navbarDropdown')
-						);
-					});
-					// window.location.reload();
-				} else {
-					console.error('Erreur lors de la déconnexion');
+				if (!response.ok) {
 					throw new Error(
-						'🍌 🍌 🍌 🍌 🍌 FROM NAVOK ==> ERR Network response was not ok'
+						`HTTP error! status: ${response.status}`
 					);
 				}
+
+				// Réinitialisation de l'état de l'application
+				this.isLoggedIn = false;
+				this.user = null;
+				localStorage.removeItem('localUser');
+				sessionStorage.removeItem('localUser');
+
+				console.log('🚀 ~ DECONNEXION REUSSIE !!! ');
+
+				// Redirection vers la page d'accueil
+				await this.$router.push({name: 'homepage'});
+
+				// Réinitialisation du dropdown après la mise à jour du DOM
+				this.$nextTick(() => {
+					const dropdownElement =
+						document.getElementById('navbarDropdown');
+					if (dropdownElement) {
+						new bootstrap.Dropdown(dropdownElement);
+					} else {
+						console.warn(
+							"L'élément 'navbarDropdown' n'a pas été trouvé dans le DOM"
+						);
+					}
+				});
 			} catch (error) {
 				console.error(
-					'🍌 🍌 🍌 🍌 🍌 FROM NAVOK ==> problème avec requête fetch :',
-					error
+					'🍌 FROM NAVOK ==> Erreur lors de la déconnexion :',
+					error.message
 				);
+				// Gérer l'erreur (par exemple, afficher un message à l'utilisateur)
 			}
 		},
 
