@@ -188,7 +188,7 @@ export default {
 				);
 				if (!response.ok) {
 					throw new Error(
-						'🍌 🍌 🍌 🍌 🍌 FROM NAVOK ==> ERR Network response was not ok'
+						'🍌 🍌 🍌 FROM NAVOK ==> ERR Network response was not ok'
 					);
 				}
 				const data = await response.json();

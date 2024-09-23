@@ -257,7 +257,7 @@
 	</div>
 </template>
 
-<!-- <script>
+<script>
 export default {
 	name: 'UserStatus',
 	data() {
@@ -441,11 +441,11 @@ export default {
 		},
 	},
 };
-</script> -->
+</script>
 
 ">
 <!-- Version Vue 3 avec <script setup> -->
-<script setup>
+<!-- <script setup>
 import {ref, computed, onMounted} from 'vue';
 
 // État réactif
@@ -517,7 +517,7 @@ onMounted(() => {
 });
 
 // ... autres méthodes converties de manière similaire ...
-</script>
+</script> -->
 
 <style scoped>
 /* Ligne impaire */

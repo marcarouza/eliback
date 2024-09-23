@@ -127,42 +127,7 @@ export default {
 				this.fromID = null;
 			}
 		},
-		// async fetchUserData() {
-		// 	try {
-		// 		const response = await fetch(
-		// 			'https://eli-back.onrender.com/checkUserStatus',
-		// 			{
-		// 				method: 'GET',
-		// 				credentials: 'include', // Pour envoyer les cookies avec la requête
-		// 			}
-		// 		);
-		// 		if (!response.ok) {
-		// 			throw new Error(
-		// 				'🍌 🍌 🍌 🍌 🍌 FROM AllMembers ==> ERR Network response was not ok'
-		// 			);
-		// 		}
-		// 		const data = await response.json();
-		// 		this.user = data.user;
-		// 		this.isLoggedIn = true;
-		// 		console.log(
-		// 			'✅  FROM AllMembers ==> checkUserStatus ~ this.user:',
-		// 			this.user
-		// 		);
 
-		// 		if (this.user) {
-		// 			this.fromID = this.user._id;
-		// 			console.log(
-		// 				'✅ ✅ ✅ FROM AllMembers ~ this.fromID:',
-		// 				this.fromID
-		// 			);
-		// 		}
-		// 	} catch (error) {
-		// 		console.error(
-		// 			'🍌 🍌 🍌 🍌 🍌 FROM AllMembers ==> problème avec requête fetch :',
-		// 			error
-		// 		);
-		// 	}
-		// },
 		async fetchAllMembers() {
 			try {
 				const response = await fetch(
