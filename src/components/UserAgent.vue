@@ -103,8 +103,12 @@
 			<thead>
 				<tr>
 					<th colspan="3">
-						Position en pixels, du pointeur souris (dans cette
-						fenêtre)
+						Position du pointeur en pixels
+						<br />
+						<span class="info">
+							(déplacer le pointeur lentement pour plus de
+							fiabilité)</span
+						>
 					</th>
 				</tr>
 				<tr>
@@ -265,7 +269,7 @@ let lastY = 0;
 
 // Propriété calculée pour vérifier si le pointeur est dans la fenêtre
 const pointerInside = computed(() => {
-	const margin = 15;
+	const margin = 5;
 	return (
 		x.value > margin &&
 		x.value < winWidth.value - margin &&
@@ -337,6 +341,11 @@ h1 {
 	caption-side: top;
 }
 
+.info {
+	font-size: 1rem;
+	font-style: italic;
+	font-weight: lighter;
+}
 .blackCell {
 	width: 150px;
 	font-weight: bold;
