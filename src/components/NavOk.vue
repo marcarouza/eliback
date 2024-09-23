@@ -421,14 +421,9 @@ export default {
 
 /* Styles pour le menu utilisateur */
 .user_menu {
-	/* display: flex; */
-	/* flex-direction: column; */
-	/* align-items: flex-end; */
-	/* justify-content: center; */
 	min-width: 50px !important;
 	background-color: #212529;
 	padding: 0;
-	/* margin: 0; */
 	white-space: nowrap;
 }
 
@@ -466,18 +461,14 @@ export default {
 	}
 
 	.navbar-nav .dropdown-menu {
-		left: -50px;
+		position: absolute;
+
+		left: -45px;
 	}
 
 	.custom-icon {
 		font-size: 1rem;
 		color: #ffffff;
-	}
-
-	.navbar-nav .dropdown-menu {
-		position: absolute;
-
-		left: -30px;
 	}
 }
 
@@ -514,7 +505,7 @@ export default {
 	.navbar-nav .dropdown-menu {
 		position: absolute;
 		/* right: 0px; */
-		left: -10px;
+		left: -30px;
 		/* right: 0px; */
 		/* margin: 0; */
 		/* width: 50px; */
