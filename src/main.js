@@ -7,10 +7,6 @@ import App from './App.vue';
 //
 import router from './router';
 
-import {EventBus} from './utils/eventBus';
-
-Vue.prototype.$eventBus = EventBus;
-
 new Vue({
 	render: (h) => h(App),
 }).$mount('#app');
