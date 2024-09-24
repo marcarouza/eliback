@@ -43,9 +43,13 @@ export default {
 		EventBus.$on('displayNotif', ({title, message}) => {
 			this.$refs.notif.showNotif(title, message); // Correction ici
 		});
+		EventBus.$on('hideNotif', () => {
+			this.$refs.notif.hideNotif();
+		});
 	},
 	beforeDestroy() {
-		EventBus.$off('displayNotif'); // Correction ici
+		EventBus.$off('displayNotif');
+		EventBus.$off('hideNotif');
 	},
 
 	methods: {

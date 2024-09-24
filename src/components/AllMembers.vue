@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import {displayNotif} from '../utils/eventBus.js';
+import {showNotif, hidenotif} from '../utils/eventBus.js';
 
 export default {
 	name: 'AllMembers',
@@ -202,12 +202,12 @@ export default {
 					this.msgRes = `${data.message}`;
 				}
 				this.display(this.msgRes);
-				displayNotif(`A l'instant`, this.msgRes);
+				showNotif(`A l'instant`, this.msgRes);
 			} catch (err) {
 				// Gestion des erreurs réseau ou autres erreurs inattendues
 				this.msgRes = `❌ Problème de connexion, veuillez réessayer plus tard.`;
 				this.display(this.msgRes);
-				displayNotif(`A l'instant`, this.msgRes);
+				showNotif(`A l'instant`, this.msgRes);
 
 				console.error("Erreur lors de la demande d'ami:", err);
 			}
