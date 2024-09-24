@@ -283,9 +283,7 @@
 <script>
 export default {
 	name: 'UserStatus',
-	components: {
-		Notif,
-	},
+	components: {},
 	data() {
 		return {
 			user: null,
