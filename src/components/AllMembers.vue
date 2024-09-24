@@ -190,8 +190,8 @@ export default {
 					// Si le statut est 409, c'est un conflit : demande déjà envoyée
 
 					this.msgRes = toPseudo
-						? `⚠️ Une demande d'ami a déjà été envoyée à  ${toPseudo}`
-						: `⚠️ Une demande d'ami a déjà été envoyée à  ${toID.substring(
+						? `⚠️ Une demande d'ami a déjà été envoyée à ${toPseudo}`
+						: `⚠️ Une demande d'ami a déjà été envoyée à ${toID.substring(
 								0,
 								5
 						  )}`;
