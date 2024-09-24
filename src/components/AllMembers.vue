@@ -68,7 +68,7 @@
 			</p>
 		</div>
 	</div>
-	<div class="toast-container position-fixed bottom-0 end-0 p-3">
+	<div class="toast-container position-fixed top-70 end-70 p-3">
 		<div
 			class="toast"
 			role="alert"
@@ -237,12 +237,12 @@ export default {
 					const data = await response.json(); // Récupérer les détails de l'erreur
 					this.msgRes = `${data.message}`;
 				}
-				this.display(this.msgRes);
+				// this.display(this.msgRes);
 				this.showNotif(`A l'instant`, this.msgRes);
 			} catch (err) {
 				// Gestion des erreurs réseau ou autres erreurs inattendues
 				this.msgRes = `❌ Problème de connexion, veuillez réessayer plus tard.`;
-				this.display(this.msgRes);
+				// this.display(this.msgRes);
 				this.showNotif(`A l'instant`, this.msgRes);
 
 				console.error("Erreur lors de la demande d'ami:", err);
