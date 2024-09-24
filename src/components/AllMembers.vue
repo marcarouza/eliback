@@ -130,7 +130,7 @@ export default {
 			this.isVisible = true;
 			setTimeout(() => {
 				this.hideNotif();
-			}, 5000); // La notification disparaît après 5 secondes
+			}, 60000); // La notification disparaît après 5 secondes
 		},
 		hideNotif() {
 			this.isVisible = false;
