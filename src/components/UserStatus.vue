@@ -255,13 +255,32 @@
 			<h3>Une erreur est survenue, veuillez vous reconnecter</h3>
 		</div>
 	</div>
-	<Notif />
+	<div class="toast-container position-fixed bottom-0 end-0 p-3">
+		<div
+			class="toast"
+			role="alert"
+			aria-live="assertive"
+			aria-atomic="true"
+			:class="{show: isVisible}"
+		>
+			<div class="toast-header">
+				<strong class="me-auto">{{ title }}</strong>
+				<small>{{ timestamp }}</small>
+				<button
+					type="button"
+					class="btn-close"
+					@click="hideNotif"
+					aria-label="Fermer"
+				></button>
+			</div>
+			<div class="toast-body">
+				{{ message }}
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
-import {showNotif, hideNotif} from '../utils/notifMethods.js';
-import Notif from './Notif.vue';
-
 export default {
 	name: 'UserStatus',
 	components: {
@@ -276,6 +295,11 @@ export default {
 			firstname: '',
 			birthDate: '',
 			localUser: null,
+			//
+			isVisible: false,
+			title: '',
+			message: '',
+			timestamp: '',
 		};
 	},
 
@@ -294,6 +318,18 @@ export default {
 		this.checkUserStatus();
 	},
 	methods: {
+		showNotif(title, message) {
+			this.title = title;
+			this.message = message;
+			this.timestamp = new Date().toLocaleTimeString();
+			this.isVisible = true;
+			setTimeout(() => {
+				this.hideNotif();
+			}, 5000); // La notification disparaît après 5 secondes
+		},
+		hideNotif() {
+			this.isVisible = false;
+		},
 		async completeProfile() {
 			await fetch(
 				`https://eli-back.onrender.com/api/completeProfile`,
@@ -387,7 +423,7 @@ export default {
 				this.msgRes =
 					"❌ Problème d'identification, veuillez vous reconnecter (après deconnexion)";
 				this.display(this.msgRes);
-				showNotif(this.msgRes);
+				this.showNotif(this.msgRes);
 				return;
 			}
 			try {
@@ -441,7 +477,7 @@ export default {
 				);
 			} finally {
 				this.display(this.msgRes);
-				showNotif(this.msgRes);
+				this.showNotif(this.msgRes);
 			}
 		},
 
@@ -450,7 +486,7 @@ export default {
 				this.msgRes =
 					"❌ Problème d'identification, veuillez vous reconnecter (après deconnexion)";
 				this.display(this.msgRes);
-				showNotif(this.msgRes);
+				this.showNotif(this.msgRes);
 
 				return;
 			}
@@ -517,7 +553,7 @@ export default {
 				);
 			} finally {
 				this.display(this.msgRes);
-				showNotif(this.msgRes);
+				this.showNotif(this.msgRes);
 			}
 		},
 
