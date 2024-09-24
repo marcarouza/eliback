@@ -321,6 +321,31 @@ export default {
 	right: 80px;
 }
 
+.toast-container {
+	z-index: 1000;
+}
+
+.toast-header {
+	background-color: #dcdcdc !important;
+	height: 50px !important;
+}
+
+.btn-close {
+	width: 5px !important;
+	height: 5px !important;
+}
+.time {
+	color: #b10000;
+	font-style: italic;
+}
+.toast {
+	transition: opacity 0.3s ease-in-out;
+	opacity: 0;
+}
+.toast.show {
+	opacity: 1;
+}
+
 .list-group-item {
 	background-color: #f8f9fa;
 	border: 1px solid #dee2e6;
