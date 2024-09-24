@@ -322,7 +322,7 @@ export default {
 
 .time {
 	font-style: italic;
-	padding-right: 5px;
+	margin-right: 5px;
 }
 
 .toast-container {
