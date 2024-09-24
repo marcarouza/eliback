@@ -6,6 +6,14 @@ const head = createHead();
 import App from './App.vue';
 //
 import router from './router';
+
+import {EventBus} from './utils/eventBus';
+
+Vue.prototype.$eventBus = EventBus;
+
+new Vue({
+	render: (h) => h(App),
+}).$mount('#app');
 //
 import '/src/assets/styles_temp_dev.css'; // Importer le fichier CSS global
 import '/src/assets/styles-persos.css'; // Importer le fichier CSS global

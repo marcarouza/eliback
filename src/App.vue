@@ -8,6 +8,7 @@
 
 		<!-- Affichage conditionnel de Chat_Box basé sur la route -->
 		<ChatBox :show="showChatBox" />
+		<Notif ref="notif" />
 	</div>
 </template>
 
@@ -15,6 +16,7 @@
 import CommonHead from './components/CommonHead.vue';
 import Footer from './components/Footer.vue';
 import ChatBox from './components/ChatBox.vue';
+import Notif from './components/Notif.vue';
 
 export default {
 	name: 'App',
@@ -22,6 +24,7 @@ export default {
 		CommonHead,
 		ChatBox,
 		Footer,
+		Notif,
 	},
 	data() {
 		return {
@@ -37,6 +40,21 @@ export default {
 		this.checkLocalUser();
 	},
 	methods: {
+		closeNotif() {
+			this.show = false;
+			// this.$emit('close');
+		},
+
+		showNotif() {
+			var toastEl = document.getElementById('notificationToast');
+			var toast = new bootstrap.Toast(toastEl);
+
+			document
+				.getElementById('showNotification')
+				.addEventListener('click', function () {
+					toast.show();
+				});
+		},
 		checkLocalUser() {
 			const userFromSession = sessionStorage.getItem('localUser');
 			if (userFromSession) {

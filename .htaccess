@@ -45,6 +45,13 @@ RewriteRule ^(.*)$ index.html [L]
     ExpiresDefault "access plus 2 days"
 </IfModule>
 
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>
+
+
 # Désactiver la signature du serveur
 ServerSignature Off
 

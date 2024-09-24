@@ -444,6 +444,15 @@ export default {
 				return;
 			}
 			try {
+				console.log(
+					'🗑️ ~ rejectFriendReq ~ reqId //////// this.user._id : ',
+					reqId,
+					'    /////   ',
+					this.user._id,
+					'    /////   ',
+					typeof reqId,
+					typeof this.user._id
+				);
 				const response = await fetch(
 					'https://eli-back.onrender.com/api/rejectFriendReq',
 					{
@@ -484,7 +493,7 @@ export default {
 						"🗑️ ✅ 🗑️  Demande d'ami rejetée : ",
 						data
 					);
-					this.msgRes = `🗑️  Demande d'ami rejetée ! 😳`;
+					this.msgRes = `🙅‍♂️ Demande d'ami rejetée.`;
 				} else {
 					const data = await response.json();
 					this.msgRes = `❌ 🗑️  Erreur innatendue : ${data.message}`;

@@ -1,125 +1,64 @@
+<!-- Notification.vue -->
 <template>
-	<transition name="fade">
-		<div v-if="show" class="notification" :class="type" role="alert">
-			<div class="notification-content">
+	<div class="toast-container position-fixed bottom-0 end-0 p-3">
+		<div
+			class="toast"
+			role="alert"
+			aria-live="assertive"
+			aria-atomic="true"
+			:class="{show: isVisible}"
+		>
+			<div class="toast-header">
+				<strong class="me-auto">{{ title }}</strong>
+				<small>{{ timestamp }}</small>
+				<button
+					type="button"
+					class="btn-close"
+					@click="hideNotification"
+					aria-label="Fermer"
+				></button>
+			</div>
+			<div class="toast-body">
 				{{ message }}
 			</div>
-			<button
-				@click="closeNotification"
-				type="button"
-				class="btn-close"
-				aria-label="Close"
-			></button>
 		</div>
-	</transition>
+	</div>
 </template>
 
 <script>
-import {ref, watch} from 'vue';
-
 export default {
-	name: 'Notif',
-	props: {
-		message: {
-			type: String,
-			required: true,
-		},
-		duration: {
-			type: Number,
-			default: 5000,
-		},
-		type: {
-			type: String,
-			default: 'info',
-			validator: (value) =>
-				['info', 'success', 'warning', 'error'].includes(value),
-		},
-	},
-	emits: ['close'],
-	setup(props, {emit}) {
-		const show = ref(false);
-
-		const closeNotification = () => {
-			show.value = false;
-			emit('close');
-		};
-
-		watch(
-			() => props.message,
-			(newVal) => {
-				if (newVal) {
-					show.value = true;
-					if (props.duration > 0) {
-						setTimeout(() => {
-							closeNotification();
-						}, props.duration);
-					}
-				}
-			}
-		);
-
+	name: 'Notification',
+	data() {
 		return {
-			show,
-			closeNotification,
+			isVisible: false,
+			title: '',
+			message: '',
+			timestamp: '',
 		};
+	},
+	methods: {
+		showNotif(title, message) {
+			this.title = title;
+			this.message = message;
+			this.timestamp = new Date().toLocaleTimeString();
+			this.isVisible = true;
+			setTimeout(() => {
+				this.hideNotification();
+			}, 5000); // La notification disparaît après 5 secondes
+		},
+		hideNotif() {
+			this.isVisible = false;
+		},
 	},
 };
 </script>
 
 <style scoped>
-.notification {
-	position: fixed;
-	top: 20px;
-	right: 20px;
-	padding: 15px 20px;
-	border-radius: 4px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	min-width: 300px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	z-index: 1050;
-}
-
-.notification-content {
-	margin-right: 15px;
-}
-
-.info {
-	background: linear-gradient(135deg, #3498db, #2980b9);
-	color: white;
-}
-
-.success {
-	background: linear-gradient(135deg, #2ecc71, #27ae60);
-	color: white;
-}
-
-.warning {
-	background: linear-gradient(135deg, #f1c40f, #f39c12);
-	color: white;
-}
-
-.error {
-	background: linear-gradient(135deg, #e74c3c, #c0392b);
-	color: white;
-}
-
-.btn-close {
-	background: transparent;
-	border: none;
-	color: white;
-	font-size: 1.5rem;
-	cursor: pointer;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-	transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
+.toast {
+	transition: opacity 0.3s ease-in-out;
 	opacity: 0;
+}
+.toast.show {
+	opacity: 1;
 }
 </style>
