@@ -68,7 +68,7 @@
 			</p>
 		</div>
 	</div>
-	<div class="toast-container position-fixed top-70 end-70 p-3">
+	<div class="toast-container position-fixed p-3 angle">
 		<div
 			class="toast"
 			role="alert"
@@ -316,6 +316,12 @@ export default {
 </script>
 
 <style scoped>
+.angle {
+	color: #007bff;
+	top: 30px;
+	right: 30px;
+}
+
 .list-group-item {
 	background-color: #f8f9fa;
 	border: 1px solid #dee2e6;
