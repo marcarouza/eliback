@@ -258,6 +258,8 @@
 </template>
 
 <script>
+import {showNotif} from '../utils/eventBus.js';
+
 export default {
 	name: 'UserStatus',
 	data() {
@@ -433,6 +435,7 @@ export default {
 				);
 			} finally {
 				this.display(this.msgRes);
+				showNotif(`A l'instant`, this.msgRes);
 			}
 		},
 
@@ -506,6 +509,7 @@ export default {
 				);
 			} finally {
 				this.display(this.msgRes);
+				showNotif(`A l'instant`, this.msgRes);
 			}
 		},
 

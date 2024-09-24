@@ -14,7 +14,7 @@
 				<button
 					type="button"
 					class="btn-close"
-					@click="hideNotification"
+					@click="hideNotif"
 					aria-label="Fermer"
 				></button>
 			</div>
@@ -27,7 +27,7 @@
 
 <script>
 export default {
-	name: 'Notification',
+	name: 'Notif',
 	data() {
 		return {
 			isVisible: false,
@@ -43,7 +43,7 @@ export default {
 			this.timestamp = new Date().toLocaleTimeString();
 			this.isVisible = true;
 			setTimeout(() => {
-				this.hideNotification();
+				this.hideNotif();
 			}, 5000); // La notification disparaît après 5 secondes
 		},
 		hideNotif() {

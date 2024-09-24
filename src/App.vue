@@ -18,6 +18,8 @@ import Footer from './components/Footer.vue';
 import ChatBox from './components/ChatBox.vue';
 import Notif from './components/Notif.vue';
 
+import {EventBus} from './utils/eventBus';
+
 export default {
 	name: 'App',
 	components: {
@@ -38,14 +40,21 @@ export default {
 
 	mounted() {
 		this.checkLocalUser();
+		EventBus.$on('displayNotif', ({title, message}) => {
+			this.$refs.notif.showNotif(title, message); // Correction ici
+		});
 	},
+	beforeDestroy() {
+		EventBus.$off('displayNotif'); // Correction ici
+	},
+
 	methods: {
-		closeNotif() {
+		clooooseNotif() {
 			this.show = false;
 			// this.$emit('close');
 		},
 
-		showNotif() {
+		shooooowNotif() {
 			var toastEl = document.getElementById('notificationToast');
 			var toast = new bootstrap.Toast(toastEl);
 
