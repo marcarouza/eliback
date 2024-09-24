@@ -336,17 +336,17 @@ export default {
 
 .btn-close:hover {
 	opacity: 1;
-	transform: rotate(90deg);
+	transform: rotate(3deg);
 	background-color: rgba(255, 0, 0, 0.1); /* Légère teinte rouge au survol */
 }
 
-.btn-close:focus {
+/* .btn-close:focus {
 	box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
 	outline: none;
-}
+} */
 .toast-header {
 	background-color: #dcdcdc !important;
-	min-height: 50px;
+	min-height: 35px;
 }
 .toast {
 	transition: opacity 0.3s ease-in-out;
