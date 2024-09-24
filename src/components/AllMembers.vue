@@ -318,8 +318,8 @@ export default {
 <style scoped>
 .angle {
 	color: #007bff;
-	top: 30px;
-	right: 30px;
+	top: 35px;
+	right: 80px;
 }
 
 .list-group-item {
