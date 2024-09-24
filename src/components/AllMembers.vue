@@ -68,10 +68,11 @@
 			</p>
 		</div>
 	</div>
+	<Notif ref="notif" />
 </template>
 
 <script>
-import {showNotif, hidenotif} from '../utils/eventBus.js';
+import {showNotif, hideNotif} from '../utils/notifMethods.js';
 
 export default {
 	name: 'AllMembers',
@@ -92,16 +93,14 @@ export default {
 	},
 
 	mounted() {
-		// this.fetchUserData();
 		this.getLocalUser();
 		this.fetchAllMembers();
-		// this.checkLocaluser();
 		this.$emit('updatePageTitle', 'Les membres du site', true);
 	},
 	methods: {
-		// display(message) {
-		// 	alert(message);
-		// },
+		display(message) {
+			alert(message);
+		},
 
 		getLocalUser() {
 			this.localUser = JSON.parse(sessionStorage.getItem('localUser'));

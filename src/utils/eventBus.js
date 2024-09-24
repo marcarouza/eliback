@@ -1,6 +1,5 @@
-import Vue from 'vue';
-
-export const EventBus = new Vue();
+import {reactive} from 'vue';
+export const EventBus = reactive({});
 
 // Optionnellement, vous pouvez ajouter des méthodes utilitaires ici
 export const showNotif = (title, message) => {

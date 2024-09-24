@@ -18,8 +18,6 @@ import Footer from './components/Footer.vue';
 import ChatBox from './components/ChatBox.vue';
 import Notif from './components/Notif.vue';
 
-import {EventBus} from './utils/eventBus';
-
 export default {
 	name: 'App',
 	components: {
@@ -40,16 +38,6 @@ export default {
 
 	mounted() {
 		this.checkLocalUser();
-		EventBus.$on('displayNotif', ({title, message}) => {
-			this.$refs.notif.showNotif(title, message); // Correction ici
-		});
-		EventBus.$on('hideNotif', () => {
-			this.$refs.notif.hideNotif();
-		});
-	},
-	beforeDestroy() {
-		EventBus.$off('displayNotif');
-		EventBus.$off('hideNotif');
 	},
 
 	methods: {
