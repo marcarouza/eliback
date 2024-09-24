@@ -325,18 +325,24 @@ export default {
 	z-index: 1000;
 }
 
-.toast-header {
-	background-color: #dcdcdc !important;
-	height: 50px !important;
+.btn-close {
+	opacity: 0.5;
+	transition: all 0.3s ease;
 }
 
-.btn-close {
-	width: 10px !important;
-	height: 10px !important;
+.btn-close:hover {
+	opacity: 1;
+	transform: rotate(90deg);
+	background-color: rgba(255, 0, 0, 0.1); /* Légère teinte rouge au survol */
 }
-.time {
-	color: #b10000;
-	font-style: italic;
+
+.btn-close:focus {
+	box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+	outline: none;
+}
+.toast-header {
+	background-color: #dcdcdc !important;
+	min-height: 50px;
 }
 .toast {
 	transition: opacity 0.3s ease-in-out;
