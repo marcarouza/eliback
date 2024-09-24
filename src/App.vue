@@ -8,7 +8,7 @@
 
 		<!-- Affichage conditionnel de Chat_Box basé sur la route -->
 		<ChatBox :show="showChatBox" />
-		<Notif ref="notif" />
+		<Notif />
 	</div>
 </template>
 

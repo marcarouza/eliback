@@ -255,13 +255,18 @@
 			<h3>Une erreur est survenue, veuillez vous reconnecter</h3>
 		</div>
 	</div>
+	<Notif />
 </template>
 
 <script>
-import {displayNotif} from '../utils/eventBus.js';
+import {showNotif, hideNotif} from '../utils/notifMethods.js';
+import Notif from './Notif.vue';
 
 export default {
 	name: 'UserStatus',
+	components: {
+		Notif,
+	},
 	data() {
 		return {
 			user: null,
@@ -382,6 +387,7 @@ export default {
 				this.msgRes =
 					"❌ Problème d'identification, veuillez vous reconnecter (après deconnexion)";
 				this.display(this.msgRes);
+				showNotif(this.msgRes);
 				return;
 			}
 			try {
@@ -435,7 +441,7 @@ export default {
 				);
 			} finally {
 				this.display(this.msgRes);
-				displayNotif(`A l'instant`, this.msgRes);
+				showNotif(this.msgRes);
 			}
 		},
 
@@ -444,6 +450,8 @@ export default {
 				this.msgRes =
 					"❌ Problème d'identification, veuillez vous reconnecter (après deconnexion)";
 				this.display(this.msgRes);
+				showNotif(this.msgRes);
+
 				return;
 			}
 			try {
@@ -509,7 +517,7 @@ export default {
 				);
 			} finally {
 				this.display(this.msgRes);
-				displayNotif(`A l'instant`, this.msgRes);
+				showNotif(this.msgRes);
 			}
 		},
 
