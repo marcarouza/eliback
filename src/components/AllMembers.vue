@@ -94,8 +94,6 @@
 </template>
 
 <script>
-import {showNotif, hideNotif} from '../utils/notifMethods.js';
-
 export default {
 	name: 'AllMembers',
 	data() {
@@ -240,12 +238,12 @@ export default {
 					this.msgRes = `${data.message}`;
 				}
 				this.display(this.msgRes);
-				showNotif(`A l'instant`, this.msgRes);
+				this.showNotif(`A l'instant`, this.msgRes);
 			} catch (err) {
 				// Gestion des erreurs réseau ou autres erreurs inattendues
 				this.msgRes = `❌ Problème de connexion, veuillez réessayer plus tard.`;
 				this.display(this.msgRes);
-				showNotif(`A l'instant`, this.msgRes);
+				this.showNotif(`A l'instant`, this.msgRes);
 
 				console.error("Erreur lors de la demande d'ami:", err);
 			}
