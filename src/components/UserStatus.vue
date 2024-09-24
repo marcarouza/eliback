@@ -255,31 +255,29 @@
 			<h3>Une erreur est survenue, veuillez vous reconnecter</h3>
 		</div>
 	</div>
-	<template>
-		<div class="toast-container position-fixed p-3">
-			<div
-				class="toast"
-				role="alert"
-				aria-live="assertive"
-				aria-atomic="true"
-				:class="{show: isVisible}"
-			>
-				<div class="toast-header">
-					<strong class="me-auto">{{ title }}</strong>
-					<small class="time">{{ timestamp }}&nbsp;</small>
-					<button
-						type="button"
-						class="btn-close"
-						@click="hideNotif"
-						aria-label="Fermer"
-					></button>
-				</div>
-				<div class="toast-body">
-					{{ message }}
-				</div>
+	<div class="toast-container position-fixed p-3 angle">
+		<div
+			class="toast"
+			role="alert"
+			aria-live="assertive"
+			aria-atomic="true"
+			:class="{show: isVisible}"
+		>
+			<div class="toast-header">
+				<strong class="me-auto">{{ title }}</strong>
+				<small>{{ timestamp }}</small>
+				<button
+					type="button"
+					class="btn-close"
+					@click="hideNotif"
+					aria-label="Fermer"
+				></button>
+			</div>
+			<div class="toast-body">
+				{{ message }}
 			</div>
 		</div>
-	</template>
+	</div>
 </template>
 
 <script>
@@ -421,9 +419,9 @@ export default {
 		async acceptFriendReq(reqId) {
 			if (!this.user || !this.user._id) {
 				this.msgRes =
-					"❌ Problème d'identification, veuillez vous reconnecter (après deconnexion)";
+					'Veuillez vous reconnecter (après deconnexion)';
 				this.display(this.msgRes);
-				this.showNotif(this.msgRes);
+				this.showNotif("❌ Problème d'identification", this.msgRes);
 				return;
 			}
 			try {
@@ -470,23 +468,23 @@ export default {
 					this.msgRes = `❌ Erreur innatendue : ${data.message}`;
 				}
 			} catch (err) {
-				this.msgRes = `❌ Problème de connexion, veuillez réessayer plus tard.`;
+				this.msgRes = `Veuillez réessayer plus tard.`;
 				console.error(
 					"L'acceptation d'ami ne fonctionne pas : ",
 					err
 				);
 			} finally {
-				this.display(this.msgRes);
-				this.showNotif(this.msgRes);
+				// this.display(this.msgRes);
+				this.showNotif('❌ Problème de connexion', this.msgRes);
 			}
 		},
 
 		async rejectFriendReq(reqId) {
 			if (!this.user || !this.user._id) {
 				this.msgRes =
-					"❌ Problème d'identification, veuillez vous reconnecter (après deconnexion)";
-				this.display(this.msgRes);
-				this.showNotif(this.msgRes);
+					'Veuillez vous reconnecter (après deconnexion)';
+				// this.display(this.msgRes);
+				this.showNotif("❌ Problème d'identification", this.msgRes);
 
 				return;
 			}
@@ -543,16 +541,16 @@ export default {
 					this.msgRes = `🙅‍♂️ Demande d'ami rejetée.`;
 				} else {
 					const data = await response.json();
-					this.msgRes = `❌ 🗑️  Erreur innatendue : ${data.message}`;
+					this.msgRes = `🚫 Erreur innatendue : ${data.message}`;
 				}
 			} catch (err) {
-				this.msgRes = `❌ 🗑️ Problème de connexion, veuillez réessayer plus tard.`;
+				this.msgRes = `🚨 Problème de connexion, veuillez réessayer plus tard.`;
 				console.error(
 					"🗑️ Le rejet d'ami ne fonctionne pas : ",
 					err
 				);
 			} finally {
-				this.display(this.msgRes);
+				// this.display(this.msgRes);
 				this.showNotif(this.msgRes);
 			}
 		},
@@ -565,6 +563,52 @@ export default {
 </script>
 
 <style scoped>
+.angle {
+	top: 35px;
+	right: 80px;
+}
+
+.btn-close {
+	opacity: 0.5;
+	transition: all 0.3s ease;
+}
+
+.btn-close:hover {
+	opacity: 1;
+	transform: rotate(90deg);
+	background-color: rgba(255, 0, 0, 0.1); /* Légère teinte rouge au survol */
+}
+
+.btn-close:focus {
+	box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+	outline: none;
+}
+
+.toast-container {
+	z-index: 1000;
+}
+
+.toast-header {
+	background-color: #dcdcdc !important;
+	height: 50px !important;
+}
+
+.btn-close {
+	width: 10px !important;
+	height: 10px !important;
+}
+.time {
+	color: #b10000;
+	font-style: italic;
+}
+.toast {
+	transition: opacity 0.3s ease-in-out;
+	opacity: 0;
+}
+.toast.show {
+	opacity: 1;
+}
+
 .friends,
 .profil,
 .modify {

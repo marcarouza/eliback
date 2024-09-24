@@ -222,7 +222,7 @@ export default {
 				if (response.ok) {
 					const data = await response.json();
 					console.log('ℹ️ ✅ ✅  sendFriendReq ~ data:', data);
-					this.msgRes = `✅ Demande d'ami envoyée à ${toPseudo}`;
+					this.msgRes = `Envoyée à ${toPseudo}`;
 				} else if (response.status === 409) {
 					// Si le statut est 409, c'est un conflit : demande déjà envoyée
 
@@ -238,12 +238,12 @@ export default {
 					this.msgRes = `${data.message}`;
 				}
 				// this.display(this.msgRes);
-				this.showNotif(`A l'instant`, this.msgRes);
+				this.showNotif(`Demande d'ami`, this.msgRes);
 			} catch (err) {
 				// Gestion des erreurs réseau ou autres erreurs inattendues
-				this.msgRes = `❌ Problème de connexion, veuillez réessayer plus tard.`;
+				this.msgRes = `Problème de connexion, veuillez réessayer plus tard.`;
 				// this.display(this.msgRes);
-				this.showNotif(`A l'instant`, this.msgRes);
+				this.showNotif(`✋ Demande d'ami`, this.msgRes);
 
 				console.error("Erreur lors de la demande d'ami:", err);
 			}
@@ -331,8 +331,8 @@ export default {
 }
 
 .btn-close {
-	width: 5px !important;
-	height: 5px !important;
+	width: 10px !important;
+	height: 10px !important;
 }
 .time {
 	color: #b10000;
