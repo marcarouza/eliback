@@ -62,6 +62,11 @@ export default {
 	background-color: #dcdcdc !important;
 	height: 50px !important;
 }
+
+.btn-close {
+	width: 5px !important;
+	height: 5px !important;
+}
 .time {
 	color: #b10000;
 	font-style: italic;
