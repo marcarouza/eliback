@@ -78,7 +78,7 @@
 		>
 			<div class="toast-header">
 				<strong class="me-auto">{{ title }}</strong>
-				<small>{{ timestamp }}</small>
+				<small class="time">{{ timestamp }}</small>
 				<button
 					type="button"
 					class="btn-close"
@@ -242,7 +242,6 @@ export default {
 			} catch (err) {
 				// Gestion des erreurs réseau ou autres erreurs inattendues
 				this.msgRes = `Problème de connexion, veuillez réessayer plus tard.`;
-				// this.display(this.msgRes);
 				this.showNotif(`✋ Demande d'ami`, this.msgRes);
 
 				console.error("Erreur lors de la demande d'ami:", err);
@@ -319,6 +318,11 @@ export default {
 .angle {
 	top: 35px;
 	right: 80px;
+}
+
+.time {
+	font-style: italic;
+	padding-right: 5px;
 }
 
 .toast-container {
