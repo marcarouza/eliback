@@ -255,29 +255,31 @@
 			<h3>Une erreur est survenue, veuillez vous reconnecter</h3>
 		</div>
 	</div>
-	<div class="toast-container position-fixed bottom-0 end-0 p-3">
-		<div
-			class="toast"
-			role="alert"
-			aria-live="assertive"
-			aria-atomic="true"
-			:class="{show: isVisible}"
-		>
-			<div class="toast-header">
-				<strong class="me-auto">{{ title }}</strong>
-				<small>{{ timestamp }}</small>
-				<button
-					type="button"
-					class="btn-close"
-					@click="hideNotif"
-					aria-label="Fermer"
-				></button>
-			</div>
-			<div class="toast-body">
-				{{ message }}
+	<template>
+		<div class="toast-container position-fixed p-3">
+			<div
+				class="toast"
+				role="alert"
+				aria-live="assertive"
+				aria-atomic="true"
+				:class="{show: isVisible}"
+			>
+				<div class="toast-header">
+					<strong class="me-auto">{{ title }}</strong>
+					<small class="time">{{ timestamp }}&nbsp;</small>
+					<button
+						type="button"
+						class="btn-close"
+						@click="hideNotif"
+						aria-label="Fermer"
+					></button>
+				</div>
+				<div class="toast-body">
+					{{ message }}
+				</div>
 			</div>
 		</div>
-	</div>
+	</template>
 </template>
 
 <script>

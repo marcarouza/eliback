@@ -1,6 +1,6 @@
 <!-- Notification.vue -->
 <template>
-	<div class="toast-container position-fixed bottom-0 end-0 p-3">
+	<div class="toast-container position-fixed p-3">
 		<div
 			class="toast"
 			role="alert"
@@ -10,7 +10,7 @@
 		>
 			<div class="toast-header">
 				<strong class="me-auto">{{ title }}</strong>
-				<small>{{ timestamp }}</small>
+				<small class="time">{{ timestamp }}&nbsp;</small>
 				<button
 					type="button"
 					class="btn-close"
@@ -54,6 +54,18 @@ export default {
 </script>
 
 <style scoped>
+.toast-container {
+	z-index: 1000;
+}
+
+.toast-header {
+	background-color: #dcdcdc !important;
+	height: 50px !important;
+}
+.time {
+	color: #b10000;
+	font-style: italic;
+}
 .toast {
 	transition: opacity 0.3s ease-in-out;
 	opacity: 0;

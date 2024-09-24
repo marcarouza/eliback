@@ -317,7 +317,6 @@ export default {
 
 <style scoped>
 .angle {
-	color: #007bff;
 	top: 35px;
 	right: 80px;
 }
