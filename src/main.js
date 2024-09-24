@@ -7,10 +7,6 @@ import App from './App.vue';
 //
 import router from './router';
 
-new Vue({
-	render: (h) => h(App),
-}).$mount('#app');
-//
 import '/src/assets/styles_temp_dev.css'; // Importer le fichier CSS global
 import '/src/assets/styles-persos.css'; // Importer le fichier CSS global
 // Importer le CSS de Bootstrap
