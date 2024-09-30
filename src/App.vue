@@ -68,7 +68,7 @@ export default {
 				this.pseudo = userData.user;
 				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
 				this.isLoggedIn = true;
-				this.chatBoxKey += 1;
+				// this.chatBoxKey += 1;
 				console.log(
 					'🚀 ~ checkLocalUser ~ this.chatBoxKey:',
 					this.chatBoxKey
@@ -122,6 +122,11 @@ export default {
 	// },
 	computed: {
 		showChatBox() {
+			console.log(
+				'🚀 ~ showChatBox ~ this.$route.meta.showChatBox:',
+				this.$route.meta.showChatBox
+			);
+
 			return this.$route.meta.showChatBox !== false; // Affiche Chat_Box sauf si explicitement désactivé
 		},
 	},
