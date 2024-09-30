@@ -61,10 +61,7 @@ console.log('✅ 🐱  FROM ChatBox ===> SOCKET CLIENT : ', socket);
 
 export default {
 	name: 'ChatBox',
-	// props: {
-	// 	show: Boolean,
-	// 	isLoggedIn: Boolean,
-	// },
+
 	data() {
 		return {
 			isLoggedIn: false,
@@ -78,20 +75,6 @@ export default {
 			userFromStorage: '',
 		};
 	},
-
-	// watch: {
-	// 	isLoggedIn: {
-	// 		immediate: true,
-	// 		handler(newValue) {
-	// 			if (newValue) {
-	// 				// this.setupSocketListeners();
-	// 				this.displayChat();
-	// 			} else {
-	// 				this.hideChat();
-	// 			}
-	// 		},
-	// 	},
-	// },
 
 	mounted() {
 		this.hideChat();
@@ -171,6 +154,7 @@ export default {
 		},
 
 		sendMess(message) {
+			console.log('  ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  message:', message);
 			const allMess = document.getElementById('allMess');
 
 			const messInput = document.getElementById('messInput');
@@ -180,7 +164,8 @@ export default {
 				return;
 			}
 
-			const messTxt = messInput.value.trim();
+			// const messTxt = messInput.value.trim();
+			const messTxt = message.trim();
 			console.log('🚀 ~ messTxt:', messTxt);
 
 			if (messTxt) {
@@ -255,7 +240,7 @@ export default {
 					this.completeID = socket.id;
 					socket.pseudo = this.pseudo;
 					console.log(
-						'🚀 ~ socket.on ~ 					socket.pseudo:',
+						'🚀 setupSocketListeners /	socket.pseudo:',
 						socket.pseudo
 					);
 
@@ -277,7 +262,7 @@ export default {
 						socket.pseudo = this.pseudo;
 
 						console.log(
-							`📬 📬 📬FROM setupSocketListeners => ${this.shortClientID} = ${pseudo} est CONNECTÉ !`
+							`📬 📬 📬 FROM setupSocketListeners => ${this.shortClientID} = ${this.pseudo} est CONNECTÉ !`
 						);
 					}
 				});
@@ -285,9 +270,8 @@ export default {
 				socket.on('disconnect', (pseudo, shortClientID) => {
 					const completeID = socket.id;
 					if (completeID) {
-						const shortClientID = completeID.substring(0, 5);
 						console.log(
-							`FROM CLIENT => ${shortClientID} est déconnecté`
+							`FROM CLIENT => ${this.pseudo} est déconnecté`
 						);
 					}
 				});
