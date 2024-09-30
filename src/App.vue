@@ -9,11 +9,7 @@
 		<!-- Affichage conditionnel de Chat_Box basé sur la route -->
 		<!-- <ChatBox :show="showChatBox" /> -->
 
-		<ChatBox
-			:key="chatBoxKey"
-			:show="showChatBox"
-			:isLoggedIn="isLoggedIn"
-		/>
+		<ChatBox :key="chatBoxKey" :show="showChatBox" />
 		<Notif />
 	</div>
 </template>

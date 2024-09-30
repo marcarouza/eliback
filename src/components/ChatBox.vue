@@ -125,8 +125,7 @@ export default {
 					);
 
 					this.pseudo = this.localUser.user;
-					this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
-					this.welcomeMsg = `Naviguer sur le site n'affectera pas votre fil de discussion, contrairement au raffraichissemnt volontaire de la page.`;
+					this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne ! Naviguer sur le site n'affectera pas votre fil de discussion, contrairement au raffraichissemnt volontaire de la page.`;
 
 					this.setupSocketListeners();
 					this.displayChat();
