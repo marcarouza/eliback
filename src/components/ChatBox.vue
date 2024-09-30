@@ -60,10 +60,10 @@ console.log('✅ 🐱  FROM ChatBox ===> SOCKET CLIENT : ', socket);
 
 export default {
 	name: 'ChatBox',
-	props: {
-		show: Boolean,
-		isLoggedIn: Boolean,
-	},
+	// props: {
+	// 	show: Boolean,
+	// 	isLoggedIn: Boolean,
+	// },
 	data() {
 		return {
 			isLoggedIn: false,
@@ -78,19 +78,19 @@ export default {
 		};
 	},
 
-	watch: {
-		isLoggedIn: {
-			immediate: true,
-			handler(newValue) {
-				if (newValue) {
-					// this.setupSocketListeners();
-					this.displayChat();
-				} else {
-					this.hideChat();
-				}
-			},
-		},
-	},
+	// watch: {
+	// 	isLoggedIn: {
+	// 		immediate: true,
+	// 		handler(newValue) {
+	// 			if (newValue) {
+	// 				// this.setupSocketListeners();
+	// 				this.displayChat();
+	// 			} else {
+	// 				this.hideChat();
+	// 			}
+	// 		},
+	// 	},
+	// },
 
 	mounted() {
 		this.hideChat();

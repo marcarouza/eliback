@@ -245,7 +245,8 @@ export default {
 				sessionStorage.removeItem('localUser');
 
 				console.log('🚀 ~ DECONNEXION REUSSIE !!! ');
-
+				// Rechargement forcé
+				reloadApp();
 				// Redirection vers la page d'accueil
 				await this.$router.push({name: 'homepage'});
 
@@ -335,6 +336,10 @@ export default {
 
 		deleteCookie() {
 			document.cookie = `${jwt}=; max-age=0; path=/; secure; samesite=None`;
+		},
+
+		reloadApp() {
+			window.location.href = '/'; // ou l'URL de votre page d'accueil
 		},
 	},
 };
