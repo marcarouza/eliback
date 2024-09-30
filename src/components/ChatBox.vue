@@ -141,7 +141,6 @@ export default {
 			socket.pseudo = this.pseudo;
 			socket.emit('setPseudo', {
 				pseudo: this.pseudo,
-				shortID: this.completeID.toString().substring(0, 5),
 			});
 		},
 		initSocket() {
