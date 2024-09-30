@@ -250,7 +250,7 @@ export default {
 				// Redirection vers la page d'accueil
 				await this.$router.push({name: 'homepage'});
 				this.$nextTick(() => {
-					this.reloadPage();
+					this.reloadApp();
 				});
 
 				// Réinitialisation du dropdown après la mise à jour du DOM

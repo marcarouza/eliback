@@ -49,6 +49,7 @@
 		</div>
 	</div>
 
+	<!-- BOUTON CHAT -->
 	<div @click="displayChat" id="chatToggleBtn" class="stickedTab">
 		<i class="bi bi-chat-dots-fill chat_bubble"></i>
 	</div>
