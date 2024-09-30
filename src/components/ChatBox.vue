@@ -323,9 +323,8 @@ export default {
 
 			// Append div to allMess
 			allMess.appendChild(myDiv);
-			}
-			// Append span to div
 
+			// Append span to div
 		},
 
 		disconnectUser() {
