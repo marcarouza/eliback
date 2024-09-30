@@ -71,6 +71,7 @@ const routes = [
 		path: '/homePage',
 		name: 'homepage',
 		component: homepage,
+		meta: {showChatBox: true},
 	},
 	{
 		path: '/',

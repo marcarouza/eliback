@@ -10,7 +10,6 @@
 		<!-- <ChatBox :show="showChatBox" /> -->
 
 		<ChatBox
-			v-if="isLoggedIn"
 			:key="chatBoxKey"
 			:show="showChatBox"
 			:isLoggedIn="isLoggedIn"
