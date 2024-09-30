@@ -246,9 +246,12 @@ export default {
 
 				console.log('🚀 ~ DECONNEXION REUSSIE !!! ');
 				// Rechargement forcé
-				reloadApp();
+				// reloadApp();
 				// Redirection vers la page d'accueil
 				await this.$router.push({name: 'homepage'});
+				this.$nextTick(() => {
+					this.reloadPage();
+				});
 
 				// Réinitialisation du dropdown après la mise à jour du DOM
 				this.$nextTick(() => {
@@ -340,8 +343,13 @@ export default {
 
 		reloadApp() {
 			// Rediriger vers la page d'accueil
+
 			console.log(`RELOAD TRIGGER`);
-			window.location.href = '/'; // ou l'URL de votre page d'accueil
+			// window.location.href = '/';
+			setTimeout(() => {
+				window.location.reload(true);
+			}, 3000);
+			// window.location.replace(window.location.href)
 		},
 	},
 };
