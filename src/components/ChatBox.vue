@@ -101,7 +101,7 @@ export default {
 					this.isLoggedIn
 				);
 				this.pseudo = this.localUser.user;
-				this.welcomeMsg = `👋 ${this.pseudo.toUpperCase}, vous êtes en ligne ! Naviguer sur le site n'affectera pas votre fil de discussion ... contrairement au raffraichissemnt volontaire de la page !`;
+				this.welcomeMsg = `👋 ${this.pseudo}, vous êtes en ligne ! Naviguer sur le site n'affectera pas votre fil de discussion ... contrairement au raffraichissemnt volontaire de la page !`;
 
 				this.initSocket(this.pseudo);
 
@@ -183,7 +183,7 @@ export default {
 				socket.on('disconnect', (reason) => {
 					console.log('🚀 ~ socket.on ~ reason:', reason);
 					this.isConnected = false;
-					createBubble(
+					this.createBubble(
 						'⏱️ Veuillez patienter svp … (tentative de réconnexion)',
 						'bubServer'
 					);
@@ -209,7 +209,10 @@ export default {
 						'tentatives'
 					);
 					this.isConnected = true;
-					createBubble('✅ Connexion rétablie', 'bubServer');
+					this.createBubble(
+						'✅ Connexion rétablie',
+						'bubServer'
+					);
 				});
 
 				socket.on('message', (data) => {
@@ -269,7 +272,7 @@ export default {
 				socket.emit('message', messTxt);
 
 				//
-				createBubble(messTxt, 'bub1');
+				this.createBubble(messTxt, 'bub1');
 				//
 
 				// const myMessDiv = document.createElement('div');
