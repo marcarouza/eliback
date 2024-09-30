@@ -155,7 +155,7 @@ export default {
 					this.decodeUSERfromTOKEN();
 					this.getAllDocCookiess();
 
-					this.$router.push({name: 'homepage'});
+					await this.navigateTO('homepage');
 					window.location.reload(true);
 				} else {
 					const errorData = await response.json();
@@ -172,6 +172,19 @@ export default {
 					'🍌 FROM LogUserForm => ERR de TRY GLOBAL du SUBMIT du formulaire',
 					err
 				);
+			}
+		},
+
+		// Utilisation avec async/await
+		async navigateTO(dest) {
+			try {
+				await this.$router.push({name: dest});
+				console.log('Navigation terminée');
+				// Code à exécuter après la navigation
+			} catch (error) {
+				if (error.name !== 'NavigationDuplicated') {
+					console.error('Erreur de navigation:', error);
+				}
 			}
 		},
 		//
