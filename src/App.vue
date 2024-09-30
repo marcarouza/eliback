@@ -40,6 +40,7 @@ export default {
 	},
 	mounted() {
 		this.checkLocalUser();
+		console.log('🐱-🐱-🐱 this.chatBoxKey:', this.chatBoxKey);
 	},
 	methods: {
 		clooooseNotif() {
@@ -67,7 +68,11 @@ export default {
 				this.pseudo = userData.user;
 				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
 				this.isLoggedIn = true;
-				this.refreshChatBox();
+				this.chatBoxKey += 1;
+				console.log(
+					'🚀 ~ checkLocalUser ~ this.chatBoxKey:',
+					this.chatBoxKey
+				);
 				this.setupSocketListeners();
 				this.displayChat();
 			} else {
@@ -108,13 +113,13 @@ export default {
 			console.log('Setting up socket listeners');
 		},
 	},
-	watch: {
-		isLoggedIn(newValue) {
-			if (newValue) {
-				this.refreshChatBox();
-			}
-		},
-	},
+	// watch: {
+	// 	isLoggedIn(newValue) {
+	// 		if (newValue) {
+	// 			this.refreshChatBox();
+	// 		}
+	// 	},
+	// },
 	computed: {
 		showChatBox() {
 			return this.$route.meta.showChatBox !== false; // Affiche Chat_Box sauf si explicitement désactivé

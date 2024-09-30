@@ -250,21 +250,21 @@ export default {
 				// Redirection vers la page d'accueil
 				await this.$router.push({name: 'homepage'});
 				this.$nextTick(() => {
-					this.reloadApp();
+					window.location.reload(true);
 				});
 
 				// Réinitialisation du dropdown après la mise à jour du DOM
-				this.$nextTick(() => {
-					const dropdownElement =
-						document.getElementById('navbarDropdown');
-					if (dropdownElement) {
-						new bootstrap.Dropdown(dropdownElement);
-					} else {
-						console.warn(
-							"L'élément 'navbarDropdown' n'a pas été trouvé dans le DOM"
-						);
-					}
-				});
+				// this.$nextTick(() => {
+				// 	const dropdownElement =
+				// 		document.getElementById('navbarDropdown');
+				// 	if (dropdownElement) {
+				// 		new bootstrap.Dropdown(dropdownElement);
+				// 	} else {
+				// 		console.warn(
+				// 			"L'élément 'navbarDropdown' n'a pas été trouvé dans le DOM"
+				// 		);
+				// 	}
+				// });
 			} catch (error) {
 				console.error(
 					'🍌 FROM NAVOK ==> Erreur lors de la déconnexion :',
