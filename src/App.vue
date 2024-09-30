@@ -7,7 +7,14 @@
 		<Footer />
 
 		<!-- Affichage conditionnel de Chat_Box basé sur la route -->
-		<ChatBox :show="showChatBox" />
+		<!-- <ChatBox :show="showChatBox" /> -->
+
+		<ChatBox
+			v-if="isLoggedIn"
+			:key="chatBoxKey"
+			:show="showChatBox"
+			:isLoggedIn="isLoggedIn"
+		/>
 		<Notif />
 	</div>
 </template>
@@ -30,6 +37,7 @@ export default {
 		return {
 			pageTitle: '▶︎ Eli Azoura | Développeur Full Stack',
 			isLoggedIn: false,
+			chatBoxKey: 0,
 			localUser: null,
 			pseudo: '',
 			welcomeMsg: '',
@@ -60,7 +68,7 @@ export default {
 			const userFromSession = sessionStorage.getItem('localUser');
 			if (userFromSession) {
 				this.localUser = JSON.parse(userFromSession);
-				this.isLoggedIn = true;
+				// this.isLoggedIn = true;
 				this.pseudo = this.localUser.user;
 				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
 
@@ -70,7 +78,7 @@ export default {
 				const userFromStorage = localStorage.getItem('localUser');
 				if (userFromStorage) {
 					this.localUser = JSON.parse(userFromStorage);
-					this.isLoggedIn = true;
+					// this.isLoggedIn = true;
 					this.pseudo = this.localUser.user;
 					this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
 
@@ -83,7 +91,17 @@ export default {
 					this.hideChat();
 				}
 			}
+			if (userFromSession || userFromStorage) {
+				this.isLoggedIn = true;
+				this.refreshChatBox();
+			} else {
+				this.isLoggedIn = false;
+			}
 			this.serverMsg(this.welcomeMsg);
+		},
+
+		refreshChatBox() {
+			this.chatBoxKey += 1; // Incrémente la clé pour forcer le rechargement
 		},
 
 		updatePageTitle(newTitle) {
@@ -105,6 +123,12 @@ export default {
 				chatPopin.classList.add('hide-inactive');
 			}
 		},
+
+		watch: {
+    isLoggedIn(newValue) {
+      if (newValue) {
+        this.refreshChatBox();
+      }
 	},
 	computed: {
 		showChatBox() {
