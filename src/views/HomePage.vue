@@ -21,7 +21,7 @@ export default {
 	},
 	mounted() {
 		this.$emit('updatePageTitle', `Eli Azoura | Développeur Full Stack`);
-		this.hideChat();
+		// this.hideChat();
 	},
 
 	data() {
