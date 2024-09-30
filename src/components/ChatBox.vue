@@ -31,9 +31,18 @@
 					id="messInput"
 					type="text"
 					class="form-control"
-					placeholder="Votre message..."
+					:placeholder="
+						isLoggedIn
+							? 'Votre message...'
+							: 'Connectez-vous pour chatter'
+					"
+					:disabled="!isLoggedIn"
 				/>
-				<button id="sendMsg" class="btn btn-primary send-button">
+				<button
+					id="sendMsg"
+					class="btn btn-primary send-button"
+					:disabled="!isLoggedIn"
+				>
 					<i class="bi bi-send"></i>
 				</button>
 			</form>
@@ -77,6 +86,10 @@ export default {
 			if (userFromSession) {
 				this.localUser = JSON.parse(userFromSession);
 				this.isLoggedIn = true;
+				console.log(
+					'🚀 ~ checkLocalUser ~ this.isLoggedIn:',
+					this.isLoggedIn
+				);
 				this.pseudo = this.localUser.user;
 				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
 
@@ -88,6 +101,11 @@ export default {
 				if (userFromStorage) {
 					this.localUser = JSON.parse(userFromStorage);
 					this.isLoggedIn = true;
+					console.log(
+						'🚀 ~ checkLocalUser ~ this.isLoggedIn:',
+						this.isLoggedIn
+					);
+
 					this.pseudo = this.localUser.user;
 					this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
 
@@ -97,6 +115,11 @@ export default {
 					this.welcomeMsg =
 						'Pour utiliser la messagerie, vous devez être connecté(e) !';
 					this.isLoggedIn = false;
+					console.log(
+						'🚀 ~ checkLocalUser ~ this.isLoggedIn:',
+						this.isLoggedIn
+					);
+
 					this.hideChat();
 				}
 			}
