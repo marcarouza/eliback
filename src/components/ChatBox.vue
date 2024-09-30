@@ -440,6 +440,7 @@ export default {
 .chat-body {
 	display: flex;
 	flex-direction: column;
+	justify-content: flex-end;
 	min-height: 200px;
 	border-bottom: 0.5px solid #00aeff72;
 	align-items: flex-start;
@@ -668,8 +669,10 @@ export default {
 	border-radius: 5px 10px 5px 10px;
 	padding: 0.8rem;
 	margin-bottom: 1rem;
-	margin-left: 0rem;
-	margin-right: 1rem;
+
+	margin-right: 0rem;
+	margin-left: auto;
+
 	max-width: 60%;
 	font-size: 0.8rem;
 	color: #101010;
@@ -687,8 +690,10 @@ export default {
 	border-radius: 0.6rem 0 0.6rem 0;
 	padding: 0.8rem;
 	margin-bottom: 1rem;
-	margin-left: 0rem;
-	margin-right: 1rem;
+
+	margin-right: auto;
+	margin-left: 1rem;
+
 	max-width: 60%;
 	font-size: 0.8rem;
 	color: #101010;
