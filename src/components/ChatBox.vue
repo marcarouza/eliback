@@ -215,7 +215,7 @@ export default {
 
 				socket.on('message', (data) => {
 					console.log('MSG reçu : ', data);
-					this.createBubble(data);
+					this.createBubble(data, 'bub2');
 				});
 
 				socket.on('userLeft', (data) => {
@@ -270,7 +270,7 @@ export default {
 				socket.emit('message', `${this.pseudo} : ${messTxt}`);
 
 				//
-				this.createBubble(messTxt, 'bub1');
+				this.createBubble(`Vous : ${messTxt}`, 'bub1');
 				//
 
 				// const myMessDiv = document.createElement('div');
