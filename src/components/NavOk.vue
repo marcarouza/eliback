@@ -339,6 +339,8 @@ export default {
 		},
 
 		reloadApp() {
+			// Rediriger vers la page d'accueil
+			console.log(`RELOAD TRIGGER`);
 			window.location.href = '/'; // ou l'URL de votre page d'accueil
 		},
 	},
