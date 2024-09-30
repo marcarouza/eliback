@@ -43,21 +43,17 @@ export default {
 			welcomeMsg: '',
 		};
 	},
-
 	mounted() {
 		this.checkLocalUser();
 	},
-
 	methods: {
 		clooooseNotif() {
 			this.show = false;
 			// this.$emit('close');
 		},
-
 		shooooowNotif() {
 			var toastEl = document.getElementById('notificationToast');
 			var toast = new bootstrap.Toast(toastEl);
-
 			document
 				.getElementById('showNotification')
 				.addEventListener('click', function () {
@@ -66,48 +62,34 @@ export default {
 		},
 		checkLocalUser() {
 			const userFromSession = sessionStorage.getItem('localUser');
-			if (userFromSession) {
-				this.localUser = JSON.parse(userFromSession);
-				// this.isLoggedIn = true;
-				this.pseudo = this.localUser.user;
-				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
+			const userFromStorage = localStorage.getItem('localUser');
 
+			if (userFromSession || userFromStorage) {
+				const userData = JSON.parse(
+					userFromSession || userFromStorage
+				);
+				this.localUser = userData;
+				this.pseudo = userData.user;
+				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
+				this.isLoggedIn = true;
+				this.refreshChatBox();
 				this.setupSocketListeners();
 				this.displayChat();
 			} else {
-				const userFromStorage = localStorage.getItem('localUser');
-				if (userFromStorage) {
-					this.localUser = JSON.parse(userFromStorage);
-					// this.isLoggedIn = true;
-					this.pseudo = this.localUser.user;
-					this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
-
-					this.setupSocketListeners();
-					this.displayChat();
-				} else {
-					this.welcomeMsg =
-						'Pour utiliser la messagerie, vous devez être connecté(e) !';
-					this.isLoggedIn = false;
-					this.hideChat();
-				}
-			}
-			if (userFromSession || userFromStorage) {
-				this.isLoggedIn = true;
-				this.refreshChatBox();
-			} else {
+				this.welcomeMsg =
+					'Pour utiliser la messagerie, vous devez être connecté(e) !';
 				this.isLoggedIn = false;
+				this.hideChat();
 			}
+
 			this.serverMsg(this.welcomeMsg);
 		},
-
 		refreshChatBox() {
 			this.chatBoxKey += 1; // Incrémente la clé pour forcer le rechargement
 		},
-
 		updatePageTitle(newTitle) {
 			this.pageTitle = newTitle;
 		},
-
 		displayChat() {
 			const chatPopin = document.getElementById('chatPopin');
 			if (!chatPopin) {
@@ -116,19 +98,27 @@ export default {
 			}
 			chatPopin.classList.remove('hide-inactive');
 		},
-
 		hideChat() {
 			const chatPopin = document.getElementById('chatPopin');
 			if (chatPopin) {
 				chatPopin.classList.add('hide-inactive');
 			}
 		},
-
-		watch: {
-    isLoggedIn(newValue) {
-      if (newValue) {
-        this.refreshChatBox();
-      }
+		serverMsg(message) {
+			// Implémentez cette méthode si elle n'existe pas déjà
+			console.log('Server message:', message);
+		},
+		setupSocketListeners() {
+			// Implémentez cette méthode si elle n'existe pas déjà
+			console.log('Setting up socket listeners');
+		},
+	},
+	watch: {
+		isLoggedIn(newValue) {
+			if (newValue) {
+				this.refreshChatBox();
+			}
+		},
 	},
 	computed: {
 		showChatBox() {
