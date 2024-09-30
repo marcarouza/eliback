@@ -73,6 +73,9 @@ export default {
 			shortClientID: null,
 			userFromSession: '',
 			userFromStorage: '',
+			// pour le statut de Chat
+			isConnected: false,
+			reconnectAttempts: 0,
 		};
 	},
 
@@ -80,7 +83,12 @@ export default {
 		this.hideChat();
 		this.checkLocalUser();
 
-		// this.setupSocketListeners();
+		// this.initSocket();
+	},
+
+	beforeUnmount() {
+		this.disconnectUser();
+		socket.off('connect');
 	},
 	methods: {
 		checkLocalUser() {
@@ -93,9 +101,9 @@ export default {
 					this.isLoggedIn
 				);
 				this.pseudo = this.localUser.user;
-				this.welcomeMsg = `👋 ${this.pseudo}, vous êtes en ligne ! Naviguer sur le site n'affectera pas votre fil de discussion ... contrairement au raffraichissemnt volontaire de la page !`;
+				this.welcomeMsg = `👋 ${this.pseudo.toUpperCase}, vous êtes en ligne ! Naviguer sur le site n'affectera pas votre fil de discussion ... contrairement au raffraichissemnt volontaire de la page !`;
 
-				this.setupSocketListeners();
+				this.initSocket(this.pseudo);
 
 				this.displayChat();
 			} else {
@@ -111,7 +119,7 @@ export default {
 					this.pseudo = this.localUser.user;
 					this.welcomeMsg = `👋 ${this.pseudo}, vous êtes en ligne ! Naviguer sur le site n'affectera pas votre fil de discussion ... contrairement au raffraichissemnt volontaire de la page !`;
 
-					this.setupSocketListeners();
+					this.initSocket(this.pseudo);
 					this.displayChat();
 				} else {
 					this.welcomeMsg =
@@ -129,6 +137,96 @@ export default {
 		},
 		//
 
+		setServerPseudo() {
+			socket.pseudo = this.pseudo;
+			socket.emit('setServerPseudo', {pseudo: this.pseudo});
+		},
+		initSocket() {
+			setServerPseudo();
+			if (this.isLoggedIn) {
+				socket.on('connect', () => {
+					this.isConnected = true;
+					this.reconnectAttempts = 0;
+					this.completeID = socket.id;
+					socket.pseudo = pseudo;
+					console.log(
+						'🚀 ----------socket.pseudo //// pseudo connecté:',
+						socket.pseudo,
+						'/ / / /',
+						pseudo
+					);
+
+					if (this.completeID) {
+						console.log(
+							'📱 ~ socket.on ~ this.completeID :',
+							this.completeID
+						);
+						this.shortClientID = this.completeID.substring(
+							0,
+							5
+						);
+						console.log(
+							'🚀 ~ socket.on ~ this.shortClientID:',
+							this.shortClientID
+						);
+						socket.shortClientID = this.shortClientID;
+
+						socket.pseudo = this.pseudo;
+
+						console.log(
+							`📬 📬 📬 FROM initSocket => ${this.shortClientID} = ${pseudo} est CONNECTÉ !`
+						);
+					}
+				});
+				//
+				// Gestion des deconnexions INVOLONTAIRES
+				socket.on('disconnect', (reason) => {
+					console.log('🚀 ~ socket.on ~ reason:', reason);
+					this.isConnected = false;
+					createBubble(
+						'⏱️ Veuillez patienter svp … (tentative de réconnexion)',
+						'bubServer'
+					);
+
+					socket.on('reconnect', (attemptNumber) => {
+						console.log(
+							'Reconnecté au serveur après',
+							attemptNumber,
+							'tentatives'
+						);
+					});
+					if (reason === 'io server disconnect') {
+						// La déconnexion est initiée par le serveur, reconnexion manuelle nécessaire
+						socket.connect();
+					}
+				});
+
+				// Gestion de la reconnexion réussie
+				socket.on('reconnect', (attemptNumber) => {
+					console.log(
+						'Reconnecté au serveur après',
+						attemptNumber,
+						'tentatives'
+					);
+					this.isConnected = true;
+					createBubble('✅ Connexion rétablie', 'bubServer');
+				});
+
+				socket.on('message', (data) => {
+					console.log('MSG reçu : ', data);
+					this.sendMess(data);
+				});
+
+				socket.on('userLeft', (data) => {
+					this.serverMsg(data);
+				});
+
+				socket.on('userConnected', (data) => {
+					this.serverMsg(data);
+				});
+			}
+		},
+
 		serverMsg(message) {
 			console.log('🚀 ~ serverMsg ~ message:', message);
 
@@ -142,7 +240,7 @@ export default {
 			}
 
 			const myServerDiv = document.createElement('div');
-			console.log('🚀 ~ addDiv ~ myDiv:', myServerDiv);
+			console.log('🚀 ~ createBubble ~ myDiv:', myServerDiv);
 
 			myServerDiv.classList.add('bubServer');
 
@@ -164,14 +262,14 @@ export default {
 				return;
 			}
 
-			// const messTxt = messInput.value.trim();
-			// const messTxt = message.trim();
-			// console.log('🚀 ~ messTxt:', messTxt);
+			const messTxt = messInput.value.trim();
+			const messTxt = message.trim();
+			console.log('🚀 ~ messTxt:', messTxt);
 
 			if (message) {
 				socket.emit('message', message);
 				const myMessDiv = document.createElement('div');
-				console.log('🚀 ~ addDiv ~ myDiv:', myMessDiv);
+				console.log('🚀 ~ createBubble ~ myDiv:', myMessDiv);
 
 				myMessDiv.classList.add('bub1');
 
@@ -202,9 +300,8 @@ export default {
 			chatPopin.classList.add('hide-inactive');
 		},
 
-		addDiv(data) {
-			console.log('🚀 ~ addDiv ~ data:', data);
-			console.log('🚀 ~   data.pseudo — — — —', data.pseudo);
+		createBubble(message, style) {
+			console.log('🚀 ~ createBubble ~ data:', message);
 
 			const allMess = document.getElementById('allMess');
 
@@ -214,17 +311,17 @@ export default {
 			}
 
 			const myDiv = document.createElement('div');
-			console.log('🚀 ~ addDiv ~ myDiv:', myDiv);
+			console.log('🚀 ~ createBubble ~ myDiv:', myDiv);
 
-			myDiv.classList.add('bub1');
+			myDiv.classList.add(style);
 
 			// Create span element
 			const span = document.createElement('span');
 
-			if (data.pseudo) {
-				span.textContent = `${data.pseudo}: ${data.text}`;
+			if (message.pseudo) {
+				span.textContent = `${message.pseudo}: ${message.text}`;
 			} else {
-				span.textContent = `${data.user}: ${data.text}`;
+				span.textContent = `${message.user}: ${message.text}`;
 			}
 
 			// Append span to div
@@ -234,64 +331,11 @@ export default {
 			allMess.appendChild(myDiv);
 		},
 
-		setupSocketListeners(pseudo) {
-			if (this.isLoggedIn) {
-				socket.on('connect', () => {
-					this.completeID = socket.id;
-					socket.pseudo = this.pseudo;
-					console.log(
-						'🚀 setupSocketListeners /	socket.pseudo:',
-						socket.pseudo
-					);
-
-					if (this.completeID) {
-						console.log(
-							'📱 ~ socket.on ~ this.completeID :',
-							this.completeID
-						);
-						this.shortClientID = this.completeID.substring(
-							0,
-							5
-						);
-						console.log(
-							'🚀 ~ socket.on ~ this.shortClientID:',
-							this.shortClientID
-						);
-						socket.shortClientID = this.shortClientID;
-
-						socket.pseudo = this.pseudo;
-
-						console.log(
-							`📬 📬 📬 FROM setupSocketListeners => ${this.shortClientID} = ${this.pseudo} est CONNECTÉ !`
-						);
-					}
-				});
-
-				socket.on('disconnect', (pseudo, shortClientID) => {
-					const completeID = socket.id;
-					if (completeID) {
-						console.log(
-							`FROM CLIENT => ${this.pseudo} est déconnecté`
-						);
-					}
-				});
-
-				socket.on('message', (data) => {
-					console.log(
-						'STRUCTURE de MSG envoyé à tout le monde : ',
-						data
-					);
-					this.sendMess(data);
-				});
-
-				socket.on('userLeft', (data) => {
-					this.serverMsg(data);
-				});
-
-				socket.on('userConnected', (data) => {
-					this.serverMsg(data);
-				});
-			}
+		disconnectUser() {
+			socket.emit('userLeft', {
+				ID: shortClientID,
+				pseudo: this.pseudo,
+			});
 		},
 	},
 };

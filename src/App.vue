@@ -9,7 +9,7 @@
 		<!-- Affichage conditionnel de Chat_Box basé sur la route -->
 		<!-- <ChatBox :show="showChatBox" /> -->
 
-		<ChatBox :key="chatBoxKey" :show="showChatBox" />
+		<ChatBox v-if="showChatBox" :key="chatBoxKey" />
 		<Notif />
 	</div>
 </template>
