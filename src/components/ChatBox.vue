@@ -70,7 +70,7 @@ export default {
 			welcomeMsg:
 				'Pour utiliser la messagerie, vous devez être connecté(e) !',
 			completeID: null,
-			shortClientID: null,
+			shortID: null,
 			userFromSession: '',
 			userFromStorage: '',
 			// pour le statut de Chat
@@ -139,7 +139,10 @@ export default {
 
 		setServerPseudo() {
 			socket.pseudo = this.pseudo;
-			socket.emit('setPseudo', {pseudo: this.pseudo});
+			socket.emit('setPseudo', {
+				pseudo: this.pseudo,
+				shortID: this.completeID.substring(0, 5),
+			});
 		},
 		initSocket() {
 			this.setServerPseudo();
@@ -148,7 +151,6 @@ export default {
 					this.isConnected = true;
 					this.reconnectAttempts = 0;
 					this.completeID = socket.id;
-					socket.pseudo = pseudo;
 					console.log(
 						'🚀 ----------socket.pseudo //// pseudo connecté:',
 						socket.pseudo,
@@ -161,20 +163,17 @@ export default {
 							'📱 ~ socket.on ~ this.completeID :',
 							this.completeID
 						);
-						this.shortClientID = this.completeID.substring(
-							0,
-							5
-						);
+						this.shortID = this.completeID.substring(0, 5);
 						console.log(
-							'🚀 ~ socket.on ~ this.shortClientID:',
-							this.shortClientID
+							'🚀 ~ socket.on ~ this.shortID:',
+							this.shortID
 						);
-						socket.shortClientID = this.shortClientID;
+						socket.shortID = this.shortID;
 
 						socket.pseudo = this.pseudo;
 
 						console.log(
-							`📬 📬 📬 FROM initSocket => ${this.shortClientID} = ${pseudo} est CONNECTÉ !`
+							`📬 📬 📬 FROM initSocket => ${this.shortID} = ${pseudo} est CONNECTÉ !`
 						);
 					}
 				});
@@ -332,7 +331,7 @@ export default {
 
 		disconnectUser() {
 			socket.emit('userLeft', {
-				ID: shortClientID,
+				ID: shortID,
 				pseudo: this.pseudo,
 			});
 		},
