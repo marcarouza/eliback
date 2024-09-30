@@ -155,9 +155,8 @@ export default {
 					this.decodeUSERfromTOKEN();
 					this.getAllDocCookiess();
 
-					window.location.reload(true);
-
 					this.$router.push({name: 'homepage'});
+					window.location.reload(true);
 				} else {
 					const errorData = await response.json();
 					console.error(
