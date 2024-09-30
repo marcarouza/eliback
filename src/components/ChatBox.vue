@@ -216,7 +216,7 @@ export default {
 
 				socket.on('message', (data) => {
 					console.log('MSG reçu : ', data);
-					this.sendMess(data);
+					this.createBubble(data);
 				});
 
 				socket.on('userLeft', (data) => {
@@ -268,7 +268,7 @@ export default {
 			console.log('🚀 ~ messTxt:', messTxt);
 
 			if (messTxt) {
-				socket.emit('message', messTxt);
+				socket.emit('message', '${this.pseudo} : ' + messTxt);
 
 				//
 				this.createBubble(messTxt, 'bub1');
