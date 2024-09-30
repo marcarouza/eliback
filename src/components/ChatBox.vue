@@ -110,7 +110,7 @@ export default {
 					this.isLoggedIn
 				);
 				this.pseudo = this.localUser.user;
-				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
+				this.welcomeMsg = `👋 ${this.pseudo}, vous êtes en ligne ! Naviguer sur le site n'affectera pas votre fil de discussion ... contrairement au raffraichissemnt volontaire de la page !`;
 
 				this.setupSocketListeners();
 
@@ -126,7 +126,7 @@ export default {
 					);
 
 					this.pseudo = this.localUser.user;
-					this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne ! Naviguer sur le site n'affectera pas votre fil de discussion, contrairement au raffraichissemnt volontaire de la page.`;
+					this.welcomeMsg = `👋 ${this.pseudo}, vous êtes en ligne ! Naviguer sur le site n'affectera pas votre fil de discussion ... contrairement au raffraichissemnt volontaire de la page !`;
 
 					this.setupSocketListeners();
 					this.displayChat();
@@ -254,6 +254,10 @@ export default {
 				socket.on('connect', () => {
 					this.completeID = socket.id;
 					socket.pseudo = this.pseudo;
+					console.log(
+						'🚀 ~ socket.on ~ 					socket.pseudo:',
+						socket.pseudo
+					);
 
 					if (this.completeID) {
 						console.log(
