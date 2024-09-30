@@ -139,10 +139,10 @@ export default {
 
 		setServerPseudo() {
 			socket.pseudo = this.pseudo;
-			socket.emit('setServerPseudo', {pseudo: this.pseudo});
+			socket.emit('setPseudo', {pseudo: this.pseudo});
 		},
 		initSocket() {
-			setServerPseudo();
+			this.setServerPseudo();
 			if (this.isLoggedIn) {
 				socket.on('connect', () => {
 					this.isConnected = true;
@@ -240,7 +240,7 @@ export default {
 			}
 
 			const myServerDiv = document.createElement('div');
-			console.log('🚀 ~ createBubble ~ myDiv:', myServerDiv);
+			console.log('🚀 ~ serverMsg ~ myDiv:', myServerDiv);
 
 			myServerDiv.classList.add('bubServer');
 
@@ -267,16 +267,21 @@ export default {
 
 			if (messTxt) {
 				socket.emit('message', messTxt);
-				const myMessDiv = document.createElement('div');
-				console.log('🚀 ~ createBubble ~ myDiv:', myMessDiv);
 
-				myMessDiv.classList.add('bub1');
+				//
+				createBubble(messTxt, 'bub1');
+				//
 
-				const span = document.createElement('span');
-				span.textContent = this.pseudo + ' : ' + messTxt;
-				myMessDiv.appendChild(span);
+				// const myMessDiv = document.createElement('div');
+				// console.log('🚀 ~ createBubble ~ myDiv:', myMessDiv);
 
-				allMess.appendChild(myMessDiv);
+				// myMessDiv.classList.add('bub1');
+
+				// const span = document.createElement('span');
+				// span.textContent = this.pseudo + ' : ' + messTxt;
+				// myMessDiv.appendChild(span);
+
+				// allMess.appendChild(myMessDiv);
 
 				messInput.value = '';
 				messInput.focus();
@@ -310,24 +315,17 @@ export default {
 			}
 
 			const myDiv = document.createElement('div');
-			console.log('🚀 ~ createBubble ~ myDiv:', myDiv);
-
 			myDiv.classList.add(style);
-
-			// Create span element
 			const span = document.createElement('span');
-
-			if (message.pseudo) {
-				span.textContent = `${message.pseudo}: ${message.text}`;
-			} else {
-				span.textContent = `${message.user}: ${message.text}`;
-			}
-
-			// Append span to div
+			//
+			span.textContent = message;
 			myDiv.appendChild(span);
 
 			// Append div to allMess
 			allMess.appendChild(myDiv);
+			}
+			// Append span to div
+
 		},
 
 		disconnectUser() {
