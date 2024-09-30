@@ -165,18 +165,18 @@ export default {
 			}
 
 			// const messTxt = messInput.value.trim();
-			const messTxt = message.trim();
-			console.log('🚀 ~ messTxt:', messTxt);
+			// const messTxt = message.trim();
+			// console.log('🚀 ~ messTxt:', messTxt);
 
-			if (messTxt) {
-				socket.emit('message', messTxt);
+			if (message) {
+				socket.emit('message', message);
 				const myMessDiv = document.createElement('div');
 				console.log('🚀 ~ addDiv ~ myDiv:', myMessDiv);
 
 				myMessDiv.classList.add('bub1');
 
 				const span = document.createElement('span');
-				span.textContent = this.pseudo + ' : ' + messTxt;
+				span.textContent = this.pseudo + ' : ' + message;
 				myMessDiv.appendChild(span);
 
 				allMess.appendChild(myMessDiv);
