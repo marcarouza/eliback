@@ -154,7 +154,7 @@ export default {
 						'🚀 ----------socket.pseudo //// pseudo connecté:',
 						socket.pseudo,
 						'/ / / /',
-						pseudo
+						this.pseudo
 					);
 
 					if (this.completeID) {
@@ -267,7 +267,7 @@ export default {
 			console.log('🚀 ~ messTxt:', messTxt);
 
 			if (messTxt) {
-				socket.emit('message', '${this.pseudo} : ' + messTxt);
+				socket.emit('message', `${this.pseudo} : ${messTxt}`);
 
 				//
 				this.createBubble(messTxt, 'bub1');
