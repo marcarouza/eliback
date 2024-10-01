@@ -223,7 +223,8 @@ export default {
 				});
 
 				socket.on('userConnected', (data) => {
-					this.serverMsg(data);
+					console.log('🚀 ~ userConnected ==> data:', data);
+					this.createBubble(data, 'bubServer');
 				});
 			}
 		},
