@@ -573,6 +573,8 @@
 														src="/pix/logos/ajax.svg"
 														alt="ajax"
 														class="logoAJAX"
+														loading="lazy"
+														title="AJAX : Asynchronous Javascript"
 													/>
 												</div>
 											</div>
@@ -595,6 +597,8 @@
 														src="/pix/logos/api.svg"
 														alt="API"
 														class="logoAPI"
+														loading="lazy"
+														title="Asynchronous Programing Interface API"
 													/>
 												</div>
 											</div>
@@ -630,9 +634,12 @@
 												<div
 													class="d-flex align-items-center justify-content-center bg-light rounded-4 p-3 h-100"
 												>
-													<i
-														class="fab fa-vuejs logoHTML"
-													></i>
+													<img
+														src="/pix/logos/vue.svg"
+														alt="VueJS"
+														class="logoVUE"
+														title="API"
+													/>
 												</div>
 											</div>
 											<div
@@ -656,6 +663,8 @@
 														src="/pix/logos/next01.svg"
 														alt="NextJS"
 														class="logoNEXT"
+														loading="lazy"
+														title="Next JS Framework React"
 													/>
 												</div>
 											</div>
@@ -671,9 +680,13 @@
 												<div
 													class="d-flex align-items-center justify-content-center bg-light rounded-4 p-3 h-100"
 												>
-													<i
-														class="fab fa-angular logoHTML"
-													></i>
+													<img
+														src="/pix/logos/angular.svg"
+														alt="NextJS"
+														class="logoANGULAR"
+														loading="lazy"
+														title="Next JS Framework React"
+													/>
 												</div>
 											</div>
 											<!-- <div
@@ -851,6 +864,16 @@ export default {
 }
 
 .logoJS {
+	width: 50px;
+	/* height: 100px; */
+	padding: 0px;
+}
+.logoVUE {
+	width: 50px;
+	/* height: 100px; */
+	padding: 0px;
+}
+.logoANGULAR {
 	width: 50px;
 	/* height: 100px; */
 	padding: 0px;
