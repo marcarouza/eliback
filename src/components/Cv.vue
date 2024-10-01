@@ -476,16 +476,23 @@
 												class="col mb-4 mb-md-0"
 											>
 												<div
-													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+													class="d-flex align-items-center justify-content-center bg-light rounded-4 p-3 h-100"
 												>
-													CSS
+													<i
+														class="fab fa-css3-alt logoHTML"
+														title="CSS"
+													></i>
 												</div>
 											</div>
 											<div class="col">
 												<div
-													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+													class="d-flex align-items-center justify-content-center bg-light rounded-4 p-3 h-100"
 												>
-													JavaScript
+													<img
+														src="/pix/logos/js.svg"
+														alt="JavaScript"
+														class="logoJS"
+													/>
 												</div>
 											</div>
 										</div>
@@ -496,25 +503,37 @@
 												class="col mb-4 mb-md-0"
 											>
 												<div
-													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+													class="d-flex align-items-center justify-content-center bg-light rounded-4 p-3 h-100"
 												>
-													MongoDB
+													<img
+														src="/pix/logos/mongo.svg"
+														alt="MongoDB"
+														class="logoMONGO"
+													/>
 												</div>
 											</div>
 											<div
 												class="col mb-4 mb-md-0"
 											>
 												<div
-													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+													class="d-flex align-items-center justify-content-center bg-light rounded-4 p-3 h-100"
 												>
-													Express
+													<img
+														src="/pix/logos/express02.png"
+														alt="NextJS"
+														class="logoEXPRESS"
+													/>
 												</div>
 											</div>
 											<div class="col">
 												<div
-													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+													class="d-flex align-items-center justify-content-center bg-light rounded-4 p-3 h-100"
 												>
-													Node.js
+													<img
+														src="/pix/logos/nodejs03.svg"
+														alt="NextJS"
+														class="logoNODE"
+													/>
 												</div>
 											</div>
 										</div>
@@ -525,39 +544,58 @@
 												class="col mb-4 mb-md-0"
 											>
 												<div
-													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+													class="d-flex align-items-center justify-content-center bg-light rounded-4 p-3 h-100"
 												>
-													Git
+													<img
+														src="/pix/logos/git.svg"
+														alt="NextJS"
+														class="logoJEST"
+													/>
 												</div>
 											</div>
 											<div
 												class="col mb-4 mb-md-0"
 											>
 												<div
-													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+													class="d-flex align-items-center justify-content-center bg-light rounded-4 p-3 h-100"
 												>
-													Bootstrap 5
+													<i
+														class="fab fa-bootstrap logoHTML"
+														title="Bootstrap 5"
+													></i>
 												</div>
 											</div>
 											<div class="col">
 												<div
-													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+													class="d-flex align-items-center justify-content-center bg-light rounded-4 p-3 h-100"
 												>
-													Ajax
+													<img
+														src="/pix/logos/ajax.svg"
+														alt="ajax"
+														class="logoAJAX"
+													/>
 												</div>
 											</div>
 											<div class="col mt-4">
 												<div
-													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+													class="d-flex align-items-center justify-content-center bg-light rounded-4 p-3 h-100"
 												>
-													API
+													<img
+														src="/pix/logos/jest.svg"
+														alt="JEST"
+														class="logoJEST"
+													/>
 												</div>
 											</div>
 											<div class="col mt-4">
 												<div
-													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+													class="d-flex align-items-center justify-content-center bg-light rounded-4 p-3 h-100"
 												>
-													Jest
+													<img
+														src="/pix/logos/api.svg"
+														alt="API"
+														class="logoAPI"
+													/>
 												</div>
 											</div>
 										</div>
@@ -590,39 +628,70 @@
 												class="col mb-4 mb-md-0"
 											>
 												<div
-													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+													class="d-flex align-items-center justify-content-center bg-light rounded-4 p-3 h-100"
 												>
-													Vue JS
+													<i
+														class="fab fa-vuejs logoHTML"
+													></i>
 												</div>
 											</div>
 											<div
 												class="col mb-4 mb-md-0"
 											>
 												<div
-													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+													class="d-flex align-items-center justify-content-center bg-light rounded-4 p-3 h-100"
 												>
-													React JS
+													<i
+														class="fab fa-react logoHTML"
+													></i>
 												</div>
 											</div>
 											<div
 												class="col mb-4 mb-md-0"
 											>
 												<div
-													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+													class="d-flex align-items-center justify-content-center bg-light rounded-4 p-3 h-100"
 												>
-													Next JS
-												</div>
-											</div>
-											<div
-												class="col mb-4 mb-md-0"
-											>
-												<div
-													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
-												>
-													Angular
+													<img
+														src="/pix/logos/next01.svg"
+														alt="NextJS"
+														class="logoNEXT"
+													/>
 												</div>
 											</div>
 										</div>
+										<!--  -->
+
+										<div
+											class="row row-cols-1 row-cols-md-3 mb-4"
+										>
+											<div
+												class="col mb-4 mb-md-0"
+											>
+												<div
+													class="d-flex align-items-center justify-content-center bg-light rounded-4 p-3 h-100"
+												>
+													<i
+														class="fab fa-angular logoHTML"
+													></i>
+												</div>
+											</div>
+											<!-- <div
+												class="col mb-4 mb-md-0"
+											>
+												<div
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+												></div>
+											</div> -->
+											<!-- <div
+												class="col mb-4 mb-md-0"
+											>
+												<div
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+												></div>
+											</div> -->
+										</div>
+
 										<div
 											class="row row-cols-1 row-cols-md-3"
 										></div>
@@ -728,6 +797,86 @@ export default {
 	font-size: 2rem;
 	text-align: center;
 	color: #0066ff;
+}
+
+.nodejs-icon {
+	color: #fff; /* Couleur verte officielle de Node.js */
+	font-size: 2.5rem; /* Ajustez selon vos besoins */
+	background-color: #2f832f;
+	border-radius: 5px;
+	padding: 1px 2.8px;
+}
+
+.js-icon {
+	font-size: 2rem;
+	color: #f7df1e;
+	background-color: #000;
+	padding: 1px 2.8px;
+	border-radius: 5px;
+}
+
+.logoAVIF {
+	width: 100px;
+	/* height: 100px; */
+	justify-content: center;
+}
+.logoNEXT {
+	width: 50px;
+	/* height: 100px; */
+	justify-content: center;
+	background-color: #61dafb;
+	border-radius: 100%;
+	padding: 3px;
+}
+.logoAJAX {
+	width: 50px;
+	/* height: 100px; */
+	justify-content: center;
+	background-color: #ffffff;
+	border-radius: 20%;
+	padding: 3px;
+}
+.logoJEST {
+	width: 50px;
+	/* height: 100px; */
+	background-color: #ffffff;
+	border-radius: 100%;
+	padding: 8px;
+}
+.logoAPI {
+	width: 50px;
+	/* height: 100px; */
+	border-radius: 100%;
+	padding: 0px;
+}
+
+.logoJS {
+	width: 50px;
+	/* height: 100px; */
+	padding: 0px;
+}
+
+.logoNODE {
+	width: 50px;
+	/* height: 100px; */
+	background-color: #ffffffcd;
+	border-radius: 10%;
+
+	padding: 5px;
+}
+.logoEXPRESS {
+	width: 100px;
+	/* height: 100px; */
+	background-color: #000000;
+	padding: 5spx;
+	border-radius: 5px;
+}
+.logoMONGO {
+	width: 50px;
+	/* height: 100px; */
+	background-color: #ffffffcd;
+	padding: 5px;
+	border-radius: 50%;
 }
 
 .btn-gradient {
