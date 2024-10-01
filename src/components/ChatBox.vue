@@ -371,7 +371,7 @@ export default {
 	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	z-index: 100;
-	transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+	transition: transform 0.3s ease-out, opacity 0.5s ease-out;
 }
 
 .hide-inactive {
@@ -430,7 +430,7 @@ export default {
 	align-items: center;
 	font-size: 0.85rem;
 	min-height: 40px;
-	background-color: #004fa4;
+	background-color: #004fa45c;
 	color: #fff;
 	padding: 5px 10px;
 	border-top-left-radius: 3px;
@@ -441,8 +441,8 @@ export default {
 .chat-body {
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-end;
-	min-height: 200px;
+	justify-content: flex-start;
+	/* min-height: 250px; */
 	border-bottom: 0.5px solid #00aeff72;
 	align-items: flex-start;
 	padding: 0.5rem;
@@ -699,7 +699,7 @@ export default {
 	font-size: 0.8rem;
 	color: #101010;
 	box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
-	border: 1px solid rgb(68, 81, 44);
+	border: 1px solid rgb(134, 159, 88);
 }
 
 .bubServer {
