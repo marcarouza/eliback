@@ -219,7 +219,7 @@ export default {
 				});
 
 				socket.on('userLeft', (data) => {
-					this.serverMsg(data);
+					this.createBubble(data, 'bubServer');
 				});
 
 				socket.on('userConnected', (data) => {
@@ -693,7 +693,7 @@ export default {
 	margin-bottom: 1rem;
 
 	margin-right: auto;
-	margin-left: 1rem;
+	margin-left: 0;
 
 	max-width: 60%;
 	font-size: 0.8rem;
