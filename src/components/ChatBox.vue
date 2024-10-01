@@ -430,7 +430,7 @@ export default {
 	align-items: center;
 	font-size: 0.85rem;
 	min-height: 40px;
-	background-color: #004fa45c;
+	background-color: #003f82;
 	color: #fff;
 	padding: 5px 10px;
 	border-top-left-radius: 3px;
@@ -457,7 +457,7 @@ export default {
 
 /* Custom scrollbar styles */
 .chat-body::-webkit-scrollbar {
-	width: 10px; /* Largeur du scrollbar vertical */
+	width: 8px; /* Largeur du scrollbar vertical */
 }
 
 .chat-body::-webkit-scrollbar-track {
