@@ -697,6 +697,8 @@ export default {
 	max-width: 60%;
 	font-size: 0.8rem;
 	color: #101010;
+	box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+	border: 1px solid rgb(68, 81, 44);
 }
 
 .bubServer {
