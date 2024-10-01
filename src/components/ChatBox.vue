@@ -406,9 +406,8 @@ export default {
 }
 
 .btn-close {
-	width: 5px;
-	height: 5px;
-	border: 2px solid hsl(211, 100%, 32%);
+	width: 5px !important;
+	height: 5px !important;
 	border-radius: 50%;
 	background-color: #004fa4;
 	color: #fff;
@@ -416,7 +415,7 @@ export default {
 }
 
 .btn-close:hover {
-	border: 2px solid rgba(255, 255, 255, 0.503);
+	border: 2px solid rgba(255, 255, 255, 0.503) !important;
 }
 
 .chat-popin.show {
