@@ -43,19 +43,6 @@ export default {
 		console.log('🐱-🐱-🐱 this.chatBoxKey:', this.chatBoxKey);
 	},
 	methods: {
-		clooooseNotif() {
-			this.show = false;
-			// this.$emit('close');
-		},
-		shooooowNotif() {
-			var toastEl = document.getElementById('notificationToast');
-			var toast = new bootstrap.Toast(toastEl);
-			document
-				.getElementById('showNotification')
-				.addEventListener('click', function () {
-					toast.show();
-				});
-		},
 		checkLocalUser() {
 			const userFromSession = sessionStorage.getItem('localUser');
 			const userFromStorage = localStorage.getItem('localUser');
@@ -113,13 +100,7 @@ export default {
 			console.log('Setting up socket listeners');
 		},
 	},
-	// watch: {
-	// 	isLoggedIn(newValue) {
-	// 		if (newValue) {
-	// 			this.refreshChatBox();
-	// 		}
-	// 	},
-	// },
+	//
 	computed: {
 		showChatBox() {
 			console.log(

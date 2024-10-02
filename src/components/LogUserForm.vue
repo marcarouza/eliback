@@ -5,6 +5,12 @@
 				<h5 class="text-center mb-4" id="title">
 					Connexion en tant que membre
 				</h5>
+				<h5 class="text-center mb-4" id="title">
+					Note : Le site est hébergé sur une instance gratuite de
+					Render, ce qui peut entraîner un délai d'initialisation
+					d'environ une minute lors de la première connexion. Je
+					vous remercie de votre patience.
+				</h5>
 				<form @submit.prevent="fetchToLog" id="loginForm">
 					<div class="form-floating mb-3">
 						<input

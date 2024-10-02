@@ -468,8 +468,7 @@
 													<i
 														title="HTML 5"
 														class="fab fa-html5 logoHTML"
-													>
-													</i>
+													></i>
 												</div>
 											</div>
 											<div
@@ -638,7 +637,7 @@
 														src="/pix/logos/vue.svg"
 														alt="VueJS"
 														class="logoVUE"
-														title="API"
+														title="VueJS 3I"
 													/>
 												</div>
 											</div>
@@ -805,8 +804,45 @@ export default {
 </script>
 
 <style scoped>
-.logoHTML {
+.tekno {
+	display: flex;
 	justify-content: center;
+	align-items: center;
+
+	padding: 0.5rem;
+	margin: 0;
+	color: #fff;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-rows: 1fr 1fr;
+	height: 100%; /* Assurez-vous que le conteneur a une hauteur définie */
+}
+
+.tekno {
+	width: 100%; /* Occupe toute la largeur */
+	text-align: center; /* Centre le texte horizontalement */
+	/* Optionnel : si vous voulez que le texte occupe toute la hauteur de sa cellule */
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.grid-container {
+	display: grid;
+	grid-template-rows: 15% 1fr;
+	align-items: center;
+	justify-content: center;
+	background-color: #f8f9fa; /* équivalent à bg-light de Bootstrap */
+	border-radius: 0.5rem; /* équivalent à rounded-4 de Bootstrap */
+	padding: 1rem;
+	height: 100%; /* assurez-vous que le conteneur parent a une hauteur définie */
+}
+
+.logoHTML {
+	justify-self: center; /* Centre l'icône horizontalement dans sa cellule */
+	align-self: center; /* Centre l'icône verticalement dans sa cellule */
 	font-size: 2rem;
 	text-align: center;
 	color: #0066ff;
@@ -853,13 +889,15 @@ export default {
 	width: 50px;
 	/* height: 100px; */
 	background-color: #ffffff;
-	border-radius: 100%;
-	padding: 8px;
+	border-radius: 15%;
+	padding: 5px;
 }
 .logoAPI {
-	width: 50px;
+	width: 55px;
 	/* height: 100px; */
-	border-radius: 100%;
+	background-color: #ffffff;
+
+	border-radius: 15%;
 	padding: 0px;
 }
 
