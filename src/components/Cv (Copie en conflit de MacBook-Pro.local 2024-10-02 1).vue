@@ -540,42 +540,6 @@
 											class="row row-cols-1 row-cols-md-3 mt-4"
 										>
 											<div
-												class="card mx-auto text-center py-5"
-												style="width: 30%"
-											>
-												<img
-													class="card-img-top mx-auto d-block"
-													src="/pix/logos/nodejs03.svg"
-													alt="Card image cap"
-													style="
-														width: 30%;
-													"
-												/>
-												<div
-													class="card-body"
-												>
-													<h5
-														class="card-title"
-													>
-														Node JS
-													</h5>
-													<p
-														class="card-text"
-													>
-														exemple
-													</p>
-													<!-- <a
-														href="#"
-														class="btn btn-primary mx-auto d-block"
-														style="
-															width: 100%;
-														"
-														>Go
-														somewhere</a
-													> -->
-												</div>
-											</div>
-											<div
 												class="col mb-4 mb-md-0"
 											>
 												<div
