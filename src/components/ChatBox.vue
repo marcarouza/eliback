@@ -172,7 +172,7 @@ export default {
 						socket.pseudo = this.pseudo;
 
 						console.log(
-							`📬 📬 📬 FROM initSocket => ${this.shortID} = ${pseudo} est CONNECTÉ !`
+							`📬 📬 📬 FROM initSocket => ${this.shortID} = ${this.pseudo} est CONNECTÉ !`
 						);
 					}
 				});

@@ -127,29 +127,30 @@
 					aria-labelledby="client-tab"
 					tabindex="0"
 				>
-					<p><strong>Frontend Dynamique avec VueJS</strong></p>
+					<p><strong>Frontend dynamique avec VueJS</strong></p>
 
 					<p>
-						Nous exploitons la puissance de VueJS, un
-						framework JavaScript progressif reconnu pour sa
-						flexibilité et ses performances, offrant une
-						expérience utilisateur fluide et réactive.
+						J'exploite la puissance du framework VueJS dans sa
+						version 3. Dans ce cadre de développemnt je
+						béneficie à la fois d'une bonne flexibilité et des
+						performances offrant une expérience utilisateur
+						fluide et réactive, similaire à celle d'une
+						application native.
 					</p>
 
 					<p>
-						VueJS nous permet de créer des interfaces
-						dynamiques et interactives, avec une gestion
-						d'état efficace et des transitions élégantes entre
-						les différentes vues de l'application.<br />
-						Sa courbe d'apprentissage accessible et ses
-						performances exceptionnelles en font un choix
-						stratégique pour des développements ambitieux et
-						évolutifs.
+						VueJS me permet de créer des interfaces dynamiques
+						et interactives, avec une gestion d'état efficace
+						et des transitions élégantes entre les différentes
+						vues de l'application.Sa courbe d'apprentissage
+						douce et ses performances exceptionnelles en on
+						font un choix stratégique pour un développements
+						ambitieux et évolutif.
 					</p>
 
 					<p>
 						<strong
-							>Architecture Moderne : Single Page
+							>Architecture moderne : Single Page
 							Application (SPA)</strong
 						>
 					</p>
@@ -163,26 +164,21 @@
 					</p>
 
 					<p>
-						Les avantages clés de notre approche SPA incluent
+						Les avantages clés de cette approche SPA incluent
 						:
 					</p>
 					<ul>
 						<li>
-							Navigation instantanée sans rechargement de
-							page
+							Le routage côté client permet de réduire la
+							charge du serveur, avec une réactivité
+							optimale
 						</li>
-						<li>
-							Réactivité optimale grâce au chargement
-							dynamique du contenu
-						</li>
+
 						<li>
 							Cohérence de l'expérience utilisateur sur
 							tous les appareils
 						</li>
-						<li>
-							Allègement de la charge serveur par le
-							traitement côté client
-						</li>
+
 						<li>
 							Fonctionnalités hors ligne pour une
 							utilisation continue
@@ -191,7 +187,7 @@
 
 					<p>
 						Cette architecture SPA, combinée à l'efficacité de
-						VueJS, nous permet de développer des interfaces
+						VueJS, me permet de développer des interfaces
 						utilisateur hautement interactives et
 						performantes. Le résultat : une expérience
 						utilisateur immersive et une application facile à
@@ -219,9 +215,9 @@
 						Mon architecture backend s'appuie sur Node.js,
 						offrant une plateforme hautement performante et
 						évolutive, capable de répondre aux exigences des
-						applications modernes.<br />
-						Express.js, construit sur Node.js, me fournit un
-						framework épuré mais puissant pour la gestion
+						applications modernes.Express.js, fonctionnant
+						dans le contexte Node.js, me fournit un framework
+						serveur épuré mais puissant pour la gestion
 						efficace des routes, des middlewares et des
 						requêtes API, garantissant une flexibilité et une
 						maintenabilité optimales.
@@ -231,11 +227,19 @@
 						Cette synergie technologique me permet de gérer
 						efficacement un volume important de connexions
 						simultanées, un atout crucial pour les
-						applications à forte interactivité.<br />
-						L'infrastructure serveur est entièrement
-						développée avec Node.js, déployée et optimisée sur
-						la plateforme cloud Render.com pour assurer
-						performance et fiabilité.
+						applications à forte
+						interactivité.L'infrastructure serveur est
+						entièrement développée avec Node.js, déployée et
+						optimisée sur la plateforme cloud Render.com sur
+						deux serveurs différents (adresses sur demande)
+						pour assurer performance et fiabilité.
+					</p>
+					<p>
+						Le fonctionnement sur 2 sous-domaines différents
+						(dans le processus CI/CD de Render.com) me permet
+						de mettre en place des mesures de sécurités CORS
+						pour les cookies afin d'éviter les attaques les
+						plus courantes.
 					</p>
 
 					<p>
@@ -288,10 +292,12 @@
 					<p>
 						Dans mon approche full stack, j'ai implémenté
 						MongoDB comme solution de persistance des données.
-						Cette base de données NoSQL offre une flexibilité
-						inégalée, cruciale pour gérer efficacement les
-						structures de données complexes et évolutives
-						inhérentes aux applications web modernes.
+						Cette base de données NoSQL (qui signifie
+						<strong>Not Only</strong> SQL) offre une
+						flexibilité inégalée, cruciale pour gérer
+						efficacement les structures de données complexes
+						et évolutives inhérentes aux applications web
+						modernes.
 					</p>
 
 					<p>
@@ -336,7 +342,7 @@
 					<p>
 						<em
 							>Note technique : L'intégration de MongoDB
-							dans ma stack MERN (MongoDB, Express, Vue.js,
+							dans ma stack MEVN (MongoDB, Express, Vue.js,
 							Node.js) offre une synergie puissante. Cette
 							architecture full stack me permet de
 							développer des applications web hautement
@@ -359,7 +365,7 @@
 				>
 					<p>
 						<strong
-							>Architecture de Communication Temps Réel
+							>Architecture de communication en temps réel
 							avec Socket.io</strong
 						>
 					</p>
@@ -369,10 +375,10 @@
 						temps réel, j'ai implémenté Socket.io, une
 						bibliothèque robuste et performante.<br />
 						Cette technologie me permet d'établir des
-						connexions WebSocket bidirectionnelles
+						connexions WebSocket"augmentée" bidirectionnelles
 						persistantes entre le client et le serveur,
 						offrant une base solide pour des fonctionnalités
-						temps réel avancées.
+						de mise à jour en temps réel de meta données.
 					</p>
 
 					<p>
@@ -404,13 +410,13 @@
 
 					<p>
 						Cette architecture de communication en temps réel
-						s'intègre harmonieusement dans ma stack full
-						stack, créant une synergie entre le frontend
-						réactif et le backend événementiel. Elle permet
-						une expérience utilisateur hautement interactive
-						et engageante, tout en optimisant l'utilisation
-						des ressources serveur grâce à une gestion
-						efficace des connexions WebSocket.
+						s'intègre harmonieusement dans ma stack, créant
+						une synergie entre le frontend réactif et le
+						backend événementiel. Elle permet une expérience
+						utilisateur hautement interactive et engageante,
+						tout en optimisant l'utilisation des ressources
+						serveur grâce à une gestion efficace des
+						connexions.
 					</p>
 
 					<p>
@@ -462,7 +468,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400&display=swap');
 
 .bg-gradient-custom {
-	background: linear-gradient(90deg, #e21e80f6, #1e30f3fa);
+	background: linear-gradient(90deg, #000000be, #1e30f3);
 	background-size: 200% 200%;
 	animation: gradient 30s ease infinite;
 }
