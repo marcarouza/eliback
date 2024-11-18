@@ -456,6 +456,87 @@
 												</span>
 											</h3>
 										</div>
+										<!--  -->
+
+										<div
+											class="row row-cols-md-3 mb-4"
+										>
+											<div
+												class="border-secondary mb-3"
+											>
+												<div
+													class="card-header text-center"
+												>
+													HTML
+												</div>
+												<div
+													class="card-body text-secondary"
+												>
+													<h5
+														class="card-title"
+													>
+														Secondary
+														card title
+													</h5>
+													<p
+														class="card-text"
+													>
+														Some quick
+														example
+														text to
+														build on
+														the card
+														title and
+														make up
+														the bulk
+														of the
+														card's
+														content.
+													</p>
+												</div>
+											</div>
+											<div
+												class="border-secondary mb-3"
+												style="
+													max-width: 18rem;
+												"
+											>
+												<div
+													class="card-header"
+												>
+													Header
+												</div>
+												<div
+													class="card-body text-secondary"
+												>
+													<h5
+														class="card-title"
+													>
+														Secondary
+														card title
+													</h5>
+													<p
+														class="card-text"
+													>
+														Some quick
+														example
+														text to
+														build on
+														the card
+														title and
+														make up
+														the bulk
+														of the
+														card's
+														content.
+													</p>
+												</div>
+											</div>
+										</div>
+
+										<!--  -->
+
+										<!-- HTML list-->
 										<div
 											class="row row-cols-1 row-cols-md-3 mb-4"
 										>
@@ -495,6 +576,7 @@
 												</div>
 											</div>
 										</div>
+										<!-- CSS list-->
 										<div
 											class="row row-cols-1 row-cols-md-3"
 										>
@@ -536,6 +618,7 @@
 												</div>
 											</div>
 										</div>
+										<!-- JS -->
 										<div
 											class="row row-cols-1 row-cols-md-3 mt-4"
 										>
