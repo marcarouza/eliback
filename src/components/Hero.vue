@@ -9,7 +9,7 @@
 							class="badge bg-gradient-primary-to-secondary text-white mb-4"
 						>
 							<div class="text-uppercase">
-								Web · Development · Formation • Design
+								Web · Développement · Formation · Design
 							</div>
 						</div>
 						<div class="fs-3 fw-light text-muted">
