@@ -131,7 +131,7 @@
 
 					<p>
 						J'exploite la puissance du framework VueJS dans sa
-						version 3. Dans ce cadre de développemnt je
+						version 3. Dans ce cadre de développement je
 						béneficie à la fois d'une bonne flexibilité et des
 						performances offrant une expérience utilisateur
 						fluide et réactive, similaire à celle d'une

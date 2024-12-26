@@ -13,116 +13,7 @@
 							>
 						</h1>
 					</div>
-					<!-- CALCULO A VENIR  -->
-					<div class="card shadow border-0 rounded-4 py-3 mb-3">
-						<div
-							class="d-flex flex-column flex-lg-row align-items-top justify-content-center"
-						>
-							<img
-								class="img-fluid projet order-0 order-lg-1"
-								src="/pix/projets/calculo.webp"
-								alt="projet web eli azoura"
-							/>
-							<div class="p-5 order-1 order-lg-0">
-								<h2 class="fw-bolder">SmartCalc</h2>
-								<ul>
-									<li>
-										Application de type
-										calculatrice configurable,
-										fonctionannt directement dans
-										votre navigateur
-									</li>
-									<li>En cours de développement</li>
-									<!-- <li>
-										Dans notre monde numérique, la
-										navigation sur Internet
-										implique que votre navigateur
-										partage automatiquement
-										certaines informations vous
-										concernant, telles que votre
-										adresse IP, le type et la
-										version de votre navigateur,
-										votre système d'exploitation,
-										vos paramètres de langue,
-										votre historique de navigation
-										et vos cookies.
-										<br />
-										<br />
 
-										Cette page vise à vous
-										sensibiliser à la quantité de
-										données transmises à votre
-										insu et à l'importance de
-										comprendre ces échanges pour
-										faire des choix éclairés
-										concernant votre
-										confidentialité en ligne.
-									</li> -->
-								</ul>
-							</div>
-						</div>
-					</div>
-					<!--  -->
-
-					<div class="card shadow border-0 rounded-4 py-3 mb-3">
-						<div
-							class="d-flex flex-column flex-lg-row align-items-top"
-						>
-							<img
-								class="img-fluid projet order-0 order-lg-1"
-								src="/pix/projets/infoAgentRed.png"
-								alt="projet web eli azoura"
-							/>
-							<div class="p-5 order-1 order-lg-0">
-								<router-link
-									active-class="active"
-									class="nav-link"
-									to="/InfoAgentPage"
-								>
-									<h2 class="fw-bolder">SpyNav</h2>
-								</router-link>
-								<ul>
-									<li>
-										Application permettant de
-										prendre connaissance des
-										informations capturées par
-										votre navigateur
-									</li>
-									<li>
-										Réalisation avec VueJS 3 et
-										d'un script Javascript
-										spécifique.
-									</li>
-									<li>
-										Dans notre monde numérique, la
-										navigation sur Internet
-										implique que votre navigateur
-										partage automatiquement
-										certaines informations vous
-										concernant, telles que votre
-										adresse IP, le type et la
-										version de votre navigateur,
-										votre système d'exploitation,
-										vos paramètres de langue,
-										votre historique de navigation
-										et vos cookies.
-										<br />
-										<br />
-
-										Cette page vise à vous
-										sensibiliser à la quantité de
-										données transmises à votre
-										insu et à l'importance de
-										comprendre ces échanges pour
-										faire des choix éclairés
-										concernant votre
-										confidentialité en ligne.
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<!--  -->
 					<div class="card shadow border-0 rounded-4 py-3">
 						<div
 							class="d-flex flex-column flex-lg-row align-items-center"
@@ -133,35 +24,95 @@
 								alt="projet web eli azoura"
 							/>
 							<div class="p-5 order-1 order-lg-0">
-								<h2 class="fw-bolder">eliazoura.fr</h2>
+								<h2 class="fw-bolder">Info d'agent</h2>
 								<ul>
 									<li>
-										Application en ligne
-										développée à l'occasion de ma
-										soutenance de développeur Web
-										full Stack
+										Application permettant de
+										prendre connaissance de s
+										informations capturées par
+										votre navigateur
 									</li>
 									<li>
-										Réalisation avec VueJS 3 pour
-										le front et Express jS NodeJS
-										et MongoDB pour le back-end
+										Réalisation avec VueJS 3 et
+										d'un script Javascript
+										spécifique.
 									</li>
 									<li>
-										J'ai choisi une stratégie de
-										développement en deux parties
-										: une interface et un serveur
-										déployés sur deux adresses
-										différentes. Cette approche
-										m'a permis de construire mon
-										application avec plus de
-										libertés, de robustesse et de
-										maintenabilité. Tous les
-										requêtes depuis le front sont
-										faites via des appels API sur
-										des points de terminaisons
-										dédiés avec à chaque fois des
-										tests renforcés pour éviter
-										les attaques.
+										Bienvenue sur notre page
+										d'information du navigateur
+										Dans notre monde numérique
+										actuel, naviguer sur Internet
+										fait partie intégrante de
+										notre quotidien. Mais
+										saviez-vous qu’à chaque fois
+										que vous visitez un site web,
+										votre navigateur web partage
+										automatiquement certaines
+										informations à votre sujet ?
+										Nous avons créé cette page
+										pour vous montrer exactement
+										quelles données sont
+										collectées lors de votre
+										navigation. À quoi cela
+										sert-il ? L'objectif de cette
+										page est de vous sensibiliser
+										sur la quantité de données que
+										votre navigateur transmet sans
+										que vous en soyez
+										nécessairement conscient. Ces
+										informations comprennent, mais
+										ne se limitent pas à : Votre
+										adresse IP : Indique votre
+										emplacement approximatif. Le
+										type et la version de votre
+										navigateur : Aide les sites à
+										s'afficher correctement. Le
+										système d'exploitation :
+										Permet d'optimiser la
+										compatibilité du site. Les
+										paramètres de langue : Pour
+										offrir des contenus dans votre
+										langue préférée. Historique de
+										navigation : Peut être utilisé
+										pour personnaliser les
+										publicités. Cookies et
+										stockage local : Suivent vos
+										préférences et vos
+										identifiants. Pourquoi c'est
+										important ? Nous pensons qu'il
+										est essentiel que nos
+										utilisateurs soient informés
+										des données qu'ils partagent
+										en ligne. En comprenant les
+										informations récupérées par
+										défaut par votre navigateur,
+										vous pouvez prendre des
+										décisions éclairées sur votre
+										confidentialité en ligne et
+										adapter vos paramètres en
+										conséquence. Notre intention
+										est de promouvoir une
+										utilisation plus consciente et
+										sécurisée du web. Comment
+										protéger votre vie privée ?
+										Soyez proactif dans la gestion
+										de votre vie privée. Voici
+										quelques conseils : Révisez
+										les paramètres de
+										confidentialité de votre
+										navigateur. Utilisez des
+										extensions de navigation qui
+										bloquent les traqueurs. Soyez
+										conscient des permissions que
+										vous accordez à chaque site
+										web. Nous espérons que cette
+										page vous aidera à mieux
+										comprendre les enjeux de la
+										confidentialité en ligne et
+										vous incitera à prendre les
+										mesures nécessaires pour
+										protéger vos informations
+										personnelles.
 									</li>
 								</ul>
 							</div>
@@ -611,12 +562,9 @@ export default {
 	}
 }
 .projet {
-	display: block; /* Évite les espaces indésirables autour des images */
-	margin: 0 auto; /* Centre horizontalement */
-	max-width: 70%; /* S'assure que l'image ne dépasse pas la largeur du conteneur */
-	height: auto; /* Maintient les proportions de l'image */
-	object-fit: contain; /* Assure que l'image s'adapte entièrement à son conteneur */
-	text-align: center; /* Facultatif si vous appliquez à un conteneur parent */
+	width: 50%;
+	object-fit: cover;
+	border-radius: 10px;
 }
 
 ul {

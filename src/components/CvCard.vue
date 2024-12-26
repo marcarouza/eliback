@@ -435,9 +435,6 @@
 										</div>
 									</div>
 									<!-- Languages list-->
-									<!-- Languages list-->
-									<!-- Languages list-->
-									<!-- Languages list-->
 									<div class="mb-0">
 										<div
 											class="d-flex align-items-center mb-4"
@@ -459,290 +456,112 @@
 												</span>
 											</h3>
 										</div>
-										<!--  -->
-
 										<div
-											class="row row-cols-md-3"
+											class="row row-cols-1 row-cols-md-3 mb-4"
 										>
 											<div
-												class="border-secondary mb-3"
+												class="col mb-4 mb-md-0"
 											>
 												<div
-													class="card-header text-center"
+													class="d-flex align-items-center justify-content-center bg-light rounded-4 p-3 h-100"
 												>
-													HTML
-												</div>
-												<div
-													class="card-body text-secondary shadow-lg mycard"
-												>
-													<div
-														class="col"
+													<i
+														title="HTML 5"
+														class="fab fa-html5 logoHTML"
 													>
-														<div
-															class="d-flex align-items-center justify-content-center rounded-4 p-3 h-100"
-														>
-															<i
-																title="HTML 5"
-																class="fab fa-html5 logoHTML"
-															></i>
-														</div>
-													</div>
-													<h6
-														class="card-title text-center"
-													>
-														Version 5
-													</h6>
+													</i>
 												</div>
 											</div>
-
-											<!--  -->
 											<div
-												class="border-secondary mb-3"
+												class="col mb-4 mb-md-0"
 											>
 												<div
-													class="card-header text-center"
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
 												>
-													Cascading
-													Styles
-												</div>
-												<!--  -->
-												<div
-													class="card-body text-secondary shadow-lg mycard"
-												>
-													<div
-														class="col"
-													>
-														<div
-															class="d-flex align-items-center justify-content-center rounded-4 p-3 h-100"
-														>
-															<i
-																class="fab fa-css3-alt logoHTML"
-																title="CSS"
-															></i>
-														</div>
-													</div>
-													<h6
-														class="card-title text-center"
-													>
-														CSS 3
-													</h6>
+													CSS
 												</div>
 											</div>
-											<!--  -->
-											<div
-												class="border-secondary mb-3"
-											>
+											<div class="col">
 												<div
-													class="card-header text-center"
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
 												>
 													JavaScript
 												</div>
-												<div
-													class="card-body text-secondary shadow-lg mycard"
-												>
-													<div
-														class="col"
-													>
-														<div
-															class="d-flex align-items-center justify-content-center rounded-4 p-3 h-100"
-														>
-															<img
-																src="/pix/logos/js.svg"
-																alt="JavaScript"
-																class="logoJS"
-															/>
-														</div>
-													</div>
-													<h6
-														class="card-title text-center"
-													>
-														ECMAScript
-														15
-													</h6>
-												</div>
 											</div>
-											<!--  -->
-
-											<!--  -->
-
-											<!--  -->
+										</div>
+										<div
+											class="row row-cols-1 row-cols-md-3"
+										>
 											<div
-												class="border-secondary mb-3"
+												class="col mb-4 mb-md-0"
 											>
 												<div
-													class="card-header text-center"
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
 												>
 													MongoDB
 												</div>
-												<div
-													class="card-body text-secondary shadow-lg mycard"
-												>
-													<div
-														class="col"
-													>
-														<div
-															class="d-flex align-items-center justify-content-center rounded-4 p-3 h-100"
-														>
-															<img
-																src="/pix/logos/mongo.svg"
-																alt="MongoDB"
-																class="logoMONGO"
-															/>
-														</div>
-													</div>
-													<h6
-														class="card-title text-center"
-													>
-														Version 8
-													</h6>
-												</div>
 											</div>
-											<!--  -->
 											<div
-												class="border-secondary mb-3"
+												class="col mb-4 mb-md-0"
 											>
 												<div
-													class="card-header text-center"
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
 												>
-													Express JS
-												</div>
-												<div
-													class="card-body text-secondary shadow-lg mycard"
-												>
-													<div
-														class="col"
-													>
-														<div
-															class="d-flex align-items-center justify-content-center rounded-4 p-3 h-100"
-														>
-															<img
-																src="/pix/logos/express02.png"
-																alt="ExpressJS"
-																class="logoEXPRESS"
-															/>
-														</div>
-													</div>
-													<h6
-														class="card-title text-center"
-													>
-														.
-													</h6>
+													Express
 												</div>
 											</div>
-											<!--  -->
-											<div
-												class="border-secondary mb-3"
-											>
+											<div class="col">
 												<div
-													class="card-header text-center"
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
 												>
-													Node JS
-												</div>
-												<div
-													class="card-body text-secondary shadow-lg mycard"
-												>
-													<div
-														class="col"
-													>
-														<div
-															class="d-flex align-items-center justify-content-center rounded-4 p-3 h-100"
-														>
-															<img
-																src="/pix/logos/nodejs03.svg"
-																alt="NodeJS"
-																class="logoNODE"
-															/>
-														</div>
-													</div>
-													<h6
-														class="card-title text-center"
-													>
-														Version 20
-													</h6>
+													Node.js
 												</div>
 											</div>
-											<!--  -->
+										</div>
+										<div
+											class="row row-cols-1 row-cols-md-3 mt-4"
+										>
 											<div
-												class="border-secondary mb-3"
+												class="col mb-4 mb-md-0"
 											>
 												<div
-													class="card-header text-center"
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
 												>
 													Git
 												</div>
-												<div
-													class="card-body text-secondary shadow-lg mycard"
-												>
-													<div
-														class="col"
-													>
-														<div
-															class="d-flex align-items-center justify-content-center rounded-4 p-3 h-100"
-														>
-															<img
-																src="/pix/logos/git.svg"
-																alt="logo GIT"
-																class="logoJS"
-															/>
-														</div>
-													</div>
-													<h6
-														class="card-title text-center"
-													>
-														Git GitLab
-														Github
-													</h6>
-												</div>
 											</div>
-											<!--  -->
-
-											<!--  -->
-											<!--  -->
 											<div
-												class="border-secondary mb-3"
+												class="col mb-4 mb-md-0"
 											>
 												<div
-													class="card-header text-center"
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
 												>
-													BootStrap
-												</div>
-												<div
-													class="card-body text-secondary shadow-lg mycard"
-												>
-													<div
-														class="col"
-													>
-														<div
-															class="d-flex align-items-center justify-content-center rounded-4 p-3 h-100"
-														>
-															<i
-																class="fab fa-bootstrap logoHTML"
-																title="Bootstrap 5"
-															></i>
-														</div>
-													</div>
-													<h6
-														class="card-title text-center"
-													>
-														Version 5
-													</h6>
+													Bootstrap 5
 												</div>
 											</div>
-											<!--  -->
-											<!--  -->
+											<div class="col">
+												<div
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+												>
+													Ajax
+												</div>
+											</div>
+											<div class="col mt-4">
+												<div
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+												>
+													API
+												</div>
+											</div>
+											<div class="col mt-4">
+												<div
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+												>
+													Jest
+												</div>
+											</div>
 										</div>
-
-										<!--  -->
-
-										<!-- HTML list-->
-
-										<!-- JS -->
-
-										<!--  -->
-
-										<!--  -->
 									</div>
-
 									<!-- Languages list-->
 									<div class="mb-0 mt-5">
 										<div
@@ -764,154 +583,40 @@
 												>
 											</h3>
 										</div>
-										<!--  -->
-
 										<div
-											class="row row-cols-md-3 mb-4"
+											class="row row-cols-1 row-cols-md-3 mb-4"
 										>
 											<div
-												class="border-secondary mb-3"
+												class="col mb-4 mb-md-0"
 											>
 												<div
-													class="card-header text-center"
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
 												>
 													Vue JS
 												</div>
-												<div
-													class="card-body text-secondary shadow-lg mycard"
-												>
-													<div
-														class="col"
-													>
-														<div
-															class="d-flex align-items-center justify-content-center rounded-4 p-3 h-100"
-														>
-															<img
-																src="/pix/logos/vue.svg"
-																alt="VueJS"
-																class="logoVUE"
-																title="VueJS 3I"
-															/>
-														</div>
-													</div>
-													<h6
-														class="card-title text-center"
-													>
-														Version
-														3.3
-													</h6>
-												</div>
 											</div>
-											<!--  -->
-
 											<div
-												class="border-secondary mb-3"
+												class="col mb-4 mb-md-0"
 											>
 												<div
-													class="card-header text-center"
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
 												>
 													React JS
 												</div>
-												<div
-													class="card-body text-secondary shadow-lg mycard"
-												>
-													<div
-														class="col"
-													>
-														<div
-															class="d-flex align-items-center justify-content-center rounded-4 p-3 h-100"
-														>
-															<img
-																src="/pix/logos/react.svg"
-																alt="React"
-																class="logoREACT"
-																title="React"
-															/>
-														</div>
-													</div>
-													<h6
-														class="card-title text-center"
-													>
-														React 19
-													</h6>
-												</div>
 											</div>
-											<!--  -->
-
 											<div
-												class="border-secondary mb-3"
+												class="col mb-4 mb-md-0"
 											>
 												<div
-													class="card-header text-center"
-												>
-													NexT JS
-												</div>
-												<div
-													class="card-body text-secondary shadow-lg mycard"
-												>
-													<div
-														class="col"
-													>
-														<div
-															class="d-flex align-items-center justify-content-center rounded-4 p-3 h-100"
-														>
-															<img
-																src="/pix/logos/next01.svg"
-																alt="NextJS"
-																class="logoNEXT"
-																loading="lazy"
-																title="Next JS Framework React"
-															/>
-														</div>
-													</div>
-													<h6
-														class="card-title text-center"
-													>
-														version 15
-													</h6>
-												</div>
-											</div>
-											<!--  -->
-											<div
-												class="border-5 mb-3"
-											>
-												<div
-													class="card-header text-center"
+													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
 												>
 													Angular
 												</div>
-												<div
-													class="card-body text-secondary shadow-lg mycard"
-												>
-													<div
-														class="col"
-													>
-														<div
-															class="d-flex align-items-center justify-content-center rounded-4 p-3 h-100"
-														>
-															<img
-																src="/pix/logos/angular.svg"
-																alt="NextJS"
-																class="logoANGULAR"
-																loading="lazy"
-																title="Next JS Framework React"
-															/>
-														</div>
-													</div>
-													<h6
-														class="card-title text-center"
-													>
-														version 19
-													</h6>
-												</div>
 											</div>
 										</div>
-
-										<!--  -->
-
-										<!--  -->
-
-										<!--  -->
+										<div
+											class="row row-cols-1 row-cols-md-3"
+										></div>
 									</div>
 									<div class="mb-0 mt-5">
 										<div
@@ -1009,145 +714,11 @@ export default {
 </script>
 
 <style scoped>
-.tekno {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-	padding: 0.5rem;
-	margin: 0;
-	color: #fff;
-}
-
-.grid-container {
-	display: grid;
-	grid-template-rows: 1fr 1fr;
-	height: 100%; /* Assurez-vous que le conteneur a une hauteur définie */
-}
-
-.tekno {
-	width: 100%; /* Occupe toute la largeur */
-	text-align: center; /* Centre le texte horizontalement */
-	/* Optionnel : si vous voulez que le texte occupe toute la hauteur de sa cellule */
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-.grid-container {
-	display: grid;
-	grid-template-rows: 15% 1fr;
-	align-items: center;
-	justify-content: center;
-	background-color: #f8f9fa; /* équivalent à bg-light de Bootstrap */
-	border-radius: 0.5rem; /* équivalent à rounded-4 de Bootstrap */
-	padding: 1rem;
-	height: 100%; /* assurez-vous que le conteneur parent a une hauteur définie */
-}
-
 .logoHTML {
-	justify-self: center; /* Centre l'icône horizontalement dans sa cellule */
-	align-self: center; /* Centre l'icône verticalement dans sa cellule */
+	justify-content: center;
 	font-size: 2rem;
 	text-align: center;
 	color: #0066ff;
-}
-
-.nodejs-icon {
-	color: #fff; /* Couleur verte officielle de Node.js */
-	font-size: 2.5rem; /* Ajustez selon vos besoins */
-	background-color: #2f832f;
-	border-radius: 5px;
-	padding: 1px 2.8px;
-}
-
-.js-icon {
-	font-size: 2rem;
-	color: #f7df1e;
-	background-color: #000;
-	padding: 1px 2.8px;
-	border-radius: 5px;
-}
-
-.logoAVIF {
-	width: 100px;
-	/* height: 100px; */
-	justify-content: center;
-}
-.logoNEXT {
-	width: 50px;
-	/* height: 100px; */
-	justify-content: center;
-	background-color: #61dafb;
-	border-radius: 100%;
-	padding: 3px;
-}
-.logoAJAX {
-	width: 50px;
-	/* height: 100px; */
-	justify-content: center;
-	background-color: #ffffff;
-	border-radius: 20%;
-	padding: 3px;
-}
-.logoJEST {
-	width: 50px;
-	/* height: 100px; */
-	background-color: #ffffff;
-	border-radius: 15%;
-	padding: 5px;
-}
-.logoAPI {
-	width: 55px;
-	/* height: 100px; */
-	background-color: #ffffff;
-
-	border-radius: 15%;
-	padding: 0px;
-}
-
-.logoJS {
-	width: 30px;
-	/* height: 100px; */
-	padding: 0px;
-}
-.logoVUE {
-	width: 50px;
-	/* height: 100px; */
-	padding: 0px;
-}
-.logoREACT {
-	width: 45px;
-	/* height: 100px; */
-	padding: 0px;
-}
-.logoANGULAR {
-	width: 50px;
-	/* height: 100px; */
-	padding: 0px;
-}
-
-.logoNODE {
-	width: 50px;
-	/* height: 100px; */
-	background-color: #ffffffcd;
-	border-radius: 10%;
-
-	padding: 5px;
-}
-.logoEXPRESS {
-	width: 100px;
-	/* height: 100px; */
-	background-color: #000000;
-	padding: 5spx;
-	border-radius: 5px;
-}
-.logoMONGO {
-	width: 50px;
-	/* height: 100px; */
-	background-color: #ffffffcd;
-	padding: 5px;
-	border-radius: 50%;
 }
 
 .btn-gradient {
@@ -1160,25 +731,5 @@ export default {
 .btn-gradient:hover {
 	background-image: linear-gradient(to right, #2575fc, #6a11cb);
 }
-
-/* img {
-	width: 10px;
-	aspect-ratio: 1/1;
-	object-fit: cover;
-} */
-
-svg {
-	width: 20%; /* Largeur relative au conteneur */
-	aspect-ratio: 1/ 1; /* Rapport largeur/hauteur basé sur le viewBox */
-}
-
-.mycard {
-	height: 120px;
-	border-radius: 0 0 10px 10px;
-}
-
-h6 {
-	color: #000;
-	font-size: 0.8rem;
-}
+/* Votre style ici */
 </style>
