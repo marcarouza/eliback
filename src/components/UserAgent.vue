@@ -103,13 +103,14 @@
 			<thead>
 				<tr>
 					<th colspan="3">
-						Position du pointeur en pixels (ne fonctionne pas
-						sur tablette et mobile car le pointeur est
-						différent)
+						Position du pointeur en pixels
 						<br />
 						<span class="info">
-							(déplacer le pointeur lentement pour plus de
-							fiabilité)</span
+							Cela ne fonctionne pas sur tablette et mobile
+							car le pointeur est différent.
+							<br />
+							Veuiller déplacer le pointeur lentement pour
+							plus de fiabilité.</span
 						>
 					</th>
 				</tr>
