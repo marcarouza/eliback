@@ -33,31 +33,30 @@ export default {
 			pageTitle: '▶︎ Eli Azoura | Développeur Full Stack',
 			isLoggedIn: false,
 			chatBoxKey: 0,
-			localUser: null,
+			localUserSession: null,
 			pseudo: '',
 			welcomeMsg: '',
 		};
 	},
 	mounted() {
-		this.checkLocalUser();
+		this.checkLocalUserSession();
 		console.log('🐱-🐱-🐱 this.chatBoxKey:', this.chatBoxKey);
 	},
 	methods: {
-		checkLocalUser() {
-			const userFromSession = sessionStorage.getItem('localUser');
-			const userFromStorage = localStorage.getItem('localUser');
+		checkLocalUserSession() {
+			const userFromSession =
+				sessionStorage.getItem('localUserSession');
+			// const userFromStorage = localStorage.getItem('localUserSession');
 
-			if (userFromSession || userFromStorage) {
-				const userData = JSON.parse(
-					userFromSession || userFromStorage
-				);
-				this.localUser = userData;
+			if (userFromSession) {
+				const userData = JSON.parse(userFromSession);
+				this.localUserSession = userData;
 				this.pseudo = userData.user;
 				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
 				this.isLoggedIn = true;
 				// this.chatBoxKey += 1;
 				console.log(
-					'🚀 ~ checkLocalUser ~ this.chatBoxKey:',
+					'🚀 ~ checkLocalUserSession() ~ this.chatBoxKey:',
 					this.chatBoxKey
 				);
 				this.setupSocketListeners();
