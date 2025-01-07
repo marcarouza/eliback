@@ -83,7 +83,6 @@
 
 <script>
 import Cookies from 'js-cookie';
-
 import {jwtDecode} from 'jwt-decode'; // Utilisez jwt-decode pour décoder le JWT
 
 export default {
@@ -103,13 +102,9 @@ export default {
 		};
 	},
 	mounted() {
-		// this.decodeUSERfromTOKEN();
 		this.getLocalUser();
 		this.getAllDocCookiess();
 	},
-	// created() {
-	// 	this.getAllDocCookiess();
-	// },
 	methods: {
 		async fetchToLog() {
 			try {
@@ -124,11 +119,11 @@ export default {
 						credentials: 'include', // Pour inclure les cookies dans la requête
 					}
 				);
+
 				console.log(
 					'🚀 ~ fetchToLog ~ this.formData:',
 					this.formData
 				);
-
 				console.log('🚀 ~ fetchToLog RESPONSE : ', response);
 				console.log('🚀 ~ fetchToLog RESPONSE OK : ', response.ok);
 
@@ -143,15 +138,10 @@ export default {
 
 					// Afficher l'objet oneUser après l'avoir peuplé
 					console.log(
-						'✅  FROMM https://eli-back.onrender.com/logUser =+>this.oneUser  :',
+						'✅  FROM https://eli-back.onrender.com/logUser => this.oneUser :',
 						this.oneUser
 					);
 
-					// Stocker l'utilisateur
-					localStorage.setItem(
-						'localUser',
-						JSON.stringify(this.oneUser)
-					);
 					sessionStorage.setItem(
 						'localUser',
 						JSON.stringify(this.oneUser)
@@ -170,12 +160,11 @@ export default {
 						errorData
 					);
 					this.specError = errorData.message;
-					// alert(errorData.message);
 					alert('⚠️ Email ou mot de passe incorrect');
 				}
 			} catch (err) {
 				console.error(
-					'🍌 FROM LogUserForm => ERR de TRY GLOBAL du SUBMIT du formulaire',
+					'FROM VUE  => ERR de TRY GLOBAL du SUBMIT du formulaire',
 					err
 				);
 			}
@@ -185,22 +174,28 @@ export default {
 		async navigateTO(dest) {
 			try {
 				await this.$router.push({name: dest});
-				console.log('Navigation terminée');
-				// Code à exécuter après la navigation
+				console.log('Routage OK vers ACCUEIL');
 			} catch (error) {
 				if (error.name !== 'NavigationDuplicated') {
-					console.error('Erreur de navigation:', error);
+					console.error(
+						'FROM VUE -> Erreur de retour vers ACCUEIL : ',
+						error
+					);
 				}
 			}
 		},
-		//
-		//
+
 		getAllDocCookiess() {
 			const allCookies = document.cookie;
-			console.log('🚀 ~ mounted ~ allCookies:', allCookies);
+			if (allCookies) {
+				const cookiesArray = allCookies.split('; ');
+				console.log(
+					'🚀 ~ getAllDocCookiess ~ cookiesArray:',
+					cookiesArray
+				);
+				console.log('🚀 ~ mounted ~ allCookies:', allCookies);
+			}
 		},
-
-		//
 
 		decodeUSERfromTOKEN() {
 			const token = Cookies.get('jwt');
@@ -212,7 +207,6 @@ export default {
 						'ℹ️ 👁️ FROM LogUser decodeUSERfromTOKEN => DECODED TOKEN :',
 						decoded
 					);
-					// Vérifiez si les champs existent dans le JWT décodé
 					this.id = decoded.id || null;
 					this.email = decoded.email || null;
 					this.pseudo = decoded.user || null;
@@ -230,12 +224,10 @@ export default {
 				}
 			} else {
 				console.log(
-					'🍌 FROM LogUser decodeUSERfromTOKEN => => No JWT token found'
+					'🍌 FROM LogUser decodeUSERfromTOKEN => No JWT token found'
 				);
 			}
 		},
-
-		//
 
 		getLocalUser() {
 			this.localUser =

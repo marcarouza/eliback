@@ -4,15 +4,14 @@
 
 		<ContactForm />
 		<TabWhats />
-
 	</div>
 </template>
 
 <script>
-import NavOk from '../components/NavOk.vue';
-import ContactForm from '../components/ContactForm.vue';
+import NavOk from '@/components/NavOk.vue';
+import ContactForm from '@/components/ContactForm.vue';
 
-import TabWhats from '../components/TabWhats.vue';
+import TabWhats from '@/components/TabWhats.vue';
 
 export default {
 	name: 'ContactFormPage',

@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import NavOk from '../components/NavOk';
-import Cv from '../components/Cv.vue';
-import TabWhats from '../components/TabWhats.vue';
+import NavOk from '@/components/NavOk.vue';
+import Cv from '@/components/Cv.vue';
+import TabWhats from '@/components/TabWhats.vue';
 
 export default {
 	name: 'CvPage',

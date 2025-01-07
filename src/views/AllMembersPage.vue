@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import NavOk from '../components/NavOk.vue';
+import NavOk from '@/components/NavOk.vue';
 
-import AllMembers from '../components/AllMembers.vue';
-import TabWhats from '../components/TabWhats.vue';
+import AllMembers from '@/components/AllMembers.vue';
+import TabWhats from '@/components/TabWhats.vue';
 
 export default {
 	name: 'AllMembersPage',

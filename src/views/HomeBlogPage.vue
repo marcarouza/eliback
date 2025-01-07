@@ -4,16 +4,15 @@
 		<NavBlog />
 		<BlogCore />
 		<TabWhats />
-
 	</div>
 </template>
 
 <script>
-import NavOk from '../components/NavOk.vue';
-import NavBlog from '../components/blogCompo/NavBlog.vue';
-import BlogCore from '../components/blogCompo/BlogCore.vue';
+import NavOk from '@/components/NavOk.vue';
+import NavBlog from '@/components/blogCompo/NavBlog.vue';
+import BlogCore from '@/components/blogCompo/BlogCore.vue';
 
-import TabWhats from '../components/TabWhats.vue';
+import TabWhats from '@/components/TabWhats.vue';
 
 export default {
 	name: 'HomeBlogPage',

@@ -12,7 +12,7 @@
 
 <script>
 import VueCookies from 'vue-cookies';
-import NavOk from '../components/NavOk.vue';
+import NavOk from '@/components/NavOk.vue';
 
 export default {
 	name: 'CookiesPage',

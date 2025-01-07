@@ -38,7 +38,7 @@ import VueCookies from 'vue-cookies';
 
 import {jwtDecode} from 'jwt-decode';
 
-import NavOk from '../components/NavOk';
+import NavOk from '@/components/NavOk.vue';
 
 export default {
 	name: 'ApiPage',

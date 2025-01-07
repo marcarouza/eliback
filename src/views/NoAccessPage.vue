@@ -12,10 +12,10 @@
 </template>
 
 <script>
-import NavOk from '../components/NavOk.vue';
+import NavOk from '@/components/NavOk.vue';
 
-import NoAccess from '../components/NoAccess.vue';
-import TabWhats from '../components/TabWhats.vue';
+import NoAccess from '@/components/NoAccess.vue';
+import TabWhats from '@/components/TabWhats.vue';
 
 export default {
 	name: 'NoAccessPage',

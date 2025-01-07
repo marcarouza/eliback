@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import ConfirmLoggedIn from '../components/ConfirmLoggedIn.vue';
-import NavOk from '../components/NavOk.vue';
+import ConfirmLoggedIn from '@/components/ConfirmLoggedIn.vue';
+import NavOk from '@/components/NavOk.vue';
 
 export default {
 	name: 'ConfirmLoggedInPage',

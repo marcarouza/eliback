@@ -1,7 +1,11 @@
 <template>
 	<div id="chatPopin" class="chat-popin chat-container hide-inactive">
 		<div class="chat-header">
-			<span>Chat avec vos amis…</span>
+			<span>Chat en direct</span>
+			<span class="membersonline"
+				>3&nbsp;<i class="fas fa-user"></i
+				>&nbsp;&nbsp;présents</span
+			>
 			<button
 				@click="displayChat"
 				id="closeChatBtn"
@@ -64,6 +68,7 @@ export default {
 
 	data() {
 		return {
+			membersonline: 0,
 			isLoggedIn: false,
 			localUser: null,
 			pseudo: '',
@@ -82,14 +87,13 @@ export default {
 	mounted() {
 		this.hideChat();
 		this.checkLocalUser();
-
-		// this.initSocket();
 	},
 
 	beforeUnmount() {
 		this.disconnectUser();
 		socket.off('connect');
 	},
+
 	methods: {
 		checkLocalUser() {
 			const userFromSession = sessionStorage.getItem('localUser');
@@ -101,41 +105,23 @@ export default {
 					this.isLoggedIn
 				);
 				this.pseudo = this.localUser.user;
-				this.welcomeMsg = `👋 ${this.pseudo}, vous êtes en ligne ! Naviguer sur le site n'affectera pas votre fil de discussion ... contrairement au raffraichissemnt volontaire de la page !`;
+				this.welcomeMsg = `👋 ${this.pseudo}, vous êtes en ligne ! Naviguer sur le site n'affectera pas votre fil de discussion ... contrairement au raffraichissement volontaire de la page !`;
 
 				this.initSocket(this.pseudo);
-
 				this.displayChat();
 			} else {
-				const userFromStorage = localStorage.getItem('localUser');
-				if (userFromStorage) {
-					this.localUser = JSON.parse(userFromStorage);
-					this.isLoggedIn = true;
-					console.log(
-						'🚀 ~ checkLocalUser ~ this.isLoggedIn:',
-						this.isLoggedIn
-					);
-
-					this.pseudo = this.localUser.user;
-					this.welcomeMsg = `👋 ${this.pseudo}, vous êtes en ligne ! Naviguer sur le site n'affectera pas votre fil de discussion ... contrairement au raffraichissemnt volontaire de la page !`;
-
-					this.initSocket(this.pseudo);
-					this.displayChat();
-				} else {
-					this.welcomeMsg =
-						'Pour utiliser la messagerie, vous devez être connecté(e) !';
-					this.isLoggedIn = false;
-					console.log(
-						'🚀 ~ checkLocalUser ~ this.isLoggedIn:',
-						this.isLoggedIn
-					);
-
-					this.hideChat();
-				}
+				this.welcomeMsg =
+					'Pour utiliser la messagerie, vous devez être connecté(e) !';
+				this.isLoggedIn = false;
+				console.log(
+					'🚀 ~ checkLocalUser ~ this.isLoggedIn:',
+					this.isLoggedIn
+				);
+				this.hideChat();
 			}
+
 			this.serverMsg(this.welcomeMsg);
 		},
-		//
 
 		setServerPseudo() {
 			socket.pseudo = this.pseudo;
@@ -143,6 +129,7 @@ export default {
 				pseudo: this.pseudo,
 			});
 		},
+
 		initSocket() {
 			this.setServerPseudo();
 			if (this.isLoggedIn) {
@@ -168,23 +155,27 @@ export default {
 							this.shortID
 						);
 						socket.shortID = this.shortID;
-
 						socket.pseudo = this.pseudo;
-
 						console.log(
 							`📬 📬 📬 FROM initSocket => ${this.shortID} = ${this.pseudo} est CONNECTÉ !`
 						);
 					}
 				});
-				//
-				// Gestion des deconnexions INVOLONTAIRES
+
 				socket.on('disconnect', (reason) => {
 					console.log('🚀 ~ socket.on ~ reason:', reason);
 					this.isConnected = false;
-					this.createBubble(
+
+					/**
+					 * 
+					 * 					this.createBubble(
 						'⏱️ Veuillez patienter svp … (tentative de réconnexion)',
 						'bubServer'
 					);
+ 
+					 * 
+					 * 
+					 */
 
 					socket.on('reconnect', (attemptNumber) => {
 						console.log(
@@ -194,12 +185,10 @@ export default {
 						);
 					});
 					if (reason === 'io server disconnect') {
-						// La déconnexion est initiée par le serveur, reconnexion manuelle nécessaire
 						socket.connect();
 					}
 				});
 
-				// Gestion de la reconnexion réussie
 				socket.on('reconnect', (attemptNumber) => {
 					console.log(
 						'Reconnecté au serveur après',
@@ -242,8 +231,6 @@ export default {
 			}
 
 			const myServerDiv = document.createElement('div');
-			console.log('🚀 ~ serverMsg ~ myDiv:', myServerDiv);
-
 			myServerDiv.classList.add('bubServer');
 
 			const span = document.createElement('span');
@@ -253,10 +240,7 @@ export default {
 			allMess.appendChild(myServerDiv);
 		},
 
-		sendMess(message) {
-			console.log('  ~ ~ ~ ~ ~ ~ ~ ~ ~ ~  message:', message);
-			const allMess = document.getElementById('allMess');
-
+		sendMess() {
 			const messInput = document.getElementById('messInput');
 
 			if (!messInput) {
@@ -265,26 +249,9 @@ export default {
 			}
 
 			const messTxt = messInput.value.trim();
-			console.log('🚀 ~ messTxt:', messTxt);
-
 			if (messTxt) {
 				socket.emit('message', `${this.pseudo} : ${messTxt}`);
-
-				//
 				this.createBubble(`Vous : ${messTxt}`, 'bub1');
-				//
-
-				// const myMessDiv = document.createElement('div');
-				// console.log('🚀 ~ createBubble ~ myDiv:', myMessDiv);
-
-				// myMessDiv.classList.add('bub1');
-
-				// const span = document.createElement('span');
-				// span.textContent = this.pseudo + ' : ' + messTxt;
-				// myMessDiv.appendChild(span);
-
-				// allMess.appendChild(myMessDiv);
-
 				messInput.value = '';
 				messInput.focus();
 			}
@@ -292,23 +259,21 @@ export default {
 
 		displayChat() {
 			const chatPopin = document.getElementById('chatPopin');
-
 			if (!chatPopin) {
 				console.error('Element with ID "chatPopin" not found.');
 				return;
 			}
-
 			chatPopin.classList.toggle('hide-inactive');
 		},
 
 		hideChat() {
 			const chatPopin = document.getElementById('chatPopin');
-			chatPopin.classList.add('hide-inactive');
+			if (chatPopin) {
+				chatPopin.classList.add('hide-inactive');
+			}
 		},
 
 		createBubble(message, style) {
-			console.log('🚀 ~ createBubble ~ data:', message);
-
 			const allMess = document.getElementById('allMess');
 
 			if (!allMess) {
@@ -318,20 +283,17 @@ export default {
 
 			const myDiv = document.createElement('div');
 			myDiv.classList.add(style);
+
 			const span = document.createElement('span');
-			//
 			span.textContent = message;
 			myDiv.appendChild(span);
 
-			// Append div to allMess
 			allMess.appendChild(myDiv);
-
-			// Append span to div
 		},
 
 		disconnectUser() {
 			socket.emit('userLeft', {
-				ID: shortID,
+				ID: this.shortID,
 				pseudo: this.pseudo,
 			});
 		},
@@ -340,12 +302,18 @@ export default {
 </script>
 
 <style>
+.membersonline {
+	font-size: 0.7rem;
+	color: #fff200cf;
+	text-shadow: -3px 2px 5px rgba(0, 13, 51, 0.6);
+}
+
 .chat_bubble {
 	font-size: 2rem;
 	color: #004fa4;
 	font-size: 1rem;
 	color: #ffffff;
-	text-shadow: -3px 2px 5px rgba(0, 13, 51, 0.6);
+	text-shadow: 0px 2px 5px rgba(0, 13, 51, 0.6);
 }
 
 .whatsapp-icon {

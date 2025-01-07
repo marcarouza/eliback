@@ -78,13 +78,12 @@
 					</tbody>
 					<tfoot>
 						<tr>
-							<td
+							<!-- <td
 								class="table-active text-right"
 								colspan="3"
 							>
-								Informations à titre informatif
-								récoltées de façon anonyme
-							</td>
+								Ces informations obtenues de façon anonyme (sans créer de compte)
+							</td> -->
 						</tr>
 					</tfoot>
 				</table>
@@ -154,8 +153,8 @@
 			<tfoot>
 				<tr>
 					<td class="table-active text-center" colspan="3">
-						Informations à titre informatif récoltées de façon
-						anonyme
+						Ces informations sont données à tritre indicatif
+						et de façon anonyme
 					</td>
 				</tr>
 			</tfoot>

@@ -7,16 +7,15 @@
 		<WriteOnePost />
 
 		<TabWhats />
-
 	</div>
 </template>
 
 <script>
-import NavOk from '../components/NavOk.vue';
-import NavBlog from '../components/blogCompo/NavBlog.vue';
-import WriteOnePost from '../components/blogCompo/WriteOnePost.vue';
+import NavOk from '@/components/NavOk.vue';
+import NavBlog from '@/components/blogCompo/NavBlog.vue';
+import WriteOnePost from '@/components/blogCompo/WriteOnePost.vue';
 
-import TabWhats from '../components/TabWhats.vue';
+import TabWhats from '@/components/TabWhats.vue';
 
 export default {
 	name: 'WritePostPage',

@@ -34,7 +34,6 @@
 
 <script>
 import {ref} from 'vue';
-import Notif from './Notif';
 
 export default {
 	name: 'Footer',

@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import NavOk from '../components/NavOk.vue';
-import PassModify from '../components/PassModify';
-import TabWhats from '../components/TabWhats.vue';
+import NavOk from '@/components/NavOk.vue';
+import PassModify from '@/components/PassModify.vue';
+import TabWhats from '@/components/TabWhats.vue';
 
 export default {
 	name: 'PassModifyPage',

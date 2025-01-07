@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import NavOk from '../components/NavOk.vue';
-import NavBlog from '../components/blogCompo/NavBlog.vue';
-import PostDetail from '../components/blogCompo/PostDetail';
+import NavOk from '@/components/NavOk.vue';
+import NavBlog from '@/components/blogCompo/NavBlog.vue';
+import PostDetail from '@/components/blogCompo/PostDetail.vue';
 
-import TabWhats from '../components/TabWhats.vue';
+import TabWhats from '@/components/TabWhats.vue';
 
 export default {
 	name: 'HomeBlogPage',

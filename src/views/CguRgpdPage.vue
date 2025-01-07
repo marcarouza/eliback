@@ -524,7 +524,7 @@
 </template>
 
 <script>
-import NavOk from '../components/NavOk.vue';
+import NavOk from '@/components/NavOk.vue';
 export default {
 	name: 'RgpdPage',
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
