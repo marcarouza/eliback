@@ -96,13 +96,13 @@ export default {
 			passwordVisible: false,
 			specError: null,
 			oneUser: null,
-			localUser: null,
+			localUserSession: null,
 			one2User: null,
 			isLoggedIn: false,
 		};
 	},
 	mounted() {
-		this.getLocalUser();
+		this.getLocalUserSession();
 		this.getAllDocCookiess();
 	},
 	methods: {
@@ -143,7 +143,7 @@ export default {
 					);
 
 					sessionStorage.setItem(
-						'localUser',
+						'localUserSession',
 						JSON.stringify(this.oneUser)
 					);
 					this.isLoggedIn = true;
@@ -229,12 +229,13 @@ export default {
 			}
 		},
 
-		getLocalUser() {
-			this.localUser =
-				JSON.parse(localStorage.getItem('localUser')) || null;
+		getLocalUserSession() {
+			this.localUserSession =
+				JSON.parse(sessionStorage.getItem('localUserSession')) ||
+				null;
 			console.log(
-				' ℹ️   ✅   ℹ️ FROM UserStatus ==> this.localUser :',
-				this.localUser
+				' ℹ️   ✅   ℹ️ FROM UserStatus ==> this.localUserSession :',
+				this.localUserSession
 			);
 		},
 
