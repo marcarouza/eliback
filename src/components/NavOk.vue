@@ -166,7 +166,7 @@ export default {
 		return {
 			isLoggedIn: false,
 			user: '',
-			localUser: null,
+			localUserSession: null,
 			userID: '',
 		};
 	},
@@ -241,8 +241,8 @@ export default {
 				// Réinitialisation de l'état de l'application
 				this.isLoggedIn = false;
 				this.user = null;
-				localStorage.removeItem('localUser');
-				sessionStorage.removeItem('localUser');
+				localStorage.removeItem('localUserSession');
+				sessionStorage.removeItem('localUserSession');
 
 				console.log('🚀 ~ DECONNEXION REUSSIE !!! ');
 				// Rechargement forcé
@@ -288,27 +288,27 @@ export default {
 		},
 		checkLocaluser() {
 			try {
-				const localUserData = localStorage.getItem('localUser');
-				this.localUser = localUserData
+				const localUserData = localStorage.getItem('localUserSession');
+				this.localUserSession = localUserData
 					? JSON.parse(localUserData)
 					: null;
-				if (this.localUser) {
-					this.userID = this.localUser._id;
+				if (this.localUserSession) {
+					this.userID = this.localUserSession._id;
 					console.log(
 						'🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀  ~ checkLocaluser ~ this.userID:',
 						this.userID
 					);
 				}
 				console.log(
-					'✅ ℹ️  FROM checkLocaluser in NavOk ==> this.localUser :',
-					this.localUser
+					'✅ ℹ️  FROM checkLocaluser in NavOk ==> this.localUserSession :',
+					this.localUserSession
 				);
 			} catch (error) {
 				console.error(
-					'Erreur lors de la récupération ou du parsing de localUser:',
+					'Erreur lors de la récupération ou du parsing de localUserSession:',
 					error
 				);
-				this.localUser = null; // Assurez-vous que localUser est null en cas d'erreur
+				this.localUserSession = null; // Assurez-vous que localUserSession est null en cas d'erreur
 			}
 		},
 

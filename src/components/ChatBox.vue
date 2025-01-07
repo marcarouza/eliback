@@ -70,7 +70,7 @@ export default {
 		return {
 			membersonline: 0,
 			isLoggedIn: false,
-			localUser: null,
+			localUserSession: null,
 			pseudo: '',
 			welcomeMsg:
 				'Pour utiliser la messagerie, vous devez être connecté(e) !',
@@ -96,15 +96,16 @@ export default {
 
 	methods: {
 		checkLocalUser() {
-			const userFromSession = sessionStorage.getItem('localUser');
+			const userFromSession =
+				sessionStorage.getItem('localUserSession');
 			if (userFromSession) {
-				this.localUser = JSON.parse(userFromSession);
+				this.localUserSession = JSON.parse(userFromSession);
 				this.isLoggedIn = true;
 				console.log(
 					'🚀 ~ checkLocalUser ~ this.isLoggedIn:',
 					this.isLoggedIn
 				);
-				this.pseudo = this.localUser.user;
+				this.pseudo = this.localUserSession.user;
 				this.welcomeMsg = `👋 ${this.pseudo}, vous êtes en ligne ! Naviguer sur le site n'affectera pas votre fil de discussion ... contrairement au raffraichissement volontaire de la page !`;
 
 				this.initSocket(this.pseudo);

@@ -113,11 +113,11 @@ export default {
 			confirmPWDvisible: false,
 			errorMessage: '',
 			successMessage: '',
-			localUser: null,
+			localUserSession: null,
 		};
 	},
 	mounted() {
-		this.checkLocaluser();
+		this.checkLocaluserSession();
 	},
 	methods: {
 		async modifyPWD() {
@@ -133,8 +133,8 @@ export default {
 				this.currentPWD
 			);
 			console.log(
-				'🚨 ~ modifyPWD ~ this.localUser._id:',
-				this.localUser._id
+				'🚨 ~ modifyPWD ~ this.localUserSession._id:',
+				this.localUserSession._id
 			);
 
 			try {
@@ -147,7 +147,7 @@ export default {
 						},
 						credentials: 'include',
 						body: JSON.stringify({
-							userID: this.localUser._id,
+							userID: this.localUserSession._id,
 							currentPWD: this.currentPWD,
 							newPWD: this.newPWD,
 						}),
@@ -174,12 +174,13 @@ export default {
 				this.successMessage = '';
 			}
 		},
-		checkLocaluser() {
-			this.localUser =
-				JSON.parse(localStorage.getItem('localUser')) || null;
+		checkLocaluserSession() {
+			this.localUserSession =
+				JSON.parse(sessionStorage.getItem('localUserSession')) ||
+				null;
 			console.log(
-				' ℹ️  ✅ ✅  ℹ️ FROM checkLocaluser/modifyPWD ==> this.localUser :',
-				this.localUser
+				' ℹ️  ✅ ✅  ℹ️ FROM checkLocaluserSession/modifyPWD ==> this.localUserSession :',
+				this.localUserSession
 			);
 		},
 		toggleCurrentPWDVisibility() {

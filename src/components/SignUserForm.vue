@@ -114,7 +114,7 @@ export default {
 				user: '',
 			},
 			passwordVisible: false,
-			localUser: null,
+			localUserSession: null,
 			specError: null,
 		};
 	},
@@ -191,11 +191,12 @@ export default {
 		},
 
 		checkLocaluser() {
-			this.localUser =
-				JSON.parse(localStorage.getItem('localUser')) || null;
+			this.localUserSession =
+				JSON.parse(sessionStorage.getItem('localUserSession')) ||
+				null;
 			console.log(
-				'✅ ℹ️  FROM SignUserForm ==> this.localUser :',
-				this.localUser
+				'✅ ℹ️  FROM SignUserForm ==> this.localUserSession :',
+				this.localUserSession
 			);
 		},
 

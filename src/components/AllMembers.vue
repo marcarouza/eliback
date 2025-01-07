@@ -107,7 +107,7 @@ export default {
 			errorMessage: '',
 			Friend: '',
 			isLoggedIn: false,
-			localUser: null,
+			localUserSession: null,
 			BoX: null,
 			//
 			isVisible: false,
@@ -140,20 +140,22 @@ export default {
 		},
 
 		getLocalUser() {
-			this.localUser = JSON.parse(sessionStorage.getItem('localUser'));
+			this.localUserSession = JSON.parse(
+				sessionStorage.getItem('localUserSession')
+			);
 
-			if (this.localUser && this.localUser._id) {
+			if (this.localUserSession && this.localUserSession._id) {
 				console.log(
-					'🚀 ~ getLocalUser ~ localUser._id:',
-					this.localUser._id
+					'🚀 ~ getLocalUser ~ localUserSession._id:',
+					this.localUserSession._id
 				);
 				console.log(
-					'🚀 ~ getLocalUser ~ localUser:',
-					this.localUser
+					'🚀 ~ getLocalUser ~ localUserSession:',
+					this.localUserSession
 				);
-				this.user = this.localUser.user;
+				this.user = this.localUserSession.user;
 
-				this.fromID = this.localUser._id;
+				this.fromID = this.localUserSession._id;
 				//
 				this.isLoggedIn = true;
 				//
@@ -272,7 +274,7 @@ export default {
 							'Content-Type': 'application/json',
 						},
 						body: JSON.stringify({
-							fromEmail: this.localUser.email,
+							fromEmail: this.localUserSession.email,
 							toEmail: toEmail,
 							pseudo: this.formData.user,
 							subject: "Demande d'ami depuis eliazoura.fr",

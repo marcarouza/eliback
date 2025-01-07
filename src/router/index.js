@@ -154,33 +154,4 @@ const router = createRouter({
 	routes,
 });
 
-// Guard global pour gérer les accès en fonction de l'authentification
-// router.beforeEach((to, from, next) => {
-// 	const localUser = JSON.parse(localStorage.getItem('localUser')); // Vérifier si localUser existe dans localStorage
-// 	const requiresAuth = to.matched.some((record) => record.meta.requiresAuth); // Vérifier si la route nécessite une authentification
-
-// 	// Condition 1 : Si l'utilisateur est connecté et essaie d'accéder à la page de connexion
-
-// 	if (
-// 		localUser &&
-// 		(to.name === 'loguserpage' || to.path === '/loguserPage')
-// 	) {
-// 		console.log(
-// 			'🔄 Redirection vers userstatusPage car utilisateur déjà connecté'
-// 		);
-// 		return next({name: 'userstatusPage'}); // Redirige vers une page appropriée
-// 	}
-
-// 	// Condition 2 : Si la route nécessite une authentification et que l'utilisateur n'est pas connecté
-// 	if (requiresAuth && !localUser) {
-// 		console.log(
-// 			'🔄 Redirection vers noaccessPage car utilisateur non connecté'
-// 		);
-// 		return next({name: 'noaccesspage'}); // Redirige vers la page d'accès refusé
-// 	}
-
-// 	// Permettre la navigation pour toutes les autres situations
-// 	next();
-// });
-
 export default router;

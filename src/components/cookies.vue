@@ -48,27 +48,28 @@ export default {
 	data() {
 		return {
 			cookies: [],
-			localUser: null,
+			localUserSession: null,
 		};
 	},
 	mounted() {
-		this.checkLocaluser();
+		this.checkLocaluserSession();
 		this.readCookies();
 		this.getCookieAttribute();
 		this.getCookieByName();
 		this.isCookieSecure();
 	},
 	methods: {
-		checkLocaluser() {
-			this.localUser =
-				JSON.parse(localStorage.getItem('localUser')) || null;
+		checkLocaluserSession() {
+			this.localUserSession =
+				JSON.parse(sessionStorage.getItem('localUserSession')) ||
+				null;
 			console.log(
-				'✅ FROM NAVOK ==> this.localUser :',
-				this.localUser
+				'✅ FROM NAVOK ==> this.localUserSession :',
+				this.localUserSession
 			);
 		},
 		readCookies() {
-			if (localUser) {
+			if (localUserSession) {
 				const cookieList = document.cookie.split(';');
 				this.cookies = cookieList.map((cookie) => {
 					const [name, value] = cookie.trim().split('=');

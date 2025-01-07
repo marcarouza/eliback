@@ -292,7 +292,7 @@ export default {
 			lastname: '',
 			firstname: '',
 			birthDate: '',
-			localUser: null,
+			localUserSession: null,
 			//
 			isVisible: false,
 			title: '',
@@ -391,19 +391,17 @@ export default {
 		},
 
 		getLocalUser() {
-			this.localUser = JSON.parse(sessionStorage.getItem('localUser'));
+			this.localUserSession = JSON.parse(sessionStorage.getItem('localUserSession'));
 
-			if (this.localUser && this.localUser._id) {
+			if (this.localUserSession) {
 				console.log(
-					'🚀 ~ getLocalUser ~ localUser._id:',
-					this.localUser._id,
-					'🚀 ~ getLocalUser ~ localUser:',
-					this.localUser
+					'🚀 ~ getLocalUser ~ localUserSession._id:',
+					this.localUserSession._id
 				);
 
-				this.user = this.localUser.user;
+				this.user = this.localUserSession.user;
 
-				this.fromID = this.localUser._id;
+				this.fromID = this.localUserSession._id;
 				this.isLoggedIn = true;
 			} else {
 				console.error(

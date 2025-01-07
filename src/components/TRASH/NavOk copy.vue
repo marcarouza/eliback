@@ -164,14 +164,14 @@ export default {
 		return {
 			isLoggedIn: false,
 			user: '',
-			localUser: null,
+			localUserSession: null,
 			userID: '',
 		};
 	},
 
 	mounted() {
 		this.fetchUserData();
-		this.checkLocaluser();
+		this.checkLocaluserSession();
 	},
 
 	methods: {
@@ -233,8 +233,8 @@ export default {
 					this.isLoggedIn = false;
 					console.log('🚀 ~ DECONNEXION REUSSIE !!! ');
 					this.user = null; // Mettre à jour l'utilisateur à null
-					localStorage.removeItem('localUser'); // Supprimer l'utilisateur de localStorage
-					sessionStorage.removeItem('localUser');
+					// localStorage.removeItem('localUserSession'); // Supprimer l'utilisateur de localStorage
+					sessionStorage.removeItem('localUserSession');
 					window.location.reload();
 					this.$router.push({name: 'homepage'});
 				} else {
@@ -267,8 +267,8 @@ export default {
 					this.isLoggedIn = false;
 					console.log('🚀 ~ DECONNEXION REUSSIE !!! ');
 					this.user = null; // Mettre à jour l'utilisateur à null
-					localStorage.removeItem('localUser'); // Supprimer l'utilisateur de localStorage
-					sessionStorage.removeItem('localUser');
+					localStorage.removeItem('localUserSession'); // Supprimer l'utilisateur de localStorage
+					sessionStorage.removeItem('localUserSession');
 					// sessionStorage.clear();
 					// localStorage.clear();
 					window.location.reload();
@@ -298,42 +298,43 @@ export default {
 				});
 			}
 		},
-		checkLocaluser() {
+		checkLocaluserSession() {
 			try {
-				const localUserData = localStorage.getItem('localUser');
-				this.localUser = localUserData
+				const localUserData =
+					sessionStorage.getItem('localUserSession');
+				this.localUserSession = localUserData
 					? JSON.parse(localUserData)
 					: null;
-				if (this.localUser) {
-					this.userID = this.localUser._id;
+				if (this.localUserSession) {
+					this.userID = this.localUserSession._id;
 					console.log(
-						'🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀  ~ checkLocaluser ~ this.userID:',
+						'🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀 🚀  ~ checkLocaluserSession ~ this.userID:',
 						this.userID
 					);
 				}
 				console.log(
-					'✅ ℹ️  FROM checkLocaluser in NavOk ==> this.localUser :',
-					this.localUser
+					'✅ ℹ️  FROM checkLocaluserSession in NavOk ==> this.localUserSession :',
+					this.localUserSession
 				);
 			} catch (error) {
 				console.error(
-					'Erreur lors de la récupération ou du parsing de localUser:',
+					'Erreur lors de la récupération ou du parsing de localUserSession:',
 					error
 				);
-				this.localUser = null; // Assurez-vous que localUser est null en cas d'erreur
+				this.localUserSession = null; // Assurez-vous que localUserSession est null en cas d'erreur
 			}
 		},
 
 		checkLocaluser_NO() {
-			if (sessionStorage.getItem('localUser')) {
-				this.localUser = JSON.parse(
-					sessionStorage.getItem('localUser')
+			if (sessionStorage.getItem('localUserSession')) {
+				this.localUserSession = JSON.parse(
+					sessionStorage.getItem('localUserSession')
 				);
-				console.log('Utilisateur récupéré:', this.localUser);
+				console.log('Utilisateur récupéré:', this.localUserSession);
 				this.isLoggedIn = true;
-				this.userID = this.localUser._id;
+				this.userID = this.localUserSession._id;
 				console.log(
-					'🚀 ~ checkLocaluser ~ this.userID POUR UTILISATION dans logOut API :',
+					'🚀 ~ checkLocaluserSession ~ this.userID POUR UTILISATION dans logOut API :',
 					this.userID
 				);
 			} else {

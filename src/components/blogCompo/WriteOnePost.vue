@@ -91,17 +91,17 @@ export default {
 
 	methods: {
 		getLocalUser() {
-			const localUser = JSON.parse(
-				sessionStorage.getItem('localUser')
+			const localUserSession = JSON.parse(
+				sessionStorage.getItem('localUserSession')
 			);
 			console.log(
-				'🚨 FROM getLocalUser in WRITEPOST / localUser :',
-				localUser
+				'🚨 FROM getLocalUser in WRITEPOST / localUserSession :',
+				localUserSession
 			);
 
-			// Assurez-vous que localUser existe avant d'essayer d'accéder à _id
-			if (localUser && localUser.user) {
-				this.author = localUser.user;
+			// Assurez-vous que localUserSession existe avant d'essayer d'accéder à _id
+			if (localUserSession && localUserSession.user) {
+				this.author = localUserSession.user;
 			} else {
 				console.error(
 					'Utilisateur local non trouvé dans sessionStorage'

@@ -125,14 +125,14 @@ export default {
 			}
 		},
 		getLocalUser() {
-			const localUser = JSON.parse(
-				sessionStorage.getItem('localUser')
+			const localUserSession = JSON.parse(
+				sessionStorage.getItem('localUserSession')
 			);
 
-			if (localUser && localUser._id) {
-				this.author = localUser.user;
+			if (localUserSession && localUserSession._id) {
+				this.author = localUserSession.user;
 
-				this.authorID = localUser._id;
+				this.authorID = localUserSession._id;
 			} else {
 				console.error(
 					'Utilisateur local non trouvé dans sessionStorage'

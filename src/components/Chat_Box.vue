@@ -43,7 +43,7 @@ export default {
 	data() {
 		return {
 			isLoggedIn: false,
-			localUser: null,
+			localUserSession: null,
 			userCount: 0,
 			pseudo: '',
 			welcomeMsg:
@@ -63,22 +63,24 @@ export default {
 	},
 	methods: {
 		checkLocalUser() {
-			const userFromSession = sessionStorage.getItem('localUser');
+			const userFromSession =
+				sessionStorage.getItem('localUserSession');
 			if (userFromSession) {
-				this.localUser = JSON.parse(userFromSession);
+				this.localUserSession = JSON.parse(userFromSession);
 				this.isLoggedIn = true;
-				this.pseudo = this.localUser.user;
+				this.pseudo = this.localUserSession.user;
 				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
 
 				this.setupSocketListeners();
 
 				this.displayChat();
 			} else {
-				const userFromStorage = localStorage.getItem('localUser');
+				const userFromStorage =
+					localStorage.getItem('localUserSession');
 				if (userFromStorage) {
-					this.localUser = JSON.parse(userFromStorage);
+					this.localUserSession = JSON.parse(userFromStorage);
 					this.isLoggedIn = true;
-					this.pseudo = this.localUser.user;
+					this.pseudo = this.localUserSession.user;
 					this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
 
 					this.setupSocketListeners();
@@ -192,28 +194,6 @@ export default {
 				socket.on('connect', () => {
 					this.completeID = socket.id;
 					socket.pseudo = this.pseudo;
-
-					// if (this.completeID) {
-					// 	console.log(
-					// 		'📱 ~ socket.on ~ this.completeID :',
-					// 		this.completeID
-					// 	);
-					// 	this.shortClientID = this.completeID.substring(
-					// 		0,
-					// 		5
-					// 	);
-					// 	console.log(
-					// 		'🚀 ~ socket.on ~ this.shortClientID:',
-					// 		this.shortClientID
-					// 	);
-					// 	socket.shortClientID = this.shortClientID;
-
-					// 	socket.pseudo = this.pseudo;
-
-					// 	console.log(
-					// 		`📬 📬 📬FROM setupSocketListeners => ${this.shortClientID} = ${pseudo} est CONNECTÉ !`
-					// 	);
-					// }
 				});
 
 				socket.on('disconnect', (pseudo) => {
