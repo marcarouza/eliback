@@ -1,8 +1,11 @@
 <template>
 	<div id="chatPopin" class="chat-popin chat-container hide-inactive">
 		<div class="chat-header">
-			<span>Chat avec vos amis…</span>
-			<span class="userCount" id="userCount"></span>
+			<span>Chat en direct</span>
+			<span class="membersonline"
+				>3&nbsp;<i class="fas fa-user"></i
+				>&nbsp;&nbsp;présents</span
+			>
 			<button
 				@click="displayChat"
 				id="closeChatBtn"
@@ -12,6 +15,11 @@
 
 		<div id="allMess" class="chat-body">
 			<!-- Messages vont ici -->
+
+			<span v-if="!isLoggedIn">
+				<!-- Pour utiliser la messagerie instantanée, vous devez être
+				connecté(e). -->
+			</span>
 		</div>
 
 		<div class="chat-footer">
@@ -20,15 +28,25 @@
 					id="messInput"
 					type="text"
 					class="form-control"
-					placeholder="Votre message..."
+					:placeholder="
+						isLoggedIn
+							? 'Votre message...'
+							: 'Connectez-vous pour chatter'
+					"
+					:disabled="!isLoggedIn"
 				/>
-				<button id="sendMsg" class="btn btn-primary send-button">
+				<button
+					id="sendMsg"
+					class="btn btn-primary send-button"
+					:disabled="!isLoggedIn"
+				>
 					<i class="bi bi-send"></i>
 				</button>
 			</form>
 		</div>
 	</div>
 
+	<!-- BOUTON CHAT -->
 	<div @click="displayChat" id="chatToggleBtn" class="stickedTab">
 		<i class="bi bi-chat-dots-fill chat_bubble"></i>
 	</div>
@@ -39,62 +57,161 @@ import socket from '../socket/socketClient.js';
 console.log('✅ 🐱  FROM ChatBox ===> SOCKET CLIENT : ', socket);
 
 export default {
-	name: 'Chat_Box',
+	name: 'ChatBox',
+
 	data() {
 		return {
+			membersonline: 0,
 			isLoggedIn: false,
 			localUserSession: null,
-			userCount: 0,
 			pseudo: '',
 			welcomeMsg:
 				'Pour utiliser la messagerie, vous devez être connecté(e) !',
 			completeID: null,
-			shortClientID: null,
+			shortID: null,
 			userFromSession: '',
-			userFromStorage: '',
+			// pour le statut de Chat
+			isConnected: false,
+			reconnectAttempts: 0,
 		};
 	},
 
 	mounted() {
 		this.hideChat();
 		this.checkLocalUser();
-
-		// this.setupSocketListeners();
 	},
+
+	beforeUnmount() {
+		this.disconnectUser();
+		socket.off('connect');
+	},
+
 	methods: {
 		checkLocalUser() {
-			const userFromSession =
-				sessionStorage.getItem('localUserSession');
-			if (userFromSession) {
-				this.localUserSession = JSON.parse(userFromSession);
+			// const userFromSession =
+			// 	sessionStorage.getItem('localUserSession');
+			if (sessionStorage.getItem('localUserSession')) {
+				this.localUserSession = JSON.parse(
+					sessionStorage.getItem('localUserSession')
+				);
 				this.isLoggedIn = true;
+				console.log(
+					'🚀 ~ FROM CHATBOX checkLocalUser ~ this.isLoggedIn :',
+					this.isLoggedIn
+				);
 				this.pseudo = this.localUserSession.user;
-				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
+				this.welcomeMsg = `👋 ${this.pseudo}, vous êtes en ligne ! Naviguer sur le site n'affectera pas votre fil de discussion ... contrairement au raffraichissement volontaire de la page !`;
 
-				this.setupSocketListeners();
-
+				this.initSocket(this.pseudo);
 				this.displayChat();
 			} else {
-				const userFromStorage =
-					localStorage.getItem('localUserSession');
-				if (userFromStorage) {
-					this.localUserSession = JSON.parse(userFromStorage);
-					this.isLoggedIn = true;
-					this.pseudo = this.localUserSession.user;
-					this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;
-
-					this.setupSocketListeners();
-					this.displayChat();
-				} else {
-					this.welcomeMsg =
-						'Pour utiliser la messagerie, vous devez être connecté(e) !';
-					this.isLoggedIn = false;
-					this.hideChat();
-				}
+				this.welcomeMsg =
+					'Pour utiliser la messagerie, vous devez être connecté(e) !';
+				this.isLoggedIn = false;
+				console.log(
+					'🚀 ~ checkLocalUser ~ this.isLoggedIn:',
+					this.isLoggedIn
+				);
+				this.hideChat();
 			}
+
 			this.serverMsg(this.welcomeMsg);
 		},
-		//
+
+		setServerPseudo() {
+			socket.pseudo = this.pseudo;
+			socket.emit('setPseudo', {
+				pseudo: this.pseudo,
+			});
+		},
+
+		initSocket() {
+			this.setServerPseudo();
+			if (this.isLoggedIn) {
+				socket.on('connect', () => {
+					this.isConnected = true;
+					this.reconnectAttempts = 0;
+					this.completeID = socket.id;
+					console.log(
+						'🚀 ----------socket.pseudo //// pseudo connecté:',
+						socket.pseudo,
+						'/ / / /',
+						this.pseudo
+					);
+
+					if (this.completeID) {
+						console.log(
+							'📱 ~ socket.on ~ this.completeID :',
+							this.completeID
+						);
+						this.shortID = this.completeID.substring(0, 5);
+						console.log(
+							'🚀 ~ socket.on ~ this.shortID:',
+							this.shortID
+						);
+						socket.shortID = this.shortID;
+						socket.pseudo = this.pseudo;
+						console.log(
+							`📬 📬 📬 FROM initSocket => ${this.shortID} = ${this.pseudo} est CONNECTÉ !`
+						);
+					}
+				});
+
+				socket.on('disconnect', (reason) => {
+					console.log('🚀 ~ socket.on ~ reason:', reason);
+					this.isConnected = false;
+
+					/**
+					 * 
+					 * 					this.createBubble(
+						'⏱️ Veuillez patienter svp … (tentative de réconnexion)',
+						'bubServer'
+					);
+ 
+					 * 
+					 * 
+					 */
+
+					socket.on('reconnect', (attemptNumber) => {
+						console.log(
+							'Reconnecté au serveur après',
+							attemptNumber,
+							'tentatives'
+						);
+					});
+					if (reason === 'io server disconnect') {
+						socket.connect();
+					}
+				});
+
+				socket.on('reconnect', (attemptNumber) => {
+					console.log(
+						'Reconnecté au serveur après',
+						attemptNumber,
+						'tentatives'
+					);
+					this.isConnected = true;
+					this.createBubble(
+						'✅ Connexion rétablie',
+						'bubServer'
+					);
+				});
+
+				socket.on('message', (data) => {
+					console.log('MSG reçu : ', data);
+					this.createBubble(data, 'bub2');
+				});
+
+				socket.on('userLeft', (data) => {
+					this.createBubble(data, 'bubServer');
+				});
+
+				socket.on('userConnected', (data) => {
+					console.log('🚀 ~ userConnected ==> data:', data);
+					this.createBubble(data, 'bubServer');
+				});
+			}
+		},
 
 		serverMsg(message) {
 			console.log('🚀 ~ serverMsg ~ message:', message);
@@ -109,8 +226,6 @@ export default {
 			}
 
 			const myServerDiv = document.createElement('div');
-			console.log('🚀 ~ addDiv ~ myDiv:', myServerDiv);
-
 			myServerDiv.classList.add('bubServer');
 
 			const span = document.createElement('span');
@@ -120,9 +235,7 @@ export default {
 			allMess.appendChild(myServerDiv);
 		},
 
-		sendMess(message) {
-			const allMess = document.getElementById('allMess');
-
+		sendMess() {
 			const messInput = document.getElementById('messInput');
 
 			if (!messInput) {
@@ -131,22 +244,9 @@ export default {
 			}
 
 			const messTxt = messInput.value.trim();
-			console.log('🚀 ~ messTxt:', messTxt);
-
 			if (messTxt) {
-				const messageData = {pseudo: this.pseudo, text: messTxt};
-				socket.emit('message', messageData);
-				const myMessDiv = document.createElement('div');
-				console.log('🚀 ~ addDiv ~ myDiv:', myMessDiv);
-
-				myMessDiv.classList.add('bub1');
-
-				const span = document.createElement('span');
-				span.textContent = this.pseudo + ' : ' + messTxt;
-				myMessDiv.appendChild(span);
-
-				allMess.appendChild(myMessDiv);
-
+				socket.emit('message', `${this.pseudo} : ${messTxt}`);
+				this.createBubble(`Vous : ${messTxt}`, 'bub1');
 				messInput.value = '';
 				messInput.focus();
 			}
@@ -154,22 +254,21 @@ export default {
 
 		displayChat() {
 			const chatPopin = document.getElementById('chatPopin');
-
 			if (!chatPopin) {
 				console.error('Element with ID "chatPopin" not found.');
 				return;
 			}
-
 			chatPopin.classList.toggle('hide-inactive');
 		},
 
 		hideChat() {
 			const chatPopin = document.getElementById('chatPopin');
-			chatPopin.classList.add('hide-inactive');
+			if (chatPopin) {
+				chatPopin.classList.add('hide-inactive');
+			}
 		},
 
-		addDiv(data) {
-			console.log('🚀 ~ addDiv ~ data:', data);
+		createBubble(message, style) {
 			const allMess = document.getElementById('allMess');
 
 			if (!allMess) {
@@ -178,83 +277,30 @@ export default {
 			}
 
 			const myDiv = document.createElement('div');
-			myDiv.classList.add('bub1');
+			myDiv.classList.add(style);
 
 			const span = document.createElement('span');
-			span.textContent = `${data.pseudo}: ${data.text}`;
-
+			span.textContent = message;
 			myDiv.appendChild(span);
-			allMess.appendChild(myDiv);
 
-			socket.emit('message', `${data.pseudo}: ${data.text}`);
+			allMess.appendChild(myDiv);
 		},
 
-		setupSocketListeners(pseudo) {
-			if (this.isLoggedIn) {
-				socket.on('connect', () => {
-					this.completeID = socket.id;
-					socket.pseudo = this.pseudo;
-				});
-
-				socket.on('disconnect', (pseudo) => {
-					// Créer un message pour informer les autres utilisateurs que cet utilisateur est déconnecté
-					const message = `${this.pseudo} est déconnecté`;
-
-					// Ajouter ce message à l'interface utilisateur via serverMsg
-					this.serverMsg(message);
-
-					// Note : Il n'est pas nécessaire d'émettre un événement ici,
-					// car 'disconnect' est déjà géré par le serveur et les autres clients.
-					console.log('Utilisateur déconnecté:', this.pseudo);
-				});
-
-				socket.on('message', (data) => {
-					console.log(
-						'STRUCTURE de MSG envoyé à tout le monde : ',
-						data
-					);
-					this.addDiv(data); // Affiche le message reçu de tout utilisateur
-					// this.sendMess(data);
-				});
-
-				// socket.on('userLeft', (data) => {
-				// 	this.serverMsg(data);
-				// });
-
-				socket.on('userConnected', (data) => {
-					this.serverMsg(data);
-				});
-
-				socket.on('updateUserCount', (count) => {
-					console.log(
-						`Nombre d'utilisateurs connectés : ${count}`
-					);
-
-					this.userCount = count;
-
-					this.serverMsg(`Membres connectés : ${data}`);
-
-					// Mettez à jour l'interface utilisateur avec le nouveau nombre de connectés
-					document.getElementById(
-						'userCount'
-					).textContent = `Utilisateurs connectés : ${count}`;
-				});
-			}
+		disconnectUser() {
+			socket.emit('userLeft', {
+				ID: this.shortID,
+				pseudo: this.pseudo,
+			});
 		},
 	},
 };
 </script>
 
 <style>
-.user-count {
-	text-align: right;
-	top: 10px;
-	right: 10px;
-	background-color: #88acd2;
-	color: #fff;
-	padding: 1px;
-	border-radius: 3px;
-	font-size: 0.5rem;
+.membersonline {
+	font-size: 0.7rem;
+	color: #fff200cf;
+	text-shadow: -3px 2px 5px rgba(0, 13, 51, 0.6);
 }
 
 .chat_bubble {
@@ -262,7 +308,7 @@ export default {
 	color: #004fa4;
 	font-size: 1rem;
 	color: #ffffff;
-	text-shadow: -3px 2px 5px rgba(0, 13, 51, 0.6);
+	text-shadow: 0px 2px 5px rgba(0, 13, 51, 0.6);
 }
 
 .whatsapp-icon {
@@ -288,7 +334,7 @@ export default {
 	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	z-index: 100;
-	transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+	transition: transform 0.3s ease-out, opacity 0.5s ease-out;
 }
 
 .hide-inactive {
@@ -323,9 +369,8 @@ export default {
 }
 
 .btn-close {
-	width: 5px;
-	height: 5px;
-	border: 2px solid hsl(211, 100%, 32%);
+	width: 5px !important;
+	height: 5px !important;
 	border-radius: 50%;
 	background-color: #004fa4;
 	color: #fff;
@@ -333,7 +378,7 @@ export default {
 }
 
 .btn-close:hover {
-	border: 2px solid rgba(255, 255, 255, 0.503);
+	border: 2px solid rgba(255, 255, 255, 0.503) !important;
 }
 
 .chat-popin.show {
@@ -347,7 +392,7 @@ export default {
 	align-items: center;
 	font-size: 0.85rem;
 	min-height: 40px;
-	background-color: #004fa4;
+	background-color: #003f82;
 	color: #fff;
 	padding: 5px 10px;
 	border-top-left-radius: 3px;
@@ -358,7 +403,8 @@ export default {
 .chat-body {
 	display: flex;
 	flex-direction: column;
-	min-height: 200px;
+	justify-content: flex-start;
+	/* min-height: 250px; */
 	border-bottom: 0.5px solid #00aeff72;
 	align-items: flex-start;
 	padding: 0.5rem;
@@ -373,7 +419,7 @@ export default {
 
 /* Custom scrollbar styles */
 .chat-body::-webkit-scrollbar {
-	width: 10px; /* Largeur du scrollbar vertical */
+	width: 8px; /* Largeur du scrollbar vertical */
 }
 
 .chat-body::-webkit-scrollbar-track {
@@ -586,8 +632,10 @@ export default {
 	border-radius: 5px 10px 5px 10px;
 	padding: 0.8rem;
 	margin-bottom: 1rem;
-	margin-left: 0rem;
-	margin-right: 1rem;
+
+	margin-right: 0rem;
+	margin-left: auto;
+
 	max-width: 60%;
 	font-size: 0.8rem;
 	color: #101010;
@@ -605,11 +653,15 @@ export default {
 	border-radius: 0.6rem 0 0.6rem 0;
 	padding: 0.8rem;
 	margin-bottom: 1rem;
-	margin-left: 0rem;
-	margin-right: 1rem;
+
+	margin-right: auto;
+	margin-left: 0;
+
 	max-width: 60%;
 	font-size: 0.8rem;
 	color: #101010;
+	box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+	border: 1px solid rgb(134, 159, 88);
 }
 
 .bubServer {

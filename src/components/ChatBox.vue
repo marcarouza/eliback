@@ -13,13 +13,6 @@
 			></button>
 		</div>
 
-		<!-- <div v-if="!isLoggedIn" class="chat-body">
-			<span class="bubServer">
-				Pour utiliser la messagerie instantanée, vous devez être
-				connecté(e).
-			</span>
-		</div> -->
-
 		<div id="allMess" class="chat-body">
 			<!-- Messages vont ici -->
 
@@ -77,7 +70,6 @@ export default {
 			completeID: null,
 			shortID: null,
 			userFromSession: '',
-			userFromStorage: '',
 			// pour le statut de Chat
 			isConnected: false,
 			reconnectAttempts: 0,
@@ -96,13 +88,15 @@ export default {
 
 	methods: {
 		checkLocalUser() {
-			const userFromSession =
-				sessionStorage.getItem('localUserSession');
-			if (userFromSession) {
-				this.localUserSession = JSON.parse(userFromSession);
+			// const userFromSession =
+			// 	sessionStorage.getItem('localUserSession');
+			if (sessionStorage.getItem('localUserSession')) {
+				this.localUserSession = JSON.parse(
+					sessionStorage.getItem('localUserSession')
+				);
 				this.isLoggedIn = true;
 				console.log(
-					'🚀 ~ checkLocalUser ~ this.isLoggedIn:',
+					'🚀 ~ FROM CHATBOX checkLocalUser ~ this.isLoggedIn :',
 					this.isLoggedIn
 				);
 				this.pseudo = this.localUserSession.user;
