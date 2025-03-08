@@ -50,7 +50,7 @@
 						>
 							<img
 								class="profile-img"
-								src="/pix/eli/eli.webp"
+								src="https://static.wixstatic.com/media/67301c_581fc3112be04999be10ab063507eb00~mv2.webp"
 								alt="..."
 							/>
 

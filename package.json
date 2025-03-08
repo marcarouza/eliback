@@ -20,17 +20,30 @@
 		"jwt-decode": "^4.0.0",
 		"socket.io": "^4.7.5",
 		"socket.io-client": "^4.7.5",
+		"url-regex": "^5.0.0",
 		"vue": "^3.4.35",
 		"vue-cookies": "^1.8.4",
 		"vue-meta": "^3.0.0-alpha.2",
 		"vue-router": "^4.4.0"
 	},
 	"devDependencies": {
+		"@fullhuman/postcss-purgecss": "^7.0.2",
 		"@types/js-cookie": "^3.0.6",
 		"@vitejs/plugin-vue": "^5.2.1",
 		"@vue/component-compiler-utils": "^3.3.0",
+		"eslint": "^9.17.0",
+		"eslint-plugin-vue": "^9.32.0",
+		"imagemin": "^9.0.0",
+		"imagemin-mozjpeg": "^7.0.0",
+		"imagemin-pngquant": "^5.0.1",
+		"imagemin-webp": "^8.0.0",
 		"npm-force-resolutions": "^0.0.10",
+		"postcss": "^8.4.49",
+		"primevue": "^4.3.1",
+		"rollup-plugin-visualizer": "^5.14.0",
 		"serve": "^14.2.3",
-		"vite": "^6.0.6"
+		"vite": "^6.0.6",
+		"vite-imagetools": "^7.0.5",
+		"vite-plugin-imagemin": "^0.6.1"
 	}
 }

@@ -917,13 +917,6 @@
 										<div
 											class="d-flex align-items-center mb-4"
 										>
-											<div
-												class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 me-3"
-											>
-												<i
-													class="bi bi-code-slash"
-												></i>
-											</div>
 											<h3
 												class="fw-bolder mb-0"
 											>
@@ -933,46 +926,66 @@
 												>
 											</h3>
 										</div>
-										<div
-											class="row row-cols-1 row-cols-md-3 mb-4"
-										>
+
+										<div class="container my-4">
 											<div
-												class="col mb-4 mb-md-0"
+												class="row row-cols-1 row-cols-md-3 mb-4"
 											>
 												<div
-													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+													class="col mb-4 mb-md-0"
 												>
-													Visual Studio
-													Code
+													<div
+														class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+													>
+														Visual
+														Studio
+														Code
+													</div>
+												</div>
+
+												<div
+													class="col mb-4 mb-md-0"
+												>
+													<div
+														class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+													>
+														Postman |
+														Bruno
+													</div>
+												</div>
+												<div
+													class="col mb-4 mb-md-0"
+												>
+													<div
+														class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+													>
+														Photoshop
+													</div>
+												</div>
+												<div
+													class="col mb-4 mb-md-0 mt-4"
+												>
+													<div
+														class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+													>
+														LightRoom
+													</div>
+												</div>
+												<div
+													class="col mb-4 mb-md-0 mt-4"
+												>
+													<div
+														class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
+													>
+														Wix / Wix
+														Studio /
+														Velo
+													</div>
 												</div>
 											</div>
 											<div
 												class="col mb-4 mb-md-0"
-											>
-												<div
-													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
-												>
-													Postman | Bruno
-												</div>
-											</div>
-											<div
-												class="col mb-4 mb-md-0"
-											>
-												<div
-													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
-												>
-													Photoshop
-												</div>
-											</div>
-											<div
-												class="col mb-4 mb-md-0 mt-4"
-											>
-												<div
-													class="d-flex align-items-center bg-light rounded-4 p-3 h-100"
-												>
-													LightRoom
-												</div>
-											</div>
+											></div>
 										</div>
 									</div>
 								</div>

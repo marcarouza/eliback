@@ -78,7 +78,7 @@ export default {
 
 	mounted() {
 		this.hideChat();
-		this.checkLocalUser();
+		this.checkLocalUserSession();
 	},
 
 	beforeUnmount() {
@@ -87,16 +87,23 @@ export default {
 	},
 
 	methods: {
-		checkLocalUser() {
-			// const userFromSession =
-			// 	sessionStorage.getItem('localUserSession');
+		checkLocalUserSession() {
 			if (sessionStorage.getItem('localUserSession')) {
-				this.localUserSession = JSON.parse(
-					sessionStorage.getItem('localUserSession')
-				);
+				try {
+					this.localUserSession = JSON.parse(
+						sessionStorage.getItem('localUserSession')
+					);
+				} catch (err) {
+					console.error(
+						'FROM checkLocalUserSession => Invalid JSON in sessionStorage:',
+						err
+					);
+					this.localUserSession = null;
+				}
+
 				this.isLoggedIn = true;
 				console.log(
-					'🚀 ~ FROM CHATBOX checkLocalUser ~ this.isLoggedIn :',
+					'🚀 ~ FROM CHATBOX checkLocalUserSession ~ this.isLoggedIn :',
 					this.isLoggedIn
 				);
 				this.pseudo = this.localUserSession.user;
@@ -109,7 +116,7 @@ export default {
 					'Pour utiliser la messagerie, vous devez être connecté(e) !';
 				this.isLoggedIn = false;
 				console.log(
-					'🚀 ~ checkLocalUser ~ this.isLoggedIn:',
+					'🚀 ~ checkLocalUserSession ~ this.isLoggedIn:',
 					this.isLoggedIn
 				);
 				this.hideChat();

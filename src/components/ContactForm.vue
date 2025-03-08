@@ -222,7 +222,7 @@ export default {
 			) {
 				try {
 					const response = await fetch(
-						'https://eli-back.onrender.com//api/contactFormPost',
+						'https://eli-back.onrender.com/api/contactFormPost',
 						{
 							method: 'POST',
 							headers: {
@@ -234,7 +234,7 @@ export default {
 
 					if (!response.ok) {
 						throw new Error(
-							'😱 😱 😱 FROM CONTACT PAGE FETCH =>  Failed to send (222)'
+							'😱 😱 😱 FROM ContactForm.vue PAGE FETCH =>  Failed to send (237)'
 						);
 					}
 
@@ -257,7 +257,3 @@ export default {
 	},
 };
 </script>
-
-<style scoped>
-/* Votre style ici */
-</style>

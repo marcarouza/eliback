@@ -44,12 +44,10 @@ export default {
 	},
 	methods: {
 		checkLocalUserSession() {
-			const userFromSession =
-				sessionStorage.getItem('localUserSession');
-			// const userFromStorage = localStorage.getItem('localUserSession');
-
-			if (userFromSession) {
-				const userData = JSON.parse(userFromSession);
+			if (sessionStorage.getItem('localUserSession')) {
+				const userData = JSON.parse(
+					sessionStorage.getItem('localUserSession')
+				);
 				this.localUserSession = userData;
 				this.pseudo = userData.user;
 				this.welcomeMsg = `Bonjour ${this.pseudo}, vous êtes en ligne !`;

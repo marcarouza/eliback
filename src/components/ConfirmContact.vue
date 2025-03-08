@@ -10,16 +10,14 @@
 								style="font-size: 5rem"
 							></i>
 						</div>
-						<h2 class="card-title mb-3">
-							Inscription confirmée !
-						</h2>
+						<h2 class="card-title mb-3">Merci transmis.</h2>
 						<p class="card-text lead mb-4">
-							Merci pour votre message !
+							Je vous remerice (réponse sous 48h.)
 							<br />
 							Vous recevrez une copie de votre demande sur
 							l'adresse e-mail fournie.
 							<br />
-							À bientôt, Eli.
+							Eli
 						</p>
 						<router-link
 							to="/"

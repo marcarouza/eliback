@@ -25,6 +25,13 @@ import infoagentpage from '@/views/InfoAgentPage.vue';
 
 const routes = [
 	{
+		path: '/homePage',
+		alias: '/',
+		name: 'homepage',
+		component: homepage,
+		meta: {showChatBox: true},
+	},
+	{
 		path: '/infoagentPage',
 		name: 'infoagentpage',
 		component: infoagentpage,
@@ -66,17 +73,6 @@ const routes = [
 		path: '/allMembersPage',
 		name: 'allmemberspage',
 		component: allmemberspage,
-	},
-	{
-		path: '/homePage',
-		name: 'homepage',
-		component: homepage,
-		meta: {showChatBox: true},
-	},
-	{
-		path: '/',
-		name: 'homepage_alt',
-		component: homepage,
 	},
 	{
 		path: '/signuserPage',
