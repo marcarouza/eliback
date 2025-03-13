@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Interface VueJS 3 + Bootstrap 5</title>
+   <!-- Bootstrap 5 CSS (dernère version) -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+   <style>
+      /* Header et Footer conservent des tailles fixes */
+      .custom-header {
+         height: 60px;
+         /* hauteur fixe du header */
+      }
+
+      .custom-footer {
+         height: 60px;
+         /* hauteur fixe du footer */
+      }
+
+      /* La zone de contenu (Main + Aside) prend toute la place restante */
+      .content-area {
+         flex: 1;
+         overflow: auto;
+         padding: 20px;
+      }
+
+      .bgchat {
+         background-color: #2E38A5;
+         color: #fff;
+      }
+
+      .bgchatfooter {
+         background-color: #070b41;
+         color: #fff;
+      }
+
+      .bgaside {
+         background-color: #1a1e56;
+         color: #fff;
+      }
+
+
+   </style>
+</head>
+
+<body class="d-flex flex-column vh-100">
+   <!-- Point de montage Vue -->
+   <div id="app" class="d-flex flex-column flex-grow-1">
+      <!-- Header -->
+      <header class="custom-header bgchat text-white d-flex align-items-center justify-content-center">
+         <h1 class="m-0">Chat room</h1>
+      </header>
+
+      <!-- Contenu principal -->
+      <div class="d-flex flex-grow-1">
+         <!-- Aside avec largeur fixe -->
+         <aside class="bgaside p-3" style="width: 250px;">
+            <h4>Vous êtes en discussion avec …</h4>
+            <p>{{ asideContent }}</p>
+         </aside>
+
+         <!-- Main adaptable -->
+         <main class="content-area">
+            <h2>Main Content</h2>
+            <!-- Exemple d'un contenu dynamique qui peut s'adapter à la taille -->
+            <div v-for="item in mainContent" :key="item.id" class="mb-3 p-2 border rounded">
+               {{ item.text }}
+            </div>
+         </main>
+      </div>
+
+      <!-- Footer -->
+      <footer class="custom-footer bgchatfooter text-white d-flex align-items-center justify-content-center">
+         <p class="m-0">Footer</p>
+      </footer>
+   </div>
+
+   <!-- VueJS 3 -->
+   <script src="https://cdn.jsdelivr.net/npm/vue@3.2.47/dist/vue.global.prod.js"></script>
+   <!-- Bootstrap 5 Bundle (avec Popper) -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   <script>
+      const { createApp } = Vue;
+      createApp({
+         data() {
+            return {
+               asideContent: 'Contenu dynamique dans l’aside, qui peut évoluer en fonction de vos besoins.',
+               mainContent: [
+                  { id: 1, text: 'Contenu principal 1.' },
+                  { id: 2, text: 'Contenu principal 2.' },
+                  { id: 3, text: 'Contenu principal 3.' },
+                  // Vous pouvez ajouter autant d'éléments que nécessaire
+               ]
+            }
+         }
+      }).mount('#app');
+   </script>
+</body>
+
+</html>
