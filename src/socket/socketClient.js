@@ -11,6 +11,6 @@ const socket = io('https://socket-simple.onrender.com', {
 	extraHeaders: {},
 });
 
-console.log('FROM VUE <= socketClient.js => socket', socket); // Vérification de l'initialisation
+console.log('INIT SOCKET FROM VUE <= socketClient.js => socket', socket); // Vérification de l'initialisation
 
 export default socket;
