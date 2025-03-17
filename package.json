@@ -6,8 +6,10 @@
 		"dev": "vite",
 		"build": "vite build",
 		"preview": "vite preview",
-		"deploy": "npm run build && render-deploy"
+		"deploy": "npm run build && render-deploy",
+		"type-check": "vue-tsc --noEmit"
 	},
+"type": "module",
 	"dependencies": {
 		"@fortawesome/fontawesome-free": "^6.6.0",
 		"@popperjs/core": "^2.11.8",
@@ -42,8 +44,10 @@
 		"primevue": "^4.3.1",
 		"rollup-plugin-visualizer": "^5.14.0",
 		"serve": "^14.2.3",
+		"typescript": "^5.8.2",
 		"vite": "^6.0.6",
 		"vite-imagetools": "^7.0.5",
-		"vite-plugin-imagemin": "^0.6.1"
+		"vite-plugin-imagemin": "^0.6.1",
+		"vue-tsc": "^2.2.8"
 	}
 }

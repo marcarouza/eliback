@@ -57,7 +57,7 @@ export default {
 					'🚀 ~ checkLocalUserSession() ~ this.chatBoxKey:',
 					this.chatBoxKey
 				);
-				this.setupSocketListeners();
+				// this.setupSocketListeners();
 				this.displayChat();
 			} else {
 				this.welcomeMsg =

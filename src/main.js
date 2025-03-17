@@ -1,12 +1,3 @@
-import {createApp} from 'vue';
-
-import {createHead} from '@vueuse/head';
-const head = createHead();
-
-import App from './App.vue';
-//
-import router from './router';
-
 import '/src/assets/styles_temp_dev.css'; // Importer le fichier CSS global
 import '/src/assets/styles-persos.css'; // Importer le fichier CSS global
 // Importer le CSS de Bootstrap
@@ -18,4 +9,21 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import '@fortawesome/fontawesome-free/css/all.css';
 
-createApp(App).use(head).use(router).mount('#app');
+import {createApp} from 'vue';
+
+import {createHead} from '@vueuse/head';
+const head = createHead();
+
+import App from './App.vue';
+//
+import router from './router';
+
+const app = createApp(App);
+
+app.config.errorHandler = (err, info) => {
+	console.error(`Erreur capturée dasn APP : ${err}, dans ${info}`);
+};
+
+app.use(head).use(router).mount('#app');
+
+// createApp(App).use(head).use(router).mount('#app');

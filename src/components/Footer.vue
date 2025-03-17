@@ -2,28 +2,20 @@
 	<footer class="bg-dark text-white py-4 mt-3">
 		<div class="container">
 			<div class="row">
-				<div
-					class="col-12 col-md-6 text-center text-md-start mb-3 mb-md-0"
-				>
+				<div class="col-12 col-md-6 text-center text-md-start mb-3 mb-md-0">
 					<p class="mb-0">
 						&copy; 2024 Eli Azoura. Tous droits réservés.
 					</p>
 				</div>
 				<div class="col-12 col-md-6 text-center text-md-end">
-					<a
-						href="https://gitlab.com/eliazoura"
-						class="text-white me-5"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
+					<RouterLink to="/chatroom" class="text-white routeur me-5" target="_blank" rel="noopener noreferrer">
+						<i class="fa-solid fa-comment"></i>
+					</RouterLink>
+					<a href="https://gitlab.com/eliazoura" class="text-white me-5" target="_blank" rel="noopener noreferrer">
 						<i class="fab fa-gitlab"></i>
 					</a>
-					<a
-						href="https://www.linkedin.com/in/eliazoura"
-						class="text-white"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
+					<a href="https://www.linkedin.com/in/eliazoura" class="text-white" target="_blank"
+						rel="noopener noreferrer">
 						<i class="fab fa-linkedin"></i>
 					</a>
 				</div>
@@ -33,7 +25,7 @@
 </template>
 
 <script>
-import {ref} from 'vue';
+import { RouterLink } from 'vue-router';
 
 export default {
 	name: 'Footer',
@@ -45,6 +37,7 @@ export default {
 	font-size: 1.5rem;
 	font-size: x-large;
 }
+
 .footer {
 	position: relative;
 	bottom: 0;
@@ -53,7 +46,7 @@ export default {
 	font-size: 0.8rem;
 }
 
-.footer a {
+.footer a  .routeur{
 	font-size: 0.8rem;
 
 	text-decoration: none;
@@ -68,4 +61,14 @@ export default {
 .footer .fab {
 	font-size: 1.3rem;
 }
+
+ .routeur{
+	font-size: 0.8rem;
+
+	text-decoration: none;
+	color: #ffffff;
+}
+
+
+
 </style>

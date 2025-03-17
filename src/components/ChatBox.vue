@@ -57,251 +57,186 @@ import socket from '../socket/socketClient.js';
 console.log('✅ 🐱  FROM ChatBox ===> SOCKET CLIENT : ', socket);
 
 export default {
-	name: 'ChatBox',
+    name: 'ChatBox',
 
-	data() {
-		return {
-			membersonline: 0,
-			isLoggedIn: false,
-			localUserSession: null,
-			pseudo: '',
-			welcomeMsg:
-				'Pour utiliser la messagerie, vous devez être connecté(e) !',
-			completeID: null,
-			shortID: null,
-			userFromSession: '',
-			// pour le statut de Chat
-			isConnected: false,
-			reconnectAttempts: 0,
-		};
-	},
+    data() {
+        return {
+            membersonline: 0,
+            isLoggedIn: false,
+            localUserSession: null,
+            pseudo: '',
+            welcomeMsg: 'Pour utiliser la messagerie, vous devez être connecté(e) !',
+            completeID: null,
+            shortID: null,
+            userFromSession: '',
+            isConnected: false,
+            reconnectAttempts: 0,
+        };
+    },
 
-	mounted() {
-		this.hideChat();
-		this.checkLocalUserSession();
-	},
+    mounted() {
+        this.hideChat();
+        this.checkLocalUserSession();
+    },
 
-	beforeUnmount() {
-		this.disconnectUser();
-		socket.off('connect');
-	},
+    beforeUnmount() {
+        this.disconnectUser();
+        socket.off('connect');
+    },
 
-	methods: {
-		checkLocalUserSession() {
-			if (sessionStorage.getItem('localUserSession')) {
-				try {
-					this.localUserSession = JSON.parse(
-						sessionStorage.getItem('localUserSession')
-					);
-				} catch (err) {
-					console.error(
-						'FROM checkLocalUserSession => Invalid JSON in sessionStorage:',
-						err
-					);
-					this.localUserSession = null;
-				}
+    methods: {
+        checkLocalUserSession() {
+            const session = sessionStorage.getItem('localUserSession');
+            if (session) {
+                try {
+                    this.localUserSession = JSON.parse(session);
+                    this.isLoggedIn = true;
+                    this.pseudo = this.localUserSession.user;
+                    this.welcomeMsg = `👋 ${this.pseudo}, vous êtes en ligne ! Naviguer sur le site n'affectera pas votre fil de discussion ... contrairement au rafraîchissement volontaire de la page !`;
+                    this.initSocket(this.pseudo);
+                    this.displayChat();
+                } catch (err) {
+                    console.error('FROM checkLocalUserSession => Invalid JSON in sessionStorage:', err);
+                    this.localUserSession = null;
+                    this.isLoggedIn = false;
+                }
+            } else {
+                this.welcomeMsg = 'Pour utiliser la messagerie, vous devez être connecté(e) !';
+                this.isLoggedIn = false;
+                this.hideChat();
+            }
+            this.serverMsg(this.welcomeMsg);
+        },
 
-				this.isLoggedIn = true;
-				console.log(
-					'🚀 ~ FROM CHATBOX checkLocalUserSession ~ this.isLoggedIn :',
-					this.isLoggedIn
-				);
-				this.pseudo = this.localUserSession.user;
-				this.welcomeMsg = `👋 ${this.pseudo}, vous êtes en ligne ! Naviguer sur le site n'affectera pas votre fil de discussion ... contrairement au raffraichissement volontaire de la page !`;
+        setServerPseudo() {
+            socket.pseudo = this.pseudo;
+            socket.emit('setPseudo', { pseudo: this.pseudo });
+        },
 
-				this.initSocket(this.pseudo);
-				this.displayChat();
-			} else {
-				this.welcomeMsg =
-					'Pour utiliser la messagerie, vous devez être connecté(e) !';
-				this.isLoggedIn = false;
-				console.log(
-					'🚀 ~ checkLocalUserSession ~ this.isLoggedIn:',
-					this.isLoggedIn
-				);
-				this.hideChat();
-			}
+        initSocket() {
+            this.setServerPseudo();
+            if (this.isLoggedIn) {
+                socket.on('connect', () => {
+                    this.isConnected = true;
+                    this.reconnectAttempts = 0;
+                    this.completeID = socket.id;
 
-			this.serverMsg(this.welcomeMsg);
-		},
+                    if (this.completeID) {
+                        this.shortID = this.completeID.substring(0, 5);
+                        socket.shortID = this.shortID;
+                        socket.pseudo = this.pseudo;
+                        console.log(`📬 ${this.shortID} = ${this.pseudo} est CONNECTÉ !`);
+                    }
+                });
 
-		setServerPseudo() {
-			socket.pseudo = this.pseudo;
-			socket.emit('setPseudo', {
-				pseudo: this.pseudo,
-			});
-		},
+                socket.on('disconnect', (reason) => {
+                    console.log('🚀 ~ socket.on ~ reason:', reason);
+                    this.isConnected = false;
 
-		initSocket() {
-			this.setServerPseudo();
-			if (this.isLoggedIn) {
-				socket.on('connect', () => {
-					this.isConnected = true;
-					this.reconnectAttempts = 0;
-					this.completeID = socket.id;
-					console.log(
-						'🚀 ----------socket.pseudo //// pseudo connecté:',
-						socket.pseudo,
-						'/ / / /',
-						this.pseudo
-					);
+                    if (reason === 'io server disconnect') {
+                        socket.connect();
+                    }
+                });
 
-					if (this.completeID) {
-						console.log(
-							'📱 ~ socket.on ~ this.completeID :',
-							this.completeID
-						);
-						this.shortID = this.completeID.substring(0, 5);
-						console.log(
-							'🚀 ~ socket.on ~ this.shortID:',
-							this.shortID
-						);
-						socket.shortID = this.shortID;
-						socket.pseudo = this.pseudo;
-						console.log(
-							`📬 📬 📬 FROM initSocket => ${this.shortID} = ${this.pseudo} est CONNECTÉ !`
-						);
-					}
-				});
+                socket.on('reconnect', (attemptNumber) => {
+                    console.log(`Reconnecté au serveur après ${attemptNumber} tentatives`);
+                    this.isConnected = true;
+                    this.createBubble('✅ Connexion rétablie', 'bubServer');
+                });
 
-				socket.on('disconnect', (reason) => {
-					console.log('🚀 ~ socket.on ~ reason:', reason);
-					this.isConnected = false;
+                socket.on('message', (data) => {
+                    console.log('MSG reçu : ', data);
+                    this.createBubble(data, 'bub2');
+                });
 
-					/**
-					 * 
-					 * 					this.createBubble(
-						'⏱️ Veuillez patienter svp … (tentative de réconnexion)',
-						'bubServer'
-					);
- 
-					 * 
-					 * 
-					 */
+                socket.on('userLeft', (data) => {
+                    this.createBubble(data, 'bubServer');
+                });
 
-					socket.on('reconnect', (attemptNumber) => {
-						console.log(
-							'Reconnecté au serveur après',
-							attemptNumber,
-							'tentatives'
-						);
-					});
-					if (reason === 'io server disconnect') {
-						socket.connect();
-					}
-				});
+                socket.on('userConnected', (data) => {
+                    console.log('🚀 ~ userConnected ==> data:', data);
+                    this.createBubble(data, 'bubServer');
+                });
+            }
+        },
 
-				socket.on('reconnect', (attemptNumber) => {
-					console.log(
-						'Reconnecté au serveur après',
-						attemptNumber,
-						'tentatives'
-					);
-					this.isConnected = true;
-					this.createBubble(
-						'✅ Connexion rétablie',
-						'bubServer'
-					);
-				});
+        serverMsg(message) {
+            console.log('🚀 ~ serverMsg ~ message:', message);
 
-				socket.on('message', (data) => {
-					console.log('MSG reçu : ', data);
-					this.createBubble(data, 'bub2');
-				});
+            const allMess = document.getElementById('allMess');
+            if (!allMess) {
+                console.error('Element with ID "allMess" not found.');
+                return;
+            }
 
-				socket.on('userLeft', (data) => {
-					this.createBubble(data, 'bubServer');
-				});
+            const myServerDiv = document.createElement('div');
+            myServerDiv.classList.add('bubServer');
 
-				socket.on('userConnected', (data) => {
-					console.log('🚀 ~ userConnected ==> data:', data);
-					this.createBubble(data, 'bubServer');
-				});
-			}
-		},
+            const span = document.createElement('span');
+            span.textContent = message;
+            myServerDiv.appendChild(span);
 
-		serverMsg(message) {
-			console.log('🚀 ~ serverMsg ~ message:', message);
+            allMess.appendChild(myServerDiv);
+        },
 
-			const allMess = document.getElementById('allMess');
+        sendMess() {
+            const messInput = document.getElementById('messInput');
 
-			if (!allMess) {
-				console.error(
-					'🐱  🐱  🐱  FROM ChatBox ===> Element with ID "allMess" not found.'
-				);
-				return;
-			}
+            if (!messInput) {
+                console.error('Element with ID "messInput" not found.');
+                return;
+            }
 
-			const myServerDiv = document.createElement('div');
-			myServerDiv.classList.add('bubServer');
+            const messTxt = messInput.value.trim();
+            if (messTxt) {
+                socket.emit('message', `${this.pseudo} : ${messTxt}`);
+                this.createBubble(`Vous : ${messTxt}`, 'bub1');
+                messInput.value = '';
+                messInput.focus();
+            }
+        },
 
-			const span = document.createElement('span');
-			span.textContent = message;
-			myServerDiv.appendChild(span);
+        displayChat() {
+            const chatPopin = document.getElementById('chatPopin');
+            if (!chatPopin) {
+                console.error('Element with ID "chatPopin" not found.');
+                return;
+            }
+            chatPopin.classList.toggle('hide-inactive');
+        },
 
-			allMess.appendChild(myServerDiv);
-		},
+        hideChat() {
+            const chatPopin = document.getElementById('chatPopin');
+            if (chatPopin) {
+                chatPopin.classList.add('hide-inactive');
+            }
+        },
 
-		sendMess() {
-			const messInput = document.getElementById('messInput');
+        createBubble(message, style) {
+            const allMess = document.getElementById('allMess');
 
-			if (!messInput) {
-				console.error('Element with ID "messInput" not found.');
-				return;
-			}
+            if (!allMess) {
+                console.error('Element with ID "allMess" not found.');
+                return;
+            }
 
-			const messTxt = messInput.value.trim();
-			if (messTxt) {
-				socket.emit('message', `${this.pseudo} : ${messTxt}`);
-				this.createBubble(`Vous : ${messTxt}`, 'bub1');
-				messInput.value = '';
-				messInput.focus();
-			}
-		},
+            const myDiv = document.createElement('div');
+            myDiv.classList.add(style);
 
-		displayChat() {
-			const chatPopin = document.getElementById('chatPopin');
-			if (!chatPopin) {
-				console.error('Element with ID "chatPopin" not found.');
-				return;
-			}
-			chatPopin.classList.toggle('hide-inactive');
-		},
+            const span = document.createElement('span');
+            span.textContent = message;
+            myDiv.appendChild(span);
 
-		hideChat() {
-			const chatPopin = document.getElementById('chatPopin');
-			if (chatPopin) {
-				chatPopin.classList.add('hide-inactive');
-			}
-		},
+            allMess.appendChild(myDiv);
+        },
 
-		createBubble(message, style) {
-			const allMess = document.getElementById('allMess');
-
-			if (!allMess) {
-				console.error('Element with ID "allMess" not found.');
-				return;
-			}
-
-			const myDiv = document.createElement('div');
-			myDiv.classList.add(style);
-
-			const span = document.createElement('span');
-			span.textContent = message;
-			myDiv.appendChild(span);
-
-			allMess.appendChild(myDiv);
-		},
-
-		disconnectUser() {
-			socket.emit('userLeft', {
-				ID: this.shortID,
-				pseudo: this.pseudo,
-			});
-		},
-	},
+        disconnectUser() {
+            socket.emit('userLeft', { ID: this.shortID, pseudo: this.pseudo });
+        },
+    },
 };
 </script>
+
 
 <style>
 .membersonline {

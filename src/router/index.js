@@ -22,6 +22,8 @@ import rgpdpage from '@/views/CguRgpdPage.vue';
 import postdetailpage from '@/views/PostDetailPage.vue';
 import passmodifypage from '@/views/PassModifyPage.vue';
 import infoagentpage from '@/views/InfoAgentPage.vue';
+import chatroom from '@/components/ChatRoom.vue';
+
 
 const routes = [
 	{
@@ -135,6 +137,12 @@ const routes = [
 		path: '/confirmSignUpPage',
 		name: 'confirmsignuppage',
 		component: confirmsignuppage,
+		meta: {showChatBox: false},
+	},
+	{
+		path: '/chatroom',
+		name: 'chatroom',
+		component: chatroom,
 		meta: {showChatBox: false},
 	},
 	{

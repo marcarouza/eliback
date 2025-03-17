@@ -161,167 +161,115 @@
 		</table>
 	</div>
 </template>
-<!-- 
-<script setup>
-import {ref, computed, onMounted, onUnmounted} from 'vue';
-import {defineOptions} from 'vue';
 
-// Définir le nom du composant
-defineOptions({name: 'AgentInfo'});
+<script>
 
-// Hooks du cycle de vie
-onMounted(() => {
-	getUserAgentInfo();
-	window.addEventListener('mousemove', showCoordinates);
-	window.addEventListener('resize', updateDim);
-});
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 
-onUnmounted(() => {
-	window.removeEventListener('mousemove', showCoordinates);
-	window.removeEventListener('resize', updateDim);
-});
+export default {
+  name: 'AgentInfo',
+  setup() {
+    // Définition des propriétés réactives
+    const userAgentInfo = ref(null);
+    const x = ref(0);
+    const y = ref(0);
+    const winWidth = ref(window.innerWidth);
+    const winHeight = ref(window.innerHeight);
 
-// Définition des propriétés réactives
-const userAgentInfo = ref(null);
-const x = ref(0);
-const y = ref(0);
-const winWidth = ref(window.innerWidth);
-const winHeight = ref(window.innerHeight);
+    // Variables pour le suivi de la souris
+    let rafId = null;
+    let lastX = 0;
+    let lastY = 0;
 
-// Propriété calculée pour vérifier si le pointeur est dans la fenêtre
-const pointerInside = computed(() => {
-	return (
-		x.value > 0 &&
-		x.value < winWidth.value - 10 &&
-		y.value > 1 &&
-		y.value < winHeight.value - 10
-	);
-});
+    // Propriété calculée pour vérifier si le pointeur est dans la fenêtre
+    const pointerInside = computed(() => {
+      const margin = 5;
+      return (
+        x.value > margin &&
+        x.value < winWidth.value - margin &&
+        y.value > margin &&
+        y.value < winHeight.value - margin
+      );
+    });
 
-// Fonction pour afficher les coordonnées de la souris
-function showCoordinates(event) {
-	x.value = event.clientX;
-	y.value = event.clientY;
-	console.log('Pointeur dans la fenêtre:', pointerInside.value);
-}
+    // Fonction pour mettre à jour les coordonnées de la souris
+    function updateMousePosition() {
+      x.value = lastX;
+      y.value = lastY;
+      console.log('Pointeur dans la fenêtre:', pointerInside.value);
+      rafId = requestAnimationFrame(updateMousePosition);
+    }
 
-function updateDim() {
-	winWidth.value = window.innerWidth;
-	winHeight.value = window.innerHeight;
-}
+    // Fonction pour capturer les coordonnées de la souris
+    function captureMousePosition(event) {
+      lastX = event.clientX;
+      lastY = event.clientY;
+    }
 
-// Fonction pour obtenir les informations de l'agent utilisateur
-const getUserAgentInfo = async () => {
-	try {
-		const response = await fetch(
-			'https://eli-back.onrender.com/api/info',
-			{
-				method: 'GET',
-				credentials: 'include',
-			}
-		);
-		if (!response.ok) {
-			throw new Error(
-				`FROM UserAgent API response was not ok ==> ${response.status}`
-			);
-		}
-		const data = await response.json();
-		console.log('🚀 ~ getUserAgentInfo ~ data:', data);
-		userAgentInfo.value = data.userAgentInfo;
-	} catch (err) {
-		console.error('FROM UserAgent problème avec requête fetch :', err);
-	}
+    // Fonction pour mettre à jour les dimensions de la fenêtre
+    function updateDim() {
+      winWidth.value = window.innerWidth;
+      winHeight.value = window.innerHeight;
+    }
+
+    // Fonction pour obtenir les informations de l'agent utilisateur
+    const getUserAgentInfo = async () => {
+      try {
+        const response = await fetch(
+          'https://eli-back.onrender.com/api/info',
+          {
+            method: 'GET',
+            credentials: 'include',
+          }
+        );
+        if (!response.ok) {
+          throw new Error(
+            `FROM UserAgent API response was not ok ==> ${response.status}`
+          );
+        }
+        const data = await response.json();
+        console.log('🚀 ~ getUserAgentInfo ~ data:', data);
+        userAgentInfo.value = data.userAgentInfo;
+      } catch (err) {
+        console.error('Problème avec getUserAgentInfo:', err);
+      }
+    };
+
+    // Hooks du cycle de vie
+    onMounted(() => {
+      getUserAgentInfo();
+      window.addEventListener('mousemove', captureMousePosition);
+      window.addEventListener('resize', updateDim);
+      rafId = requestAnimationFrame(updateMousePosition);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener('mousemove', captureMousePosition);
+      window.removeEventListener('resize', updateDim);
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+      }
+    });
+
+    // Retourner les propriétés et méthodes nécessaires
+    return {
+      userAgentInfo,
+      x,
+      y,
+      winWidth,
+      winHeight,
+      pointerInside,
+    };
+  },
 };
-</script> -->
 
-<script setup>
-import {ref, computed, onMounted, reactive, onUnmounted} from 'vue';
-import {defineOptions} from 'vue';
 
-// Définir le nom du composant
-defineOptions({name: 'AgentInfo'});
 
-// Hooks du cycle de vie
-onMounted(() => {
-	getUserAgentInfo();
-	window.addEventListener('mousemove', captureMousePosition);
-	window.addEventListener('resize', updateDim);
-	rafId = requestAnimationFrame(updateMousePosition);
-});
 
-onUnmounted(() => {
-	window.removeEventListener('mousemove', captureMousePosition);
-	window.removeEventListener('resize', updateDim);
-	if (rafId) {
-		cancelAnimationFrame(rafId);
-	}
-});
-
-// Définition des propriétés réactives
-const userAgentInfo = ref(null);
-const x = ref(0);
-const y = ref(0);
-const winWidth = ref(window.innerWidth);
-const winHeight = ref(window.innerHeight);
-
-// Variables pour le suivi de la souris
-let rafId = null;
-let lastX = 0;
-let lastY = 0;
-
-// Propriété calculée pour vérifier si le pointeur est dans la fenêtre
-const pointerInside = computed(() => {
-	const margin = 5;
-	return (
-		x.value > margin &&
-		x.value < winWidth.value - margin &&
-		y.value > margin &&
-		y.value < winHeight.value - margin
-	);
-});
-
-// Fonction pour mettre à jour les coordonnées de la souris
-function updateMousePosition() {
-	x.value = lastX;
-	y.value = lastY;
-	console.log('Pointeur dans la fenêtre:', pointerInside.value);
-	rafId = requestAnimationFrame(updateMousePosition);
-}
-
-// Fonction pour capturer les coordonnées de la souris
-function captureMousePosition(event) {
-	lastX = event.clientX;
-	lastY = event.clientY;
-}
-
-function updateDim() {
-	winWidth.value = window.innerWidth;
-	winHeight.value = window.innerHeight;
-}
-
-// Fonction pour obtenir les informations de l'agent utilisateur
-const getUserAgentInfo = async () => {
-	try {
-		const response = await fetch(
-			'https://eli-back.onrender.com/api/info',
-			{
-				method: 'GET',
-				credentials: 'include',
-			}
-		);
-		if (!response.ok) {
-			throw new Error(
-				`FROM UserAgent API response was not ok ==> ${response.status}`
-			);
-		}
-		const data = await response.json();
-		console.log('🚀 ~ getUserAgentInfo ~ data:', data);
-		userAgentInfo.value = data.userAgentInfo;
-	} catch (err) {
-		console.error('FROM UserAgent problème avec requête fetch :', err);
-	}
-};
 </script>
+
+
+
 
 <style scoped>
 h1 {

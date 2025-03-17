@@ -42,66 +42,8 @@
 
 <script>
 export default {
-	name: 'ContactForm',
-	data() {
-		return {
-			form: {
-				firstname: '',
-				lastname: '',
-				email: '',
-				code: '+33', // Default
-				mobile: '',
-				subject: '',
-				message: '',
-			},
-		};
-	},
-	components: {},
-	methods: {
-		async submitForm() {
-			if (
-				this.form.firstname &&
-				this.form.lastname &&
-				this.form.email &&
-				this.form.mobile &&
-				this.form.subject &&
-				this.form.message
-			) {
-				try {
-					const response = await fetch(
-						'https://eli-back.onrender.com/api/contactFormPost',
-						{
-							method: 'POST',
-							headers: {
-								'Content-Type': 'application/json',
-							},
-							body: JSON.stringify(this.form),
-						}
-					);
+	name: 'ChatRoom',
 
-					if (!response.ok) {
-						throw new Error(
-							'😱 😱 😱 FROM ContactForm.vue PAGE FETCH =>  Failed to send (237)'
-						);
-					}
-
-					const result = await response.json();
-					console.log(
-						'🤾 ✅ 🤾 FROM ContactForm => EMAIL sent successfully: ' +
-							result.response
-					);
-					this.$router.push({name: 'confirmcontactpage'});
-				} catch (error) {
-					console.error(
-						'🍌 🍌 🍌 🍌 🍌 FROM CONTACT PAGE FETCH => ERR sending email (234) : ' +
-							error.message
-					);
-				}
-			} else {
-				alert('🍌 🍌 🍌 🍌 🍌 Veuillez remplir tous les champs');
-			}
-		},
-	},
 };
 </script>
 
