@@ -1,9 +1,15 @@
 <template>
 	<div id="app-container">
-		<CommonHead :pageTitle="pageTitle" />
+		<!-- <CommonHead :pageTitle="pageTitle" /> -->
+		 <CommonHeadNew :pageTitle="pageTitle" />
 		<div id="content-container">
-			<router-view @updatePageTitle="updatePageTitle" />
+		<RouterView @updatePageTitle="updatePageTitle" />
+
 		</div>
+		
+		
+		<!-- <RouterView @updatePageTitle="updatePageTitle" /> -->
+		
 		<Footer />
 
 		<!-- Affichage conditionnel de Chat_Box basé sur la route -->
@@ -15,15 +21,18 @@
 </template>
 
 <script>
-import CommonHead from './components/CommonHead.vue';
+// import CommonHead from './components/CommonHead.vue';
+import CommonHeadNew from './components/CommonHeadNew.vue';
 import Footer from './components/Footer.vue';
 import ChatBox from './components/ChatBox.vue';
 import Notif from './components/Notif.vue';
+import { RouterView } from 'vue-router';
 
 export default {
 	name: 'App',
 	components: {
-		CommonHead,
+		// CommonHead,
+		CommonHeadNew,
 		ChatBox,
 		Footer,
 		Notif,
@@ -31,16 +40,16 @@ export default {
 	data() {
 		return {
 			pageTitle: '▶︎ Eli Azoura | Développeur Full Stack',
-			isLoggedIn: false,
+			// isLoggedIn: false,
 			chatBoxKey: 0,
-			localUserSession: null,
+			// localUserSession: null,
 			pseudo: '',
 			welcomeMsg: '',
 		};
 	},
 	mounted() {
-		this.checkLocalUserSession();
-		console.log('🐱-🐱-🐱 this.chatBoxKey:', this.chatBoxKey);
+		// this.checkLocalUserSession();
+		// console.log('🐱-🐱-🐱 this.chatBoxKey:', this.chatBoxKey);
 	},
 	methods: {
 		checkLocalUserSession() {
