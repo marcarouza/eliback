@@ -2,131 +2,70 @@
 	<header class="py-5">
 		<div class="container px-5">
 			<div class="row gx-3 align-items-center">
-				<div class="col-xxl-5">
-					<!-- Header text content-->
-					<div class="text-center text-xxl-start">
-						<div
-							class="badge bg-gradient-primary-to-secondary text-white mb-4"
-						>
-							<div class="text-uppercase">
-								Web · Développement · Formation · Design
+
+								<!-- Colonne Image -->
+				<div class="col-12 col-md-7 order-md-2">
+					<div class="d-flex justify-content-center  mt-md-0">
+						<div class="profile">
+							<img class="profile-img"
+								src="https://static.wixstatic.com/media/67301c_6027dd92640849afa6b93d7dd2c06f51~mv2.webp"
+								alt="..." />
+							<div class="foreground-text">
+								<p>" Être développeur,<br />c'est savoir se développer "</p>
 							</div>
 						</div>
-						<div class="fs-3 fw-light text-muted">
-							Eli Azoura
+					</div>
+				</div>
+				<!-- Colonne Texte -->
+				<div class="col-12 col-md-5 order-md-1">
+					<!-- Contenu texte -->
+					<div class="text-center text-md-start">
+						<div class="badge bg-gradient-primary-to-secondary text-white mb-4">
+							<div class="text-uppercase">Web · Développement · Formation · Design</div>
 						</div>
+						<div class="fs-3 fw-light text-muted">Eli Azoura</div>
 						<h1 class="display-3 fw-bolder mb-5">
-							<span class="text-gradient d-inline"
-								>Développeur web full stack</span
-							>
+							<span class="text-gradient d-inline">Développeur web full stack</span>
 						</h1>
-						<div
-							class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start"
-						>
-							<router-link
-								class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder"
-								to="/cvPage"
-							>
+						<div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-md-start">
+							<router-link class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" to="/cvPage">
 								CV
 							</router-link>
-
-							<router-link
-								class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder"
-								to="/projetsPage"
-							>
+							<router-link class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" to="/projetsPage">
 								Projets
 							</router-link>
 						</div>
 					</div>
 				</div>
 
-				<div class="col-xxl-7">
-					<!-- Header profile picture-->
-					<div
-						class="d-flex justify-content-center mt-5 mt-xxl-0"
-					>
-						<div
-							class="profile bg-gradient-primary-to-secondary"
-						>
-							<img
-								class="profile-img"
-								src="https://static.wixstatic.com/media/67301c_581fc3112be04999be10ab063507eb00~mv2.webp"
-								alt="..."
-							/>
 
-							<div class="foreground-text">
-								<p>
-									" Être développeur,
-									<br />
-									c'est savoir se développer "
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
+
 
 			<!-- ACCORDEON -->
 			<nav class="rounded-top-3 mt-5 bg-gradient-custom">
 				<div class="nav nav-tabs mt-3" id="nav-tab" role="tablist">
-					<button
-						class="nav-link active"
-						id="client-tab"
-						data-bs-toggle="tab"
-						data-bs-target="#client"
-						type="button"
-						role="tab"
-						aria-controls="client"
-						aria-selected="true"
-					>
+					<button class="nav-link active" id="client-tab" data-bs-toggle="tab" data-bs-target="#client"
+						type="button" role="tab" aria-controls="client" aria-selected="true">
 						Client
 					</button>
-					<button
-						class="nav-link"
-						id="serveur-tab"
-						data-bs-toggle="tab"
-						data-bs-target="#serveur"
-						type="button"
-						role="tab"
-						aria-controls="serveur"
-						aria-selected="false"
-					>
+					<button class="nav-link" id="serveur-tab" data-bs-toggle="tab" data-bs-target="#serveur" type="button"
+						role="tab" aria-controls="serveur" aria-selected="false">
 						Serveur
 					</button>
-					<button
-						class="nav-link"
-						id="nav-contact-tab"
-						data-bs-toggle="tab"
-						data-bs-target="#nav-contact"
-						type="button"
-						role="tab"
-						aria-controls="nav-contact"
-						aria-selected="false"
-					>
+					<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
+						type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
 						Base de donnée
 					</button>
-					<button
-						class="nav-link"
-						id="nav-socket-tab"
-						data-bs-toggle="tab"
-						data-bs-target="#nav-socket"
-						type="button"
-						role="tab"
-						aria-controls="nav-socket"
-						aria-selected="false"
-					>
+					<button class="nav-link" id="nav-socket-tab" data-bs-toggle="tab" data-bs-target="#nav-socket"
+						type="button" role="tab" aria-controls="nav-socket" aria-selected="false">
 						Socket
 					</button>
 				</div>
 			</nav>
 			<div class="bg-light tab-content" id="nav-tabContent">
-				<div
-					class="tab-pane fade show active px-4 py-4"
-					id="client"
-					role="tabpanel"
-					aria-labelledby="client-tab"
-					tabindex="0"
-				>
+				<div class="tab-pane fade show active px-4 py-4" id="client" role="tabpanel" aria-labelledby="client-tab"
+					tabindex="0">
 					<p><strong>Frontend dynamique avec VueJS</strong></p>
 
 					<p>
@@ -149,10 +88,8 @@
 					</p>
 
 					<p>
-						<strong
-							>Architecture moderne : Single Page
-							Application (SPA)</strong
-						>
+						<strong>Architecture moderne : Single Page
+							Application (SPA)</strong>
 					</p>
 
 					<p>
@@ -197,18 +134,11 @@
 						évolution.
 					</p>
 				</div>
-				<div
-					class="tab-pane fade px-4 py-4"
-					id="serveur"
-					role="tabpanel"
-					aria-labelledby="serveur-tab"
-					tabindex="0"
-				>
+				<div class="tab-pane fade px-4 py-4" id="serveur" role="tabpanel" aria-labelledby="serveur-tab"
+					tabindex="0">
 					<p>
-						<strong
-							>Infrastructure Backend Robuste avec Node.js
-							et Express.js</strong
-						>
+						<strong>Infrastructure Backend Robuste avec Node.js
+							et Express.js</strong>
 					</p>
 
 					<p>
@@ -243,10 +173,8 @@
 					</p>
 
 					<p>
-						<strong
-							>Fonctionnalités Avancées de Réseautage
-							Social</strong
-						>
+						<strong>Fonctionnalités Avancées de Réseautage
+							Social</strong>
 					</p>
 
 					<p>
@@ -275,18 +203,11 @@
 					<br />
 					<br />
 				</div>
-				<div
-					class="tab-pane fade px-4 py-4"
-					id="nav-contact"
-					role="tabpanel"
-					aria-labelledby="nav-contact-tab"
-					tabindex="0"
-				>
+				<div class="tab-pane fade px-4 py-4" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"
+					tabindex="0">
 					<p>
-						<strong
-							>Architecture de Données Scalable avec
-							MongoDB</strong
-						>
+						<strong>Architecture de Données Scalable avec
+							MongoDB</strong>
 					</p>
 
 					<p>
@@ -340,8 +261,7 @@
 					</p>
 
 					<p>
-						<em
-							>Note technique : L'intégration de MongoDB
+						<em>Note technique : L'intégration de MongoDB
 							dans ma stack MEVN (MongoDB, Express, Vue.js,
 							Node.js) offre une synergie puissante. Cette
 							architecture full stack me permet de
@@ -349,25 +269,17 @@
 							réactives et scalables, avec une gestion de
 							l'état côté client optimisée grâce à une
 							couche de persistance flexible et performante
-							côté serveur.</em
-						>
+							côté serveur.</em>
 					</p>
 					<br />
 
 					<br />
 				</div>
-				<div
-					class="tab-pane fade px-4 py-4"
-					id="nav-socket"
-					role="tabpanel"
-					aria-labelledby="nav-socket-tab"
-					tabindex="0"
-				>
+				<div class="tab-pane fade px-4 py-4" id="nav-socket" role="tabpanel" aria-labelledby="nav-socket-tab"
+					tabindex="0">
 					<p>
-						<strong
-							>Architecture de communication en temps réel
-							avec Socket.io</strong
-						>
+						<strong>Architecture de communication en temps réel
+							avec Socket.io</strong>
 					</p>
 
 					<p>
@@ -420,8 +332,7 @@
 					</p>
 
 					<p>
-						<em
-							>Note technique : L'intégration de Socket.io
+						<em>Note technique : L'intégration de Socket.io
 							dans mon architecture MEVN (MongoDB, Express,
 							VueJS, Node.js) me permet de concevoir des
 							flux de données bidirectionnels performants.
@@ -431,8 +342,7 @@
 							en direct de l'interface utilisateur, et la
 							gestion d'états distribués, renforçant ainsi
 							la réactivité et l'interactivité globale de
-							l'application.</em
-						>
+							l'application.</em>
 					</p>
 				</div>
 			</div>
@@ -475,7 +385,8 @@ export default {
 
 .bg-gradient-custom .nav-link {
 	color: white;
-	opacity: 0.9; /* Légère transparence pour les onglets inactifs */
+	opacity: 0.9;
+	/* Légère transparence pour les onglets inactifs */
 	transition: opacity 0.3s ease;
 }
 
@@ -483,9 +394,11 @@ export default {
 	0% {
 		background-position: 0% 50%;
 	}
+
 	50% {
 		background-position: 100% 50%;
 	}
+
 	100% {
 		background-position: 0% 50%;
 	}
@@ -497,7 +410,8 @@ export default {
 
 .foreground-text {
 	font-family: 'Roboto', sans-serif;
-	filter: blur(0.4px); /* Applique un flou */
+	filter: blur(0.1px);
+	/* Applique un flou */
 	/* font-family: 'Nunito', sans-serif; */
 	font-style: italic;
 	letter-spacing: 0.05em;
@@ -514,9 +428,11 @@ export default {
 	font-size: 1.8rem;
 	font-weight: 300;
 	text-align: center;
-	text-shadow: 0px 0px 10px rgb(5, 0, 27);
-	z-index: 10; /* Assure que le texte est devant tout autre élément */
+	text-shadow: 1px 1px 10px #230015;
+	z-index: 10;
+	/* Assure que le texte est devant tout autre élément */
 	padding: 30px;
+
 	p {
 		margin: 0;
 		padding: 0;
@@ -525,23 +441,28 @@ export default {
 
 @media (max-width: 1200px) {
 	.foreground-text {
-		font-size: 1.4rem; /* Réduit la taille de la police pour les écrans de taille moyenne */
+		font-size: 1.4rem;
+		/* Réduit la taille de la police pour les écrans de taille moyenne */
 		/* top: 75%; Ajuste la position verticale si nécessaire */
 	}
 }
 
 @media (max-width: 768px) {
 	.foreground-text {
-		font-size: 1.4rem; /* Réduit davantage la taille de la police pour les petits écrans */
-		letter-spacing: 0.03em; /* Ajuste l'espacement des lettres */
+		font-size: 1.4rem;
+		/* Réduit davantage la taille de la police pour les petits écrans */
+		letter-spacing: 0.03em;
+		/* Ajuste l'espacement des lettres */
 		/* top: 70%; Ajuste la position verticale pour les petits écrans */
-		padding: 5px; /* Ajoute du padding si nécessaire pour plus de lisibilité */
+		padding: 5px;
+		/* Ajoute du padding si nécessaire pour plus de lisibilité */
 	}
 }
 
 @media (max-width: 576px) {
 	.foreground-text {
-		font-size: 1.2rem; /* Encore plus petit pour les très petits écrans */
+		font-size: 1.2rem;
+		/* Encore plus petit pour les très petits écrans */
 		/* top: 65%; Ajuste la position verticale */
 	}
 }

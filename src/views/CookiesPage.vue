@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<NavOk />
+		<!-- <NavNew /> -->
 
 		<div class="container m-5">
 			<h1>Bienvenue</h1>
@@ -12,12 +12,12 @@
 
 <script>
 import VueCookies from 'vue-cookies';
-import NavOk from '@/components/NavOk.vue';
+import NavNew from '@/components/NavNew.vue';
 
 export default {
 	name: 'CookiesPage',
 	components: {
-		NavOk,
+		NavNew,
 	},
 	data() {
 		return {

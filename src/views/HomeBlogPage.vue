@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<NavOk />
+		<!-- <NavOk /> -->
 		<NavBlog />
 		<BlogCore />
 		<TabWhats />
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import NavOk from '@/components/NavOk.vue';
+// import NavOk from '@/components/NavOk.vue';
 import NavBlog from '@/components/blogCompo/NavBlog.vue';
 import BlogCore from '@/components/blogCompo/BlogCore.vue';
 
@@ -18,7 +18,7 @@ export default {
 	name: 'HomeBlogPage',
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
 	components: {
-		NavOk,
+		// NavOk,
 		NavBlog,
 		BlogCore,
 		TabWhats,

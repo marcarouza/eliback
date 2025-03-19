@@ -1,13 +1,12 @@
 <template>
 	<div>
-		<NavOk />
 		<LogUserForm />
 		<TabWhats />
 	</div>
 </template>
 
 <script>
-import NavOk from '@/components/NavOk.vue';
+// import NavOk from '@/components/NavOk.vue';
 import LogUserForm from '@/components/LogUserForm.vue';
 import TabWhats from '@/components/TabWhats.vue';
 
@@ -15,7 +14,6 @@ export default {
 	name: 'LogUserPage',
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
 	components: {
-		NavOk,
 		LogUserForm,
 		TabWhats,
 	},

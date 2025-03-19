@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<NavOk />
+		<!-- <NavNew /> -->
 
 		<ContactForm />
 		<TabWhats />
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import NavOk from '@/components/NavOk.vue';
+import NavNew from '@/components/NavNew.vue';
 import ContactForm from '@/components/ContactForm.vue';
 
 import TabWhats from '@/components/TabWhats.vue';
@@ -18,7 +18,7 @@ export default {
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
 	// Autres options du composant
 	components: {
-		NavOk,
+		NavNew,
 		ContactForm,
 		TabWhats,
 	},

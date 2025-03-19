@@ -1,13 +1,11 @@
 <template>
 	<div>
-		<NavOk />
 		<AgentInfo />
 		<TabWhats />
 	</div>
 </template>
 
 <script>
-import NavOk from '@/components/NavOk.vue';
 import AgentInfo from '@/components/UserAgent.vue';
 import TabWhats from '@/components/TabWhats.vue';
 
@@ -15,7 +13,7 @@ export default {
 	name: 'InfoAgentPage',
 	emits: ['updatePageTitle'],
 	components: {
-		NavOk,
+		// NavOk,
 		AgentInfo,
 		TabWhats,
 	},

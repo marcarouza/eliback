@@ -1,15 +1,12 @@
 <template>
 	<div>
-		<!-- <NavOk /> -->
-		<NavOkService />
 		<Hero />
 		<TabWhats />
 	</div>
 </template>
 
 <script>
-// import NavOk from '@/components/NavOk.vue';
-import NavOkService from '@/components/NavOkService.vue';
+
 import Hero from '@/components/Hero.vue';
 import TabWhats from '@/components/TabWhats.vue';
 
@@ -17,8 +14,7 @@ export default {
 	name: 'HomePage',
 	emits: ['updatePageTitle'],
 	components: {
-		// NavOk,
-		NavOkService,
+
 		Hero,
 		TabWhats,
 	},

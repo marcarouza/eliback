@@ -1,13 +1,13 @@
 <template>
 	<div>
-		<NavOk />
+		<!-- <NavNew /> -->
 		<Cv />
 		<TabWhats />
 	</div>
 </template>
 
 <script>
-import NavOk from '@/components/NavOk.vue';
+import NavNew from '@/components/NavNew.vue';
 import Cv from '@/components/Cv.vue';
 import TabWhats from '@/components/TabWhats.vue';
 
@@ -20,7 +20,7 @@ export default {
 	},
 	// Autres options du composant
 	components: {
-		NavOk,
+		NavNew,
 		Cv,
 		TabWhats,
 	},

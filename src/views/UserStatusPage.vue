@@ -1,13 +1,9 @@
 <template>
-	<div>
-		<NavOk />
 		<UserStatus />
 		<TabWhats />
-	</div>
 </template>
 
 <script>
-import NavOk from '@/components/NavOk.vue';
 import UserStatus from '@/components/UserStatus.vue';
 import CommonHead from '@/components/CommonHead.vue';
 import SignUserForm from '@/components/SignUserForm.vue';
@@ -19,7 +15,6 @@ export default {
 	components: {
 		CommonHead,
 		UserStatus,
-		NavOk,
 		SignUserForm,
 		TabWhats,
 	},

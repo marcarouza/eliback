@@ -2,19 +2,19 @@
 <template>
 	<ConfirmLoggedIn />
 
-	<NavOk />
+	<!-- <NavOk /> -->
 </template>
 
 <script>
 import ConfirmLoggedIn from '@/components/ConfirmLoggedIn.vue';
-import NavOk from '@/components/NavOk.vue';
+// import NavOk from '@/components/NavOk.vue';
 
 export default {
 	name: 'ConfirmLoggedInPage',
 
 	components: {
 		ConfirmLoggedIn,
-		NavOk,
+		// NavOk,
 	},
 
 	emits: ['updatePageTitle'], // Déclarez l'événement ici

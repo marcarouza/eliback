@@ -1,6 +1,7 @@
 <template>
 	<div id="app-container">
 		<!-- <CommonHead :pageTitle="pageTitle" /> -->
+<NavOkService>	</NavOkService>
 		 <CommonHeadNew :pageTitle="pageTitle" />
 		<div id="content-container">
 		<RouterView @updatePageTitle="updatePageTitle" />
@@ -27,11 +28,15 @@ import Footer from './components/Footer.vue';
 import ChatBox from './components/ChatBox.vue';
 import Notif from './components/Notif.vue';
 import { RouterView } from 'vue-router';
+// import NavNew from './components/NavNew.vue';
+import NavOkService from './components/NavOkService.vue';
 
 export default {
 	name: 'App',
 	components: {
 		// CommonHead,
+		NavOkService,
+		// NavNew,
 		CommonHeadNew,
 		ChatBox,
 		Footer,

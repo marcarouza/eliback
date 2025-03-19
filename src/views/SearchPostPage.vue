@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<NavOk />
 
 		<NavBlog />
 		<SearchPost />
@@ -9,7 +8,6 @@
 </template>
 
 <script>
-import NavOk from '@/components/NavOk.vue';
 import NavBlog from '@/components/blogCompo/NavBlog.vue';
 import SearchPost from '@/components/blogCompo/SearchPost.vue';
 
@@ -19,7 +17,6 @@ export default {
 	name: 'SearchPostPage',
 	emits: ['updatePageTitle'],
 	components: {
-		NavOk,
 		NavBlog,
 		SearchPost,
 		TabWhats,

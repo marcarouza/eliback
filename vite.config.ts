@@ -7,6 +7,7 @@ export default defineConfig(({mode}) => ({
 	base: '/',
 	plugins: [
 		vue(),
+		
 		// Les plugins suivants sont ajoutés uniquement en mode production
 		...(mode === 'production'
 			? [

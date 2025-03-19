@@ -1,5 +1,4 @@
 <template>
-	<NavOk />
 
 	<div class="d-flex flex-column align-items-center justify-content-center">
 		<PassModify />
@@ -8,7 +7,7 @@
 </template>
 
 <script>
-import NavOk from '@/components/NavOk.vue';
+// import NavOk from '@/components/NavOk.vue';
 import PassModify from '@/components/PassModify.vue';
 import TabWhats from '@/components/TabWhats.vue';
 
@@ -17,7 +16,6 @@ export default {
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
 
 	components: {
-		NavOk,
 		PassModify,
 		TabWhats,
 	},

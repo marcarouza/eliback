@@ -1,5 +1,4 @@
 <template>
-	<NavOk />
 
 	<div>
 		<div
@@ -12,7 +11,6 @@
 </template>
 
 <script>
-import NavOk from '@/components/NavOk.vue';
 
 import NoAccess from '@/components/NoAccess.vue';
 import TabWhats from '@/components/TabWhats.vue';
@@ -21,7 +19,6 @@ export default {
 	name: 'NoAccessPage',
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
 	components: {
-		NavOk,
 		NoAccess,
 		TabWhats,
 	},

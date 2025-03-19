@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<NavOk />
+		<!-- <NavNew /> -->
 		<div class="container m-5">
 			<h1>API POUR LECTURE DU TOKEN from FETCH API getCookie</h1>
 
@@ -38,12 +38,12 @@ import VueCookies from 'vue-cookies';
 
 import {jwtDecode} from 'jwt-decode';
 
-import NavOk from '@/components/NavOk.vue';
+import NavNew from '@/components/NavNew.vue';
 
 export default {
 	name: 'ApiPage',
 	components: {
-		NavOk,
+		NavNew,
 	},
 	data() {
 		return {
