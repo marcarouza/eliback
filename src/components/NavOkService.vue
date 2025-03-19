@@ -47,14 +47,33 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <span v-if="user">
-                <i class="bi bi-check-circle connected">
+              <li v-if="user">
+                										<router-link
+											class="dropdown-item"
+											to="/userstatusPage"
+										>
+                  
+                                    <span class="account">
+  <i class="bi bi-check-circle connected">
                   &nbsp;&nbsp;{{ user.user }}&nbsp;&nbsp;
                 </i>
-              </span>
-              <span v-else>
-                <i class="fas fa-user-slash"></i>
-              </span>
+
+
+                  </span>
+                  
+                  </router-link>
+
+                            </li>
+
+
+
+
+
+              <li v-else>
+								<span class="icon-disconnected px-4">
+									<i class="fas fa-user-slash"></i>
+								</span>
+                  </li>
             </a>
             <!-- Menu pour utilisateur connecté -->
             <ul v-if="user" class="dropdown-menu user_menu" aria-labelledby="navbarDropdown">

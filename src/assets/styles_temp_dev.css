@@ -406,8 +406,11 @@ button,
 [type='button'],
 [type='reset'],
 [type='submit'] {
-	-webkit-appearance: button;
+    -webkit-appearance: button; /* Compatibilité avec WebKit (Chrome, Safari) */
+    -moz-appearance: button;    /* Compatibilité avec Mozilla (Firefox) */
+    appearance: button;         /* Propriété standard */
 }
+
 button:not(:disabled),
 [type='button']:not(:disabled),
 [type='reset']:not(:disabled),
@@ -484,9 +487,12 @@ legend + * {
 }
 
 ::file-selector-button {
-	font: inherit;
-	-webkit-appearance: button;
+    font: inherit; /* Hérite de la police du parent */
+    -webkit-appearance: button; /* Compatibilité avec WebKit (Chrome, Safari) */
+    -moz-appearance: button;    /* Compatibilité avec Mozilla (Firefox) */
+    appearance: button;         /* Propriété standard */
 }
+
 
 output {
 	display: inline-block;
@@ -11929,10 +11935,13 @@ fieldset:disabled .btn {
 }
 
 .text-gradient {
-	background: -webkit-linear-gradient(315deg, #1e30f3 0%, #e21e80 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+    background: linear-gradient(315deg, #1e30f3 0%, #e21e80 100%);
+    -webkit-background-clip: text;
+    background-clip: text; /* Ajout de la version standard */
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent; /* Ajout de la version standard */
 }
+
 
 .rounded-4 {
 	border-radius: 1rem !important;

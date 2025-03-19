@@ -76,10 +76,10 @@
 							aria-expanded="false"
 						>
 							<li v-if="user">
-								<router-link
-									class="dropdown-item"
-									to="/userstatusPage"
-								>
+										<router-link
+											class="dropdown-item"
+											to="/userstatusPage"
+										>
 									<span class="account">
 										<i
 											class="bi bi-check-circle connected"
