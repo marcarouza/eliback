@@ -6,9 +6,9 @@
 								<!-- Colonne Image -->
 				<div class="col-12 col-md-7 order-md-2">
 					<div class="d-flex justify-content-center  mt-md-0">
-						<div class="profile">
+						<div class="profile skin1to2 ">
 							<img class="profile-img"
-								src="https://static.wixstatic.com/media/67301c_6027dd92640849afa6b93d7dd2c06f51~mv2.webp"
+								src="https://static.wixstatic.com/media/67301c_afa0214573694a2da83f1c41745862db~mv2.png"
 								alt="..." />
 							<div class="foreground-text">
 								<p>" Être développeur,<br />c'est savoir se développer "</p>
@@ -410,11 +410,11 @@ export default {
 
 .foreground-text {
 	font-family: 'Roboto', sans-serif;
-	filter: blur(0.1px);
+	/* filter: blur(0.1px); */
 	/* Applique un flou */
 	/* font-family: 'Nunito', sans-serif; */
 	font-style: italic;
-	letter-spacing: 0.05em;
+	/* letter-spacing: 0.05em; */
 	line-height: 1.1;
 	position: absolute;
 	display: flex;
@@ -428,7 +428,11 @@ export default {
 	font-size: 1.8rem;
 	font-weight: 300;
 	text-align: center;
-	text-shadow: 1px 1px 10px #230015;
+	/* text-shadow: 1px 1px 5px #000000; */
+text-shadow: 2px 2px 3px #000000, 4px 4px 10px #2c00db;
+text-shadow: 2px 2px 5px #000000, 4px 4px 10px #03009b, 5px 2px 3px #c90571;
+
+
 	z-index: 10;
 	/* Assure que le texte est devant tout autre élément */
 	padding: 30px;

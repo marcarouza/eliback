@@ -11959,7 +11959,9 @@ fieldset:disabled .btn {
 
 
 .skin1to2 {
-    background: linear-gradient(to right, #F6E0EC, #E6E3F9);
+background: linear-gradient(to top, #fafafa 30%, #fafafa 50%, #fff 100%);
+
+
 }
 
 .profile .profile-img {
