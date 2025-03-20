@@ -43,26 +43,30 @@
 
 
 			<!-- ACCORDEON -->
-			<nav class="rounded-top-3 mt-5 bg-gradient-custom">
-				<div class="nav nav-tabs mt-3" id="nav-tab" role="tablist">
-					<button class="nav-link active" id="client-tab" data-bs-toggle="tab" data-bs-target="#client"
-						type="button" role="tab" aria-controls="client" aria-selected="true">
-						Client
-					</button>
-					<button class="nav-link" id="serveur-tab" data-bs-toggle="tab" data-bs-target="#serveur" type="button"
-						role="tab" aria-controls="serveur" aria-selected="false">
-						Serveur
-					</button>
-					<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
-						type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
-						Base de donnée
-					</button>
-					<button class="nav-link" id="nav-socket-tab" data-bs-toggle="tab" data-bs-target="#nav-socket"
-						type="button" role="tab" aria-controls="nav-socket" aria-selected="false">
-						Socket
-					</button>
-				</div>
-			</nav>
+<nav class="rounded-top-3 mt-5 bg-gradient-custom">
+    <div class="nav nav-tabs mt-3" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="client-tab" data-bs-toggle="tab" data-bs-target="#client"
+            type="button" role="tab" aria-controls="client" aria-selected="true">
+            Client
+        </button>
+        <button class="nav-link" id="serveur-tab" data-bs-toggle="tab" data-bs-target="#serveur" 
+            type="button" role="tab" aria-controls="serveur" aria-selected="false">
+            Serveur
+        </button>
+        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
+            type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
+            Base de donnée
+        </button>
+        <button class="nav-link" id="nav-socket-tab" data-bs-toggle="tab" data-bs-target="#nav-socket"
+            type="button" role="tab" aria-controls="nav-socket" aria-selected="false">
+            Socket
+        </button>
+    </div>
+</nav>
+
+
+
+
 			<div class="bg-light tab-content" id="nav-tabContent">
 				<div class="tab-pane fade show active px-4 py-4" id="client" role="tabpanel" aria-labelledby="client-tab"
 					tabindex="0">
@@ -377,6 +381,28 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400&display=swap');
 
+
+    /* Style de l'onglet actif */
+    .nav-tabs .nav-link.active {
+        background-color: #e9ecef; /* Couleur de fond au survol */
+        color: #000; /* Texte noir au survol */
+
+
+    }
+
+    /* Style des onglets inactifs */
+    .nav-tabs .nav-link {
+
+        transition: background-color 0.3s ease, color 0.3s ease; /* Transition pour les effets */
+    }
+
+    /* Ajout d'un effet au survol */
+    .nav-tabs .nav-link:hover {
+        background-color: #e9ecef; /* Couleur de fond au survol */
+        color: #000; /* Texte noir au survol */
+    }
+
+
 .bg-gradient-custom {
 	background: linear-gradient(90deg, #000000be, #1e30f3);
 	background-size: 200% 200%;
@@ -407,6 +433,10 @@ export default {
 /* Style pour l'onglet actif */
 
 /* Effet de survol */
+
+.tabactive {
+	background-color: #012041;
+	color: #fff;}
 
 .foreground-text {
 	font-family: 'Roboto', sans-serif;
