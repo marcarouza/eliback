@@ -440,6 +440,8 @@ export default {
 
 .foreground-text {
 	font-family: 'Roboto', sans-serif;
+	font-weight: bolder;
+	letter-spacing: 0.08rem;
 	/* filter: blur(0.1px); */
 	/* Applique un flou */
 	/* font-family: 'Nunito', sans-serif; */
@@ -459,8 +461,8 @@ export default {
 	font-weight: 300;
 	text-align: center;
 	/* text-shadow: 1px 1px 5px #000000; */
-text-shadow: 2px 2px 3px #000000, 4px 4px 10px #2c00db;
-text-shadow: 2px 2px 5px #000000, 4px 4px 10px #03009b, 5px 2px 3px #c90571;
+text-shadow: 2px 2px 3px #000000, 4px 4px 10px #2c00db8b;
+text-shadow: -3px 0px 2px #01004c, 5px 0px 1px #c90571d7;
 
 
 	z-index: 10;

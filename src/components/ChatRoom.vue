@@ -31,11 +31,11 @@
 			</div>
 
 			<!-- Footer -->
-			<footer
+			<!-- <footer
 				class="custom-footer bg-secondary text-white d-flex align-items-center justify-content-center"
 			>
 				<p class="m-0">Footer</p>
-			</footer>
+			</footer> -->
 		</div>
 	</section>
 </template>

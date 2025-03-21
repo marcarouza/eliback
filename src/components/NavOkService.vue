@@ -124,7 +124,7 @@
 
 <script setup>
 import { toRefs } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 import {
   userGlobalService,
   fetchUserData,
@@ -133,8 +133,12 @@ import {
 } from '@/services/userGlobalService';
 
 const { user } = toRefs(userGlobalService);
+
+console.log('🚀 -------------------------------------------🚀')
+console.log('🚀 ~ NavOkService.vue:137 ~ user  ==> ', user)
+console.log('🚀 -------------------------------------------🚀')
+
 const router = useRouter();
-const route = useRoute();
 
 function navigateToBlog() {
   if (userGlobalService.isLoggedIn) {

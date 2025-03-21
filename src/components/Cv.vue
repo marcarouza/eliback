@@ -625,7 +625,7 @@
 													<h6
 														class="card-title text-center"
 													>
-														.
+														Version 4
 													</h6>
 												</div>
 											</div>

@@ -1,5 +1,5 @@
 // sharedStore.js
-import {reactive, watchEffect} from 'vue';
+import {reactive, watchEffect, toRefs} from 'vue';
 
 const userStateGlobal = reactive({
 	user: null,
@@ -30,10 +30,15 @@ async function fetchUserData() {
 		// Mise à jour de l'état utilisateur
 		userStateGlobal.user = data.user;
 		userStateGlobal.userID = data.user._id;
+		userStateGlobal.userPseudo = data.user.user;
 		userStateGlobal.isLoggedIn = true;
 
-		console.log('🚀 fetchUserData ~ userID:', userStateGlobal.userID);
-		console.log('🚀 checkUserStatus ~ user:', userStateGlobal.user);
+		console.log('🚀 userStateGlobal ~ userID:', userStateGlobal.userID);
+		console.log('🚀 userStateGlobal ~ user:', userStateGlobal.user);
+		console.log(
+			'🚀 userStateGlobal ~ userPseudo:',
+			userStateGlobal.userPseudo
+		);
 	} catch (error) {
 		console.error('FROM NAVOK ==> problème avec requête fetch :', error);
 	}
@@ -105,8 +110,12 @@ async function logOUTapi(router) {
 	}
 }
 
+// Lancer la récupération des données
+fetchUserData();
+checkLocaluser();
+
 watchEffect(() => {
-	console.log("Mise à jour de l'état utilisateur :", {
+	console.log("-----------------Mise à jour de l'état utilisateur :", {
 		user: userStateGlobal.user,
 		userID: userStateGlobal.userID,
 		userPseudo: userStateGlobal.userPseudo,
@@ -115,9 +124,7 @@ watchEffect(() => {
 	});
 });
 
-// Lancer la récupération des données
-fetchUserData();
-checkLocaluser();
+
 
 // Exporter l'objet réactif et les fonctions que vous souhaitez utiliser ailleurs
 export {
@@ -126,3 +133,7 @@ export {
 	checkLocaluser,
 	logOUTapi,
 };
+
+export const {user, userID, userPseudo, isLoggedIn} =
+	toRefs(userStateGlobal);
+
