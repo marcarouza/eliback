@@ -1,13 +1,11 @@
 <template>
 	<div>
-		<!-- <NavNew /> -->
 		<Cv />
 		<TabWhats />
 	</div>
 </template>
 
 <script>
-import NavNew from '@/components/NavNew.vue';
 import Cv from '@/components/Cv.vue';
 import TabWhats from '@/components/TabWhats.vue';
 
@@ -20,7 +18,6 @@ export default {
 	},
 	// Autres options du composant
 	components: {
-		NavNew,
 		Cv,
 		TabWhats,
 	},

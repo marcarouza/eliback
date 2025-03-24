@@ -64,7 +64,7 @@ export default {
 				JSON.parse(sessionStorage.getItem('localUserSession')) ||
 				null;
 			console.log(
-				'✅ FROM NAVOK ==> this.localUserSession :',
+				'✅ FROM Cookie.vue ==> this.localUserSession :',
 				this.localUserSession
 			);
 		},

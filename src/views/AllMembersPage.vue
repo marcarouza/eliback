@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<!-- <NavNew /> -->
 		
 		<div
 			class="d-flex flex-column align-items-center justify-content-center mt-5"
@@ -16,7 +15,6 @@
 
 import AllMembers from '@/components/AllMembers.vue';
 import TabWhats from '@/components/TabWhats.vue';
-// import NavNew from '@/components/NavNew.vue';
 
 export default {
 	name: 'AllMembersPage',
@@ -29,7 +27,6 @@ export default {
 		);
 	},
 	components: {
-		// NavNew,
 		AllMembers,
 		TabWhats,
 	},

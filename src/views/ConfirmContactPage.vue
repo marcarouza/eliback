@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<!-- <NavNew /> -->
 		<div
 			class="d-flex flex-column align-items-center justify-content-center vh-100"
 		>
@@ -11,7 +10,6 @@
 </template>
 
 <script>
-import NavNew from '@/components/NavNew.vue';
 import ConfirmContact from '@/components/ConfirmContact.vue';
 import TabWhats from '@/components/TabWhats.vue';
 
@@ -19,7 +17,6 @@ export default {
 	name: 'ConfirmContactPage',
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
 	components: {
-		NavNew,
 		ConfirmContact,
 		TabWhats,
 	},

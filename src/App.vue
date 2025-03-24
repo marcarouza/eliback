@@ -28,7 +28,6 @@ import Footer from './components/Footer.vue';
 import ChatBox from './components/ChatBox.vue';
 import Notif from './components/Notif.vue';
 import { RouterView } from 'vue-router';
-// import NavNew from './components/NavNew.vue';
 import NavOkService from './components/NavOkService.vue';
 
 export default {
@@ -36,7 +35,6 @@ export default {
 	components: {
 		// CommonHead,
 		NavOkService,
-		// NavNew,
 		CommonHeadNew,
 		ChatBox,
 		Footer,
