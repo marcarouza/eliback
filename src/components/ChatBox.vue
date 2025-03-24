@@ -58,7 +58,9 @@ import { toRefs } from 'vue';
 import socket from '../socket/socketClient.js';
 
 
-import {userGlobalService} from '@/services/userGlobalService';
+import { userGlobalService, userID, userPseudo, isLoggedIn } from '@/services/userGlobalService';
+
+
 
 const { user } = toRefs(userGlobalService);
 
@@ -97,14 +99,14 @@ export default {
       //   this.checkLocalUserSession();
 		//  this.checkUSER();
 
-		   console.log('************ User:', user.value);
+		   // console.log('************ User:', user.value);
   console.log('************ UserID:', userID.value);
   console.log('************ UserPseudo:', userPseudo.value);
   console.log('************ IsLoggedIn:', isLoggedIn.value);
     },
 
     beforeUnmount() {
-        this.disconnectUser();
+      //   this.disconnectUser();
         socket.off('connect');
     },
 
@@ -129,28 +131,7 @@ export default {
             }
             this.serverMsg(this.welcomeMsg);
         },
-      //   checkLocalUserSession() {
-      //       const session = sessionStorage.getItem('localUserSession');
-      //       if (session) {
-      //           try {
-      //               this.localUserSession = JSON.parse(session);
-      //               this.isLoggedIn = true;
-      //               this.pseudo = this.localUserSession.user;
-      //               this.welcomeMsg = `👋 ${this.pseudo}, vous êtes en ligne ! Naviguer sur le site n'affectera pas votre fil de discussion ... contrairement au rafraîchissement volontaire de la page !`;
-      //               this.initSocket(this.pseudo);
-      //               this.displayChat();
-      //           } catch (err) {
-      //               console.error('FROM checkLocalUserSession => Invalid JSON in sessionStorage:', err);
-      //               this.localUserSession = null;
-      //               this.isLoggedIn = false;
-      //           }
-      //       } else {
-      //           this.welcomeMsg = 'Pour utiliser la messagerie, vous devez être connecté(e) !';
-      //           this.isLoggedIn = false;
-      //           this.hideChat();
-      //       }
-      //       this.serverMsg(this.welcomeMsg);
-      //   },
+
 
         setServerPseudo() {
             socket.pseudo = user.pseudo;

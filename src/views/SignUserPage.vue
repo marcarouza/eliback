@@ -4,7 +4,6 @@
 </template>
 
 <script>
-import CommonHead from '@/components/CommonHead.vue';
 import SignUserForm from '@/components/SignUserForm.vue';
 import TabWhats from '@/components/TabWhats.vue';
 
@@ -22,7 +21,6 @@ export default {
 	},
 
 	components: {
-		CommonHead,
 		SignUserForm,
 		TabWhats,
 	},

@@ -22,23 +22,7 @@ export default {
 			'updatePageTitle',
 			'Connexion | Développeur Full Stack | Eli'
 		);
-	},
-	data() {
-		return {
-			email: '',
-			pwd: '',
-			error: null,
-		};
-	},
-	methods: {
-		// Vos méthodes ici
-	},
-	computed: {
-		// Vos propriétés calculées ici
-	},
-	watch: {
-		// Vos observateurs ici
-	},
+	}
 };
 </script>
 
