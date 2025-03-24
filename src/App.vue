@@ -1,44 +1,41 @@
 <template>
 	<div id="app-container">
-		<!-- <CommonHead :pageTitle="pageTitle" /> -->
-<NavOkService>	</NavOkService>
-		 <CommonHeadNew :pageTitle="pageTitle" />
+		<CommonHeadNew :pageTitle="pageTitle" />
+
+		<NavOkService> </NavOkService>
 		<div id="content-container">
-		<RouterView @updatePageTitle="updatePageTitle" />
+			<RouterView @updatePageTitle="updatePageTitle" />
 
 		</div>
-		
-		
-		<!-- <RouterView @updatePageTitle="updatePageTitle" /> -->
-		
+
+
+
 		<Footer />
 
-		<!-- Affichage conditionnel de Chat_Box basé sur la route -->
-		<!-- <ChatBox :show="showChatBox" /> -->
+
 
 		<ChatBox v-if="showChatBox" :key="chatBoxKey" />
-		<Notif />
+		<!-- <Notif /> -->
 	</div>
 </template>
 
 <script>
-// import CommonHead from './components/CommonHead.vue';
 import CommonHeadNew from './components/CommonHeadNew.vue';
+import NavOkService from './components/NavOkService.vue';
+
 import Footer from './components/Footer.vue';
 import ChatBox from './components/ChatBox.vue';
-import Notif from './components/Notif.vue';
+// import Notif from './components/Notif.vue';
 import { RouterView } from 'vue-router';
-import NavOkService from './components/NavOkService.vue';
 
 export default {
 	name: 'App',
 	components: {
-		// CommonHead,
 		NavOkService,
 		CommonHeadNew,
 		ChatBox,
 		Footer,
-		Notif,
+		// Notif,
 	},
 	data() {
 		return {
@@ -127,16 +124,19 @@ export default {
 #app-container {
 	display: flex;
 	flex-direction: column;
-	height: 100vh; /* 100% of the viewport height */
+	height: 100vh;
+	/* 100% of the viewport height */
 }
 
 #content-container {
-	flex-grow: 1; /* Take up remaining space */
+	flex-grow: 1;
+	/* Take up remaining space */
 	display: flex;
 	flex-direction: column;
 }
 
 footer {
-	flex-shrink: 0; /* Ensure footer does not shrink */
+	flex-shrink: 0;
+	/* Ensure footer does not shrink */
 }
 </style>

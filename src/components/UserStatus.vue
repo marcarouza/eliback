@@ -382,7 +382,7 @@ export default {
 					);
 				}
 				const data = await response.json();
-				this.user = data.user;
+				this.pseudo = data.pseudo;
 			} catch (err) {
 				console.error(
 					'FROM USER STATUS problème avec requête fetch :',
@@ -400,7 +400,7 @@ export default {
 					this.localUserSession._id
 				);
 
-				this.user = this.localUserSession.user;
+				this.pseudo = this.localUserSession.pseudo;
 
 				this.fromID = this.localUserSession._id;
 				this.isLoggedIn = true;

@@ -34,7 +34,6 @@ async function checkUserStatus() {
 		userStateGlobal.isLoggedIn = true;
 
 		console.log('🚀 userStateGlobal ~ userID:', userStateGlobal.userID);
-		console.log('🚀 userStateGlobal ~ user:', userStateGlobal.user);
 		console.log(
 			'🚀 userStateGlobal ~ userPseudo:',
 			userStateGlobal.userPseudo
@@ -45,7 +44,7 @@ async function checkUserStatus() {
 	}
 }
 
-async function getLocaluser() {
+async function getLocalUser() {
 	try {
 		const localUserData = localStorage.getItem('localUserSession');
 		userStateGlobal.localUserSession = localUserData
@@ -54,17 +53,17 @@ async function getLocaluser() {
 		if (localUserData) {
 
 			// console.log('🚀 -------------------------------------------------------------------------------🚀')
-			// console.log('🚀 ~ userGlobalService.js:57 ~ getLocaluser ~ localUserData  ==> ', localUserData._id)
+			// console.log('🚀 ~ userGlobalService.js:57 ~ getLocalUser ~ localUserData  ==> ', localUserData._id)
 			// console.log('🚀 -------------------------------------------------------------------------------🚀')
 
 			userStateGlobal.userID = userStateGlobal.localUserSession._id;
 			console.log(
-				'🚀 getLocaluser ~ userID:',
+				'🚀 getLocalUser ~ userID:',
 				userStateGlobal.userID
 			);
 		}
 		console.log(
-			'✅ FROM getLocaluser in NavOk ==> localUserSession:',
+			'✅ FROM getLocalUser in NavOk ==> localUserSession:',
 			userStateGlobal.localUserSession
 		);
 	} catch (error) {
@@ -117,7 +116,7 @@ async function logOUTapi(router) {
 }
 
 	// Lancer la récupération des données
-getLocaluser();
+getLocalUser();
 	
 checkUserStatus();
 
@@ -138,7 +137,7 @@ watchEffect(() => {
 export {
     userStateGlobal as userGlobalService,
     checkUserStatus,
-    getLocaluser,
+    getLocalUser,
     logOUTapi,
 };
 

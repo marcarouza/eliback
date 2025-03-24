@@ -127,8 +127,8 @@ import { toRefs } from 'vue';
 import { useRouter } from 'vue-router';
 import {
   userGlobalService,
-  fetchUserData,
-  checkLocaluser,
+      checkUserStatus,
+    getLocalUser,
   logOUTapi as globalLogOUTapi,
 } from '@/services/userGlobalService';
 
