@@ -3,13 +3,13 @@ import {reactive, watchEffect, toRefs} from 'vue';
 
 const userStateGlobal = reactive({
 	// user: null,
-	userID: null,
-	userPseudo: null,
-	isLoggedIn: false,
+	userID: String = null,
+	userPseudo: String = '',
+	isLoggedIn : Boolean,
 	localUserSession: null,
 });
 
-async function fetchUserData() {
+async function checkUserStatus() {
 	try {
 		const response = await fetch(
 			'https://eli-back.onrender.com/api/checkUserStatus',
@@ -41,26 +41,30 @@ async function fetchUserData() {
 		);
 	} catch (error) {
 
-		console.log('🚀 ~ userGlobalService.js:44 ~ fetchUserData ~ error  ==> ', error)
-
-
+		console.log('🚀 ~ userGlobalService.js:44 ~ fetchUserData ~ error  ==> ', error);
+	}
 }
 
-async function checkLocaluser() {
+async function getLocaluser() {
 	try {
 		const localUserData = localStorage.getItem('localUserSession');
 		userStateGlobal.localUserSession = localUserData
 			? JSON.parse(localUserData)
 			: null;
-		if (userStateGlobal.localUserSession) {
+		if (localUserData) {
+
+			// console.log('🚀 -------------------------------------------------------------------------------🚀')
+			// console.log('🚀 ~ userGlobalService.js:57 ~ getLocaluser ~ localUserData  ==> ', localUserData._id)
+			// console.log('🚀 -------------------------------------------------------------------------------🚀')
+
 			userStateGlobal.userID = userStateGlobal.localUserSession._id;
 			console.log(
-				'🚀 checkLocaluser ~ userID:',
+				'🚀 getLocaluser ~ userID:',
 				userStateGlobal.userID
 			);
 		}
 		console.log(
-			'✅ FROM checkLocaluser in NavOk ==> localUserSession:',
+			'✅ FROM getLocaluser in NavOk ==> localUserSession:',
 			userStateGlobal.localUserSession
 		);
 	} catch (error) {
@@ -112,30 +116,30 @@ async function logOUTapi(router) {
 	}
 }
 
-// Lancer la récupération des données
-fetchUserData();
-checkLocaluser();
+	// Lancer la récupération des données
+getLocaluser();
+	
+checkUserStatus();
 
 watchEffect(() => {
 	console.log("-----------------Mise à jour de l'état utilisateur :", {
-		user: userStateGlobal.user,
+		// user: userStateGlobal.user,
 		userID: userStateGlobal.userID,
 		userPseudo: userStateGlobal.userPseudo,
 		isLoggedIn: userStateGlobal.isLoggedIn,
 		localUserSession: userStateGlobal.localUserSession,
 	});
-});
+}
+);
 
 
 
 // Exporter l'objet réactif et les fonctions que vous souhaitez utiliser ailleurs
 export {
-	userStateGlobal as userGlobalService,
-	fetchUserData,
-	checkLocaluser,
-	logOUTapi,
+    userStateGlobal as userGlobalService,
+    checkUserStatus,
+    getLocaluser,
+    logOUTapi,
 };
 
-export const {user, userID, userPseudo, isLoggedIn} =
-	toRefs(userStateGlobal);
-
+export const { userID, userPseudo, isLoggedIn } = toRefs(userStateGlobal);
