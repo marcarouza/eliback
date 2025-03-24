@@ -130,6 +130,11 @@ export default {
 				this.formData.pwd &&
 				this.formData.pseudo
 			) {
+
+				console.log('🚀 ----------------------------------------------------------------🚀')
+				console.log('🚀 ~ SignUserForm.vue:134 ~ submitForm ~ formData  ==> ', formData)
+				console.log('🚀 ----------------------------------------------------------------🚀')
+
 				try {
 					const response = await fetch(
 						'https://eli-back.onrender.com/api/signUser',
