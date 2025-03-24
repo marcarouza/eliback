@@ -55,7 +55,7 @@
                   
                                     <span class="account">
   <i class="bi bi-check-circle connected">
-                  &nbsp;&nbsp;{{ user.user }}&nbsp;&nbsp;
+                  &nbsp;&nbsp;{{ user.pseudo }}&nbsp;&nbsp;
                 </i>
 
 

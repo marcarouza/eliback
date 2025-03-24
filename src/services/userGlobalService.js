@@ -2,7 +2,7 @@
 import {reactive, watchEffect, toRefs} from 'vue';
 
 const userStateGlobal = reactive({
-	user: null,
+	// user: null,
 	userID: null,
 	userPseudo: null,
 	isLoggedIn: false,
@@ -28,9 +28,9 @@ async function fetchUserData() {
 		const data = await response.json();
 
 		// Mise à jour de l'état utilisateur
-		userStateGlobal.user = data.user;
+		// userStateGlobal.user = data.user;
 		userStateGlobal.userID = data.user._id;
-		userStateGlobal.userPseudo = data.user.user;
+		userStateGlobal.userPseudo = data.user.pseudo;
 		userStateGlobal.isLoggedIn = true;
 
 		console.log('🚀 userStateGlobal ~ userID:', userStateGlobal.userID);
@@ -40,8 +40,10 @@ async function fetchUserData() {
 			userStateGlobal.userPseudo
 		);
 	} catch (error) {
-		console.error('FROM NAVOK ==> problème avec requête fetch :', error);
-	}
+
+		console.log('🚀 ~ userGlobalService.js:44 ~ fetchUserData ~ error  ==> ', error)
+
+
 }
 
 async function checkLocaluser() {

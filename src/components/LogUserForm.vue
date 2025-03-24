@@ -155,10 +155,12 @@ export default {
 					window.location.reload(true);
 				} else {
 					const errorData = await response.json();
-					console.error(
-						'🍌🍌🍌 FROM LogUserForm <= ERR de CONNEXION du MEMBRE: ',
-						errorData
-					);
+
+					console.log('🚀 -----------------------------------------------------------------🚀')
+					console.log('🍌🍌🍌  ~ LogUserForm.vue:159 ~ fetchToLog ~ errorData  ==> ', errorData)
+					console.log('🚀 -----------------------------------------------------------------🚀')
+
+
 					this.specError = errorData.message;
 					alert('⚠️ Email ou mot de passe incorrect');
 				}
