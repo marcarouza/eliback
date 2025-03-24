@@ -2,10 +2,10 @@
 	<div id="chatPopin" class="chat-popin chat-container hide-inactive">
 		<div class="chat-header">
 			<span>Chat en direct</span>
-			<span class="membersonline"
+			<!-- <span class="membersonline"
 				>3&nbsp;<i class="fas fa-user"></i
 				>&nbsp;&nbsp;présents</span
-			>
+			> -->
 			<button
 				@click="displayChat"
 				id="closeChatBtn"
@@ -53,12 +53,22 @@
 </template>
 
 <script >
+import { toRefs } from 'vue';
+
 import socket from '../socket/socketClient.js';
 
 
-import { user, userID, userPseudo, isLoggedIn } from '@/services/userGlobalService';
+import {userGlobalService} from '@/services/userGlobalService';
 
-console.log("🚀 ~ ChatBox.vue:27 ~ user:", user);
+const { user } = toRefs(userGlobalService);
+
+console.log('🚀 -------------------------------------🚀')
+console.log('🚀 ~ ChatBox.vue:64 ~ user  ==> ', user)
+console.log('🚀 -------------------------------------🚀')
+
+
+
+
 
 
 // const router = useRouter();

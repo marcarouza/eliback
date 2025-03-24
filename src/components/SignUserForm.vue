@@ -56,12 +56,12 @@
 							required
 							type="text"
 							class="form-control"
-							v-model="formData.user"
-							id="user"
-							name="user"
-							placeholder="Pseudo (optionnel)"
+							v-model="formData.pseudo"
+							id="pseudo"
+							name="pseudo"
+							placeholder="Pseudo "
 						/>
-						<label for="user">Pseudo</label>
+						<label for="pseudo">Pseudo</label>
 					</div>
 
 					<h6 class="m-3" style="white-space: pre-line">
@@ -111,7 +111,7 @@ export default {
 			formData: {
 				email: '',
 				pwd: '',
-				user: '',
+				pseudo: '',
 			},
 			passwordVisible: false,
 			localUserSession: null,
@@ -120,7 +120,7 @@ export default {
 	},
 
 	mounted() {
-		this.checkLocaluser();
+		// this.checkLocaluser();
 	},
 	methods: {
 		// CREATION DU USER VIA API
@@ -128,7 +128,7 @@ export default {
 			if (
 				this.formData.email &&
 				this.formData.pwd &&
-				this.formData.user
+				this.formData.pseudo
 			) {
 				try {
 					const response = await fetch(
@@ -161,7 +161,7 @@ export default {
 						const errorData = await response.json();
 
 						console.error(
-							'🍌 FROM LogUserForm <= ERR de CONNEXION du MEMBRE: ',
+							'🍌 FROM SignUP <= ERR de CONNEXION du MEMBRE: ',
 							errorData
 						);
 						this.specError = errorData.message;
@@ -212,7 +212,7 @@ export default {
 						body: JSON.stringify({
 							email: this.formData.email,
 							pwd: this.formData.pwd,
-							pseudo: this.formData.user,
+							pseudo: this.formData.pseudo,
 						}),
 					}
 				);

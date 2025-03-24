@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import socket from '../socket/socketClient.js';
+import socket from '../../socket/socketClient.js';
 console.log('✅ 🐱  FROM ChatBox ===> SOCKET CLIENT : ', socket);
 
 export default {

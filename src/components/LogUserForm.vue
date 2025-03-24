@@ -134,7 +134,7 @@ export default {
 						result
 					);
 
-					this.oneUser = result.user;
+					this.oneUser = result.pseudo;
 
 					// Afficher l'objet oneUser après l'avoir peuplé
 					console.log(
@@ -156,7 +156,7 @@ export default {
 				} else {
 					const errorData = await response.json();
 					console.error(
-						'🍌 FROM LogUserForm <= ERR de CONNEXION du MEMBRE: ',
+						'🍌🍌🍌 FROM LogUserForm <= ERR de CONNEXION du MEMBRE: ',
 						errorData
 					);
 					this.specError = errorData.message;
@@ -209,7 +209,7 @@ export default {
 					);
 					this.id = decoded.id || null;
 					this.email = decoded.email || null;
-					this.pseudo = decoded.user || null;
+					this.pseudo = decoded.pseudo || null;
 					console.log(
 						'ℹ️ 👁️ FROM LogUser => User ID from JWT id / email / pseudo:',
 						this.id,

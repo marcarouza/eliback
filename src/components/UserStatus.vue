@@ -287,6 +287,7 @@ export default {
 	data() {
 		return {
 			user: null,
+			pseudo : null,
 			users: [],
 			msgRes: '',
 			lastname: '',
