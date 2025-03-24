@@ -132,7 +132,7 @@ export default {
 			) {
 
 				console.log('🚀 ----------------------------------------------------------------🚀')
-				console.log('🚀 ~ SignUserForm.vue:134 ~ submitForm ~ formData  ==> ', formData)
+				console.log('🚀 ~ SignUserForm.vue:134 ~ submitForm ~ formData  ==> ', this.formData)
 				console.log('🚀 ----------------------------------------------------------------🚀')
 
 				try {
