@@ -59,7 +59,7 @@
 							v-model="formData.pseudo"
 							id="pseudo"
 							name="pseudo"
-							placeholder="Pseudo "
+							placeholder="Choix de votre pseudo "
 						/>
 						<label for="pseudo">Pseudo</label>
 					</div>
@@ -142,8 +142,8 @@ export default {
 						}
 					);
 					console.log(
-						' ✅  FROM SignUserForm => RESPONSE, REPONSE.OK : ',
-						response,
+						' ✅  FROM SignUserForm => REPONSE.OK : ',
+						
 						response.ok
 					);
 

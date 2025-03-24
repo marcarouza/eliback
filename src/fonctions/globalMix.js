@@ -14,7 +14,7 @@ export default {
 		};
 	},
 	created() {
-		this.checkUserStatus();
+		// this.checkUserStatus();
 	},
 	methods: {
 		async checkUserStatus() {

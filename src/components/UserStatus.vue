@@ -312,9 +312,9 @@ export default {
 		},
 	},
 	mounted() {
-		this.getLocalUser();
+		// this.getLocalUser();
 
-		this.checkUserStatus();
+		// this.checkUserStatus();
 	},
 	methods: {
 		showNotif(title, message) {
