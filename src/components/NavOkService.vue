@@ -47,7 +47,7 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <li v-if="user">
+              <li v-if="userID">
                 										<router-link
 											class="dropdown-item"
 											to="/userstatusPage"
@@ -55,7 +55,7 @@
                   
                                     <span class="account">
   <i class="bi bi-check-circle connected">
-                  &nbsp;&nbsp;{{ user.pseudo }}&nbsp;&nbsp;
+                  &nbsp;&nbsp;{{ userPseudo }}&nbsp;&nbsp;
                 </i>
 
 
@@ -132,7 +132,9 @@ import {
   logOUTapi as globalLogOUTapi,
 } from '@/services/userGlobalService';
 
-const { user } = toRefs(userGlobalService);
+import { userID, userPseudo, isLoggedIn } from '@/services/userGlobalService';
+
+
 
 console.log('🚀 -------------------------------------------🚀')
 console.log('🚀 ~ NavOkService.vue:137 ~ user  ==> ', user)
@@ -141,7 +143,7 @@ console.log('🚀 -------------------------------------------🚀')
 const router = useRouter();
 
 function navigateToBlog() {
-  if (userGlobalService.isLoggedIn) {
+  if (isLoggedIn) {
     router.push({ name: 'homeblogpage' });
   } else {
     router.push({ name: 'noaccesspage' });
@@ -149,7 +151,7 @@ function navigateToBlog() {
 }
 
 function navigateToPrivate() {
-  if (userGlobalService.isLoggedIn) {
+  if (isLoggedIn) {
     router.push({ name: 'userstatusPage' });
   } else {
     router.push({ name: 'noaccesspage' });
