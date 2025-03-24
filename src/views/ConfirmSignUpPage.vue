@@ -16,7 +16,7 @@ export default {
 	name: 'ConfirmSignUpPage',
 	emits: ['updatePageTitle'],
 	components: {
-		NavNew,
+		// NavNew,
 		ConfirmSignUp,
 		TabWhats,
 	},
