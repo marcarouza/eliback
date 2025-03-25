@@ -2,7 +2,7 @@
 	<div class="container mt-5">
 		<div class="row justify-content-center">
 			<div class="col-md-6 formulaire">
-				<h2 class="text-center mb-4">Créer votre compte</h2>
+				<h2 class="text-center mb-4">Créer votre compte !</h2>
 				<form @submit.prevent="submitForm" id="signUserForm">
 					<div class="form-floating mb-3">
 						<input

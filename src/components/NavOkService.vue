@@ -75,8 +75,7 @@
 								</span>
                   </li>
             </a>
-            <!-- Menu pour utilisateur connecté -->
-            <ul v-if="user" class="dropdown-menu user_menu" aria-labelledby="navbarDropdown">
+            <ul v-if="userID" class="dropdown-menu user_menu" aria-labelledby="navbarDropdown">
               <li>
                 <router-link
                   class="dropdown-item user_menu_item"
@@ -123,8 +122,8 @@
 </template>
 
 <script setup>
-import { toRefs } from 'vue';
 import { useRouter } from 'vue-router';
+import { userID, userPseudo, isLoggedIn } from '@/services/userGlobalService';
 import {
   userGlobalService,
       checkUserStatus,
@@ -132,13 +131,12 @@ import {
   logOUTapi as globalLogOUTapi,
 } from '@/services/userGlobalService';
 
-import { userID, userPseudo, isLoggedIn } from '@/services/userGlobalService';
+
+console.log('🚀 -------------------------------------------------------------------------------------------------🚀')
+console.log('🚀 ~ NavOkService.vue:137 ~  userID, userPseudo, isLoggedIn  ==> ',  userID, userPseudo, isLoggedIn)
+console.log('🚀 -------------------------------------------------------------------------------------------------🚀')
 
 
-
-console.log('🚀 -------------------------------------------🚀')
-console.log('🚀 ~ NavOkService.vue:137 ~ user  ==> ', user)
-console.log('🚀 -------------------------------------------🚀')
 
 const router = useRouter();
 
@@ -162,7 +160,6 @@ async function logOUTapi() {
   await globalLogOUTapi(router);
 }
 
-// (Les données sont déjà chargées via sharedStore)
 </script>
 
 
@@ -191,8 +188,7 @@ async function logOUTapi() {
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-evenly;
-	/* width: 100%; */
-	/* justify-content: center; */
+
 	gap: 5px;
 }
 

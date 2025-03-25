@@ -1,12 +1,13 @@
 // sharedStore.js
-import {reactive, watchEffect, toRefs} from 'vue';
+import { reactive, watchEffect, toRefs } from 'vue';
+
+
 
 const userStateGlobal = reactive({
-	// user: null,
-	userID: String = null,
-	userPseudo: String = '',
-	isLoggedIn : Boolean,
-	localUserSession: null,
+	userID: '',
+	userPseudo: '',
+	isLoggedIn: false,
+	localUserSession: '',
 });
 
 async function checkUserStatus() {

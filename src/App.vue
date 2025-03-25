@@ -1,21 +1,14 @@
 <template>
 	<div id="app-container">
 		<CommonHeadNew :pageTitle="pageTitle" />
-
 		<NavOkService> </NavOkService>
-		<div id="content-container">
-			<RouterView @updatePageTitle="updatePageTitle" />
 
-		</div>
-
-
-
-		<Footer />
+		<Notif />
+		<ChatBox :key="chatBoxKey" />
+		<RouterView />
 
 
-
-		<!-- <ChatBox v-if="showChatBox" :key="chatBoxKey" /> -->
-		<!-- <Notif /> -->
+			<Footer />
 	</div>
 </template>
 
@@ -23,9 +16,10 @@
 import CommonHeadNew from './components/CommonHeadNew.vue';
 import NavOkService from './components/NavOkService.vue';
 
+
 import Footer from './components/Footer.vue';
-// import ChatBox from './components/ChatBox.vue';
-// import Notif from './components/Notif.vue';
+import ChatBox from './components/ChatBox.vue';
+import Notif from './components/Notif.vue';
 import { RouterView } from 'vue-router';
 
 export default {
@@ -33,9 +27,9 @@ export default {
 	components: {
 		NavOkService,
 		CommonHeadNew,
-		// ChatBox,
+		ChatBox,
 		Footer,
-		// Notif,
+		Notif,
 	},
 	data() {
 		return {
@@ -43,13 +37,14 @@ export default {
 			// isLoggedIn: false,
 			chatBoxKey: 0,
 			// localUserSession: null,
-			pseudo: '',
+			// pseudo: '',
 			welcomeMsg: '',
 		};
 	},
 	mounted() {
 		// this.checkLocalUserSession();
-		// console.log('🐱-🐱-🐱 this.chatBoxKey:', this.chatBoxKey);
+		this.updatePageTitle(this.pageTitle);
+		console.log('🐱-🐱-🐱 this.chatBoxKey:', this.chatBoxKey);
 	},
 	methods: {
 		checkLocalUserSession() {
@@ -99,23 +94,23 @@ export default {
 		},
 		serverMsg(message) {
 			// Implémentez cette méthode si elle n'existe pas déjà
-			console.log('Server message:', message);
+			// console.log('Server message:', message);
 		},
 		setupSocketListeners() {
 			// Implémentez cette méthode si elle n'existe pas déjà
-			console.log('Setting up socket listeners');
+			// console.log('Setting up socket listeners');
 		},
 	},
 	//
 	computed: {
-		showChatBox() {
-			console.log(
-				'🚀 ~ showChatBox ~ this.$route.meta.showChatBox:',
-				this.$route.meta.showChatBox
-			);
+		// showChatBox() {
+		// 	console.log(
+		// 		'🚀 ~ showChatBox ~ this.$route.meta.showChatBox:',
+		// 		this.$route.meta.showChatBox
+		// 	);
 
-			return this.$route.meta.showChatBox !== false; // Affiche Chat_Box sauf si explicitement désactivé
-		},
+		// 	return this.$route.meta.showChatBox !== false; 
+		// },
 	},
 };
 </script>

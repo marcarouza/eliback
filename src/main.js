@@ -20,11 +20,11 @@ import router from './router';
 
 const app = createApp(App);
 
-app.use(head);
-// app.config.errorHandler = (err, info) => {
-// 	console.error(`Erreur capturée dasn APP : ${err}, dans ${info}`);
-// };
+// app.use(head);
+app.config.errorHandler = (err, info) => {
+	console.error(`Erreur capturée dasn APP : ${err}, dans ${info}`);
+};
 
-app.use(router).mount('#app');
+// app.use(router).mount('#app');
 
-// createApp(App).use(head).use(router).mount('#app');
+createApp(App).use(head).use(router).mount('#app');
