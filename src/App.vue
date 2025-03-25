@@ -14,7 +14,7 @@
 
 
 
-		<ChatBox v-if="showChatBox" :key="chatBoxKey" />
+		<!-- <ChatBox v-if="showChatBox" :key="chatBoxKey" /> -->
 		<!-- <Notif /> -->
 	</div>
 </template>
@@ -24,7 +24,7 @@ import CommonHeadNew from './components/CommonHeadNew.vue';
 import NavOkService from './components/NavOkService.vue';
 
 import Footer from './components/Footer.vue';
-import ChatBox from './components/ChatBox.vue';
+// import ChatBox from './components/ChatBox.vue';
 // import Notif from './components/Notif.vue';
 import { RouterView } from 'vue-router';
 
@@ -33,7 +33,7 @@ export default {
 	components: {
 		NavOkService,
 		CommonHeadNew,
-		ChatBox,
+		// ChatBox,
 		Footer,
 		// Notif,
 	},
