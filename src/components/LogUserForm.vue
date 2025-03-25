@@ -107,6 +107,10 @@ export default {
 	},
 	methods: {
 		async fetchToLog() {
+			if (this.formData.email && this.formData.pwd) {
+
+
+
 			try {
 				const response = await fetch(
 					'https://eli-back.onrender.com/logUser',
@@ -170,6 +174,9 @@ export default {
 					err
 				);
 			}
+
+			 }
+
 		},
 
 		// Utilisation avec async/await
