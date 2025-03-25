@@ -93,23 +93,29 @@ export default {
 				email: '',
 				pwd: '',
 			},
-			passwordVisible: false,
-			specError: null,
-			oneUser: null,
+			pseudo: null,
 			localUserSession: null,
-			one2User: null,
+
+
+			passwordVisible: false,
 			isLoggedIn: false,
+
 		};
 	},
 	mounted() {
-		this.getLocalUserSession();
-		this.getAllDocCookiess();
+		// this.getLocalUserSession();
+		// this.getAllDocCookiess();
 	},
 	methods: {
 		async fetchToLog() {
+
+
+	console.log('🚀 ~ LogUserForm.vue:112 ~ fetchToLog ~ this.formData.pwd  ==> ', this.formData.pwd)
+
+
+			console.log('🚀 ~ LogUserForm.vue:112 ~ fetchToLog ~ this.formData.email   ==> ', this.formData.email )
+
 			if (this.formData.email && this.formData.pwd) {
-
-
 
 			try {
 				const response = await fetch(
@@ -124,10 +130,7 @@ export default {
 					}
 				);
 
-				console.log(
-					'🚀 ~ fetchToLog ~ this.formData:',
-					this.formData
-				);
+
 				console.log('🚀 ~ fetchToLog RESPONSE : ', response);
 				console.log('🚀 ~ fetchToLog RESPONSE OK : ', response.ok);
 
@@ -138,17 +141,17 @@ export default {
 						result
 					);
 
-					this.oneUser = result.pseudo;
+					this.pseudo = result.pseudo;
 
-					// Afficher l'objet oneUser après l'avoir peuplé
+					// Afficher l'objet pseudo après l'avoir peuplé
 					console.log(
-						'✅  FROM https://eli-back.onrender.com/logUser => this.oneUser :',
-						this.oneUser
+						'✅  FROM https://eli-back.onrender.com/logUser => this.pseudo :',
+						this.pseudo
 					);
 
 					sessionStorage.setItem(
 						'localUserSession',
-						JSON.stringify(this.oneUser)
+						JSON.stringify(this.pseudo)
 					);
 					this.isLoggedIn = true;
 
@@ -160,13 +163,10 @@ export default {
 				} else {
 					const errorData = await response.json();
 
-					console.log('🚀 -----------------------------------------------------------------🚀')
 					console.log('🍌🍌🍌  ~ LogUserForm.vue:159 ~ fetchToLog ~ errorData  ==> ', errorData)
-					console.log('🚀 -----------------------------------------------------------------🚀')
 
 
-					this.specError = errorData.message;
-					alert('⚠️ Email ou mot de passe incorrect');
+					alert('⚠️ Email ou mot de passe incorrect : ' + errorData.message);
 				}
 			} catch (err) {
 				console.error(
