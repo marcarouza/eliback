@@ -125,15 +125,18 @@ export default {
 	methods: {
 		// CREATION DU USER VIA API
 		async submitForm() {
+
+				console.log('🚀 ~ SignUserForm.vue:134 ~ submitForm ~ this.formData.email  ==> ', this.formData.email)
+			console.log('🚀 ~ SignUserForm.vue:134 ~ submitForm ~ this.formData.pwd  ==> ', this.formData.pwd)
+			console.log('🚀 ~ SignUserForm.vue:134 ~ submitForm ~ this.formData.pseudo  ==> ', this.formData.pseudo)
+				console.log('🚀 ~ SignUserForm.vue:134 ~ submitForm ~ formData  ==> ', this.formData)
+
+
 			if (
 				this.formData.email &&
 				this.formData.pwd &&
 				this.formData.pseudo
 			) {
-
-				console.log('🚀 ----------------------------------------------------------------🚀')
-				console.log('🚀 ~ SignUserForm.vue:134 ~ submitForm ~ formData  ==> ', this.formData)
-				console.log('🚀 ----------------------------------------------------------------🚀')
 
 				try {
 					const response = await fetch(
@@ -166,7 +169,7 @@ export default {
 						const errorData = await response.json();
 
 						console.error(
-							'🍌 FROM SignUP <= ERR de CONNEXION du MEMBRE: ',
+							'🍌 FROM SignUP <= ERR de CONNEXION du MEMBRE  : ',
 							errorData
 						);
 						this.specError = errorData.message;

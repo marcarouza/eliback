@@ -107,7 +107,7 @@ export default {
 
     beforeUnmount() {
       //   this.disconnectUser();
-        socket.off('connect');
+      //   socket.off('connect');
     },
 
     methods: {
