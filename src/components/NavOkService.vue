@@ -104,12 +104,12 @@
               aria-labelledby="navbarDropdown"
             >
               <li>
-                <router-link class="dropdown-item user_menu_item" to="/loguserPage">
+                <router-link class="dropdown-item user_menu_item" to="/api/logUserPage">
                   connexion
                 </router-link>
               </li>
               <li>
-                <router-link class="dropdown-item user_menu_item" to="/signuserPage">
+                <router-link class="dropdown-item user_menu_item" to="/signPage">
                   créer un compte
                 </router-link>
               </li>

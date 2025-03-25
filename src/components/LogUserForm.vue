@@ -93,13 +93,12 @@ export default {
 				email: '',
 				pwd: '',
 			},
+			id: null,
 			pseudo: null,
 			localUserSession: null,
 
-
 			passwordVisible: false,
 			isLoggedIn: false,
-
 		};
 	},
 	mounted() {
@@ -108,75 +107,83 @@ export default {
 	},
 	methods: {
 		async fetchToLog() {
+			console.log(
+				'🚀 ~ LogUserForm.vue:112 ~ fetchToLog ~ this.formData.pwd  ==> ',
+				this.formData.pwd
+			);
 
-
-	console.log('🚀 ~ LogUserForm.vue:112 ~ fetchToLog ~ this.formData.pwd  ==> ', this.formData.pwd)
-
-
-			console.log('🚀 ~ LogUserForm.vue:112 ~ fetchToLog ~ this.formData.email   ==> ', this.formData.email )
+			console.log(
+				'🚀 ~ LogUserForm.vue:112 ~ fetchToLog ~ this.formData.email   ==> ',
+				this.formData.email
+			);
 
 			if (this.formData.email && this.formData.pwd) {
+				try {
+					const response = await fetch(
+						'https://eli-back.onrender.com/api/logUser',
+						{
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+							body: JSON.stringify(this.formData),
+							credentials: 'include', // Pour inclure les cookies dans la requête
+						}
+					);
 
-			try {
-				const response = await fetch(
-					'https://eli-back.onrender.com/logUser',
-					{
-						method: 'POST',
-						headers: {
-							'Content-Type': 'application/json',
-						},
-						body: JSON.stringify(this.formData),
-						credentials: 'include', // Pour inclure les cookies dans la requête
+					console.log(
+						'🚀 ~ fetchToLog RESPONSE / RESPONSE.OK : ',
+						response,
+						response.ok
+					);
+
+					if (response.ok) {
+						// La réponse est bonne, on attend du JSON
+						const result = await response.json();
+						console.log(
+							'✅ 🎉 FROM  LogUserForm => Utilisateur connecté dans RESULT : ',
+							result
+						);
+
+						this.pseudo = result.pseudo;
+
+						// Afficher l'objet pseudo après l'avoir peuplé
+						console.log(
+							'✅  FROM https://eli-back.onrender.com/logUser => this.pseudo :',
+							this.pseudo
+						);
+
+						sessionStorage.setItem(
+							'localUserSession',
+							JSON.stringify(this.pseudo)
+						);
+						this.isLoggedIn = true;
+
+						this.decodeUSERfromTOKEN();
+						this.getAllDocCookiess();
+
+						await this.navigateTO('homepage');
+						window.location.reload(true);
+					} else {
+						const errorData = await response.json();
+
+						console.log(
+							'🍌🍌🍌  ~ LogUserForm.vue:166 ~ fetchToLog ~ errorData  ==> ',
+							errorData
+						);
+
+						alert(
+							'⚠️ Email ou mot de passe incorrect : ' +
+								errorData.message
+						);
 					}
-				);
-
-
-				console.log('🚀 ~ fetchToLog RESPONSE : ', response);
-				console.log('🚀 ~ fetchToLog RESPONSE OK : ', response.ok);
-
-				if (response.ok) {
-					const result = await response.json();
-					console.log(
-						'✅ ✅ ✅ 🎉 FROM  LogUserForm => Utilisateur connecté dans RESULT : ',
-						result
+				} catch (err) {
+					console.error(
+						'FROM VUE  => ERR de TRY GLOBAL du SUBMIT du formulaire',
+						err
 					);
-
-					this.pseudo = result.pseudo;
-
-					// Afficher l'objet pseudo après l'avoir peuplé
-					console.log(
-						'✅  FROM https://eli-back.onrender.com/logUser => this.pseudo :',
-						this.pseudo
-					);
-
-					sessionStorage.setItem(
-						'localUserSession',
-						JSON.stringify(this.pseudo)
-					);
-					this.isLoggedIn = true;
-
-					this.decodeUSERfromTOKEN();
-					this.getAllDocCookiess();
-
-					await this.navigateTO('homepage');
-					window.location.reload(true);
-				} else {
-					const errorData = await response.json();
-
-					console.log('🍌🍌🍌  ~ LogUserForm.vue:159 ~ fetchToLog ~ errorData  ==> ', errorData)
-
-
-					alert('⚠️ Email ou mot de passe incorrect : ' + errorData.message);
 				}
-			} catch (err) {
-				console.error(
-					'FROM VUE  => ERR de TRY GLOBAL du SUBMIT du formulaire',
-					err
-				);
 			}
-
-			 }
-
 		},
 
 		// Utilisation avec async/await

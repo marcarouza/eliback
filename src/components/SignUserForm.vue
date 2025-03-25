@@ -5,62 +5,28 @@
 				<h2 class="text-center mb-4">Créer votre compte !</h2>
 				<form @submit.prevent="submitForm" id="signUserForm">
 					<div class="form-floating mb-3">
-						<input
-							type="email"
-							class="form-control"
-							v-model="formData.email"
-							id="email"
-							name="email"
-							placeholder="Adresse e-mail"
-							required
-						/>
+						<input type="email" class="form-control" v-model="formData.email" id="email" name="email"
+							placeholder="Adresse e-mail" required />
 						<label for="email">Votre e-mail</label>
 					</div>
 					<div class="form-floating mb-3">
 						<div class="input-group">
-							<input
-								:type="
-									passwordVisible
-										? 'text'
-										: 'password'
-								"
-								class="form-control"
-								v-model="formData.pwd"
-								id="pwd"
-								name="pwd"
-								placeholder="Mot de passe (entre 8 et 24 signes)"
-								required
-								minlength="8"
-								maxlength="24"
-							/>
-							<button
-								class="btn btn-outline-secondary"
-								type="button"
-								@click="togglePasswordVisibility"
-							>
-								<i
-									:class="
-										passwordVisible
-											? 'bi bi-eye-slash'
-											: 'bi bi-eye'
-									"
-									id="toggleIcon"
-								></i>
+							<input :type="passwordVisible
+									? 'text'
+									: 'password'
+								" class="form-control" v-model="formData.pwd" id="pwd" name="pwd"
+								placeholder="Mot de passe (entre 8 et 24 signes)" required minlength="8" maxlength="24" />
+							<button class="btn btn-outline-secondary" type="button" @click="togglePasswordVisibility">
+								<i :class="passwordVisible
+										? 'bi bi-eye-slash'
+										: 'bi bi-eye'
+									" id="toggleIcon"></i>
 							</button>
 						</div>
 					</div>
 					<div class="form-floating mb-3">
-						<input
-							minlength="3"
-							maxlength="24"
-							required
-							type="text"
-							class="form-control"
-							v-model="formData.pseudo"
-							id="pseudo"
-							name="pseudo"
-							placeholder="Choix de votre pseudo "
-						/>
+						<input minlength="3" maxlength="24" required type="text" class="form-control"
+							v-model="formData.pseudo" id="pseudo" name="pseudo" placeholder="Choix de votre pseudo " />
 						<label for="pseudo">Pseudo</label>
 					</div>
 
@@ -80,10 +46,7 @@
 					</ul>
 
 					<div class="d-grid">
-						<button
-							type="submit"
-							class="btn btn-primary btn-lg btn-block"
-						>
+						<button type="submit" class="btn btn-primary btn-lg btn-block">
 							Créer un compte
 						</button>
 					</div>
@@ -91,12 +54,7 @@
 				<p class="text-center mt-5 note">
 					Vous avez déjà un compte ?<br />
 
-					<router-link
-						active-class="active"
-						class="nav-link"
-						to="/LogUserPage"
-						>Connectez-vous ici</router-link
-					>
+					<router-link active-class="active" class="nav-link" to="/LogUserPage">Connectez-vous ici</router-link>
 				</p>
 			</div>
 		</div>
@@ -115,7 +73,6 @@ export default {
 			},
 			passwordVisible: false,
 			localUserSession: null,
-			specError: null,
 		};
 	},
 
@@ -126,10 +83,10 @@ export default {
 		// CREATION DU USER VIA API
 		async submitForm() {
 
-				console.log('🚀 ~ SignUserForm.vue:134 ~ submitForm ~ this.formData.email  ==> ', this.formData.email)
+			console.log('🚀 ~ SignUserForm.vue:134 ~ submitForm ~ this.formData.email  ==> ', this.formData.email)
 			console.log('🚀 ~ SignUserForm.vue:134 ~ submitForm ~ this.formData.pwd  ==> ', this.formData.pwd)
 			console.log('🚀 ~ SignUserForm.vue:134 ~ submitForm ~ this.formData.pseudo  ==> ', this.formData.pseudo)
-				console.log('🚀 ~ SignUserForm.vue:134 ~ submitForm ~ formData  ==> ', this.formData)
+			console.log('🚀 ~ SignUserForm.vue:134 ~ submitForm ~ formData  ==> ', this.formData)
 
 
 			if (
@@ -140,7 +97,7 @@ export default {
 
 				try {
 					const response = await fetch(
-						'https://eli-back.onrender.com/api/signUser',
+						'https://eli-back.onrender.com/api/signPage',
 						{
 							method: 'POST',
 							headers: {
@@ -151,7 +108,7 @@ export default {
 					);
 					console.log(
 						' ✅  FROM SignUserForm => REPONSE.OK : ',
-						
+
 						response.ok
 					);
 
@@ -163,7 +120,7 @@ export default {
 
 						// this.$router.push('/ConfirmUserPage');
 
-						this.$router.push({name: 'confirmsignuppage'});
+						this.$router.push({ name: 'confirmsignuppage' });
 						// à rempalcer par une NOTIF <= Rediriger vers la page de confirmation
 					} else {
 						const errorData = await response.json();
@@ -234,12 +191,12 @@ export default {
 				const result = await response.json();
 				console.log(
 					'✅ FROM signUserConfirm => EMAIL sent successfully : ' +
-						result.response
+					result.response
 				);
 			} catch (error) {
 				console.error(
 					'🍌  FROM FETCH signUserConfirm  =>  ERR sending email: ' +
-						error.message
+					error.message
 				);
 			}
 		},

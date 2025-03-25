@@ -77,7 +77,7 @@ const routes = [
 		component: allmemberspage,
 	},
 	{
-		path: '/signuserPage',
+		path: '/signPage',
 		name: 'signuserpage',
 		component: signuserpage,
 	},
