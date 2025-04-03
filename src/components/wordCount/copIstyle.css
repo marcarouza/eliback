@@ -1,0 +1,69 @@
+
+      /* Couleurs pour le thème sombre */
+      body {
+         background-color: #121212;
+         /* Fond sombre */
+         color: #e4e4e4;
+         /* Texte clair */
+      }
+
+      .card {
+         background-color: #1e1e2f;
+         /* Fond des cartes */
+         border: 1px solid #2a2a3b;
+         /* Bordures des cartes */
+         border-radius: 15px;
+         color: #e4e4e4;
+         /* Texte clair */
+      }
+
+      .btn-primary {
+         background-color: #007bff;
+         border-color: #007bff;
+      }
+
+      .btn-secondary {
+         background-color: #6c757d;
+         border-color: #6c757d;
+      }
+
+      .btn-danger {
+         background-color: #dc3545;
+         border-color: #dc3545;
+      }
+
+      textarea {
+         background-color: #1e1e2f;
+         color: #e4e4e4;
+         border: 1px solid #2a2a3b;
+         resize: none;
+      }
+
+      h1 {
+         font-weight: bold;
+         color: #f0f0f0;
+         /* Couleur du titre */
+      }
+
+      .stats-card {
+         background-color: #1e1e2f;
+         border: 1px solid #2a2a3b;
+         border-radius: 12px;
+         padding: 15px;
+         color: #e4e4e4;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      .stats-title {
+         font-weight: 500;
+         color: #a1a1aa;
+         /* Titre des stats */
+      }
+
+      .stats-value {
+         font-size: 1.5rem;
+         font-weight: bold;
+         color: #4dabf7;
+         /* Valeur des stats */
+      }
+   
