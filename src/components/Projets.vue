@@ -13,6 +13,7 @@
 							>
 						</h1>
 					</div>
+					
 					<!-- CALCULO A VENIR  -->
 					<div class="card shadow border-0 rounded-4 py-3 mb-3">
 						<div
@@ -602,7 +603,37 @@
 <script>
 export default {
 	name: 'Projets',
+
+	data() {
+	return {
+		projects: [
+			{
+				image: "/pix/projets/calculo.webp",
+				alt: "projet web eli azoura",
+				title: "SmartCalc",
+				descriptions: [
+					"Application de type calculatrice configurable, fonctionnant directement dans votre navigateur (en cours de développement)",
+				],
+			},
+			{
+				image: "/pix/projets/infoAgentRed.png",
+				alt: "projet web eli azoura",
+				title: "SpyNav",
+				descriptions: [
+					"Application permettant de prendre connaissance des informations capturées par votre navigateur.",
+					"Réalisation avec VueJS 3 et un script JavaScript spécifique.",
+					"Sensibilisation à la quantité de données transmises par votre navigateur.",
+				],
+			},
+			// Ajoutez d'autres projets ici si nécessaire
+		],
+	};
+}
+
 };
+
+
+
 </script>
 
 <style scoped>
