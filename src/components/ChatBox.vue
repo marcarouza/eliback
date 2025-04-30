@@ -371,7 +371,6 @@ export default {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	/* min-height: 250px; */
 	border-bottom: 0.5px solid #00aeff72;
 	align-items: flex-start;
 	padding: 0.5rem;

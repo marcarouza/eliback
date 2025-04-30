@@ -31,28 +31,32 @@ const routes = [
 		alias: '/',
 		name: 'homepage',
 		component: homepage,
-		meta: {showChatBox: true},
+		meta: {showChatBox: false},
 	},
 	{
 		path: '/infoagentPage',
 		name: 'infoagentpage',
 		component: infoagentpage,
+		meta: {showChatBox: false},
 	},
 
 	{
 		path: '/passmodifyPage',
 		name: 'passmodifypage',
 		component: passmodifypage,
+		meta: {showChatBox: false},
 	},
 	{
 		path: '/posts/:id',
 		name: 'postdetailpage',
 		component: postdetailpage,
+		meta: {showChatBox: false},
 	},
 	{
 		path: '/rgpdPage',
 		name: 'rgpdpage',
 		component: rgpdpage,
+		meta: {showChatBox: false},
 	},
 	{
 		path: '/confirmloggedinPage',
@@ -64,6 +68,7 @@ const routes = [
 		path: '/projetsPage',
 		name: 'projetspage',
 		component: projetspage,
+		meta: {showChatBox: false},
 	},
 	{
 		path: '/noAccessPage',
@@ -75,6 +80,7 @@ const routes = [
 		path: '/allMembersPage',
 		name: 'allmemberspage',
 		component: allmemberspage,
+		meta: {showChatBox: false},
 	},
 	{
 		path: '/signPage',
@@ -91,31 +97,37 @@ const routes = [
 		path: '/contactFormPage',
 		name: 'contactformpage',
 		component: contactformpage,
+		meta: {showChatBox: false},
 	},
 	{
 		path: '/cvPage',
 		name: 'cvpage',
 		component: cvpage,
+		meta: {showChatBox: false},
 	},
 	{
 		path: '/homeblogPage',
 		name: 'homeblogpage',
 		component: homeblogpage,
+		meta: {showChatBox: false},
 	},
 	{
 		path: '/searchpostPage',
 		name: 'searchpostPage',
 		component: searchpostpage,
+		meta: {showChatBox: false},
 	},
 	{
 		path: '/writepostPage',
 		name: 'writepostPage',
 		component: writepostpage,
+		meta: {showChatBox: false},
 	},
 	{
 		path: '/cookiesPage',
 		name: 'cookiespage',
 		component: cookiespage,
+		meta: {showChatBox: false},
 	},
 	{
 		path: '/apiPage',
@@ -127,11 +139,13 @@ const routes = [
 		path: '/userstatusPage',
 		name: 'userstatusPage',
 		component: userstatuspage,
+		meta: {showChatBox: false},
 	},
 	{
 		path: '/confirmContactPage',
 		name: 'confirmcontactpage',
 		component: confirmcontactpage,
+		meta: {showChatBox: false},
 	},
 	{
 		path: '/confirmSignUpPage',
