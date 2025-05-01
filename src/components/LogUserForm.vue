@@ -118,9 +118,27 @@ export default {
 			);
 
 			if (this.formData.email && this.formData.pwd) {
+
+				const allDataz = {
+					email: this.formData.email,
+					pwd: this.formData.pwd,
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+							body: JSON.stringify(this.formData),
+							credentials: 'include', // Pour inclure les cookies dans la requête
+						
+					}
+
+				console.log('🚀 ~ LogUserForm.vue:134 ~ fetchToLog ~ allDataz  ==> ', allDataz)
+
+
 				try {
 					const response = await fetch(
-						'https://eli-back.onrender.com/api/logUser',
+
+
+						'https://eli-back.onrender.com/api/logUserPage',
 						{
 							method: 'POST',
 							headers: {
@@ -129,6 +147,8 @@ export default {
 							body: JSON.stringify(this.formData),
 							credentials: 'include', // Pour inclure les cookies dans la requête
 						}
+
+
 					);
 
 					console.log(

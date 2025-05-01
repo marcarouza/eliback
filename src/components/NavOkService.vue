@@ -104,7 +104,7 @@
               aria-labelledby="navbarDropdown"
             >
               <li>
-                <router-link class="dropdown-item user_menu_item" to="/api/logUserPage">
+                <router-link class="dropdown-item user_menu_item" to="/logUserPage">
                   connexion
                 </router-link>
               </li>

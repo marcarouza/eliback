@@ -3,8 +3,8 @@
 		<CommonHeadNew :pageTitle="pageTitle" />
 		<NavOkService> </NavOkService>
 
-		<Notif />
-		<ChatBox :key="chatBoxKey" />
+		<!-- <Notif /> -->
+		<!-- <ChatBox :key="chatBoxKey" /> -->
 		<RouterView />
 
 
