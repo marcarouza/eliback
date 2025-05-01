@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-md-6 formulaire">
         <h2 class="text-center mb-4">Créer votre compte !</h2>
-        <form @submit.prevent="submitForm" id="signUserForm">
+        <form @submit.prevent="createUser" id="signUserForm">
           <div class="form-floating mb-3">
             <input
               type="email"
@@ -102,13 +102,15 @@ export default {
     // this.checkLocaluser();
   },
   methods: {
-    async submitForm() {
-      console.log('🚀 ~ submitForm ~ formData:', this.formData);
+    async createUser() {
+      console.log('🚀 ~ createUser ~ formData:', this.formData);
+		const bodyFY = JSON.stringify(this.formData);
+		console.log('🚀 ~ createUser ~ bodyFY:', bodyFY);
 
       if (this.formData.email && this.formData.pwd && this.formData.pseudo) {
         try {
           const response = await fetch(
-            'https://eli-back.onrender.com/api/signPage',
+            'https://eli-back.onrender.com/api/signUserPage',
             {
               method: 'POST',
               headers: {
@@ -145,6 +147,11 @@ export default {
             err
           );
           this.specError = err.message;
+
+          console.log('🚀 ------------------------------------------------------------------------------🚀')
+          console.log('🚀 ~ SignUserForm.vue:149 ~ createUser ~ this.specError   ==> ', this.specError )
+          console.log('🚀 ------------------------------------------------------------------------------🚀')
+
           alert(`⚠️ ${this.specError}`);
         }
       } else {
