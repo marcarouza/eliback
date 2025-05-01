@@ -103,52 +103,30 @@ export default {
 	},
 	mounted() {
 		// this.getLocalUserSession();
-		// this.getAllDocCookiess();
+		// this.getAllDocCookies();
 	},
 	methods: {
 		async fetchToLog() {
-			console.log(
-				'🚀 ~ LogUserForm.vue:112 ~ fetchToLog ~ this.formData.pwd  ==> ',
-				this.formData.pwd
-			);
-
-			console.log(
-				'🚀 ~ LogUserForm.vue:112 ~ fetchToLog ~ this.formData.email   ==> ',
-				this.formData.email
-			);
 
 			if (this.formData.email && this.formData.pwd) {
 
-				const allDataz = {
-					email: this.formData.email,
-					pwd: this.formData.pwd,
-							method: 'POST',
-							headers: {
-								'Content-Type': 'application/json',
-							},
-							body: JSON.stringify(this.formData),
-							credentials: 'include', // Pour inclure les cookies dans la requête
-						
-					}
+    // Création d'un objet de configuration unique pour la requête
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.formData),
+      credentials: 'include' // Permet d'inclure les cookies dans la requête
+    };
 
-				console.log('🚀 ~ LogUserForm.vue:134 ~ fetchToLog ~ allDataz  ==> ', allDataz)
+    console.log('🚀 Payload for login:', requestOptions);
 
 
 				try {
 					const response = await fetch(
-
-
 						'https://eli-back.onrender.com/api/logUserPage',
-						{
-							method: 'POST',
-							headers: {
-								'Content-Type': 'application/json',
-							},
-							body: JSON.stringify(this.formData),
-							credentials: 'include', // Pour inclure les cookies dans la requête
-						}
-
-
+						requestOptions
 					);
 
 					console.log(
@@ -165,13 +143,9 @@ export default {
 							result
 						);
 
-						this.pseudo = result.pseudo;
-
-						// Afficher l'objet pseudo après l'avoir peuplé
-						console.log(
-							'✅  FROM https://eli-back.onrender.com/logUser => this.pseudo :',
-							this.pseudo
-						);
+        // Mise à jour des données utilisateur dans le composant
+        this.pseudo = result.pseudo;
+        console.log('✅ Pseudo:', this.pseudo);
 
 						sessionStorage.setItem(
 							'localUserSession',
@@ -180,31 +154,27 @@ export default {
 						this.isLoggedIn = true;
 
 						this.decodeUSERfromTOKEN();
-						this.getAllDocCookiess();
+						this.getAllDocCookies();
 
 						await this.navigateTO('homepage');
 						window.location.reload(true);
 					} else {
-						const errorData = await response.json();
-
-						console.log(
-							'🍌🍌🍌  ~ LogUserForm.vue:166 ~ fetchToLog ~ errorData  ==> ',
-							errorData
-						);
-
-						alert(
-							'⚠️ Email ou mot de passe incorrect : ' +
-								errorData.message
-						);
-					}
-				} catch (err) {
-					console.error(
-						'FROM VUE  => ERR de TRY GLOBAL du SUBMIT du formulaire',
-						err
-					);
-				}
-			}
-		},
+        // En cas d'erreur (response non ok), on tente de récupérer le message d'erreur en JSON
+        let errorData;
+        try {
+          errorData = await response.json();
+        } catch (err) {
+          // Si la réponse n'est pas en JSON, on lit le texte brut
+          errorData = { message: await response.text() };
+        }
+        console.log('🍌 Erreur lors de la connexion:', errorData);
+        alert('⚠️ Email ou mot de passe incorrect : ' + errorData.message);
+      }
+    } catch (err) {
+      console.error('FROM VUE => ERR de TRY GLOBAL du SUBMIT du formulaire', err);
+    }
+  }
+},
 
 		// Utilisation avec async/await
 		async navigateTO(dest) {
@@ -221,12 +191,12 @@ export default {
 			}
 		},
 
-		getAllDocCookiess() {
+		getAllDocCookies() {
 			const allCookies = document.cookie;
 			if (allCookies) {
 				const cookiesArray = allCookies.split('; ');
 				console.log(
-					'🚀 ~ getAllDocCookiess ~ cookiesArray:',
+					'🚀 ~ getAllDocCookies ~ cookiesArray:',
 					cookiesArray
 				);
 				console.log('🚀 ~ mounted ~ allCookies:', allCookies);

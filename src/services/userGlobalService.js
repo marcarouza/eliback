@@ -54,7 +54,7 @@ async function getLocalUser() {
 		if (localUserData) {
 
 			// console.log('🚀 -------------------------------------------------------------------------------🚀')
-			// console.log('🚀 ~ userGlobalService.js:57 ~ getLocalUser ~ localUserData  ==> ', localUserData._id)
+			console.log('🚀 ~ userGlobalService.js:57 ~ getLocalUser ~ localUserData  ==> ', localUserData._id)
 			// console.log('🚀 -------------------------------------------------------------------------------🚀')
 
 			userStateGlobal.userID = userStateGlobal.localUserSession._id;
