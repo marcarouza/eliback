@@ -123,13 +123,22 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
-import { userID, userPseudo, isLoggedIn } from '@/services/userGlobalService';
-import {
-  userGlobalService,
-      checkUserStatus,
-    getLocalUser,
-  logOUTapi as globalLogOUTapi,
-} from '@/services/userGlobalService';
+import { userID, userPseudo, isLoggedIn,   logOUTapi as globalLogOUTapi } from '@/services/userGlobalService';
+
+console.log('🚀 -------------------------------------------------------🚀')
+console.log('🚀 ~ NavOkService.vue:128 ~ isLoggedIn  ==> ', isLoggedIn)
+console.log('🚀 -------------------------------------------------------🚀')
+
+
+console.log('🚀 -------------------------------------------------------🚀')
+console.log('🚀 ~ NavOkService.vue:128 ~ userPseudo  ==> ', userPseudo)
+console.log('🚀 -------------------------------------------------------🚀')
+
+
+console.log('🚀 -----------------------------------------------🚀')
+console.log('🚀 ~ NavOkService.vue:128 ~ userID  ==> ', userID)
+console.log('🚀 -----------------------------------------------🚀')
+
 
 
 console.log('🚀 -------------------------------------------------------------------------------------------------🚀')

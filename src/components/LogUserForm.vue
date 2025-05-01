@@ -13,57 +13,29 @@
 				</h6>
 				<form @submit.prevent="fetchToLog" id="loginForm">
 					<div class="form-floating mb-3">
-						<input
-							type="email"
-							class="form-control"
-							v-model="formData.email"
-							id="email"
-							name="email"
-							placeholder="Adresse e-mail"
-							required
-						/>
+						<input type="email" class="form-control" v-model="formData.email" id="email" name="email"
+							placeholder="Adresse e-mail" required />
 						<label for="email">Votre e-mail</label>
 					</div>
 					<div class="form-floating mb-3">
 						<div class="input-group">
-							<input
-								:type="
-									passwordVisible
-										? 'text'
-										: 'password'
-								"
-								class="form-control"
-								v-model="formData.pwd"
-								id="pwd"
-								name="pwd"
-								placeholder="Mot de passe (entre 8 et 24 signes)"
-								required
-								minlength="8"
-								maxlength="24"
-							/>
+							<input :type="passwordVisible
+									? 'text'
+									: 'password'
+								" class="form-control" v-model="formData.pwd" id="pwd" name="pwd"
+								placeholder="Mot de passe (entre 8 et 24 signes)" required minlength="8" maxlength="24" />
 
-							<button
-								class="btn btn-outline-secondary"
-								type="button"
-								@click="togglePasswordVisibility"
-							>
-								<i
-									:class="
-										passwordVisible
-											? 'bi bi-eye-slash'
-											: 'bi bi-eye'
-									"
-									id="toggleIcon"
-								></i>
+							<button class="btn btn-outline-secondary" type="button" @click="togglePasswordVisibility">
+								<i :class="passwordVisible
+										? 'bi bi-eye-slash'
+										: 'bi bi-eye'
+									" id="toggleIcon"></i>
 							</button>
 						</div>
 					</div>
 
 					<div class="d-grid">
-						<button
-							type="submit"
-							class="btn btn-primary btn-lg btn-block"
-						>
+						<button type="submit" class="btn btn-primary btn-lg btn-block">
 							Connexion
 						</button>
 					</div>
@@ -71,10 +43,7 @@
 				<p class="text-center mt-5 note">
 					Pas encore de compte ?
 					<span>
-						<router-link to="/signUserPage"
-							>Cliquez ici</router-link
-						></span
-					>
+						<router-link to="/signUserPage">Cliquez ici</router-link></span>
 				</p>
 			</div>
 		</div>
@@ -83,7 +52,7 @@
 
 <script>
 import Cookies from 'js-cookie';
-import {jwtDecode} from 'jwt-decode'; // Utilisez jwt-decode pour décoder le JWT
+import { jwtDecode } from 'jwt-decode'; // Utilisez jwt-decode pour décoder le JWT
 
 export default {
 	name: 'LogUserForm',
@@ -107,21 +76,18 @@ export default {
 	},
 	methods: {
 		async fetchToLog() {
-
 			if (this.formData.email && this.formData.pwd) {
+				// Création d'un objet de configuration unique pour la requête
+				const requestOptions = {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(this.formData),
+					credentials: 'include' // Permet d'inclure les cookies dans la requête
+				};
 
-    // Création d'un objet de configuration unique pour la requête
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(this.formData),
-      credentials: 'include' // Permet d'inclure les cookies dans la requête
-    };
-
-    console.log('🚀 Payload for login:', requestOptions);
-
+				console.log('🚀 Payload for login:', requestOptions);
 
 				try {
 					const response = await fetch(
@@ -143,9 +109,9 @@ export default {
 							result
 						);
 
-        // Mise à jour des données utilisateur dans le composant
-        this.pseudo = result.pseudo;
-        console.log('✅ Pseudo:', this.pseudo);
+						// Mise à jour des données utilisateur dans le composant
+						this.pseudo = result.pseudo;
+						console.log('✅ Pseudo:', this.pseudo);
 
 						sessionStorage.setItem(
 							'localUserSession',
@@ -159,27 +125,32 @@ export default {
 						await this.navigateTO('homepage');
 						window.location.reload(true);
 					} else {
-        // En cas d'erreur (response non ok), on tente de récupérer le message d'erreur en JSON
-        let errorData;
-        try {
-          errorData = await response.json();
-        } catch (err) {
-          // Si la réponse n'est pas en JSON, on lit le texte brut
-          errorData = { message: await response.text() };
-        }
-        console.log('🍌 Erreur lors de la connexion:', errorData);
-        alert('⚠️ Email ou mot de passe incorrect : ' + errorData.message);
-      }
-    } catch (err) {
-      console.error('FROM VUE => ERR de TRY GLOBAL du SUBMIT du formulaire', err);
-    }
-  }
-},
+						// En cas d'erreur (response non ok), on tente de récupérer le message d'erreur en JSON
+						let errorData;
+						try {
+							// Clonage de la réponse pour avoir une copie à parser en JSON
+							errorData = await response.clone().json();
+						} catch (err) {
+							// Si la réponse n'est pas en JSON, on lit le texte brut depuis l'original
+							errorData = { message: await response.text() };
+						}
+						console.log('🍌 Erreur lors de la connexion:', errorData);
+						alert('⚠️ Email ou mot de passe incorrect : ' + errorData.message);
+					}
+				} catch (err) {
+					console.error(
+						'FROM VUE => ERR de TRY GLOBAL du SUBMIT du formulaire',
+						err
+					);
+				}
+			}
+		}
+		,
 
 		// Utilisation avec async/await
 		async navigateTO(dest) {
 			try {
-				await this.$router.push({name: dest});
+				await this.$router.push({ name: dest });
 				console.log('Routage OK vers ACCUEIL');
 			} catch (error) {
 				if (error.name !== 'NavigationDuplicated') {

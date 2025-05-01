@@ -1,7 +1,5 @@
 // sharedStore.js
-import { reactive, watchEffect, toRefs } from 'vue';
-
-
+import {reactive, watchEffect, toRefs} from 'vue';
 
 const userStateGlobal = reactive({
 	userID: '',
@@ -22,26 +20,33 @@ async function checkUserStatus() {
 
 		if (!response.ok) {
 			throw new Error(
-				'FROM NAVOK ==> ERR Network response was not ok'
+				`FROM NAVOK ==> ERR Network response was not ok: ${response.status} ${response.statusText}`
 			);
 		}
 
 		const data = await response.json();
 
+		if (!data || !data.user) {
+			throw new Error('FROM NAVOK ==> ERR: No user data received');
+		}
+
 		// Mise à jour de l'état utilisateur
 		// userStateGlobal.user = data.user;
 		userStateGlobal.userID = data.user._id;
+
 		userStateGlobal.userPseudo = data.user.pseudo;
 		userStateGlobal.isLoggedIn = true;
 
-		console.log('🚀 userStateGlobal ~ userID:', userStateGlobal.userID);
 		console.log(
-			'🚀 userStateGlobal ~ userPseudo:',
-			userStateGlobal.userPseudo
+			'🚀 ~ userGlobalService.js:39 ~ checkUserStatus ~ 		userStateGlobal.userID & userPseudo  ==> ',
+			userStateGlobal.userID,
+			userGlobalService.userPseudo
 		);
 	} catch (error) {
-
-		console.log('🚀 ~ userGlobalService.js:44 ~ fetchUserData ~ error  ==> ', error);
+		console.log(
+			'🚀 ~ userGlobalService.js:42 ~ checkUserStatus ~ error  ==> ',
+			error
+		);
 	}
 }
 
@@ -52,16 +57,15 @@ async function getLocalUser() {
 			? JSON.parse(localUserData)
 			: null;
 		if (localUserData) {
-
 			// console.log('🚀 -------------------------------------------------------------------------------🚀')
-			console.log('🚀 ~ userGlobalService.js:57 ~ getLocalUser ~ localUserData  ==> ', localUserData._id)
+			console.log(
+				'🚀 ~ userGlobalService.js:57 ~ getLocalUser ~ localUserData  ==> ',
+				localUserData._id
+			);
 			// console.log('🚀 -------------------------------------------------------------------------------🚀')
 
 			userStateGlobal.userID = userStateGlobal.localUserSession._id;
-			console.log(
-				'🚀 getLocalUser ~ userID:',
-				userStateGlobal.userID
-			);
+			console.log('🚀 getLocalUser ~ userID:', userStateGlobal.userID);
 		}
 		console.log(
 			'✅ FROM getLocalUser in NavOk ==> localUserSession:',
@@ -116,9 +120,9 @@ async function logOUTapi(router) {
 	}
 }
 
-	// Lancer la récupération des données
+// Lancer la récupération des données
 getLocalUser();
-	
+
 checkUserStatus();
 
 watchEffect(() => {
@@ -129,17 +133,14 @@ watchEffect(() => {
 		isLoggedIn: userStateGlobal.isLoggedIn,
 		localUserSession: userStateGlobal.localUserSession,
 	});
-}
-);
-
-
+});
 
 // Exporter l'objet réactif et les fonctions que vous souhaitez utiliser ailleurs
 export {
-    userStateGlobal as userGlobalService,
-    checkUserStatus,
-    getLocalUser,
-    logOUTapi,
+	userStateGlobal as userGlobalService,
+	checkUserStatus,
+	getLocalUser,
+	logOUTapi,
 };
 
-export const { userID, userPseudo, isLoggedIn } = toRefs(userStateGlobal);
+export const {userID, userPseudo, isLoggedIn} = toRefs(userStateGlobal);
