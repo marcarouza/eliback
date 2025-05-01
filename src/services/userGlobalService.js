@@ -5,7 +5,7 @@ const userStateGlobal = reactive({
 	userID: '',
 	userPseudo: '',
 	isLoggedIn: false,
-	localUserSession: '',
+	localUserSession: null,
 });
 
 async function checkUserStatus() {
@@ -31,16 +31,14 @@ async function checkUserStatus() {
 		}
 
 		// Mise à jour de l'état utilisateur
-		// userStateGlobal.user = data.user;
 		userStateGlobal.userID = data.user._id;
-
 		userStateGlobal.userPseudo = data.user.pseudo;
 		userStateGlobal.isLoggedIn = true;
 
 		console.log(
-			'🚀 ~ userGlobalService.js:39 ~ checkUserStatus ~ 		userStateGlobal.userID & userPseudo  ==> ',
+			'🚀 ~ userGlobalService.js:39 ~ checkUserStatus ~ userStateGlobal.userID & userStateGlobal.userPseudo  ==> ',
 			userStateGlobal.userID,
-			userGlobalService.userPseudo
+			userStateGlobal.userPseudo
 		);
 	} catch (error) {
 		console.log(
@@ -52,18 +50,15 @@ async function checkUserStatus() {
 
 async function getLocalUser() {
 	try {
-		const localUserData = localStorage.getItem('localUserSession');
-		userStateGlobal.localUserSession = localUserData
-			? JSON.parse(localUserData)
+		const localUserDataString = localStorage.getItem('localUserSession');
+		userStateGlobal.localUserSession = localUserDataString
+			? JSON.parse(localUserDataString)
 			: null;
-		if (localUserData) {
-			// console.log('🚀 -------------------------------------------------------------------------------🚀')
+		if (userStateGlobal.localUserSession) {
 			console.log(
 				'🚀 ~ userGlobalService.js:57 ~ getLocalUser ~ localUserData  ==> ',
-				localUserData._id
+				userStateGlobal.localUserSession._id
 			);
-			// console.log('🚀 -------------------------------------------------------------------------------🚀')
-
 			userStateGlobal.userID = userStateGlobal.localUserSession._id;
 			console.log('🚀 getLocalUser ~ userID:', userStateGlobal.userID);
 		}
@@ -105,8 +100,8 @@ async function logOUTapi(router) {
 
 		// Réinitialiser l'état utilisateur
 		userStateGlobal.isLoggedIn = false;
-		userStateGlobal.user = null;
-		userStateGlobal.userID = null;
+		userStateGlobal.userID = '';
+		userStateGlobal.userPseudo = '';
 		localStorage.removeItem('localUserSession');
 		sessionStorage.removeItem('localUserSession');
 
@@ -120,14 +115,13 @@ async function logOUTapi(router) {
 	}
 }
 
-// Lancer la récupération des données
+// Lancer la récupération des données au démarrage
 getLocalUser();
-
 checkUserStatus();
 
+// Surveille les modifications de l'état utilisateur
 watchEffect(() => {
 	console.log("-----------------Mise à jour de l'état utilisateur :", {
-		// user: userStateGlobal.user,
 		userID: userStateGlobal.userID,
 		userPseudo: userStateGlobal.userPseudo,
 		isLoggedIn: userStateGlobal.isLoggedIn,
