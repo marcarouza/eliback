@@ -2,12 +2,19 @@ import {defineConfig} from 'vite';
 import vue from '@vitejs/plugin-vue';
 import {visualizer} from 'rollup-plugin-visualizer';
 import viteImagemin from 'vite-plugin-imagemin';
+import ViteSitemap from 'vite-plugin-sitemap';
 
 export default defineConfig(({mode}) => ({
 	base: '/',
 	plugins: [
 		vue(),
-		
+		ViteSitemap({
+			hostname: 'https://eliazoura.fr',
+			// Vous pouvez ajouter d'autres options ici
+			
+			// la configuration additionnelle peut être nécessaire selon votre projet
+		}),
+
 		// Les plugins suivants sont ajoutés uniquement en mode production
 		...(mode === 'production'
 			? [

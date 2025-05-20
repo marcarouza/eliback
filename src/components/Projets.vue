@@ -593,6 +593,15 @@
 							</div>
 						</div>
 					</div>
+
+
+
+
+
+
+
+
+
 				</div>
 			</section>
 			<!-- Call to action section-->
@@ -601,6 +610,8 @@
 </template>
 
 <script>
+import ProjetsList from './ProjetsList.vue';
+
 export default {
 	name: 'Projets',
 

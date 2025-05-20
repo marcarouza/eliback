@@ -5,6 +5,8 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
+		"sitemap": "node generate-sitemap.js",
+		"postbuild": "npm run sitemap",
 		"preview": "vite preview",
 		"deploy": "npm run build && render-deploy",
 		"type-check": "vue-tsc --noEmit"
@@ -18,8 +20,11 @@
 		"bootstrap": "^5.3.3",
 		"bootstrap-icons": "^1.11.3",
 		"flatpickr": "^4.6.13",
+		"fs": "^0.0.1-security",
 		"js-cookie": "^3.0.5",
 		"jwt-decode": "^4.0.0",
+		"mdb-vue-ui-kit": "^6.0.0",
+		"sitemap": "^8.0.0",
 		"socket.io": "^4.7.5",
 		"socket.io-client": "^4.7.5",
 		"url-regex": "^5.0.0",
@@ -58,6 +63,7 @@
 		"vite": "^6.0.6",
 		"vite-imagetools": "^7.0.5",
 		"vite-plugin-imagemin": "^0.6.1",
+		"vite-plugin-sitemap": "^0.7.1",
 		"vue-tsc": "^2.2.8"
 	}
 }

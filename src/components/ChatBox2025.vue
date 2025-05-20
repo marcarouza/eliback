@@ -1,28 +1,66 @@
 <template>
-	<div id="chatPopin" class="chat-popin chat-container hide-inactive">
-		<div class="chat-header">
-			<span>Chat en direct</span>
-			<!-- <span class="membersonline"
-				>3&nbsp;<i class="fas fa-user"></i
-				>&nbsp;&nbsp;présents</span
-			> -->
-			<button
-				@click="displayChat"
-				id="closeChatBtn"
-				class="btn btn-close btn-primary float-end"
-			></button>
-		</div>
 
-		<div id="allMess" class="chat-body">
-			<!-- Messages vont ici -->
+  <div  id="chatPopin2"     class="hide-inactive pop">
 
-			<span v-if="!isLoggedIn">
-				<!-- Pour utiliser la messagerie instantanée, vous devez être
-				connecté(e). -->
-			</span>
-		</div>
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-8 col-lg-6 col-xl-4">
 
-		<div class="chat-footer">
+        <div class="card" id="chat1" style="border-radius: 15px;">
+          <div
+            class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0"
+            style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+            <i class="fas fa-angle-left"></i>
+            <p class="mb-0 fw-bold">Live chat</p>
+            <i class="fas fa-times"></i>
+          </div>
+          <div class="card-body">
+
+            <div class="d-flex flex-row justify-content-start mb-4">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                alt="avatar 1" style="width: 45px; height: 100%;">
+              <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                <p class="small mb-0">Hello and thank you for visiting MDBootstrap. Please click the video
+                  below.</p>
+              </div>
+            </div>
+
+            <div class="d-flex flex-row justify-content-end mb-4">
+              <div class="p-3 me-3 border bg-body-tertiary" style="border-radius: 15px;">
+                <p class="small mb-0">Thank you, I really like your product.</p>
+              </div>
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                alt="avatar 1" style="width: 45px; height: 100%;">
+            </div>
+
+            <div class="d-flex flex-row justify-content-start mb-4">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                alt="avatar 1" style="width: 45px; height: 100%;">
+              <div class="ms-3" style="border-radius: 15px;">
+                <div class="bg-image">
+                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/screenshot1.webp"
+                    style="border-radius: 15px;" alt="video">
+                  <a href="#!">
+                    <div class="mask"></div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-row justify-content-start mb-4">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                alt="avatar 1" style="width: 45px; height: 100%;">
+              <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+                <p class="small mb-0">...</p>
+              </div>
+            </div>
+
+            <!-- <div data-mdb-input-init class="form-outline ">
+              <textarea class="form-control bg-body-tertiary retrait " id="textAreaExample" rows="4"></textarea>
+              <label class="form-label" for="textAreaExample">Type your message</label>
+            </div> -->
+
+
+		<div class="chat-foot">
 			<form id="msg_form" class="chatInput" @submit.prevent="sendMess">
 				<input
 					id="messInput"
@@ -45,16 +83,18 @@
 			</form>
 		</div>
 
-		
-	</div>
+          </div>
+        </div>
 
-	<!-- BOUTON CHAT -->
-	<div @click="displayChat" id="chatToggleBtn" class="stickedTab">
+      </div>
+    </div>
+
+  </div>
+
+  <div @click="displayChat" id="chatToggleBtn" class="stickedTab">
 		<i class="bi bi-chat-dots-fill chat_bubble"></i>
 	</div>
 
-
-	
 </template>
 
 <script >
@@ -82,7 +122,7 @@ console.log('🚀 -------------------------------------🚀')
 console.log('✅ 🐱  FROM ChatBox ===> SOCKET CLIENT : ', socket);
 
 export default {
-    name: 'ChatBox',
+    name: 'ChatBox2025',
 
     data() {
         return {
@@ -227,18 +267,18 @@ export default {
         },
 
         displayChat() {
-            const chatPopin = document.getElementById('chatPopin');
-            if (!chatPopin) {
-                console.error('Element with ID "chatPopin" not found.');
+            const chatPopin2 = document.getElementById('chatPopin2');
+            if (!chatPopin2) {
+                console.error('Element with ID "chatPopin2" not found.');
                 return;
             }
-            chatPopin.classList.toggle('hide-inactive');
+            chatPopin2.classList.toggle('hide-inactive');
         },
 
         hideChat() {
-            const chatPopin = document.getElementById('chatPopin');
-            if (chatPopin) {
-                chatPopin.classList.add('hide-inactive');
+            const chatPopin2 = document.getElementById('chatPopin2');
+            if (chatPopin2) {
+                chatPopin2.classList.add('hide-inactive');
             }
         },
 
@@ -268,45 +308,84 @@ export default {
 </script>
 
 
+
 <style>
+.chatInput {
+	display: flex;
+	flex-direction: row;
+	justify-content: stretch;
+	width: 100%;
+	padding: 0px;
+	margin-top: 1rem;
+
+	input {
+		padding: 1rem;
+		border-radius: 0 0 0 var(--round2);
+		border: none;
+		background: rgb(255, 255, 255);
+		background: linear-gradient(
+			208deg,
+			rgba(255, 255, 255, 1) 0%,
+			rgba(0, 174, 255, 0.06626400560224088) 100%
+		);
+	}
+
+	input::before,
+	input::after {
+		content: '';
+		position: absolute;
+		z-index: 1;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+	}
+
+	input::before {
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 3px;
+		background: linear-gradient(to right, #007bff, #00ffcc);
+	}
+
+	input::after {
+		bottom: 0;
+		left: 0;
+		width: 2px;
+		height: 100%;
+		background: linear-gradient(to bottom, #007bff, #00ffcc);
+	}
+
+	input::before {
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 2px;
+		background: linear-gradient(to right, #007bff, #00ffcc);
+	}
+}
+
+.form-control {
+padding-top: 1.5rem !important;
+}
+.bg-info{
+	background-color: #007bff !important;
+}
+
 .membersonline {
 	font-size: 0.7rem;
 	color: #fff200cf;
 	text-shadow: -3px 2px 5px rgba(0, 13, 51, 0.6);
 }
 
-.chat_bubble {
-	font-size: 2rem;
-	color: #004fa4;
-	font-size: 1rem;
-	color: #ffffff;
-	text-shadow: 0px 2px 5px rgba(0, 13, 51, 0.6);
-}
 
-.whatsapp-icon {
-	font-size: 1.5rem;
-	font-size: 1rem;
-	color: rgb(14, 82, 9) !important;
 
-	text-shadow: -2px 2px 5px rgba(7, 255, 32, 0.314);
-}
 
-.chat-popin {
+.pop {
 	position: fixed;
-	bottom: 10px;
+	bottom: 20px;
 	right: 40px;
-	width: 350px;
-	background: linear-gradient(
-		210deg,
-		#e2e2e2 100%,
-		#c0c0c0 20%,
-		#e2e2e2 100%
-	);
-	border: 1px solid #006aff;
-	border-radius: 8px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	z-index: 100;
-	transition: transform 0.3s ease-out, opacity 0.5s ease-out;
+	z-index: 1000;
 }
 
 .hide-inactive {
@@ -325,20 +404,9 @@ export default {
 	transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
 
-.msg-input {
-	border: 5px solid #ccc;
-}
 
-.chat-container {
-	display: flex;
-	flex-direction: column;
-	height: auto;
-	max-height: 450px; /* Hauteur maximale de 350px */
-	max-width: 600px;
-	margin: 0 auto;
-	padding: 0;
-	overflow-y: auto; /* Ajoute un ascenseur vertical lorsque le contenu dépasse 350px */
-}
+
+
 
 .btn-close {
 	width: 5px !important;
@@ -358,62 +426,6 @@ export default {
 	visibility: visible;
 }
 
-.chat-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	font-size: 0.85rem;
-	min-height: 40px;
-	background-color: #003f82;
-	color: #fff;
-	padding: 5px 10px;
-	border-top-left-radius: 3px;
-	border-top-right-radius: 3px;
-	box-shadow: 0 6px 9px rgb(0 0 0);
-}
-
-.chat-body {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	/* min-height: 250px; */
-	border-bottom: 0.5px solid #00aeff72;
-	align-items: flex-start;
-	padding: 0.5rem;
-	overflow-y: scroll;
-	background: rgb(255, 255, 255);
-	background: linear-gradient(
-		208deg,
-		rgba(255, 255, 255, 1) 0%,
-		rgba(0, 174, 255, 0.06626400560224088) 100%
-	);
-}
-
-/* Custom scrollbar styles */
-.chat-body::-webkit-scrollbar {
-	width: 8px; /* Largeur du scrollbar vertical */
-}
-
-.chat-body::-webkit-scrollbar-track {
-	background: #ffffff; /* Couleur du fond du track */
-	border-radius: 0; /* Coins arrondis du track */
-}
-
-.chat-body::-webkit-scrollbar-thumb {
-	background: hsl(211, 100%, 32%);
-	background: linear-gradient(
-		00deg,
-		hsla(216, 98%, 52%, 0.529) 0%,
-		hsla(216, 98%, 30%, 0.7) 100%
-	);
-	border-radius: 3px; /* Coins arrondis du thumb */
-	min-height: 30px;
-	/* max-height: 30px; Hauteur minimale du thumb (non garanti par tous les navigateurs) */
-}
-
-.chat-body::-webkit-scrollbar-thumb:hover {
-	background: hsl(211, 100%, 32%) 10%;
-}
 
 .chat-footer {
 	padding: 1px;

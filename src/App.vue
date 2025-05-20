@@ -5,6 +5,7 @@
 
 		<Notif />
 		<ChatBox :key="chatBoxKey" />
+		<ChatBox2025 :key="chatBoxKey" />
 		<RouterView />
 
 
@@ -19,6 +20,7 @@ import NavOkService from './components/NavOkService.vue';
 
 import Footer from './components/Footer.vue';
 import ChatBox from './components/ChatBox.vue';
+import ChatBox2025 from './components/ChatBox2025.vue';
 import Notif from './components/Notif.vue';
 import { RouterView } from 'vue-router';
 
@@ -28,6 +30,7 @@ export default {
 		NavOkService,
 		CommonHeadNew,
 		ChatBox,
+		ChatBox2025,
 		Footer,
 		Notif,
 	},
