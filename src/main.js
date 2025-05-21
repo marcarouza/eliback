@@ -1,3 +1,7 @@
+// WEB COMO CALCULO
+
+
+
 import 'mdb-vue-ui-kit/css/mdb.min.css';
 
 import '/src/assets/styles_temp_dev.css'; // Importer le fichier CSS global

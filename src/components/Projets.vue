@@ -13,24 +13,66 @@
 							>
 						</h1>
 					</div>
-					
-					<!-- CALCULO A VENIR  -->
+
+					<!-- TEST AVEC APP CALCULO  -->
+
+					<!-- Offcanvas (placé en dehors du bloc) -->
+					<div
+						class="offcanvas offcanvas-end"
+						tabindex="-1"
+						id="offcanvasCalculo"
+						aria-labelledby="offcanvasCalculoLabel"
+					>
+						<div class="offcanvas-header">
+							<h5
+								class="offcanvas-title"
+								id="offcanvasCalculoLabel"
+							>
+								SmartCalc
+							</h5>
+							<button
+								type="button"
+								class="btn-close text-reset"
+								data-bs-dismiss="offcanvas"
+								aria-label="Fermer"
+							></button>
+						</div>
+						
+
+						<iframe src="https://eliazoura.fr/app/index.html" class="w-100 h-100" frameborder="0" title="SmartCalc Application"></iframe>
+
+					</div>
+
+					<!-- Bloc de la carte initiale (invariant) -->
 					<div class="card shadow border-0 rounded-4 py-3 mb-3">
 						<div
 							class="d-flex flex-column flex-lg-row align-items-top justify-content-center"
 						>
+							<!-- L'image est cliquable et déclenche l'offcanvas -->
 							<img
-								class="img-fluid projet order-0 order-lg-1"
+								class="img-fluid projet order-0 order-lg-1 px-5"
 								src="/pix/projets/calculo.webp"
 								alt="projet web eli azoura"
+								data-bs-toggle="offcanvas"
+								data-bs-target="#offcanvasCalculo"
+								aria-controls="offcanvasCalculo"
+								style="cursor: pointer"
 							/>
 							<div class="p-5 order-1 order-lg-0">
-								<h2 class="fw-bolder">SmartCalc</h2>
+								<router-link
+									active-class="active"
+									class="nav-link"
+									to="/Calculo"
+								>
+									<h2 class="fw-bolder">
+										SmartCalc
+									</h2>
+								</router-link>
 								<ul>
 									<li>
 										Application de type
 										calculatrice configurable,
-										fonctionant directement dans
+										fonctionnant directement dans
 										votre navigateur (en cours de
 										développement)
 									</li>
@@ -38,6 +80,9 @@
 							</div>
 						</div>
 					</div>
+
+					<!--  -->
+
 					<!--  -->
 
 					<div class="card shadow border-0 rounded-4 py-3 mb-3">
@@ -593,15 +638,6 @@
 							</div>
 						</div>
 					</div>
-
-
-
-
-
-
-
-
-
 				</div>
 			</section>
 			<!-- Call to action section-->
@@ -609,45 +645,18 @@
 	</div>
 </template>
 
-<script>
-import ProjetsList from './ProjetsList.vue';
+<script setup lang="ts">
+// Import du composant StandaloneApp
+import StandaloneApp from '../components/calculoFrame.vue';
 
-export default {
+// Avec <script setup>, pour définir des options (par exemple le nom du composant),
+// utilisez la macro defineOptions au lieu d’export default.
+defineOptions({
 	name: 'Projets',
-
-	data() {
-	return {
-		projects: [
-			{
-				image: "/pix/projets/calculo.webp",
-				alt: "projet web eli azoura",
-				title: "SmartCalc",
-				descriptions: [
-					"Application de type calculatrice configurable, fonctionnant directement dans votre navigateur (en cours de développement)",
-				],
-			},
-			{
-				image: "/pix/projets/infoAgentRed.png",
-				alt: "projet web eli azoura",
-				title: "SpyNav",
-				descriptions: [
-					"Application permettant de prendre connaissance des informations capturées par votre navigateur.",
-					"Réalisation avec VueJS 3 et un script JavaScript spécifique.",
-					"Sensibilisation à la quantité de données transmises par votre navigateur.",
-				],
-			},
-			// Ajoutez d'autres projets ici si nécessaire
-		],
-	};
-}
-
-};
-
-
-
+});
 </script>
 
-<style scoped>
+<style>
 .bg-gradient-custom {
 	background: linear-gradient(90deg, #000000be, #1e30f3);
 	background-size: 200% 200%;

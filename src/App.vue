@@ -4,8 +4,8 @@
 		<NavOkService> </NavOkService>
 
 		<Notif />
-		<ChatBox :key="chatBoxKey" />
-		<ChatBox2025 :key="chatBoxKey" />
+		<!-- <ChatBox :key="chatBoxKey" /> -->
+		<!-- <ChatBox2025 :key="chatBoxKey" /> -->
 		<RouterView />
 
 
@@ -14,6 +14,11 @@
 </template>
 
 <script>
+
+import './components/Calculator/CalculatorWebComponent.vue';     
+
+
+
 import CommonHeadNew from './components/CommonHeadNew.vue';
 import NavOkService from './components/NavOkService.vue';
 

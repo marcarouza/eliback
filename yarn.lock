@@ -1636,10 +1636,10 @@
     hookable "^5.5.3"
     unhead "1.11.14"
 
-"@vitejs/plugin-vue@^5.2.1":
-  version "5.2.1"
-  resolved "https://registry.npmjs.org/@vitejs/plugin-vue/-/plugin-vue-5.2.1.tgz"
-  integrity sha512-cxh314tzaWwOLqVes2gnnCtvBDcM1UMdn+iFR+UjAn411dPT3tOmqrJjbMd7koZpMAmBM/GqeV4n9ge7JSiJJQ==
+"@vitejs/plugin-vue@^5.2.4":
+  version "5.2.4"
+  resolved "https://registry.npmjs.org/@vitejs/plugin-vue/-/plugin-vue-5.2.4.tgz"
+  integrity sha512-7Yx/SXSOcQq5HiiV3orevHUFn+pmMB4cgbEkDYgnkUWb0WfeQ/wa2yFv6D5ICiCQOVpjA7vYDXrC7AGO8yjDHA==
 
 "@volar/language-core@~2.4.11", "@volar/language-core@2.4.12":
   version "2.4.12"
@@ -1733,10 +1733,10 @@
   resolved "https://registry.npmjs.org/@vue/devtools-api/-/devtools-api-6.6.4.tgz"
   integrity sha512-sGhTPMuXqZ1rVOk32RylztWkfXTRhuS7vgAKv0zjqk8gbsHkJ7xfFf+jbySxt7tWObEJwyKaHMikV/WGDiQm8g==
 
-"@vue/language-core@2.2.8":
-  version "2.2.8"
-  resolved "https://registry.npmjs.org/@vue/language-core/-/language-core-2.2.8.tgz"
-  integrity sha512-rrzB0wPGBvcwaSNRriVWdNAbHQWSf0NlGqgKHK5mEkXpefjUlVRP62u03KvwZpvKVjRnBIQ/Lwre+Mx9N6juUQ==
+"@vue/language-core@2.2.10":
+  version "2.2.10"
+  resolved "https://registry.npmjs.org/@vue/language-core/-/language-core-2.2.10.tgz"
+  integrity sha512-+yNoYx6XIKuAO8Mqh1vGytu8jkFEOH5C8iOv3i8Z/65A7x9iAOXA97Q+PqZ3nlm2lxf5rOJuIGI/wDtx/riNYw==
   dependencies:
     "@volar/language-core" "~2.4.11"
     "@vue/compiler-dom" "^3.5.0"
@@ -1839,9 +1839,9 @@ ajv@8.12.0:
     uri-js "^4.2.2"
 
 alien-signals@^1.0.3:
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/alien-signals/-/alien-signals-1.0.4.tgz"
-  integrity sha512-DJqqQD3XcsaQcQ1s+iE2jDUZmmQpXwHiR6fCAim/w87luaW+vmLY8fMlrdkmRwzaFXhkxf3rqPCR59tKVv1MDw==
+  version "1.0.13"
+  resolved "https://registry.npmjs.org/alien-signals/-/alien-signals-1.0.13.tgz"
+  integrity sha512-OGj9yyTnJEttvzhTUWuscOvtqxq5vrhF7vL9oS0xJ2mK0ItPYP1/y+vCFebfxoEyAz0++1AIwJ5CMr+Fk3nDmg==
 
 ansi-align@^3.0.1:
   version "3.0.1"
@@ -8329,10 +8329,10 @@ typedarray@^0.0.6:
   resolved "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz"
   integrity sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==
 
-typescript@*, typescript@^5.8.2, typescript@>=5.0.0:
-  version "5.8.2"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-5.8.2.tgz"
-  integrity sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ==
+typescript@*, typescript@^5.8.3, typescript@>=5.0.0:
+  version "5.8.3"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-5.8.3.tgz"
+  integrity sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==
 
 ua-parser-js@^1.0.33:
   version "1.0.40"
@@ -8723,7 +8723,7 @@ vite-plugin-sitemap@^0.7.1:
   resolved "https://registry.npmjs.org/vite-plugin-sitemap/-/vite-plugin-sitemap-0.7.1.tgz"
   integrity sha512-4NRTkiWytLuAmcikckrLcLl9iYA20+5v6l8XshcOrzxH1WR8H0O3S6sTQYfjMrE8su/LG6Y0cTodvOdcOIxaLw==
 
-"vite@^5.0.0 || ^6.0.0", vite@^6.0.6, vite@>=2.0.0:
+"vite@^5.0.0 || ^6.0.0", vite@^6.3.5, vite@>=2.0.0:
   version "6.3.5"
   resolved "https://registry.npmjs.org/vite/-/vite-6.3.5.tgz"
   integrity sha512-cZn6NDFE7wdTpINgs++ZJ4N49W2vRp8LCKrn3Ob1kYNtOo21vfDoaV5GzBfLU4MovSAB8uNRm4jgzVQZ+mBzPQ==
@@ -8777,13 +8777,13 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue-tsc@^2.2.8:
-  version "2.2.8"
-  resolved "https://registry.npmjs.org/vue-tsc/-/vue-tsc-2.2.8.tgz"
-  integrity sha512-jBYKBNFADTN+L+MdesNX/TB3XuDSyaWynKMDgR+yCSln0GQ9Tfb7JS2lr46s2LiFUT1WsmfWsSvIElyxzOPqcQ==
+vue-tsc@^2.2.10:
+  version "2.2.10"
+  resolved "https://registry.npmjs.org/vue-tsc/-/vue-tsc-2.2.10.tgz"
+  integrity sha512-jWZ1xSaNbabEV3whpIDMbjVSVawjAyW+x1n3JeGQo7S0uv2n9F/JMgWW90tGWNFRKya4YwKMZgCtr0vRAM7DeQ==
   dependencies:
     "@volar/typescript" "~2.4.11"
-    "@vue/language-core" "2.2.8"
+    "@vue/language-core" "2.2.10"
 
 vue@^3.0.0, vue@^3.2.0, vue@^3.2.25, vue@^3.4.35, vue@^3.5.0, "vue@>=2.7 || >=3", vue@3.5.13:
   version "3.5.13"
