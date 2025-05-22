@@ -15,8 +15,7 @@
 
 <script>
 
-import './components/Calculator/CalculatorWebComponent.vue';     
-
+// Initialization for ES Users
 
 
 import CommonHeadNew from './components/CommonHeadNew.vue';
@@ -49,11 +48,7 @@ export default {
 			welcomeMsg: '',
 		};
 	},
-	mounted() {
-		// this.checkLocalUserSession();
-		this.updatePageTitle(this.pageTitle);
-		console.log('🐱-🐱-🐱 this.chatBoxKey:', this.chatBoxKey);
-	},
+
 	methods: {
 		checkLocalUserSession() {
 			if (sessionStorage.getItem('localUserSession')) {
@@ -109,16 +104,13 @@ export default {
 			// console.log('Setting up socket listeners');
 		},
 	},
-	//
-	computed: {
-		// showChatBox() {
-		// 	console.log(
-		// 		'🚀 ~ showChatBox ~ this.$route.meta.showChatBox:',
-		// 		this.$route.meta.showChatBox
-		// 	);
 
-		// 	return this.$route.meta.showChatBox !== false; 
-		// },
+	onMounted() {
+		// this.checkLocalUserSession();
+		this.updatePageTitle(this.pageTitle);
+		console.log('🐱-🐱-🐱 this.chatBoxKey:', this.chatBoxKey);
+		initMDB({ Dropdown });
+		
 	},
 };
 </script>

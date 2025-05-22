@@ -8,62 +8,38 @@
 				<div class="container px-5 mb-5">
 					<div class="text-center mb-5">
 						<h1 class="display-5 fw-bolder mb-0">
-							<span class="text-gradient d-inline"
-								>Projets</span
-							>
+							<span class="text-gradient d-inline">Projets récents</span>
 						</h1>
 					</div>
 
 					<!-- TEST AVEC APP CALCULO  -->
 
 					<!-- Offcanvas (placé en dehors du bloc) -->
-					<div
-						class="offcanvas offcanvas-end"
-						tabindex="-1"
-						id="offcanvasCalculo"
-						aria-labelledby="offcanvasCalculoLabel"
-					>
+					<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCalculo"
+						aria-labelledby="offcanvasCalculoLabel">
 						<div class="offcanvas-header">
-							<h5
-								class="offcanvas-title"
-								id="offcanvasCalculoLabel"
-							>
+							<h5 class="offcanvas-title" id="offcanvasCalculoLabel">
 								SmartCalc
 							</h5>
-							<button
-								type="button"
-								class="btn-close text-reset"
-								data-bs-dismiss="offcanvas"
-								aria-label="Fermer"
-							></button>
+							<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+								aria-label="Fermer"></button>
 						</div>
-						
 
-						<iframe src="https://eliazoura.fr/app/index.html" class="w-100 h-100" frameborder="0" title="SmartCalc Application"></iframe>
+
+						<iframe src="https://eliazoura.fr/app/index.html" class="w-100 h-100" frameborder="0"
+							title="SmartCalc Application"></iframe>
 
 					</div>
 
 					<!-- Bloc de la carte initiale (invariant) -->
 					<div class="card shadow border-0 rounded-4 py-3 mb-3">
-						<div
-							class="d-flex flex-column flex-lg-row align-items-top justify-content-center"
-						>
+						<div class="d-flex flex-column flex-lg-row align-items-top justify-content-center">
 							<!-- L'image est cliquable et déclenche l'offcanvas -->
-							<img
-								class="img-fluid projet order-0 order-lg-1 px-5"
-								src="/pix/projets/calculo.webp"
-								alt="projet web eli azoura"
-								data-bs-toggle="offcanvas"
-								data-bs-target="#offcanvasCalculo"
-								aria-controls="offcanvasCalculo"
-								style="cursor: pointer"
-							/>
+							<img class="img-fluid projet order-0 order-lg-1 " src="/pix/projets/calculo.webp"
+								alt="projet web eli azoura" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCalculo"
+								aria-controls="offcanvasCalculo" style="cursor: pointer" />
 							<div class="p-5 order-1 order-lg-0">
-								<router-link
-									active-class="active"
-									class="nav-link"
-									to="/Calculo"
-								>
+								<router-link active-class="active" class="nav-link" to="/Calculo">
 									<h2 class="fw-bolder">
 										SmartCalc
 									</h2>
@@ -86,22 +62,19 @@
 					<!--  -->
 
 					<div class="card shadow border-0 rounded-4 py-3 mb-3">
-						<div
-							class="d-flex flex-column flex-lg-row align-items-top"
-						>
-							<img
-								class="img-fluid projet order-0 order-lg-1"
-								src="/pix/projets/infoAgentRed.png"
-								alt="projet web eli azoura"
-							/>
+						<div class="d-flex flex-column flex-lg-row align-items-top">
+							<img class="img-fluid projet order-0 order-lg-1" src="/pix/projets/navdash.webp"
+								alt="projet web eli azoura" />
 							<div class="p-5 order-1 order-lg-0">
-								<router-link
-									active-class="active"
-									class="nav-link"
-									to="/InfoAgentPage"
-								>
-									<h2 class="fw-bolder">SpyNav</h2>
-								</router-link>
+								<a
+  class="nav-link active"
+  href="https://eliazoura.fr/navdash/"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <h2 class="fw-bolder">SpyNav</h2>
+</a>
+
 								<ul>
 									<li>
 										Application permettant de
@@ -145,14 +118,9 @@
 					</div>
 					<!--  -->
 					<div class="card shadow border-0 rounded-4 py-3 px-3">
-						<div
-							class="d-flex flex-column flex-lg-row align-items-center"
-						>
-							<img
-								class="img-fluid projet order-0 order-lg-1"
-								src="https://eliazoura.fr/pix/projets/projet1.png"
-								alt="projet web eli azoura"
-							/>
+						<div class="d-flex flex-column flex-lg-row align-items-center">
+							<img class="img-fluid projet order-0 order-lg-1" src="https://eliazoura.fr/pix/projets/projet1.png"
+								alt="projet web eli azoura" />
 							<div class="p-5 order-1 order-lg-0">
 								<h2 class="fw-bolder">eliazoura.fr</h2>
 								<ul>
@@ -188,80 +156,32 @@
 							</div>
 						</div>
 						<!-- ACCORDEON -->
-						<nav
-							class="rounded-top-3 mt-5 bg-gradient-custom"
-						>
-							<div
-								class="nav nav-tabs mt-1 px-1"
-								id="nav-tab"
-								role="tablist"
-							>
-								<button
-									class="nav-link active"
-									id="client-tab"
-									data-bs-toggle="tab"
-									data-bs-target="#client"
-									type="button"
-									role="tab"
-									aria-controls="client"
-									aria-selected="true"
-								>
+						<nav class="rounded-top-3 mt-5 bg-gradient-custom">
+							<div class="nav nav-tabs mt-1 px-1" id="nav-tab" role="tablist">
+								<button class="nav-link active" id="client-tab" data-bs-toggle="tab" data-bs-target="#client"
+									type="button" role="tab" aria-controls="client" aria-selected="true">
 									Client
 								</button>
-								<button
-									class="nav-link"
-									id="serveur-tab"
-									data-bs-toggle="tab"
-									data-bs-target="#serveur"
-									type="button"
-									role="tab"
-									aria-controls="serveur"
-									aria-selected="false"
-								>
+								<button class="nav-link" id="serveur-tab" data-bs-toggle="tab" data-bs-target="#serveur"
+									type="button" role="tab" aria-controls="serveur" aria-selected="false">
 									Serveur
 								</button>
-								<button
-									class="nav-link"
-									id="nav-contact-tab"
-									data-bs-toggle="tab"
-									data-bs-target="#nav-contact"
-									type="button"
-									role="tab"
-									aria-controls="nav-contact"
-									aria-selected="false"
-								>
+								<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
+									type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
 									Base de donnée
 								</button>
-								<button
-									class="nav-link"
-									id="nav-socket-tab"
-									data-bs-toggle="tab"
-									data-bs-target="#nav-socket"
-									type="button"
-									role="tab"
-									aria-controls="nav-socket"
-									aria-selected="false"
-								>
+								<button class="nav-link" id="nav-socket-tab" data-bs-toggle="tab" data-bs-target="#nav-socket"
+									type="button" role="tab" aria-controls="nav-socket" aria-selected="false">
 									Socket
 								</button>
 							</div>
 						</nav>
-						<div
-							class="bg-light tab-content"
-							id="nav-tabContent"
-						>
-							<div
-								class="tab-pane fade show active px-4 py-4"
-								id="client"
-								role="tabpanel"
-								aria-labelledby="client-tab"
-								tabindex="0"
-							>
+						<div class="bg-light tab-content" id="nav-tabContent">
+							<div class="tab-pane fade show active px-4 py-4" id="client" role="tabpanel"
+								aria-labelledby="client-tab" tabindex="0">
 								<p>
-									<strong
-										>Frontend dynamique avec
-										VueJS</strong
-									>
+									<strong>Frontend dynamique avec
+										VueJS</strong>
 								</p>
 
 								<p>
@@ -290,10 +210,8 @@
 								</p>
 
 								<p>
-									<strong
-										>Architecture moderne : Single
-										Page Application (SPA)</strong
-									>
+									<strong>Architecture moderne : Single
+										Page Application (SPA)</strong>
 								</p>
 
 								<p>
@@ -344,19 +262,12 @@
 									évolution.
 								</p>
 							</div>
-							<div
-								class="tab-pane fade px-4 py-4"
-								id="serveur"
-								role="tabpanel"
-								aria-labelledby="serveur-tab"
-								tabindex="0"
-							>
+							<div class="tab-pane fade px-4 py-4" id="serveur" role="tabpanel" aria-labelledby="serveur-tab"
+								tabindex="0">
 								<p>
-									<strong
-										>Infrastructure Backend
+									<strong>Infrastructure Backend
 										Robuste avec Node.js et
-										Express.js</strong
-									>
+										Express.js</strong>
 								</p>
 
 								<p>
@@ -400,10 +311,8 @@
 								</p>
 
 								<p>
-									<strong
-										>Fonctionnalités Avancées de
-										Réseautage Social</strong
-									>
+									<strong>Fonctionnalités Avancées de
+										Réseautage Social</strong>
 								</p>
 
 								<p>
@@ -438,18 +347,11 @@
 								<br />
 								<br />
 							</div>
-							<div
-								class="tab-pane fade px-4 py-4"
-								id="nav-contact"
-								role="tabpanel"
-								aria-labelledby="nav-contact-tab"
-								tabindex="0"
-							>
+							<div class="tab-pane fade px-4 py-4" id="nav-contact" role="tabpanel"
+								aria-labelledby="nav-contact-tab" tabindex="0">
 								<p>
-									<strong
-										>Architecture de Données
-										Scalable avec MongoDB</strong
-									>
+									<strong>Architecture de Données
+										Scalable avec MongoDB</strong>
 								</p>
 
 								<p>
@@ -514,8 +416,7 @@
 								</p>
 
 								<p>
-									<em
-										>Note technique :
+									<em>Note technique :
 										L'intégration de MongoDB dans
 										ma stack MEVN (MongoDB,
 										Express, Vue.js, Node.js)
@@ -528,26 +429,18 @@
 										client optimisée grâce à une
 										couche de persistance flexible
 										et performante côté
-										serveur.</em
-									>
+										serveur.</em>
 								</p>
 								<br />
 
 								<br />
 							</div>
-							<div
-								class="tab-pane fade px-4 py-4"
-								id="nav-socket"
-								role="tabpanel"
-								aria-labelledby="nav-socket-tab"
-								tabindex="0"
-							>
+							<div class="tab-pane fade px-4 py-4" id="nav-socket" role="tabpanel"
+								aria-labelledby="nav-socket-tab" tabindex="0">
 								<p>
-									<strong
-										>Architecture de communication
+									<strong>Architecture de communication
 										en temps réel avec
-										Socket.io</strong
-									>
+										Socket.io</strong>
 								</p>
 
 								<p>
@@ -614,8 +507,7 @@
 								</p>
 
 								<p>
-									<em
-										>Note technique :
+									<em>Note technique :
 										L'intégration de Socket.io
 										dans mon architecture MEVN
 										(MongoDB, Express, VueJS,
@@ -632,8 +524,7 @@
 										d'états distribués, renforçant
 										ainsi la réactivité et
 										l'interactivité globale de
-										l'application.</em
-									>
+										l'application.</em>
 								</p>
 							</div>
 						</div>
@@ -647,7 +538,6 @@
 
 <script setup lang="ts">
 // Import du composant StandaloneApp
-import StandaloneApp from '../components/calculoFrame.vue';
 
 // Avec <script setup>, pour définir des options (par exemple le nom du composant),
 // utilisez la macro defineOptions au lieu d’export default.
@@ -665,7 +555,8 @@ defineOptions({
 
 .bg-gradient-custom .nav-link {
 	color: white;
-	opacity: 0.9; /* Légère transparence pour les onglets inactifs */
+	opacity: 0.9;
+	/* Légère transparence pour les onglets inactifs */
 	transition: opacity 0.3s ease;
 }
 
@@ -673,20 +564,27 @@ defineOptions({
 	0% {
 		background-position: 0% 50%;
 	}
+
 	50% {
 		background-position: 100% 50%;
 	}
+
 	100% {
 		background-position: 0% 50%;
 	}
 }
+
 .projet {
-	display: block; /* Évite les espaces indésirables autour des images */
-	margin: 0 auto; /* Centre horizontalement */
-	max-width: 50%; /* S'assure que l'image ne dépasse pas la largeur du conteneur */
-	height: auto; /* Maintient les proportions de l'image */
-	object-fit: contain; /* Assure que l'image s'adapte entièrement à son conteneur */
-	text-align: center; /* Facultatif si vous appliquez à un conteneur parent */
+	/* Évite les espaces indésirables autour des images */
+	/* Centre horizontalement */
+	max-width: 30%;
+	padding-right: 1rem;
+	/* S'assure que l'image ne dépasse pas la largeur du conteneur */
+	height: auto;
+	/* Maintient les proportions de l'image */
+	object-fit: contain;
+	/* Assure que l'image s'adapte entièrement à son conteneur */
+	/* Facultatif si vous appliquez à un conteneur parent */
 }
 
 ul {
@@ -696,5 +594,6 @@ ul {
 		margin: 1rem;
 	}
 }
+
 /* Ajoutez ici des styles spécifiques au composant si nécessaire */
 </style>

@@ -1,21 +1,30 @@
 <template>
-	<div>
-		<AgentInfo />
+	   <h2>Navigation Dashboard</h2>
+      <p class="iframe-description">Explorez mon application interactive de tableau de bord de navigation</p>
+		<div class="iframe-section">
+    <IframeApp 
+      src="https://eliazoura.fr/navdash/" 
+      title="Navigation Dashboard"
+      frameborder="0"
+      loading="lazy"
+    />
+  </div>
+
 		<TabWhats />
-	</div>
+	
 </template>
 
 <script>
-import AgentInfo from '@/components/UserAgent.vue';
 import TabWhats from '@/components/TabWhats.vue';
+import IframeApp from '@/components/IframeNavdashApp.vue';
+
 
 export default {
 	name: 'InfoAgentPage',
 	emits: ['updatePageTitle'],
 	components: {
-		// NavOk,
-		AgentInfo,
 		TabWhats,
+		IframeApp,
 	},
 	mounted() {
 		this.$emit(
@@ -56,4 +65,35 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.iframe-section {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh; /* ou une autre hauteur définie */
+}
+
+.iframe-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: #213547;
+}
+
+.iframe-description {
+  margin-bottom: 1.5rem;
+  color: #4b5563;
+  font-size: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .iframe-section {
+    padding: 1rem;
+    margin: 1.5rem 0;
+  }
+  
+  .iframe-section h2 {
+    font-size: 1.5rem;
+  }
+}
+</style>

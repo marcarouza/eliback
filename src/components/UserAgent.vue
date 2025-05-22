@@ -7,13 +7,13 @@
 					utilisateur
 				</h1>
 				<table class="table table-striped table-bordered mt-3">
-					<!-- <caption
+					<caption
 						classs="text-center bg-dark text-white p-2 caption-style"
 					>
 						> Ces informations sont fournies automatiquement
 						par votre navigateur dès que vous arrivez sur
 						cette page
-					</caption> -->
+					</caption>
 					<tbody>
 						<tr>
 							<th>Navigateur (agent) utilisé</th>

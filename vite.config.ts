@@ -5,20 +5,20 @@ import viteImagemin from 'vite-plugin-imagemin';
 import ViteSitemap from 'vite-plugin-sitemap';
 
 export default defineConfig(({mode}) => ({
-	base: '/',
+	base: '/new2025/',
 	plugins: [
 		vue({
 			template: {
-			  compilerOptions: {
-				 // Indique à Vue de traiter toute balise qui commence par "calculo-" comme un Custom Element
-				 isCustomElement: tag => tag.startsWith('calculo-')
-			  }
-			}
-		 }),
+				compilerOptions: {
+					// Indique à Vue de traiter toute balise qui commence par "calculo-" comme un Custom Element
+					isCustomElement: (tag) => tag.startsWith('calculo-'),
+				},
+			},
+		}),
 		ViteSitemap({
 			hostname: 'https://eliazoura.fr',
 			// Vous pouvez ajouter d'autres options ici
-			
+
 			// la configuration additionnelle peut être nécessaire selon votre projet
 		}),
 

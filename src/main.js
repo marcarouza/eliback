@@ -1,8 +1,8 @@
 // WEB COMO CALCULO
+import 'mdb-ui-kit/css/mdb.min.css';
+import {Dropdown, initMDB} from 'mdb-ui-kit';
+initMDB({Dropdown});
 
-
-
-import 'mdb-vue-ui-kit/css/mdb.min.css';
 
 import '/src/assets/styles_temp_dev.css'; // Importer le fichier CSS global
 import '/src/assets/styles-persos.css'; // Importer le fichier CSS global
