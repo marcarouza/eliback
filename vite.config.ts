@@ -5,7 +5,7 @@ import viteImagemin from 'vite-plugin-imagemin';
 import ViteSitemap from 'vite-plugin-sitemap';
 
 export default defineConfig(({mode}) => ({
-	base: '/new2025/',
+	base: '/new2025',
 	plugins: [
 		vue({
 			template: {

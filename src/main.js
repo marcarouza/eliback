@@ -4,18 +4,20 @@ import {Dropdown, initMDB} from 'mdb-ui-kit';
 initMDB({Dropdown});
 
 
-import '/src/assets/styles_temp_dev.css'; // Importer le fichier CSS global
-import '/src/assets/styles-persos.css'; // Importer le fichier CSS global
-// Importer le CSS de Bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css';
-// Importer le JS de Bootstrap (optionnel, seulement si vous avez besoin de fonctionnalités JavaScript de Bootstrap)
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import {createApp} from 'vue';
+import {createRouter, createWebHistory} from 'vue-router';
 
-import 'bootstrap-icons/font/bootstrap-icons.css';
+
+import '/src/assets/styles_temp_dev.css'; // Importer le fichier CSS global
+// Importer le CSS de Bootstrap
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// Importer le JS de Bootstrap (optionnel, seulement si vous avez besoin de fonctionnalités JavaScript de Bootstrap)
+// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
+// import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import '@fortawesome/fontawesome-free/css/all.css';
 
-import {createApp} from 'vue';
 
 import {createHead} from '@vueuse/head';
 const head = createHead();

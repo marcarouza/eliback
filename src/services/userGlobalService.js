@@ -29,7 +29,6 @@ async function checkUserStatus() {
 		const data = await response.json();
 
 		// Mise à jour de l'état utilisateur
-		// userStateGlobal.user = data.user;
 		userStateGlobal.userID = data.user._id;
 		userStateGlobal.userPseudo = data.user.pseudo;
 		userStateGlobal.isLoggedIn = true;

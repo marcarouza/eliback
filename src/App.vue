@@ -1,16 +1,17 @@
 <template>
-	<div id="app-container">
+	<div id="app-container" class="app-container">
 		<CommonHeadNew :pageTitle="pageTitle" />
-		<NavOkService> </NavOkService>
+		<NavOkService > </NavOkService>
 
 		<Notif />
 		<!-- <ChatBox :key="chatBoxKey" /> -->
 		<!-- <ChatBox2025 :key="chatBoxKey" /> -->
-		<RouterView />
+		<RouterView  class=""/>
 
 
-			<Footer />
 	</div>
+	<Footer />
+
 </template>
 
 <script>
@@ -116,10 +117,15 @@ export default {
 </script>
 
 <style scoped>
+
+.sounav {
+
+	margin-top: 5rem	;
+	/* Ensure it stays on top */
+}
 #app-container {
 	display: flex;
 	flex-direction: column;
-	height: 100vh;
 	/* 100% of the viewport height */
 }
 

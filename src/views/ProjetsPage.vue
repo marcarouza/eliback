@@ -1,6 +1,6 @@
 <template>
 
-		<Projets />
+		<Projets class="sounav"/>
 
 		<TabWhats />
 </template>
@@ -28,3 +28,11 @@ export default {
 };
 </script>
 
+<style>
+
+.sounav {
+  margin-top: 3rem;
+
+}
+
+</style>
