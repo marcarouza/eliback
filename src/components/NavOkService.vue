@@ -118,8 +118,7 @@
 </template>
 
 <script setup>
-// Importez vos dépendances et initialisez MDB si ce n'est pas fait globalement
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import { Dropdown, initMDB } from 'mdb-ui-kit';
 import { useRouter } from 'vue-router';
 import {
@@ -127,47 +126,53 @@ import {
   userPseudo,
   isLoggedIn,
   userGlobalService,
-      checkUserStatus,
-    getLocalUser,
+  checkUserStatus,
+  getLocalUser,
   logOUTapi as globalLogOUTapi,
-
 } from '@/services/userGlobalService';
 
 
-onMounted(() => {
-  initMDB({ Dropdown });
-});
-
-// Votre logique de navigation et autres fonctions... 
-
-
-console.log('🚀 -------------------------------------------------------------------------------------------------🚀')
-console.log('🚀 ~ NavOkService.vue:137 ~  userID, userPseudo, isLoggedIn  ==> ',  userID, userPseudo, isLoggedIn)
-console.log('🚀 -------------------------------------------------------------------------------------------------🚀')
-
-
+// ✅ Définition des types
 const router = useRouter();
 
+const userId = ref(userID);
+const userPseudoVal = ref(userPseudo);
+const isUserLoggedIn = ref(isLoggedIn);
+
+onMounted(() => {
+  initMDB({ Dropdown });
+  console.log(
+    'NavOkService: userId, userPseudoVal, isUserLoggedIn =>',
+    userId.value,
+    userPseudoVal.value,
+    isUserLoggedIn.value
+  );
+});
+
+
+// ✅ Fonctions avec typage
 function navigateToBlog() {
-  if (isLoggedIn) {
+  if (isUserLoggedIn.value) {
     router.push({ name: 'homeblogpage' });
   } else {
     router.push({ name: 'noaccesspage' });
   }
 }
 
+
 function navigateToPrivate() {
-  if (isLoggedIn) {
+  if (isUserLoggedIn.value) {
     router.push({ name: 'userstatusPage' });
   } else {
     router.push({ name: 'noaccesspage' });
   }
 }
 
-async function logOUTapi() {
+async function logOUTapi(){
   await globalLogOUTapi(router);
 }
 </script>
+
 
 
 <style scoped>

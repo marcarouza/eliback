@@ -10,9 +10,9 @@ import {createRouter, createWebHistory} from 'vue-router';
 
 import '/src/assets/styles_temp_dev.css'; // Importer le fichier CSS global
 // Importer le CSS de Bootstrap
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 // Importer le JS de Bootstrap (optionnel, seulement si vous avez besoin de fonctionnalités JavaScript de Bootstrap)
-// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 // import 'bootstrap-icons/font/bootstrap-icons.css';
 
