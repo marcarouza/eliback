@@ -72,7 +72,8 @@ export default {
 			try {
 				const response = await fetch(
 					// 'https://eli-back.onrender.com/checkUserStatus',
-					'https://eliback.onrender.com/api/checkUser',
+					// 'https://eliback.onrender.com/api/checkUser',
+					'https://eliazoura.fr/api/checkUser',
 					{
 						method: 'GET',
 						credentials: 'include', // Pour envoyer les cookies avec la requête

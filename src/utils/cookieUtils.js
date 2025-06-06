@@ -14,7 +14,8 @@ export async function fetchUserData(context) {
 	try {
 		const response = await fetch(
 			// 'https://eli-back.onrender.com/checkUserStatus',
-			'https://eliback.onrender.com/checkUser',
+			// 'https://eliback.onrender.com/checkUser',
+			'https://eliazoura.fr/api/checkUser',
 			{
 				method: 'GET',
 				credentials: 'include', // Pour envoyer les cookies avec la requête

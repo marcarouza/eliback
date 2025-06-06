@@ -98,7 +98,7 @@ export default {
 				try {
 					const response = await fetch(
 						// 'https://eli-back.onrender.com/api/signPage',
-						'https://eliback.onrender.com/api/signUser',
+						'https://eliazoura.fr/api/signUser',
 						{
 							method: 'POST',
 							headers: {
@@ -172,7 +172,8 @@ export default {
 
 
 					// 'https://eli-back.onrender.com/signUserMAILConfirm',
-					'https://eliback.onrender.com/api/mailSignOK',
+					// 'https://eliback.onrender.com/api/mailSignOK',
+					'https://eliazoura.fr/api/mailSignOK',
 					{
 						method: 'POST',
 						headers: {

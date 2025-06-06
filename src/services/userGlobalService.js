@@ -10,7 +10,8 @@ const userStateGlobal = reactive({
 async function checkUser() {
 	try {
 		const response = await fetch(
-			'https://eliback.onrender.com/api/checkUser',
+			// 'https://eliback.onrender.com/api/checkUser',
+			'https://eliazoura.fr/api/checkUser',
 			{
 				method: 'GET',
 				credentials: 'include',
@@ -81,7 +82,8 @@ async function logOUTapi(router) {
 		);
 
 		const response = await fetch(
-			'https://eliback.onrender.com/api/logOUT',
+			// 'https://eliback.onrender.com/api/logOUT',
+			'https://eliazoura.fr/api/logOUT',
 			{
 				method: 'POST',
 				credentials: 'include',
