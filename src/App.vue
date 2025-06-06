@@ -118,6 +118,24 @@ export default {
 
 <style scoped>
 
+html, body {
+      height: 100%;
+      margin: 0;
+    }
+    
+    /* Conteneur principal en Flexbox */
+    .container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
+    /* Le contenu principal qui se développe pour remplir l'espace disponible */
+    .main-content {
+      flex: 1;
+    }
+    
+
 .sounav {
 
 	margin-top: 5rem	;
@@ -126,6 +144,8 @@ export default {
 #app-container {
 	display: flex;
 	flex-direction: column;
+	min-height: 90vh;
+
 	/* 100% of the viewport height */
 }
 

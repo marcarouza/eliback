@@ -365,7 +365,9 @@ export default {
 		async checkUserStatus() {
 			try {
 				const response = await fetch(
-					'https://eli-back.onrender.com/api/checkUserStatus',
+					// 'https://eli-back.onrender.com/api/checkUserStatus',
+					'https://eliback.onrender.com/api/checkUser',
+
 					{
 						method: 'GET',
 						credentials: 'include',

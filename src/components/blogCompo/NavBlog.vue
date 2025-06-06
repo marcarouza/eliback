@@ -71,7 +71,8 @@ export default {
 		async fetchUserData() {
 			try {
 				const response = await fetch(
-					'https://eli-back.onrender.com/checkUserStatus',
+					// 'https://eli-back.onrender.com/checkUserStatus',
+					'https://eliback.onrender.com/api/checkUser',
 					{
 						method: 'GET',
 						credentials: 'include', // Pour envoyer les cookies avec la requête

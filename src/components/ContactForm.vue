@@ -8,21 +8,21 @@
 				>
 					<i class="bi bi-envelope"></i>
 				</div>
+
+				
 				<h1 class="fw-bolder">Parlons de votre projet web</h1>
-				<div
-					class="badge bg-gradient-primary-to-secondary text-white mb-4"
-				>
-					<div class="text-uppercase">
-						&nbsp Formations &nbsp · &nbsp Développement &nbsp
-						· &nbsp application web &nbsp
-					</div>
-				</div>
+				<h5 class="fw-bolder">Serveur en cours de maintenance, merci de m'écrire directement à cette adresse</h5>
+				<h1 class="mt-5"> 				<a href="mailto:eli@eliazoura.fr"> eli@eliazoura.fr</a>
+				</h1>
+
+
+<!-- 
 				<p class="lead fw-normal text-muted mb-0">
 					et travaillons ensemble
-				</p>
+				</p> -->
 			</div>
 
-			<div class="row gx-5 justify-content-center">
+			<!-- <div class="row gx-5 justify-content-center">
 				<div class="col-lg-8 col-xl-6">
 					<form id="contactForm" @submit.prevent="submitForm">
 						<div class="form-floating mb-3">
@@ -188,7 +188,7 @@
 						</div>
 					</form>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </template>

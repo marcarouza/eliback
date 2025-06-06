@@ -216,7 +216,7 @@ export default {
     const getUserAgentInfo = async () => {
       try {
         const response = await fetch(
-          'https://eli-back.onrender.com/api/info',
+          'https://eliback.onrender.com/api/getAgent',
           {
             method: 'GET',
             credentials: 'include',
@@ -234,6 +234,27 @@ export default {
         console.error('Problème avec getUserAgentInfo:', err);
       }
     };
+   //  const getUserAgentInfo = async () => {
+   //    try {
+   //      const response = await fetch(
+   //        'https://eli-back.onrender.com/api/info',
+   //        {
+   //          method: 'GET',
+   //          credentials: 'include',
+   //        }
+   //      );
+   //      if (!response.ok) {
+   //        throw new Error(
+   //          `FROM UserAgent API response was not ok ==> ${response.status}`
+   //        );
+   //      }
+   //      const data = await response.json();
+   //      console.log('🚀 ~ getUserAgentInfo ~ data:', data);
+   //      userAgentInfo.value = data.userAgentInfo;
+   //    } catch (err) {
+   //      console.error('Problème avec getUserAgentInfo:', err);
+   //    }
+   //  };
 
     // Hooks du cycle de vie
     onMounted(() => {

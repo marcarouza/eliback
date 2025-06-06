@@ -10,10 +10,12 @@ const userStateGlobal = reactive({
 	localUserSession: '',
 });
 
+
+
 async function checkUserStatus() {
 	try {
 		const response = await fetch(
-			'https://eli-back.onrender.com/api/checkUserStatus',
+			'https://eliback.onrender.com/api/checkUser',
 			{
 				method: 'GET',
 				credentials: 'include',
@@ -52,9 +54,9 @@ async function getLocalUser() {
 			: null;
 		if (localUserData) {
 
-			// console.log('🚀 -------------------------------------------------------------------------------🚀')
-			// console.log('🚀 ~ userGlobalService.js:57 ~ getLocalUser ~ localUserData  ==> ', localUserData._id)
-			// console.log('🚀 -------------------------------------------------------------------------------🚀')
+			console.log('🚀 -------------------------------------------------------------------------------🚀')
+			console.log('🚀 ~ userGlobalService.js:57 ~ getLocalUser ~ localUserData  ==> ', localUserData._id)
+			console.log('🚀 -------------------------------------------------------------------------------🚀')
 
 			userStateGlobal.userID = userStateGlobal.localUserSession._id;
 			console.log(
@@ -83,7 +85,8 @@ async function logOUTapi(router) {
 		);
 
 		const response = await fetch(
-			'https://eli-back.onrender.com/api/logOut',
+			// 'https://eli-back.onrender.com/api/logOut',
+			'https://eliback.onrender.com/api/logOUT',
 			{
 				method: 'POST',
 				credentials: 'include',

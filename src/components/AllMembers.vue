@@ -171,7 +171,8 @@ export default {
 		async fetchAllMembers() {
 			try {
 				const response = await fetch(
-					'https://eli-back.onrender.com/api/allMembers',
+					// 'https://eli-back.onrender.com/api/allMembers',
+					'https://eliback.onrender.com/api/getAllMembers',
 					{
 						method: 'GET',
 						credentials: 'include', // Pour envoyer les cookies avec la requête
@@ -207,7 +208,8 @@ export default {
 
 			try {
 				const response = await fetch(
-					'https://eli-back.onrender.com/api/askFor1Friend',
+					// 'https://eli-back.onrender.com/api/askFor1Friend',
+					'https://eliback.onrender.com/api/askFor1Friend',
 					{
 						method: 'POST',
 						headers: {

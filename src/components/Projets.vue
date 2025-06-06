@@ -1,5 +1,23 @@
 <template>
+
+
+<MDBRow class="sounav mb-4">
+        <MDBCol>
+          <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+  <div class="text-center mx-auto">
+    <h1 class=" ">Mes applications </h1>
+    <h2 class=" ">Eli Azoura Développeur Web Full Stack</h2>
+    <!-- <h2 class="">Mon Parcours Professionnel</h2> -->
+    <!-- <p class="text-muted mb-0">Mes applications</p> -->
+  </div>
+</div>
+
+        </MDBCol>
+      </MDBRow>
+
+
 <div class="row row-cols-1 row-cols-md-2 g-4 p-5">
+
 
 <!-- COMPTEUR DE MOTS  -->
 <div class="container my-4">
@@ -7,7 +25,7 @@
     <div class="col">
       <!-- La carte devient clickable pour déclencher l'offCanvas -->
       <div class="card h-100" >
-			<a target="_blank"  style="cursor: pointer;"  href="https://eliazoura.fr/navdash/">
+			<a target="_blank"  style="cursor: pointer;"  href="https://eliazoura.fr/app/compteur">
 				<img src="/pix/projets/compteur.png" class="card-img-top" alt="application NavDash"/>
 
 			</a>
@@ -16,7 +34,7 @@
   <!-- Titre principal -->
   <div class="row mb-4">
     <div class="col-12 text-start">
-		<a target="_blank"  style="cursor: pointer;"  href="https://eliazoura.fr/navdash/">
+		<a target="_blank"  style="cursor: pointer;"  href="https://eliazoura.fr/app/compteur">
 			<h3 class="fw-bold mb-1">Compteur de mot dynamique</h3>
 		</a>
 
@@ -151,14 +169,18 @@
   <div class="row">
     <div class="col">
       <!-- La carte devient clickable pour déclencher l'offCanvas -->
-      <div class="card h-100" style="cursor: pointer;" data-bs-toggle="offcanvas" data-bs-target="#briko">
+      <div class="card h-100" style="cursor: pointer;" >
         <!-- <img src="/pix/projets/briko.png" class="card-img-top" alt="Palm Springs Road"/> -->
-        <img src="/pix/projets/videos/extrait-game.gif" class="card-img-top" alt="Palm Springs Road"/>
+         <a target="_blank" href="https://eliazoura.fr/app/brik/">
+
+          <img src="/pix/projets/videos/extrait-game.gif" class="card-img-top" alt="casse-brique par Eli Azoura"/>
+
+         </a>
         <div class="card-body p-5">
 <!-- Description globale -->
 <div class="row">
   <div class="col-12 text-start">
-    <h3 class="fw-bold mb-1">Jeu de Casse Briques</h3>
+    <h3 class="fw-bold mb-1">Jeu de casse-briques</h3>
 
     <p class="lead">
       Développée en pur JavaScript, cette application de casse-brique offre une expérience arcade rétro revisitée. Conçue pour un seul joueur, elle intègre un système de score motivant ainsi que des effets sonores générés directement en JavaScript pour une immersion audio unique.
@@ -190,9 +212,9 @@
 <!-- Résumé -->
 <div class="row mt-4">
   <div class="col-12 text-start">
-    <h3 class="h5 fw-bold mb-2">En résumé</h3>
+    <!-- <h3 class="h5 fw-bold mb-2">En résumé</h3> -->
     <p>
-      Cette application de casse-brique démontre ma capacité à allier un gameplay addictif à des fonctionnalités techniques avancées. Elle illustre parfaitement mon savoir-faire en JavaScript, capable de transformer des idées simples en expériences interactives et riches en émotions.
+      Cette application de casse-brique est un gameplay addictif dotés des fonctionnalités techniques avancées. Elle illustre mon savoir-faire en JavaScript pur, capable de transformer des idées simples en expériences interactives et riches en émotions.
     </p>
   </div>
 </div>
@@ -203,16 +225,7 @@
   </div>
 </div>
 
-<!-- JEUX BRIKO Offcanvas -->
-<div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="briko">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title">JEUX BRIKO </h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    BRIKO
-  </div>
-</div>
+
 
 
 <!-- E L I A Z O U R A .FR  -->
@@ -222,8 +235,8 @@
   <div class="row">
     <div class="col">
       <!-- La carte devient clickable pour déclencher l'offCanvas -->
-      <div class="card h-100" style="cursor: pointer;" data-bs-toggle="offcanvas" data-bs-target="#eliazoura.fr">
-        <img src="/pix/projets/eliazoura.png" class="card-img-top" alt="Palm Springs Road"/>
+      <div class="card h-100" style="cursor: pointer;" >
+        <img src="/pix/projets/eliwebsite.png" class="card-img-top" alt="Palm Springs Road"/>
         <div class="card-body p-5">
 <!-- Description globale -->
 <div class="row">
@@ -287,6 +300,8 @@
 
 <script setup lang="ts">
 // Import du composant StandaloneApp
+import { MDBBtn, MDBIcon, MDBContainer, MDBRow, MDBCol } from 'mdb-vue-ui-kit';
+
 
 // Avec <script setup>, pour définir des options (par exemple le nom du composant),
 // utilisez la macro defineOptions au lieu d’export default.
@@ -297,9 +312,18 @@ defineOptions({
 
 <style>
 
+.sounav{
+  margin-top: 4rem !important;
+}
+
 .custom-offcanvas {
   width: 600px !important; /* Largeur maximale de l'offcanvas */
 }
+
+.card .card-body {
+  cursor: default;
+}
+
 
 /* Ajoutez ici des styles spécifiques au composant si nécessaire */
 </style>

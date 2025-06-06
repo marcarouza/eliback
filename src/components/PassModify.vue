@@ -139,7 +139,8 @@ export default {
 
 			try {
 				const response = await fetch(
-					'https://eli-back.onrender.com/api/modifyPWD',
+					// 'https://eli-back.onrender.com/api/modifyPWD',
+					'https://eliback.onrender.com/api/changePWD',
 					{
 						method: 'POST',
 						headers: {

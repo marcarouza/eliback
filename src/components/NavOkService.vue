@@ -27,13 +27,13 @@
             <i class="fas fa-paper-plane custom-icon" title="CONTACT" aria-label="CONTACT"></i>
           </router-link>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <router-link id="blogLink" to="/homeblogPage" class="nav-link small-caps"
            @click.prevent="navigateToBlog"
             :class="{ active: $route.path === '/homeblogPage' }">
             <i class="fas fa-video custom-icon" title="BLOG" aria-label="BLOG"></i>
           </router-link>
-        </li>
+        </li> -->
       </ul>
 
       <!-- Right elements -->
@@ -63,11 +63,11 @@
 
 <!--  -->
         <li class="nav-item  me-lg-1">
-          <a class="nav-link d-flex align-items-center" href="#">
+          <!-- <a class="nav-link d-flex align-items-center" href="#"> -->
             <!-- <img src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" class="rounded-circle" height="22"
               alt="User avatar" loading="lazy" /> -->
-            <strong class="">Eli</strong>
-          </a>
+            <!-- <strong class="">Eli</strong> -->
+          <!-- </a> -->
         </li>
         <li class="nav-item dropdown  me-lg-1">
           <a data-mdb-dropdown-init class="nav-link dropdown-toggle hidden-arrow" href="#" id="navbarDropdownUser"
@@ -143,6 +143,30 @@ onMounted(() => {
   initMDB({ Dropdown });
   console.log(
     'NavOkService: userId, userPseudoVal, isUserLoggedIn =>',
+    userId.value,
+    userPseudoVal.value,
+    isUserLoggedIn.value
+  );
+});
+
+checkUserStatus().then(() => {
+  userId.value = userGlobalService.userID;
+  userPseudoVal.value = userGlobalService.userPseudo;
+  isUserLoggedIn.value = userGlobalService.isLoggedIn;
+  console.log(
+    'NavOkService: checkUserStatus =>',
+    userId.value,
+    userPseudoVal.value,
+    isUserLoggedIn.value
+  );
+});
+
+getLocalUser().then(() => {
+  userId.value = userGlobalService.userID;
+  userPseudoVal.value = userGlobalService.userPseudo;
+  isUserLoggedIn.value = userGlobalService.isLoggedIn;
+  console.log(
+    'NavOkService: getLocalUser =>',
     userId.value,
     userPseudoVal.value,
     isUserLoggedIn.value

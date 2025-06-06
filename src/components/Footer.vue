@@ -8,9 +8,9 @@
 					</p>
 				</div>
 				<div class="col-12 col-md-6 text-center text-md-end">
-					<RouterLink to="/chatroom" class="text-black routeur me-5" target="_blank" rel="noopener noreferrer">
+					<!-- <RouterLink to="/chatroom" class="text-black routeur me-5" target="_blank" rel="noopener noreferrer">
 						<i class="fa-solid fa-comment"></i>
-					</RouterLink>
+					</RouterLink> -->
 					<a href="https://gitlab.com/eliazoura" class="text-white me-5" target="_blank" rel="noopener noreferrer">
 						<i class="fab fa-gitlab"></i>
 					</a>
