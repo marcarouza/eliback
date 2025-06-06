@@ -1,18 +1,13 @@
-// sharedStore.js
-import { reactive, watchEffect, toRefs } from 'vue';
-
-
+import {reactive, watchEffect, toRefs} from 'vue';
 
 const userStateGlobal = reactive({
-	userID: '',
-	userPseudo: '',
+	userID: null,
+	userPseudo: null,
 	isLoggedIn: false,
-	localUserSession: '',
+	localUserSession: null,
 });
 
-
-
-async function checkUserStatus() {
+async function checkUser() {
 	try {
 		const response = await fetch(
 			'https://eliback.onrender.com/api/checkUser',
@@ -30,19 +25,24 @@ async function checkUserStatus() {
 
 		const data = await response.json();
 
-		// Mise à jour de l'état utilisateur
-		userStateGlobal.userID = data.user._id;
-		userStateGlobal.userPseudo = data.user.pseudo;
-		userStateGlobal.isLoggedIn = true;
+		console.log('🚀 checkUser - data:', data);
 
-		console.log('🚀 userStateGlobal ~ userID:', userStateGlobal.userID);
+		if (data && data.user) {
+			// Mise à jour de l'état utilisateur
+			userStateGlobal.userID = data.user._id;
+			userStateGlobal.userPseudo = data.user.pseudo;
+			userStateGlobal.isLoggedIn = true;
+		}
+
 		console.log(
-			'🚀 userStateGlobal ~ userPseudo:',
+			'🚀 userStateGlobal:',
+			'userID:',
+			userStateGlobal.userID,
+			'userPseudo:',
 			userStateGlobal.userPseudo
 		);
-	} catch (error) {
-
-		console.log('🚀 ~ userGlobalService.js:44 ~ fetchUserData ~ error  ==> ', error);
+	} catch (err) {
+		console.error('🚀 checkUser - error:', err.message);
 	}
 }
 
@@ -52,20 +52,16 @@ async function getLocalUser() {
 		userStateGlobal.localUserSession = localUserData
 			? JSON.parse(localUserData)
 			: null;
-		if (localUserData) {
-
-			console.log('🚀 -------------------------------------------------------------------------------🚀')
-			console.log('🚀 ~ userGlobalService.js:57 ~ getLocalUser ~ localUserData  ==> ', localUserData._id)
-			console.log('🚀 -------------------------------------------------------------------------------🚀')
-
-			userStateGlobal.userID = userStateGlobal.localUserSession._id;
+		if (userStateGlobal.localUserSession) {
 			console.log(
-				'🚀 getLocalUser ~ userID:',
-				userStateGlobal.userID
+				'🚀 getLocalUser - localUserSession _id:',
+				userStateGlobal.localUserSession._id
 			);
+			userStateGlobal.userID = userStateGlobal.localUserSession._id;
+			// Vous pouvez aussi mettre à jour d'autres propriétés si nécessaire
 		}
 		console.log(
-			'✅ FROM getLocalUser in NavOk ==> localUserSession:',
+			'✅ getLocalUser - localUserSession:',
 			userStateGlobal.localUserSession
 		);
 	} catch (error) {
@@ -80,12 +76,11 @@ async function getLocalUser() {
 async function logOUTapi(router) {
 	try {
 		console.log(
-			'User ID before sending to logOutApi:',
+			'🚀 logOUTapi - userID avant déconnexion:',
 			userStateGlobal.userID
 		);
 
 		const response = await fetch(
-			// 'https://eli-back.onrender.com/api/logOut',
 			'https://eliback.onrender.com/api/logOUT',
 			{
 				method: 'POST',
@@ -101,10 +96,10 @@ async function logOUTapi(router) {
 			throw new Error(`HTTP error! status: ${response.status}`);
 		}
 
-		// Réinitialiser l'état utilisateur
+		// Réinitialisation de l’état utilisateur
 		userStateGlobal.isLoggedIn = false;
-		userStateGlobal.user = null;
 		userStateGlobal.userID = null;
+		userStateGlobal.userPseudo = null;
 		localStorage.removeItem('localUserSession');
 		sessionStorage.removeItem('localUserSession');
 
@@ -114,34 +109,32 @@ async function logOUTapi(router) {
 			await router.push({name: 'homepage'});
 		}
 	} catch (error) {
-		console.error('🍌 Erreur lors de la déconnexion :', error.message);
+		console.error(
+			'🍌 logOUTapi - Erreur lors de la déconnexion :',
+			error.message
+		);
 	}
 }
 
-	// Lancer la récupération des données
+// Lancer la récupération des données utilisateur dès le démarrage
 getLocalUser();
-	
-checkUserStatus();
+checkUser();
 
 watchEffect(() => {
-	console.log("-----------------Mise à jour de l'état utilisateur :", {
-		// user: userStateGlobal.user,
+	console.log("----------------- Mise à jour de l'état utilisateur :", {
 		userID: userStateGlobal.userID,
 		userPseudo: userStateGlobal.userPseudo,
 		isLoggedIn: userStateGlobal.isLoggedIn,
 		localUserSession: userStateGlobal.localUserSession,
 	});
-}
-);
+});
 
-
-
-// Exporter l'objet réactif et les fonctions que vous souhaitez utiliser ailleurs
 export {
-    userStateGlobal as userGlobalService,
-    checkUserStatus,
-    getLocalUser,
-    logOUTapi,
+	userStateGlobal as userGlobalService,
+	checkUser,
+	getLocalUser,
+	logOUTapi,
 };
 
-export const { userID, userPseudo, isLoggedIn } = toRefs(userStateGlobal);
+export const {userID, userPseudo, isLoggedIn, localUserSession} =
+	toRefs(userStateGlobal);
