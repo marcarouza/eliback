@@ -281,6 +281,7 @@
 </template>
 
 <script>
+import { API_BASE_URL } from "@/config/config.js"; // Assurez-vous du bon chemin
 export default {
 	name: 'UserStatus',
 	components: {},

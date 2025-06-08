@@ -62,6 +62,7 @@
 </template>
 
 <script>
+import { API_BASE_URL } from "@/config/config.js";
 export default {
 	name: 'SignUserForm',
 	data() {
@@ -98,7 +99,8 @@ export default {
 				try {
 					const response = await fetch(
 						// 'https://eli-back.onrender.com/api/signPage',
-						'https://eliazoura.fr/api/signUser',
+						// 'https://eliazoura.fr/api/signUser',
+						`${API_BASE_URL}api/signUser`,
 						{
 							method: 'POST',
 							headers: {

@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 // Importation des composants
-import AllMembersPage from '../views/AllMembersPage.vue';
 import ApiPage from '../views/ApiPage.vue';
+import AllMembersPage from '../views/AllMembersPage.vue';
+import CguRgpdPage from '../views/CguRgpdPage.vue';
+import ChatRoom from '../components/ChatRoom.vue';
 import ConfirmContactPage from '../views/ConfirmContactPage.vue';
 import ConfirmLoggedInPage from '../views/ConfirmLoggedInPage.vue';
 import ConfirmSignUpPage from '../views/ConfirmSignUpPage.vue';
@@ -11,20 +13,19 @@ import CookiesPage from '../views/CookiesPage.vue';
 import CvPage from '../views/CvPage.vue';
 import HomeBlogPage from '../views/HomeBlogPage.vue';
 import HomePage from '../views/HomePage.vue';
+import InfoAgentPage from '../views/InfoAgentPage.vue';
 import LogUserPage from '../views/LogUserPage.vue';
 import NoAccessPage from '../views/NoAccessPage.vue';
 import NotFoundPage from '../views/NotFoundPage.vue';
+import PassModifyPage from '../views/PassModifyPage.vue';
+import PostDetailPage from '../views/PostDetailPage.vue';
 import ProjetsPage from '../views/ProjetsPage.vue';
 import SearchPostPage from '../views/SearchPostPage.vue';
 import SignUserPage from '../views/SignUserPage.vue';
 import UserStatusPage from '../views/UserStatusPage.vue';
-import WritePostPage from '../views/WritePostPage.vue';
-import CguRgpdPage from '../views/CguRgpdPage.vue';
-import PostDetailPage from '../views/PostDetailPage.vue';
-import PassModifyPage from '../views/PassModifyPage.vue';
-import InfoAgentPage from '../views/InfoAgentPage.vue';
-import ChatRoom from '../components/ChatRoom.vue';
 import WordCounter from '../components/WordCounter.vue';
+import WritePostPage from '../views/WritePostPage.vue';
+
 
 
 

@@ -158,7 +158,8 @@
  
  <script>
  import Cookies from "js-cookie";
- import jwtDecode from "jwt-decode"; // Import par défaut pour jwt-decode
+import jwtDecode from "jwt-decode"; // Import par défaut pour jwt-decode
+import { API_BASE_URL } from "@/config/config.js";
  
  export default {
    name: "LogUserForm",
@@ -195,8 +196,9 @@
          try {
            const response = await fetch(
             //  "https://eli-back.onrender.com/api/logUser",
-            //  "https://eliback.onrender.com/api/logIN",
-             "https://eliazoura.fr/api/logIN",
+             //  "https://eliback.onrender.com/api/logIN",
+            //  "https://eliazoura.fr/api/logIN",
+             `${API_BASE_URL}api/logIN`, // Utilisation de la constante API_BASE_URL
              {
                method: "POST",
                headers: {
@@ -211,7 +213,7 @@
  
            if (response.ok) {
              const result = await response.json();
-             console.log("Utilisateur connecté:", result);
+             console.log("Utilisateur connecté :", result);
  
              this.pseudo = result.pseudo;
              // Facultatif : stocker aussi l'email

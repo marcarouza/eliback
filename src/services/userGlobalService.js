@@ -1,5 +1,7 @@
-import {reactive, watchEffect, toRefs} from 'vue';
+import { reactive, watchEffect, toRefs } from 'vue';
+import {API_BASE_URL} from '@/config/config.js';
 
+  // Déclaration de l'état utilisateur avec reactive
 const userStateGlobal = reactive({
 	userID: null,
 	userPseudo: null,
@@ -7,11 +9,14 @@ const userStateGlobal = reactive({
 	localUserSession: null,
 });
 
+  // Vérifie l'utilisateur auprès de l'API
+
 async function checkUser() {
 	try {
 		const response = await fetch(
 			// 'https://eliback.onrender.com/api/checkUser',
-			'https://eliazoura.fr/api/checkUser',
+			// 'https://eliazoura.fr/api/checkUser',
+			`${API_BASE_URL}api/checkUser`,
 			{
 				method: 'GET',
 				credentials: 'include',

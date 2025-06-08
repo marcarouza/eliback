@@ -101,6 +101,7 @@
 </template>
 
 <script>
+import { API_BASE_URL } from "@/config/config.js";
 export default {
 	name: 'PassModify',
 	data() {
