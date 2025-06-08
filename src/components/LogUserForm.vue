@@ -13,29 +13,29 @@
                   <p class="text-white-50 mb-5">Entrez votre mail et mot de passe</p>
 
                   <div data-mdb-input-init class="form-outline form-white mb-4">
-                    <input type="email" id="typeEmailX" v-model="formData.email" class="form-control form-control-lg"
+                    <input type="email" id="email" v-model="formData.email" class="form-control form-control-lg"
                       required />
-                    <label class="form-label" for="typeEmailX">Email</label>
+                    <label class="form-label" for="email">Email</label>
                   </div>
 
                   <div data-mdb-input-init class="form-outline form-white mb-4">
-                    <input :type="passwordVisible ? 'text' : 'password'" id="typePasswordX" v-model="formData.pwd"
+                    <input :type="passwordVisible ? 'text' : 'password'" id="pwd" v-model="formData.pwd"
                       class="form-control form-control-lg" required />
-                    <label class="form-label" for="typePasswordX">Password</label>
+                    <label class="form-label" for="pwd">Password</label>
                   </div>
 
-                  <p class="small mb-5 pb-lg-2">
+                  <!-- <p class="small mb-5 pb-lg-2">
                     <a class="text-white-50" href="#!">Forgot password?</a>
-                  </p>
+                  </p> -->
 
                   <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5"
                     type="submit">
                     Login
                   </button>
 
-                  <div class="d-flex justify-content-center text-center mt-4 pt-1">
+                  <!-- <div class="d-flex justify-content-center text-center mt-4 pt-1"> -->
                     <!-- Eventuels icônes sociales peuvent être ajoutés ici -->
-                  </div>
+                  <!-- </div> -->
                 </div>
               </form>
 
@@ -65,17 +65,17 @@
                 <form>
                   <div data-mdb-input-init class="form-outline mb-4">
                     <input type="text" id="form3Example1cg" class="form-control form-control-lg" required />
-                    <label class="form-label" for="form3Example1cg">Your Name</label>
+                    <label class="form-label" for="form3Example1cg">Nom</label>
                   </div>
 
                   <div data-mdb-input-init class="form-outline mb-4">
                     <input type="email" id="form3Example3cg" class="form-control form-control-lg" required />
-                    <label class="form-label" for="form3Example3cg">Your Email</label>
+                    <label class="form-label" for="form3Example3cg">Email</label>
                   </div>
 
                   <div data-mdb-input-init class="form-outline mb-4">
                     <input type="password" id="form3Example4cg" class="form-control form-control-lg" required />
-                    <label class="form-label" for="form3Example4cg">Password</label>
+                    <label class="form-label" for="form3Example4cg">Mot de passe</label>
                   </div>
 
                   <div data-mdb-input-init class="form-outline mb-4">
@@ -115,6 +115,13 @@
 <script>
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode"; // Import par défaut pour jwt-decode
+import {
+  userID,
+  userPseudo,
+  isLoggedIn,
+  userGlobalService,
+  logOUTapi as globalLogOUTapi,
+} from '@/services/userGlobalService';
 import { API_BASE_URL } from "@/config/configDevProd.js";
 
 export default {
@@ -127,10 +134,12 @@ export default {
       },
       id: null,
       pseudo: null,
-      userEmail: null,        // Email utilisateur issu du token
+      email: null,
+ myUser: null,     // Email utilisateur issu du token
       localUserSession: null,
       passwordVisible: false,
-      isLoggedIn: false
+      isLoggedIn: false,
+      cookies: null, // Pour stocker les cookies
     };
   },
   mounted() {
@@ -140,56 +149,137 @@ export default {
   },
   methods: {
     async fetchToLog() {
-  // Affichage formaté pour faciliter le débogage
-  console.log(`Fetching login with pwd: ${this.formData.pwd} and email: ${this.formData.email}`);
+      console.log(
+        `Fetching login with pwd: ${this.formData.pwd} and email: ${this.formData.email}`
+      );
 
-  // Vérifier que les champs email et mot de passe sont remplis
-  if (!this.formData.email || !this.formData.pwd) {
-    console.warn("Les champs email et mot de passe doivent être renseignés.");
-    return;
-  }
+      if (!this.formData.email || !this.formData.pwd) {
+        console.warn("Les champs email et mot de passe doivent être renseignés.");
+        return;
+      }
 
-  try {
-    // Envoyer la requête POST pour le login
-    const response = await fetch(`${API_BASE_URL}api/logIN`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(this.formData),
-      credentials: "include" // Inclut les cookies dans la requête
-    });
+      try {
+        const response = await fetch(`${API_BASE_URL}api/logIN`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(this.formData),
+          credentials: "include" // Inclut les cookies dans la requête
+        });
+        console.log("Response:", response, response.ok);
 
-    console.log("Response:", response, response.ok);
+        if (response.ok) {
+          const result = await response.json();
 
-    if (response.ok) {
-      // Extraction du résultat et déstructuration des propriétés user
-      const result = await response.json();
-      console.log("Utilisateur connecté :", result);
+          console.log('🚀 -----------------------------------------------------------🚀')
+          console.log('🚀 ~ LogUserForm.vue:171 ~ fetchToLog ~ result  ==> ', result)
+          console.log('🚀 -----------------------------------------------------------🚀')
 
-      const { user: { pseudo, email, birthDate } } = result;
-      this.pseudo = pseudo;
-      this.email = email;
-      this.birthDate = birthDate;
 
-      // Stocker une information utile en session, ici le pseudo
-      sessionStorage.setItem("localUserSession", JSON.stringify(this.pseudo));
-      this.isLoggedIn = true;
+          // Déstructuration des propriétés user 
+          const { user: { _id, email, pseudo } } = result;
 
-      // Mettre à jour les informations liées au token et afficher tous les cookies
-      this.decodeUSERfromTOKEN();
-      this.getAllDocCookiess();
+          this.myUser = result.user;
 
-      // Naviguer vers la page d'accueil (assurez-vous que la route est nommée "homePage")
-      await this.navigateTO("homePage");
-    } else {
-      // Extraction et affichage de l'erreur de login
-      const errorData = await response.json();
-      console.error("Erreur de login:", errorData);
-      alert(`⚠️ Email ou mot de passe incorrect : ${errorData.message}`);
-    }
-  } catch (err) {
-    console.error("Erreur lors de la soumission du formulaire:", err);
-  }
-}
+          console.log('🚀 -----------------------------------------------------------🚀')
+          console.log('🚀 ~ LogUserForm.vue:181 ~ fetchToLog ~ myUser  ==> ', this.myUser)
+          console.log('🚀 -----------------------------------------------------------🚀')
+
+          console.log('🚀 -----------------------------------------------------------🚀')
+          console.log('🚀 ~ LogUserForm.vue:181 ~ fetchToLog ~ result.user  ==> ', result.user)
+          console.log('🚀 -----------------------------------------------------------🚀')
+
+          this.id = result.user._id;
+          this.email = result.user.email;
+          this.pseudo = result.user.pseudo;
+
+          const myThisUser = {
+            id: this.id,
+            email: this.email,
+            pseudo: this.pseudo
+          };
+
+          // Stocker en session le pseudo
+
+          // Mise à jour des informations issues du token et affichage des cookies
+          this.decodeUSERfromTOKEN();
+          this.getAllDocCookiess();
+
+          // Navigation vers la page d'accueil (route nommée "homePage")
+          await this.navigateTO("homePage");
+
+        } else {
+          const errorData = await response.json();
+          console.error("Erreur de login:", errorData);
+          alert(`⚠️ Email ou mot de passe incorrect : ${errorData.message}`);
+        }
+      } catch (err) {
+        console.error("Erreur lors de la soumission du formulaire:", err);
+      }
+    },
+
+
+
+    decodeUSERfromTOKEN() {
+      const token = Cookies.get("jwt");
+      if (!token) {
+        console.log("Aucun token JWT trouvé");
+        return;
+      }
+
+      try {
+        const decoded = jwtDecode(token);
+        // Extraction des propriétés avec valeurs par défaut
+        const { id = null } = decoded;
+
+        console.log('🚀 ----------------------------------------------------------------------🚀')
+        console.log('🚀 ~ LogUserForm.vue:242 ~ decodeUSERfromTOKEN ~ decoded  ==> ', decoded)
+        console.log('🚀 ----------------------------------------------------------------------🚀')
+
+
+        if (decoded.id === this.id) {
+
+          this.isLoggedIn = true;
+
+          // sessionStorage.setItem("localUserSession", JSON.stringify(this.pseudo));
+          sessionStorage.setItem("youser", JSON.stringify(this.myUser));
+
+
+
+        } else {
+          this.isLoggedIn = false;
+          this.id = null;
+          this.pseudo = null;
+          this.email = null;
+          sessionStorage.removeItem("localUserSession");
+
+          console.warn("ID non correspondant dans le token");
+        }
+
+
+
+
+        console.log('🚀 ------------------------------------------------------------------------------------🚀')
+        console.log('🚀 ~ LogUserForm.vue:262 ~ decodeUSERfromTOKEN ~ decoded.pseudo  ==> ', decoded.pseudo)
+        console.log('🚀 ~ LogUserForm.vue:262 ~ decodeUSERfromTOKEN ~ this.pseudo   ==> ', this.pseudo)
+        console.log('🚀 --------------------------------------------------------------------------------🚀')
+
+
+        const myUser = {
+          id: this.id,
+          email: this.email,
+          pseudo: this.pseudo
+        }
+
+        console.log('🚀 --------------------------------------------------------------------🚀')
+        console.log('🚀 ~ LogUserForm.vue:277 ~ decodeUSERfromTOKEN ~ myUser  ==> ', myUser)
+        console.log('🚀 --------------------------------------------------------------------🚀')
+
+
+
+      } catch (error) {
+        console.error("Erreur lors du décodage du token:", error);
+      }
+    },
 
 
     async navigateTO(dest) {
@@ -207,33 +297,22 @@ export default {
       const allCookies = document.cookie;
       if (allCookies) {
         const cookiesArray = allCookies.split("; ");
-        console.log("Tous les cookies:", cookiesArray);
+        this.cookies = cookiesArray;
+        console.log('🚀 ------------------------------------------------------------------------------🚀')
+        console.log('🚀 ~ LogUserForm.vue:226 ~ getAllDocCookiess ~ cookiesArray  ==> ', cookiesArray)
+        console.log('🚀 ------------------------------------------------------------------------------🚀')
+
       }
     },
 
-    decodeUSERfromTOKEN() {
-  const token = Cookies.get("jwt");
-  if (!token) {
-    console.log("Aucun token JWT trouvé");
-    return;
-  }
-  
-  try {
-    const decoded = jwtDecode(token);
-    // Déstructuration pour extraire les propriétés en assignant une valeur par défaut
-    const { id = null, email = null, pseudo = null } = decoded;
-    
-    this.id = id;
-    this.userEmail = email;
-    this.pseudo = pseudo;
-    
-    console.log(`User info (id: ${id}, email: ${email}, pseudo: ${pseudo})`);
-  } catch (error) {
-    console.error("Erreur lors du décodage du token:", error);
-  }
-}
+
 
     getLocalUserSession() {
+      const sessionData = sessionStorage.getItem("localUserSession");
+      if (!sessionData) {
+        console.warn("Aucune session utilisateur locale trouvée");
+        return;
+      }
       this.localUserSession =
         JSON.parse(sessionStorage.getItem("localUserSession")) || null;
       console.log("Session utilisateur locale:", this.localUserSession);
@@ -245,6 +324,7 @@ export default {
   }
 };
 </script>
+
 
 
 

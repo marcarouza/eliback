@@ -10,7 +10,7 @@ import SignUserForm from '@/components/SignUserForm.vue';
 import TabWhats from '@/components/TabWhats.vue';
 
 export default {
-	name: 'SignUserPage',
+	name: 'UserStatusPage',
 	emits: ['updatePageTitle'], // Déclarez l'événement ici
 	components: {
 		CommonHead,

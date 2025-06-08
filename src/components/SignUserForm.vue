@@ -81,6 +81,19 @@ export default {
 		// this.checkLocaluser();
 	},
 	methods: {
+
+// Vérification de la session utilisateur locale
+		checkLocaluser() {
+			this.localUserSession =
+				JSON.parse(sessionStorage.getItem('localUserSession')) ||
+				null;
+			console.log(
+				'✅ ℹ️  FROM SignUserForm ==> this.localUserSession :',
+				this.localUserSession
+			);
+		},
+
+
 		// CREATION DU USER VIA API
 		async submitForm() {
 
@@ -123,7 +136,7 @@ export default {
 
 						// this.$router.push('/ConfirmUserPage');
 
-						this.$router.push({ name: 'confirmsignuppage' });
+						this.$router.push({ name: 'confirmSignUpPage' });
 						// à rempalcer par une NOTIF <= Rediriger vers la page de confirmation
 					} else {
 						const errorData = await response.json();
@@ -158,15 +171,6 @@ export default {
 			}
 		},
 
-		checkLocaluser() {
-			this.localUserSession =
-				JSON.parse(sessionStorage.getItem('localUserSession')) ||
-				null;
-			console.log(
-				'✅ ℹ️  FROM SignUserForm ==> this.localUserSession :',
-				this.localUserSession
-			);
-		},
 
 		async sendMail() {
 			try {

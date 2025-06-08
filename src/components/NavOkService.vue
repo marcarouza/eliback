@@ -40,7 +40,7 @@
             <i class="fas fa-chevron-circle-down fa-lg"></i>
           </a>
           <!-- Menu for logged-in user -->
-          <ul v-if="userId" class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDropdownUser">
+          <ul v-if="isLoggedIn" class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDropdownUser">
             <li>
               <router-link class="dropdown-item" to="/userstatusPage" @click.prevent="navigateToPrivate">
                 <i class="fas fa-user-circle me-2"></i> Mon compte
@@ -86,27 +86,25 @@ import {
   userID,
   userPseudo,
   isLoggedIn,
+  checkUser,
   userGlobalService,
   logOUTapi as globalLogOUTapi,
 } from '@/services/userGlobalService';
 
 const router = useRouter();
-const userId = ref(userID);
-const userPseudoVal = ref(userPseudo);
-const isUserLoggedIn = ref(isLoggedIn);
+// Utilisez directement les refs importées :
+const userIdVal = userID;
+const userPseudoVal = userPseudo;
+const isUserLoggedInRef = isLoggedIn;
 
 onMounted(() => {
   initMDB({ Dropdown });
-  console.log('MDB Dropdown initialisé', userId.value, userPseudoVal.value, isUserLoggedIn.value);
+  checkUser(); // Met à jour l'état global
+  console.log('MDB Dropdown initialisé:', userIdVal.value, userPseudoVal.value, isUserLoggedInRef.value);
 });
 
-// Les fonctions checkUserStatus et getLocalUser sont disponibles si besoin d'actualiser l'état utilisateur
-// checkUserStatus().then(() => {
-//   userId.value = userGlobalService.userID;
-//   userPseudoVal.value = userGlobalService.userPseudo;
-//   isUserLoggedIn.value = userGlobalService.isLoggedIn;
-//   console.log('User status mis à jour:', userId.value, userPseudoVal.value, isUserLoggedIn.value);
-// });
+
+
 
 // Navigation vers la page privée ou vers une page d'accès refusé selon l'état de connexion
 function navigateToPrivate() {

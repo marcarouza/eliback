@@ -20,7 +20,7 @@ export default {
 	mounted() {
 		this.$emit(
 			'updatePageTitle',
-			`Confirmation | Développeur Full Stack`
+			`Inscription confirmée ! Eli Azoura | Développeur Full Stack`
 		);
 	},
 };
