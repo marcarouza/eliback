@@ -140,67 +140,57 @@ export default {
   },
   methods: {
     async fetchToLog() {
-      console.log(
-        "Fetching login with pwd:",
-        this.formData.pwd,
-        "and email:",
-        this.formData.email
-      );
+  // Affichage formaté pour faciliter le débogage
+  console.log(`Fetching login with pwd: ${this.formData.pwd} and email: ${this.formData.email}`);
 
-      if (this.formData.email && this.formData.pwd) {
-        try {
-          const response = await fetch(`${API_BASE_URL}api/logIN`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(this.formData),
-            credentials: "include" // Pour inclure les cookies dans la requête
-          });
+  // Vérifier que les champs email et mot de passe sont remplis
+  if (!this.formData.email || !this.formData.pwd) {
+    console.warn("Les champs email et mot de passe doivent être renseignés.");
+    return;
+  }
 
-          console.log("Response:", response, response.ok);
+  try {
+    // Envoyer la requête POST pour le login
+    const response = await fetch(`${API_BASE_URL}api/logIN`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(this.formData),
+      credentials: "include" // Inclut les cookies dans la requête
+    });
 
-          if (response.ok) {
-            const result = await response.json();
-            console.log("Utilisateur connecté :", result);
+    console.log("Response:", response, response.ok);
 
-            // Extraction des propriétés pseudo et email par exemple
-            // ({ user: { pseudo: this.pseudo, email: this.email, birthDate: this.birthDate } } = response);
+    if (response.ok) {
+      // Extraction du résultat et déstructuration des propriétés user
+      const result = await response.json();
+      console.log("Utilisateur connecté :", result);
 
-            const { user: { pseudo, email, birthDate } } = result;
-            this.pseudo = pseudo;
-            this.email = email;
-            this.birthDate = birthDate;
+      const { user: { pseudo, email, birthDate } } = result;
+      this.pseudo = pseudo;
+      this.email = email;
+      this.birthDate = birthDate;
 
+      // Stocker une information utile en session, ici le pseudo
+      sessionStorage.setItem("localUserSession", JSON.stringify(this.pseudo));
+      this.isLoggedIn = true;
 
+      // Mettre à jour les informations liées au token et afficher tous les cookies
+      this.decodeUSERfromTOKEN();
+      this.getAllDocCookiess();
 
+      // Naviguer vers la page d'accueil (assurez-vous que la route est nommée "homePage")
+      await this.navigateTO("homePage");
+    } else {
+      // Extraction et affichage de l'erreur de login
+      const errorData = await response.json();
+      console.error("Erreur de login:", errorData);
+      alert(`⚠️ Email ou mot de passe incorrect : ${errorData.message}`);
+    }
+  } catch (err) {
+    console.error("Erreur lors de la soumission du formulaire:", err);
+  }
+}
 
-            // this.pseudo = result.pseudo;
-            // Facultatif : stocker aussi l'email
-            // this.userEmail = result.email;
-
-            sessionStorage.setItem(
-              "localUserSession",
-              JSON.stringify(this.pseudo)
-            );
-            this.isLoggedIn = true;
-
-            // Mettre à jour les informations issues du token et afficher les cookies
-            this.decodeUSERfromTOKEN();
-            this.getAllDocCookiess();
-
-            // Naviguer vers la page d'accueil (la route doit être nommée "homePage" dans votre router)
-            await this.navigateTO("homePage");
-          } else {
-            const errorData = await response.json();
-            console.error("Erreur de login:", errorData);
-            alert("⚠️ Email ou mot de passe incorrect : " + errorData.message);
-          }
-        } catch (err) {
-          console.error("Erreur lors de la soumission du formulaire:", err);
-        }
-      }
-    },
 
     async navigateTO(dest) {
       try {
@@ -222,22 +212,26 @@ export default {
     },
 
     decodeUSERfromTOKEN() {
-      const token = Cookies.get("jwt");
-      if (token) {
-        try {
-          const decoded = jwtDecode(token);
-          console.log("Decoded JWT:", decoded);
-          this.id = decoded.id || null;
-          this.userEmail = decoded.email || null;
-          this.pseudo = decoded.pseudo || null;
-          console.log("User info (id, email, pseudo):", this.id, this.userEmail, this.pseudo);
-        } catch (error) {
-          console.error("Erreur lors du décodage du token:", error);
-        }
-      } else {
-        console.log("Aucun token JWT trouvé");
-      }
-    },
+  const token = Cookies.get("jwt");
+  if (!token) {
+    console.log("Aucun token JWT trouvé");
+    return;
+  }
+  
+  try {
+    const decoded = jwtDecode(token);
+    // Déstructuration pour extraire les propriétés en assignant une valeur par défaut
+    const { id = null, email = null, pseudo = null } = decoded;
+    
+    this.id = id;
+    this.userEmail = email;
+    this.pseudo = pseudo;
+    
+    console.log(`User info (id: ${id}, email: ${email}, pseudo: ${pseudo})`);
+  } catch (error) {
+    console.error("Erreur lors du décodage du token:", error);
+  }
+}
 
     getLocalUserSession() {
       this.localUserSession =
