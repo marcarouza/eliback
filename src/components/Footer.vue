@@ -4,13 +4,20 @@
 			<div class="row">
 				<div class="col-12 col-md-6 text-center text-md-start mb-3 mb-md-0">
 					<p class="mb-0">
-						&copy; 2024 Eli Azoura. Tous droits réservés.
+						&copy; 2025 Eli Azoura.<span >   >>>>  L'URL de base est : {{ API_BASE_URL }}</span>
 					</p>
 				</div>
+
+
+
+
 				<div class="col-12 col-md-6 text-center text-md-end">
 					<!-- <RouterLink to="/chatroom" class="text-black routeur me-5" target="_blank" rel="noopener noreferrer">
 						<i class="fa-solid fa-comment"></i>
 					</RouterLink> -->
+
+
+
 					<a href="https://gitlab.com/eliazoura" class="text-white me-5" target="_blank" rel="noopener noreferrer">
 						<i class="fab fa-gitlab"></i>
 					</a>
@@ -26,10 +33,20 @@
 
 <script>
 import { RouterLink } from 'vue-router';
+import {API_BASE_URL} from '@/config/configDevProd.js';
+
 
 export default {
 	name: 'Footer',
+		data() {
+		return {
+			API_BASE_URL: API_BASE_URL,
+			// Autres données si nécessaire
+		};
+	},
 };
+
+
 </script>
 
 <style scoped>

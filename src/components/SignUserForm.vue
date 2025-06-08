@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { API_BASE_URL } from "@/config/config.js";
+import { API_BASE_URL } from "@/config/configDevProd.js";
 export default {
 	name: 'SignUserForm',
 	data() {
@@ -175,7 +175,11 @@ export default {
 
 					// 'https://eli-back.onrender.com/signUserMAILConfirm',
 					// 'https://eliback.onrender.com/api/mailSignOK',
-					'https://eliazoura.fr/api/mailSignOK',
+					// 'https://eliazoura.fr/api/mailSignOK',
+					// 'https://eliazoura.fr/api/mailSignOK',
+
+					`${API_BASE_URL}api//mailSignOK`,
+
 					{
 						method: 'POST',
 						headers: {

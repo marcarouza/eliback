@@ -1,5 +1,5 @@
 import { reactive, watchEffect, toRefs } from 'vue';
-import {API_BASE_URL} from '@/config/config.js';
+import {API_BASE_URL} from '@/config/configDevProd.js';
 
   // Déclaration de l'état utilisateur avec reactive
 const userStateGlobal = reactive({

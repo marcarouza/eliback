@@ -70,7 +70,7 @@ import { userGlobalService, userID, userPseudo, isLoggedIn } from '@/services/us
 const { user } = toRefs(userGlobalService);
 
 console.log('🚀 -------------------------------------🚀')
-console.log('🚀 ~ ChatBox.vue:64 ~ user  ==> ', user)
+console.log('🚀 ~ ChatBox.vue:72 ~ user  ==> ', user)
 console.log('🚀 -------------------------------------🚀')
 
 
@@ -78,8 +78,9 @@ console.log('🚀 -------------------------------------🚀')
 
 
 
+
 // const router = useRouter();
-console.log('✅ 🐱  FROM ChatBox ===> SOCKET CLIENT : ', socket);
+// console.log('✅ 🐱  FROM ChatBox ===> SOCKET CLIENT : ', socket);
 
 export default {
     name: 'ChatBox',

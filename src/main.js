@@ -5,7 +5,6 @@ initMDB({Dropdown});
 
 
 import {createApp} from 'vue';
-import {createRouter, createWebHistory} from 'vue-router';
 
 
 import '/src/assets/styles_temp_dev.css'; // Importer le fichier CSS global

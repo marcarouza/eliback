@@ -35,6 +35,55 @@ import WritePostPage from '../views/WritePostPage.vue';
 
 const routes = [
 	{
+		path: '/allMembersPage',
+		name: 'allMembersPage',
+		component: AllMembersPage,
+	},
+	{
+		path: '/apiPage',
+		name: 'apiPage',
+		component: ApiPage,
+		meta: {showChatBox: false},
+	},
+	{
+		path: '/chatroom',
+		name: 'chatRoom',
+		component: ChatRoom,
+		meta: {showChatBox: false},
+	},
+	{
+		path: '/confirmContactPage',
+		name: 'confirmContactPage',
+		component: ConfirmContactPage,
+	},
+	{
+		path: '/confirmloggedinPage',
+		name: 'confirmLoggedInPage',
+		component: ConfirmLoggedInPage,
+		meta: {showChatBox: false},
+	},
+	{
+		path: '/confirmSignUpPage',
+		name: 'confirmSignUpPage',
+		component: ConfirmSignUpPage,
+		meta: {showChatBox: false},
+	},
+	{
+		path: '/contactFormPage',
+		name: 'contactFormPage',
+		component: ContactFormPage,
+	},
+	{
+		path: '/cookiesPage',
+		name: 'cookiesPage',
+		component: CookiesPage,
+	},
+	{
+		path: '/cvPage',
+		name: 'cvPage',
+		component: CvPage,
+	},
+	{
 		path: '/homePage',
 		alias: '/',
 		name: 'homePage',
@@ -42,9 +91,32 @@ const routes = [
 		meta: {showChatBox: true},
 	},
 	{
+		path: '/homeblogPage',
+		name: 'homeBlogPage',
+		component: HomeBlogPage,
+	},
+	{
 		path: '/infoagentPage',
 		name: 'infoAgentPage',
 		component: InfoAgentPage,
+	},
+	{
+		path: '/loguserPage',
+		name: 'logUserPage',
+		component: LogUserPage,
+		meta: {showChatBox: false},
+	},
+	{
+		path: '/noAccessPage',
+		name: 'noAccessPage',
+		component: NoAccessPage,
+		meta: {showChatBox: false},
+	},
+	{
+		path: '/:pathMatch(.*)*',
+		name: 'notFoundPage',
+		component: NotFoundPage,
+		meta: {showChatBox: false},
 	},
 	{
 		path: '/passmodifyPage',
@@ -57,57 +129,14 @@ const routes = [
 		component: PostDetailPage,
 	},
 	{
-		path: '/rgpdPage',
-		name: 'rgpdPage',
-		component: CguRgpdPage,
-	},
-	{
-		path: '/confirmloggedinPage',
-		name: 'confirmLoggedInPage',
-		component: ConfirmLoggedInPage,
-		meta: {showChatBox: false},
-	},
-	{
 		path: '/projetsPage',
 		name: 'projetsPage',
 		component: ProjetsPage,
 	},
 	{
-		path: '/noAccessPage',
-		name: 'noAccessPage',
-		component: NoAccessPage,
-		meta: {showChatBox: false},
-	},
-	{
-		path: '/allMembersPage',
-		name: 'allMembersPage',
-		component: AllMembersPage,
-	},
-	{
-		path: '/signPage',
-		name: 'signUserPage',
-		component: SignUserPage,
-	},
-	{
-		path: '/loguserPage',
-		name: 'logUserPage',
-		component: LogUserPage,
-		meta: {showChatBox: false},
-	},
-	{
-		path: '/contactFormPage',
-		name: 'contactFormPage',
-		component: ContactFormPage,
-	},
-	{
-		path: '/cvPage',
-		name: 'cvPage',
-		component: CvPage,
-	},
-	{
-		path: '/homeblogPage',
-		name: 'homeBlogPage',
-		component: HomeBlogPage,
+		path: '/rgpdPage',
+		name: 'rgpdPage',
+		component: CguRgpdPage,
 	},
 	{
 		path: '/searchpostPage',
@@ -115,42 +144,14 @@ const routes = [
 		component: SearchPostPage,
 	},
 	{
-		path: '/writepostPage',
-		name: 'writePostPage',
-		component: WritePostPage,
-	},
-	{
-		path: '/cookiesPage',
-		name: 'cookiesPage',
-		component: CookiesPage,
-	},
-	{
-		path: '/apiPage',
-		name: 'apiPage',
-		component: ApiPage,
-		meta: {showChatBox: false},
+		path: '/signPage',
+		name: 'signUserPage',
+		component: SignUserPage,
 	},
 	{
 		path: '/userstatusPage',
 		name: 'userStatusPage',
 		component: UserStatusPage,
-	},
-	{
-		path: '/confirmContactPage',
-		name: 'confirmContactPage',
-		component: ConfirmContactPage,
-	},
-	{
-		path: '/confirmSignUpPage',
-		name: 'confirmSignUpPage',
-		component: ConfirmSignUpPage,
-		meta: {showChatBox: false},
-	},
-	{
-		path: '/chatroom',
-		name: 'chatRoom',
-		component: ChatRoom,
-		meta: {showChatBox: false},
 	},
 	{
 		path: '/wordcounter',
@@ -159,12 +160,12 @@ const routes = [
 		meta: {showChatBox: false},
 	},
 	{
-		path: '/:pathMatch(.*)*',
-		name: 'notFoundPage',
-		component: NotFoundPage,
-		meta: {showChatBox: false},
+		path: '/writepostPage',
+		name: 'writePostPage',
+		component: WritePostPage,
 	},
 ];
+
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),

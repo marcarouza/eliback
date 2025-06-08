@@ -256,7 +256,7 @@
 <script>
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode'; // Utilisez jwt-decode pour décoder le JWT
-import { API_BASE_URL } from "@/config/config.js";
+import { API_BASE_URL } from "@/config/configDevProd.js";
 
 export default {
 	name: 'LogUserForm',
