@@ -93,14 +93,14 @@ import {
 
 const router = useRouter();
 // Utilisez directement les refs importées :
-const userIdVal = userID;
+const userIDval = userID;
 const userPseudoVal = userPseudo;
-const isUserLoggedInRef = isLoggedIn;
+const isLoggedInVal = isLoggedIn;
 
 onMounted(() => {
   initMDB({ Dropdown });
   checkUser(); // Met à jour l'état global
-  console.log('MDB Dropdown initialisé:', userIdVal.value, userPseudoVal.value, isUserLoggedInRef.value);
+  console.log('MDB Dropdown initialisé:', userIDval.value, userPseudoVal.value, isLoggedInVal.value);
 });
 
 
