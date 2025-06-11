@@ -42,15 +42,15 @@ router.post('/contactForm', (req, res) => {
 	console.log('🚀 ~ router.post ~ firstname:', firstname);
 
 	// Options de l'email
-	const mailOptions = {
-		from: email,
-		to: 'site@eliazoura.fr',
-		code: code,
-		mobile: mobile,
-		subject: subject,
-		message: message,
-		text: `Nom: ${lastname}\nPrénom: ${firstname}\nCode: ${code}\nMobile: ${mobile}\n\nMessage:\n${message}`,
-	};
+	// const mailOptions = {
+	// 	from: email,
+	// 	to: 'site@eliazoura.fr',
+	// 	code: code,
+	// 	mobile: mobile,
+	// 	subject: subject,
+	// 	message: message,
+	// 	text: `Nom: ${lastname}\nPrénom: ${firstname}\nCode: ${code}\nMobile: ${mobile}\n\nMessage:\n${message}`,
+	// };
 
 	// Envoi de l'email avec le transporteur configuré
 	transporter.sendMail(mailOptions, (error, info) => {

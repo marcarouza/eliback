@@ -1,5 +1,7 @@
 // sharedStore.js
-import {reactive, watchEffect, toRefs} from 'vue';
+import { reactive, watchEffect, toRefs } from 'vue';
+import {API_BASE_URL} from '@/config/configDevProd.js';
+
 
 const userStateGlobal = reactive({
 	userID: '',
@@ -11,7 +13,8 @@ const userStateGlobal = reactive({
 async function checkUserStatus() {
 	try {
 		const response = await fetch(
-			'https://eli-back.onrender.com/api/checkUserStatus',
+			// 'https://eli-back.onrender.com/api/checkUserStatus',
+			`https://${API_BASE_URL}/api/checkUserStatus`,
 			{
 				method: 'GET',
 				credentials: 'include',

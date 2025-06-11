@@ -96,8 +96,7 @@ export default {
 
     mounted() {
         this.hideChat();
-      //   this.checkLocalUserSession();
-		//  this.checkUSER();
+
 
 		   // console.log('************ User:', user.value);
   console.log('************ UserID:', userID.value);
