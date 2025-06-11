@@ -194,6 +194,8 @@
 </template>
 
 <script>
+import { API_BASE_URL } from "@/config/configDevProd.js";
+
 export default {
 	name: 'ContactForm',
 	data() {
@@ -222,7 +224,8 @@ export default {
 			) {
 				try {
 					const response = await fetch(
-						'https://eli-back.onrender.com/api/contactFormPost',
+						// 'https://eli-back.onrender.com/api/contactFormPost',
+						`https://${API_BASE_URL}api/contactFormPost`,
 						{
 							method: 'POST',
 							headers: {

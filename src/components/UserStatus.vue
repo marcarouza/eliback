@@ -332,7 +332,8 @@ export default {
 		},
 		async completeProfile() {
 			await fetch(
-				`https://eli-back.onrender.com/api/completeProfile`,
+				// `https://eli-back.onrender.com/api/completeProfile`,
+				`https://${API_BASE_URL}api/getAgent`,
 				{
 					method: 'POST',
 					headers: {
@@ -368,7 +369,7 @@ export default {
 				const response = await fetch(
 					// 'https://eli-back.onrender.com/api/checkUserStatus',
 					// 'https://eliback.onrender.com/api/checkUser',
-					'https://eliazoura.fr/api/checkUser',
+					`https://${ API_BASE_URL}api/checkUser`,
 
 					{
 						method: 'GET',
@@ -429,7 +430,9 @@ export default {
 			}
 			try {
 				const response = await fetch(
-					'https://eli-back.onrender.com/api/acceptFriendReq',
+					// 'https://eli-back.onrender.com/api/acceptFriendReq',
+					`https://${ API_BASE_URL}api/acceptFriendReq`,
+
 					{
 						method: 'POST',
 						headers: {
@@ -502,7 +505,9 @@ export default {
 					typeof this.user._id
 				);
 				const response = await fetch(
-					'https://eli-back.onrender.com/api/rejectFriendReq',
+					// 'https://eli-back.onrender.com/api/rejectFriendReq',
+					`https://${ API_BASE_URL}api/rejectFriendReq`,
+
 					{
 						method: 'POST',
 						headers: {

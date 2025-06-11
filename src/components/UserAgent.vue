@@ -165,6 +165,8 @@
 <script>
 
 import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { API_BASE_URL } from "@/config/configDevProd.js";
+
 
 export default {
   name: 'AgentInfo',
@@ -216,7 +218,8 @@ export default {
     const getUserAgentInfo = async () => {
       try {
         const response = await fetch(
-          'https://eliback.onrender.com/api/getAgent',
+			//   'https://eliback.onrender.com/api/getAgent',
+			 `https://${API_BASE_URL}api/getAgent`,
           {
             method: 'GET',
             credentials: 'include',
@@ -234,27 +237,6 @@ export default {
         console.error('Problème avec getUserAgentInfo:', err);
       }
     };
-   //  const getUserAgentInfo = async () => {
-   //    try {
-   //      const response = await fetch(
-   //        'https://eli-back.onrender.com/api/info',
-   //        {
-   //          method: 'GET',
-   //          credentials: 'include',
-   //        }
-   //      );
-   //      if (!response.ok) {
-   //        throw new Error(
-   //          `FROM UserAgent API response was not ok ==> ${response.status}`
-   //        );
-   //      }
-   //      const data = await response.json();
-   //      console.log('🚀 ~ getUserAgentInfo ~ data:', data);
-   //      userAgentInfo.value = data.userAgentInfo;
-   //    } catch (err) {
-   //      console.error('Problème avec getUserAgentInfo:', err);
-   //    }
-   //  };
 
     // Hooks du cycle de vie
     onMounted(() => {
