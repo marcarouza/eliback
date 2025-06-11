@@ -40,7 +40,7 @@
             <i class="fas fa-chevron-circle-down fa-lg"></i>
           </a>
           <!-- Menu for logged-in user -->
-          <ul v-if="isLoggedIn" class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDropdownUser">
+          <ul v-if="isUserLoggedInRef" class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarDropdownUser">
             <li>
               <router-link class="dropdown-item" to="/userstatusPage" @click.prevent="navigateToPrivate">
                 <i class="fas fa-user-circle me-2"></i> Mon compte
@@ -68,7 +68,7 @@
             <li>
               <router-link class="dropdown-item" to="/signPage">
                 <i class="fas fa-user-plus me-2"></i> Créer un compte
-              </router-link>
+              </a>
             </li>
           </ul>
         </li>
@@ -103,12 +103,9 @@ onMounted(() => {
   console.log('MDB Dropdown initialisé:', userIdVal.value, userPseudoVal.value, isUserLoggedInRef.value);
 });
 
-
-
-
 // Navigation vers la page privée ou vers une page d'accès refusé selon l'état de connexion
 function navigateToPrivate() {
-  if (isUserLoggedIn.value) {
+  if (isUserLoggedInRef.value) {
     router.push({ name: 'userstatusPage' });
   } else {
     router.push({ name: 'noaccesspage' });
