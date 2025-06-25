@@ -68,7 +68,7 @@
             <li>
               <router-link class="dropdown-item" to="/signPage">
                 <i class="fas fa-user-plus me-2"></i> Créer un compte
-              </a>
+              </router-link>
             </li>
           </ul>
         </li>
