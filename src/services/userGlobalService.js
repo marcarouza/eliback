@@ -30,6 +30,21 @@ async function checkUser() {
 			);
 		}
 
+		// Check if the response is actually JSON
+		const contentType = response.headers.get('content-type');
+		if (!contentType || !contentType.includes('application/json')) {
+			const responseText = await response.text();
+			console.warn('🚀 checkUser - Expected JSON but received:', contentType);
+			console.warn('🚀 checkUser - Response body:', responseText);
+			
+			// Reset user state since we didn't get valid JSON
+			userStateGlobal.userID = null;
+			userStateGlobal.userPseudo = null;
+			userStateGlobal.userEmail = null;
+			userStateGlobal.isLoggedIn = false;
+			return;
+		}
+
 		const data = await response.json();
 
 		console.log('🚀 checkUser - data:', data);
@@ -65,9 +80,21 @@ async function checkUser() {
 			console.log(
 				'🚀 ------------------------------------------------------------------------------------------------------🚀'
 			);
+		} else {
+			// Reset user state if no valid user data received
+			userStateGlobal.userID = null;
+			userStateGlobal.userPseudo = null;
+			userStateGlobal.userEmail = null;
+			userStateGlobal.isLoggedIn = false;
 		}
 	} catch (err) {
 		console.error('🚀 checkUser - error:', err.message);
+		
+		// Reset user state on any error
+		userStateGlobal.userID = null;
+		userStateGlobal.userPseudo = null;
+		userStateGlobal.userEmail = null;
+		userStateGlobal.isLoggedIn = false;
 	}
 }
 
@@ -123,7 +150,7 @@ async function logOUTapi(router) {
 			throw new Error(`HTTP error! status: ${response.status}`);
 		}
 
-		// Réinitialisation de l’état utilisateur
+		// Réinitialisation de l'état utilisateur
 		userStateGlobal.isLoggedIn = false;
 		userStateGlobal.userID = null;
 		userStateGlobal.userPseudo = null;
